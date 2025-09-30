@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/Header.css';
+import '@/styles/Header.css';
 
 // Provided example structure translated into a data object
 const menuItems = [
@@ -103,20 +103,20 @@ function Header() {
                     </ul>
                 </nav>
                 <div className="close">
-                    <a href="javascript:void(0)" onClick={() => setGnbOpen(false)}>
+                    <button type="button" onClick={() => setGnbOpen(false)}>
                         <span className="circle"></span>
                         <span className="blind">전체메뉴 닫기</span>
-                    </a>
+                    </button>
                 </div>
             </div>
 
             <div className="hamburger">
-                <a href="javascript:void(0)" onClick={() => setGnbOpen(true)}>
+                <button type="button" onClick={() => setGnbOpen(true)}>
                     <span className="bar"></span>
                     <span className="bar"></span>
                     <span className="bar"></span>
                     <span className="blind">전체메뉴 열기</span>
-                </a>
+                </button>
             </div>
         </div>
     );

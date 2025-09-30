@@ -24,6 +24,10 @@
     box-sizing: border-box;
 }
 
+.header-primary-wrap h1 {
+    z-index: 1000;
+}
+
 .header-primary-wrap .logo {
     display: block;
     width: 150px;
@@ -32,7 +36,6 @@
 .header-primary-wrap .logo img {
     width: 100%;
     height: auto;
-    z-index: 500;
 }
 
 .gnb {
@@ -48,9 +51,15 @@
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
-.gnb:hover {
-    height: 350px; /* Expanded height */
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+@media (min-width: 1025px) {
+    .gnb:hover {
+        height: 350px; /* Expanded height */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .gnb:hover .depth2 {
+        display: block;
+    }
 }
 
 .nav {
@@ -100,10 +109,6 @@
     line-height: 1.5;
 }
 
-.gnb:hover .depth2 {
-    display: block;
-}
-
 .depth2 > li {
     padding: 8px 0;
 }
@@ -141,12 +146,18 @@
     display: none; /* Hidden on desktop */
 }
 
+.hamburger button,
+.close button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
 @media (max-width: 1024px) {
-    .header-primary-wrap {
-        padding: 0 20px;
-    }
+    /* 1. Hide desktop nav, show hamburger */
     .nav {
-        display: none; /* Hide desktop nav */
+        display: none;
     }
     .hamburger {
         display: block;
@@ -164,16 +175,41 @@
         margin: 5px 0;
     }
 
-    /* Mobile GNB Panel */
-    .mobile-gnb-open .gnb {
-        height: 100%;
-        z-index: 100;
-        overflow-y: auto; /* Enable scrolling */
+    /* 2. Style GNB as a hidden panel */
+    .gnb {
+        display: none; /* Hidden by default */
     }
+    /* Disable desktop hover effects */
+    .gnb:hover {
+        height: 100vh;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+
+    /* 3. Show GNB panel when open */
+    .mobile-gnb-open .gnb {
+        display: block; /* Show instantly */
+        position: fixed;
+        top: 0;
+        left: auto; /* Reset desktop style */
+        right: 0;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh; /* Full viewport height */
+        background-color: #fff;
+        z-index: 100;
+        overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+    /* Hide hamburger when panel is open */
+    .mobile-gnb-open .hamburger {
+        display: none;
+    }
+
+    /* 4. Style the navigation list for mobile */
     .mobile-gnb-open .nav {
         display: block;
         padding-left: 0;
-        margin-top: 80px;
+        margin-top: 60px; /* Space for close button */
     }
     .mobile-gnb-open .depth1 {
         flex-direction: column;
@@ -185,24 +221,16 @@
     }
     .mobile-gnb-open .depth1 > li > a {
         display: block;
-        padding: 20px 0;
-    }
-    .mobile-gnb-open .gnb:hover {
-        height: 100%; /* Prevent hover effect on mobile */
-        box-shadow: none;
+        padding: 18px 0;
     }
     .mobile-gnb-open .depth2 {
-        display: block;
+        display: none; /* Hidden by default */
         position: static;
         background-color: #f9f9f9;
-        padding: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-in-out;
+        padding: 10px 0;
     }
     .mobile-gnb-open .depth1 > li.submenu-open .depth2 {
-        max-height: 1000px; /* Large enough value to show all content */
-        padding: 10px 0;
+        display: block; /* Show on click */
     }
     .mobile-gnb-open .depth2 > li {
         padding: 10px 0;
@@ -211,11 +239,11 @@
         background-color: #f0f0f0;
     }
 
-    /* Close Button */
+    /* 5. Style the close button */
     .mobile-gnb-open .close {
         display: block;
         position: absolute;
-        top: 40px;
+        top: 35px;
         right: 20px;
         z-index: 110;
     }

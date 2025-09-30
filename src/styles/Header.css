@@ -1,0 +1,245 @@
+/* Reset & Common */
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+/* ===================================
+   HEADER LAYOUT
+   =================================== */
+.header-primary-wrap {
+    position: relative;
+    width: 100%;
+    height: 110px; /* Default height */
+    background-color: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.header-primary-wrap .logo {
+    display: block;
+    width: 150px;
+}
+
+.header-primary-wrap .logo img {
+    width: 100%;
+    height: auto;
+    z-index: 500;
+}
+
+.gnb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    background-color: #fff;
+    z-index: 10;
+    transition: height 0.4s ease-in-out;
+    overflow: hidden;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.gnb:hover {
+    height: 350px; /* Expanded height */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding-left: 150px; /* Offset for logo */
+    box-sizing: border-box;
+}
+
+/* ===================================
+   DESKTOP GNB MENU
+   =================================== */
+.depth1 {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.depth1 > li {
+    position: relative;
+    padding: 0 40px;
+    line-height: 110px;
+}
+
+.depth1 > li > a {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #333;
+    text-decoration: none;
+}
+
+.depth2 {
+    display: none;
+    position: absolute;
+    top: 110px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    list-style: none;
+    margin: 0;
+    padding: 20px 0;
+    line-height: 1.5;
+}
+
+.gnb:hover .depth2 {
+    display: block;
+}
+
+.depth2 > li {
+    padding: 8px 0;
+}
+
+.depth2 > li > a {
+    font-size: 1rem;
+    color: #555;
+    text-decoration: none;
+}
+
+.depth2 > li > a:hover {
+    color: #007bff;
+}
+
+.depth3 {
+    list-style: none;
+    margin: 10px 0 0 0;
+    padding: 10px 0;
+    background-color: #f9f9f9;
+}
+
+.depth3 > li {
+    padding: 5px 0;
+}
+
+.depth3 > li > a {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* ===================================
+   MOBILE & HAMBURGER
+   =================================== */
+.hamburger, .close {
+    display: none; /* Hidden on desktop */
+}
+
+@media (max-width: 1024px) {
+    .header-primary-wrap {
+        padding: 0 20px;
+    }
+    .nav {
+        display: none; /* Hide desktop nav */
+    }
+    .hamburger {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        z-index: 20;
+    }
+    .hamburger .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 5px 0;
+    }
+
+    /* Mobile GNB Panel */
+    .mobile-gnb-open .gnb {
+        height: 100%;
+        z-index: 100;
+        overflow-y: auto; /* Enable scrolling */
+    }
+    .mobile-gnb-open .nav {
+        display: block;
+        padding-left: 0;
+        margin-top: 80px;
+    }
+    .mobile-gnb-open .depth1 {
+        flex-direction: column;
+    }
+    .mobile-gnb-open .depth1 > li {
+        line-height: 1.5;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+    .mobile-gnb-open .depth1 > li > a {
+        display: block;
+        padding: 20px 0;
+    }
+    .mobile-gnb-open .gnb:hover {
+        height: 100%; /* Prevent hover effect on mobile */
+        box-shadow: none;
+    }
+    .mobile-gnb-open .depth2 {
+        display: block;
+        position: static;
+        background-color: #f9f9f9;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+    }
+    .mobile-gnb-open .depth1 > li.submenu-open .depth2 {
+        max-height: 1000px; /* Large enough value to show all content */
+        padding: 10px 0;
+    }
+    .mobile-gnb-open .depth2 > li {
+        padding: 10px 0;
+    }
+    .mobile-gnb-open .depth3 {
+        background-color: #f0f0f0;
+    }
+
+    /* Close Button */
+    .mobile-gnb-open .close {
+        display: block;
+        position: absolute;
+        top: 40px;
+        right: 20px;
+        z-index: 110;
+    }
+    .close .circle {
+        display: block;
+        width: 30px;
+        height: 30px;
+        border: 2px solid #333;
+        border-radius: 50%;
+        position: relative;
+    }
+    .close .circle::before, .close .circle::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 18px;
+        height: 2px;
+        background-color: #333;
+    }
+    .close .circle::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    .close .circle::after {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}

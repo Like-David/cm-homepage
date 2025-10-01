@@ -1,0 +1,228 @@
+/* SolutionPage.css */
+
+.solution-page {
+  width: 100%;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 1. 상단 인트로 섹션 */
+.solution-intro {
+  background-color: #f4f8ff;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.solution-intro h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1C2D60; /* Navy Blue */
+  margin-bottom: 16px;
+}
+
+.solution-intro p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* 2. 솔루션 이미지 그리드 섹션 */
+.solution-grid {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+.solution-grid .container {
+  display: flex;
+  justify-content: space-around;
+  gap: 50px;
+}
+
+.solution-item {
+  flex: 1;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.solution-item img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.solution-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black with even more transparency */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  padding: 20px;
+}
+
+.solution-item:hover .solution-overlay {
+  opacity: 1;
+}
+
+.solution-item:hover img {
+  opacity: 0.2;
+}
+
+.solution-overlay h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.solution-overlay p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* 3. 솔루션 상세 섹션 */
+.solution-details-container {
+  background-color: #f9f9f9;
+  padding-top: 1px; /* for margin collapse */
+  padding-bottom: 1px;
+}
+
+.solution-detail {
+  padding: 80px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.solution-detail:last-child {
+  border-bottom: none;
+}
+
+.detail-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.detail-header .icon {
+  font-size: 2.5rem;
+}
+
+.detail-header h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.detail-header h3 {
+  font-size: 1.2rem;
+  color: #555;
+  font-weight: 400;
+}
+
+.solution-detail .description {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+  color: #444;
+}
+
+.detail-content {
+  display: flex;
+  gap: 40px;
+}
+
+.features, .advantages {
+  flex: 1;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.features h4, .advantages h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1C2D60;
+  border-bottom: 2px solid #1C2D60;
+  padding-bottom: 10px;
+}
+
+.features ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.features li {
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 1rem;
+}
+.features li:last-child {
+  border-bottom: none;
+}
+
+.advantages .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.advantages .tag {
+  background-color: #e3f2fd;
+  color: #1C2D60;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* 4. 문의 CTA 섹션 */
+.solution-cta {
+  background-color: #1C2D60;
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.solution-cta h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.solution-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
+
+.solution-cta button {
+  background-color: white;
+  color: #1C2D60;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.solution-cta button:hover {
+  background-color: #f0f0f0;
+}

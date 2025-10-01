@@ -22,21 +22,8 @@ const menuItems = [
         ],
     },
     {
-        title: 'PRODUCT',
-        path: '/product/web',
-        depth2: [
-            { title: '웹보안', path: '/product/web' },
-            { title: 'DB암호화', path: '/product/database' },
-            {
-                title: 'DB접근제어',
-                path: '/product/dbsafer'
-            },
-            { title: '네트워크보안', path: '/product/network' },
-            {
-                title: 'CLOUD',
-                path: '/product/cloud'
-            },
-        ],
+        title: 'SOLUTION',
+        path: '/solution',
     },
     {
         title: 'SUPPORT',
@@ -62,8 +49,10 @@ function Header() {
     }, []);
 
     const handleMobileSubmenuToggle = (e, index) => {
-        e.preventDefault(); // Prevent page navigation
-        setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
+        if (menuItems[index].depth2) {
+            e.preventDefault(); // Prevent page navigation
+            setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
+        }
     };
 
     return (

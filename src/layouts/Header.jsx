@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '@/styles/Header.css';
+import logo from '@/assets/images/Header/cm-logo.png';
+import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
 
 // Provided example structure translated into a data object
 const menuItems = [
@@ -50,15 +52,26 @@ const menuItems = [
 function Header() {
     const [isGnbOpen, setGnbOpen] = useState(false);
     const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
+    const [isScrolled, setScrolled] = useState(false);
+    const [isHeaderHovered, setIsHeaderHovered] = useState(false); // New state
 
     useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+
         const handleResize = () => {
             if (window.innerWidth > 1024) { // Standard breakpoint for desktop
                 setGnbOpen(false);
             }
         };
+
+        window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     const handleMobileSubmenuToggle = (e, index) => {
@@ -67,11 +80,13 @@ function Header() {
     };
 
     return (
-        <div className={`header-primary-wrap ${isGnbOpen ? 'mobile-gnb-open' : ''}`}>
+        <div
+            className={`header-primary-wrap ${isGnbOpen ? 'mobile-gnb-open' : ''} ${isScrolled ? 'scrolled' : ''}`}
+            onMouseEnter={() => window.innerWidth > 1024 && setIsHeaderHovered(true)} // Only for desktop
+            onMouseLeave={() => window.innerWidth > 1024 && setIsHeaderHovered(false)} // Only for desktop
+        >
             <h1>
-                <Link className="logo" to="/">
-                    <img src="/src/assets/images/cm-logo.png" alt="(주)잇츠비솔루션" />
-                </Link>
+                <img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt="(주)씨엠이노베이션" />
             </h1>
 
             <div className="gnb">

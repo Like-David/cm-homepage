@@ -1,0 +1,299 @@
+/* Homepage Styles */
+@keyframes zoom-out {
+    from {
+        transform: scale(1.1);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.homepage-container {
+    position: relative; /* Needed for absolute positioning of child */
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Prevents scrollbars if image is slightly larger */
+}
+
+.homepage-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    animation: zoom-out 2s ease-in-out forwards;
+}
+
+.homepage-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1200px;
+    text-align: left;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    z-index: 10; /* Ensure text is above the swiper */
+}
+
+.main-text {
+    font-size: 64px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    opacity: 0; /* Initial state for animation */
+    animation: fade-in-up 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.sub-text {
+    font-size: 24px; /* A smaller size for the sub-text */
+    font-weight: normal;
+    opacity: 0; /* Initial state for animation */
+    animation: fade-in-up 1s ease-out forwards;
+    animation-delay: 1s; /* Delay after main text */
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Query for responsiveness */
+@media (max-width: 768px) {
+
+    .homepage-text-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%; /* Changed to 50% for centering */
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 1200px;
+        text-align: center; /* Changed to center */
+        color: #FFFFFF;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        z-index: 10; /* Ensure text is above the swiper */
+    }
+
+    .main-text {
+        font-size: 25px;
+    }
+
+    .sub-text {
+        font-size: 18px;
+    }
+
+    .business-title-overlay {
+        font-size: 36px;
+        margin-left: 0; /* Changed to 0 for centering */
+        margin-bottom: 10px;
+        text-align: center; /* Added for centering */
+    }
+
+    .business-sub-description {
+        font-size: 16px; /* Adjusted for mobile */
+        margin-left: 0; /* Changed to 0 for centering */
+        margin-bottom: 20px; /* Adjusted for mobile */
+        text-align: center; /* Added for centering */
+    }
+
+    .business-image {
+        max-width: 90%;
+        padding: 0 10px;
+    }
+
+    .overlay-content-wrapper {
+        flex-direction: column;
+        width: 90%;
+        padding: 10px;
+    }
+
+    .counter-item {
+        padding: 5px;
+    }
+
+    .overlay-icon {
+        font-size: 2em; /* Adjusted for mobile */
+    }
+
+    .overlay-text {
+        font-size: 1em;
+    }
+
+    .overlay-number {
+        font-size: 1.5em;
+    }
+
+    .centerOverlaySwiper {
+        width: 100%;
+        height: 150px;
+    }
+
+    .partner-icon {
+        font-size: 2em; /* Adjusted for mobile */
+    }
+
+    .partner-text {
+        font-size: 0.9em; /* Adjusted for mobile */
+    }
+
+    .partner-image {
+        max-width: 60px; /* Adjusted for mobile */
+    }
+}
+
+.animate-container {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-container.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.business-title-overlay {
+    color: white;
+    font-size: 58px;
+    font-weight: bold;
+    z-index: 11; /* Ensure it's above the image and other overlays */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* Adjusted to align with smaller image */
+    margin-bottom: 20px; /* Space between title and image */
+}
+
+.business-title-overlay span {
+    font-size: 0.8em; /* Adjust emoji size relative to text */
+    margin-right: 10px;
+}
+
+.business-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 0; /* Removed top margin as it's now handled by animate-container */
+    margin-bottom: 50px; /* Adjust as needed */
+}
+
+.business-image {
+    max-width: 70%; /* Adjusted width to 70% for desktop */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    padding: 0 20px; /* Added horizontal padding */
+}
+
+.overlay-content-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: for better readability */
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    width: 80%; /* Adjust as needed */
+    max-width: 1000px;
+}
+
+.counter-item {
+    flex: 1;
+    padding: 10px;
+}
+
+.center-overlay-image-container {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centerOverlaySwiper {
+    width: 100%; /* Adjust size as needed */
+    height: 200px; /* Adjust size as needed */
+    border-radius: 10px; /* Optional: rounded corners */
+}
+
+.centerOverlaySwiper .swiper-slide {
+    width: 100% !important; /* Ensure slides take full width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hide Swiper navigation arrows */
+.centerOverlaySwiper .swiper-button-next,
+.centerOverlaySwiper .swiper-button-prev {
+    display: none;
+}
+
+.overlay-emoji {
+    font-size: 3em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.overlay-text {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.overlay-number {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* Responsive adjustments for Business component */
+@media (max-width: 768px) {
+    .business-title-overlay {
+        font-size: 36px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    .business-image {
+        max-width: 90%;
+        padding: 0 10px;
+    }
+
+    .overlay-content-wrapper {
+        flex-direction: column;
+        width: 90%;
+        padding: 10px;
+    }
+
+    .counter-item {
+        padding: 5px;
+    }
+
+    .overlay-emoji {
+        font-size: 2em;
+    }
+
+    .overlay-text {
+        font-size: 1em;
+    }
+
+    .overlay-number {
+        font-size: 1.5em;
+    }
+
+    .centerOverlaySwiper {
+        width: 100%;
+        height: 150px;
+    }
+}

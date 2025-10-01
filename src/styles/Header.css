@@ -12,16 +12,35 @@
    HEADER LAYOUT
    =================================== */
 .header-primary-wrap {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 110px; /* Default height */
-    background-color: #fff;
-    border-bottom: 1px solid #e8e8e8;
+    background-color: transparent;
+    border-bottom: 1px solid transparent; /* Initially transparent */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 50px;
     box-sizing: border-box;
+    z-index: 1000;
+    transition: background-color 0.3s ease, border-bottom 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .header-primary-wrap {
+        padding: 0 20px; /* Reduced padding for mobile */
+    }
+}
+
+.header-primary-wrap.scrolled {
+    background-color: #fff;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.header-primary-wrap.scrolled .depth1 > li > a {
+    color: #333; /* Change text color to dark gray when scrolled */
 }
 
 .header-primary-wrap h1 {
@@ -43,8 +62,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 110px;
-    background-color: #fff;
+    background-color: transparent;
     z-index: 10;
     transition: height 0.4s ease-in-out;
     overflow: hidden;
@@ -52,12 +70,13 @@
 }
 
 @media (min-width: 1025px) {
-    .gnb:hover {
+    .header-primary-wrap:hover .gnb {
+        background-color: #fff;
         height: 350px; /* Expanded height */
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
 
-    .gnb:hover .depth2 {
+    .header-primary-wrap:hover .depth2 {
         display: block;
     }
 }
@@ -92,8 +111,16 @@
 .depth1 > li > a {
     font-size: 1.2rem;
     font-weight: 800;
-    color: #333;
+    color: #FFF;
     text-decoration: none;
+}
+
+.header-primary-wrap:hover .depth1 > li > a {
+    color: #333; /* Change text color to dark gray on header hover */
+}
+
+.depth1 > li > a:after {
+    color: #333;
 }
 
 .depth2 {
@@ -185,6 +212,13 @@
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     }
 
+    .depth1 > li > a {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: #333;
+        text-decoration: none;
+    }
+
     /* 3. Show GNB panel when open */
     .mobile-gnb-open .gnb {
         display: block; /* Show instantly */
@@ -269,5 +303,81 @@
     }
     .close .circle::after {
         transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}
+
+/* Homepage Styles */
+@keyframes zoom-out {
+    from {
+        transform: scale(1.1);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.homepage-container {
+    position: relative; /* Needed for absolute positioning of child */
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Prevents scrollbars if image is slightly larger */
+}
+
+.homepage-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    animation: zoom-out 2s ease-in-out forwards;
+}
+
+.homepage-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    z-index: 10; /* Ensure text is above the swiper */
+}
+
+.main-text {
+    font-size: 64px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    opacity: 0; /* Initial state for animation */
+    animation: fade-in-up 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.sub-text {
+    font-size: 24px; /* A smaller size for the sub-text */
+    font-weight: normal;
+    opacity: 0; /* Initial state for animation */
+    animation: fade-in-up 1s ease-out forwards;
+    animation-delay: 1s; /* Delay after main text */
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Query for responsiveness */
+@media (max-width: 768px) {
+    .main-text {
+        font-size: 32px;
+    }
+
+    .sub-text {
+        font-size: 18px;
     }
 }

@@ -2,7 +2,8 @@
 import React from 'react';
 // component import
 import MainImg from '@/components/HomePage/MainImg';
-import Business from '@/components/HomePage/Business';
+import Info from '@/components/HomePage/Info';
+import Solutions from '@/components/HomePage/Solutions';
 // assets import
 import '@/styles/Index.css';
 
@@ -10,7 +11,8 @@ function Index() {
     return (
         <>
             <MainImg/>
-            <Business/>
+            <Info/>
+            <Solutions/>
         </>
     );
 }

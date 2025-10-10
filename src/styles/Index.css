@@ -165,18 +165,19 @@
     display: flex;
     align-items: center;
     margin: 150px auto 20px auto; /* Center horizontally, add bottom margin */
-    width: 70%; /* Match image width */
+    width: 100%; /* Match image width */
     max-width: 1500px; /* Match image max-width if applicable */
     justify-content: start; /* Center content if display:flex */
 }
 
 .business-main-subtext { /* New class for subtext */
     color: #333;
-    font-size: 20px;
+    font-size: 15px;
     text-align: left;
-    margin: 0 auto 40px auto; /* Center horizontally, add bottom margin */
-    width: 70%; /* Match image width */
+    margin: 0 auto 60px auto; /* Center horizontally, add bottom margin */
+    width: 100%; /* Match image width */
     max-width: 1500px; /* Match image max-width if applicable */
+    font-weight: bold;
 }
 
 .business-title-overlay span {
@@ -193,7 +194,7 @@
 }
 
 .business-image {
-    max-width: 70%; /* Adjusted width to 70% for desktop */
+    max-width: 80%; /* Adjusted width to 70% for desktop */
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -212,7 +213,7 @@
     background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent dark background */
     display: flex;
     justify-content: space-around;
-    width: 70%; /* Match image width */
+    width: 80%; /* Match image width */
     height: 100%; /* Cover image height */
     align-items: center;
 }
@@ -256,7 +257,7 @@
 }
 
 .overlay-icon { /* New class for icons */
-    font-size: 3em;
+    font-size: 4em;
     display: block;
     margin-bottom: 10px;
     color: white; /* Assuming icons should be white on the image overlay */
@@ -265,11 +266,10 @@
 .overlay-text {
     font-size: 1.2em;
     margin-bottom: 5px;
-    font-weight: bold;
 }
 
 .overlay-number {
-    font-size: 4em;
+    font-size: 6em;
     font-weight: bold;
 }
 
@@ -320,4 +320,27 @@
         width: 100%;
         height: 150px;
     }
+}
+
+/* Solutions Component Styles */
+.solutions-container {
+    max-width: 1800px; /* Sets a max width for the content */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.solution-card {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smooth animation */
+}
+
+.solution-card:hover {
+    transform: translateY(-10px) scale(1.03); /* Lift and slightly enlarge the card */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Enhance shadow on hover */
+}
+
+.solution-card-img {
+    height: 620px; /* Fixed height for all images */
+    object-fit: cover; /* Ensures image covers the area without distortion */
 }

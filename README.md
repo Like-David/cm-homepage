@@ -26,6 +26,7 @@ my-app/
 │   ├── layouts/           # 레이아웃 (공통 헤더/푸터)
 │   ├── hooks/             # 커스텀 훅
 │   ├── contexts/          # Context API (전역 상태)
+│   ├── elements/          # 페이지 안 요소 컴포넌트
 │   ├── services/          # API 호출, axios 등 네트워크
 │   ├── utils/             # 유틸 함수
 │   ├── styles/            # 공통 스타일 (전역 CSS 등)

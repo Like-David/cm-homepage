@@ -16,28 +16,19 @@ const menuItems = [
         ],
     },
     {
-        title: 'BUSINESS',
+        title: 'COMPANY',
         path: '/business/client',
         depth2: [
-            { title: '고객사', path: '/business/client' },
-            { title: '기업부설연구소', path: '/business/lab' },
+            { title: '고객사', path: '/business/client' }
         ],
     },
     {
-        title: 'PRODUCT',
+        title: 'SOLUTIONS',
         path: '/product/web',
         depth2: [
-            { title: '웹보안', path: '/product/web' },
-            { title: 'DB암호화', path: '/product/database' },
-            {
-                title: 'DB접근제어',
-                path: '/product/dbsafer'
-            },
-            { title: '네트워크보안', path: '/product/network' },
-            {
-                title: 'CLOUD',
-                path: '/product/cloud'
-            },
+            { title: 'ReportExpress Enterprise', path: '/product/web' },
+            { title: 'RX-Cert', path: '/product/database' },
+            { title: 'RX Loan', path: '/product/network' }
         ],
     },
     {

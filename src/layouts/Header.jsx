@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '@/styles/Header.css';
-import logo from '@/assets/images/Header/cm-logo.png';
-import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
+
+import cmLogoNavy from '@/assets/images/Header/cm-logo-navy.png';
 
 // Provided example structure translated into a data object
 const menuItems = [
@@ -24,11 +24,11 @@ const menuItems = [
     },
     {
         title: 'SOLUTIONS',
-        path: '/product/web',
+        path: '/solution',
         depth2: [
-            { title: 'ReportExpress Enterprise', path: '/product/web' },
-            { title: 'RX-Cert', path: '/product/database' },
-            { title: 'RX Loan', path: '/product/network' }
+            { title: 'ReportExpress Enterprise', path: '/solution#report-express' },
+            { title: 'RX-Cert', path: '/solution#rx-cert' },
+            { title: 'RX Loan', path: '/solution#rx-loan' }
         ],
     },
     {
@@ -71,13 +71,11 @@ function Header() {
     };
 
     return (
-        <div
-            className={`header-primary-wrap ${isGnbOpen ? 'mobile-gnb-open' : ''} ${isScrolled ? 'scrolled' : ''}`}
-            onMouseEnter={() => window.innerWidth > 1024 && setIsHeaderHovered(true)} // Only for desktop
-            onMouseLeave={() => window.innerWidth > 1024 && setIsHeaderHovered(false)} // Only for desktop
-        >
+        <div className={`header-primary-wrap ${isGnbOpen ? 'mobile-gnb-open' : ''}`}>
             <h1>
-                <img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt="(주)씨엠이노베이션" />
+                <Link className="logo" to="/">
+                    <img src={cmLogoNavy} alt="(주)잇츠비솔루션" />
+                </Link>
             </h1>
 
             <div className="gnb">

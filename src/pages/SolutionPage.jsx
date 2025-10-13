@@ -97,16 +97,22 @@ const SolutionPage = () => {
   // Scroll to section from URL hash on page load
   useEffect(() => {
     const hash = window.location.hash.substring(1);
+    console.log('Hash changed:', hash);
     if (hash) {
       const timer = setTimeout(() => {
+        console.log('Element ref for hash (before scroll):', sectionRefs.current[hash]);
         scrollToSection(hash);
-      }, 100);
+        setActiveSection(hash);
+      }, 300);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [location.hash]);
 
   const scrollToSection = (id) => {
     const element = sectionRefs.current[id];
+    console.log('Scrolling to ID:', id);
+    console.log('Element found for scrolling:', element);
+    console.log('Element offsetTop:', element?.offsetTop);
     if (element) {
       window.scrollTo({
         top: element.offsetTop - 100,

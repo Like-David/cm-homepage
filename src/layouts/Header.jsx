@@ -24,11 +24,11 @@ const menuItems = [
     },
     {
         title: 'SOLUTIONS',
-        path: '/product/web',
+        path: '/solution',
         depth2: [
-            { title: 'ReportExpress Enterprise', path: '/product/web' },
-            { title: 'RX-Cert', path: '/product/database' },
-            { title: 'RX Loan', path: '/product/network' }
+            { title: 'ReportExpress Enterprise', path: '/solution#report-express' },
+            { title: 'RX-Cert', path: '/solution#rx-cert' },
+            { title: 'RX Loan', path: '/solution#rx-loan' }
         ],
     },
     {

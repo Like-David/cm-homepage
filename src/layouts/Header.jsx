@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '@/styles/Header.css';
-
-import cmLogoNavy from '@/assets/images/Header/cm-logo-navy.png';
+import logo from '@/assets/images/Header/cm-logo.png';
+import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
 
 // Provided example structure translated into a data object
 const menuItems = [
@@ -71,11 +71,13 @@ function Header() {
     };
 
     return (
-        <div className={`header-primary-wrap ${isGnbOpen ? 'mobile-gnb-open' : ''}`}>
+        <div
+            className={`header-primary-wrap ${isGnbOpen ? 'mobile-gnb-open' : ''} ${isScrolled ? 'scrolled' : ''}`}
+            onMouseEnter={() => window.innerWidth > 1024 && setIsHeaderHovered(true)} // Only for desktop
+            onMouseLeave={() => window.innerWidth > 1024 && setIsHeaderHovered(false)} // Only for desktop
+        >
             <h1>
-                <Link className="logo" to="/">
-                    <img src={cmLogoNavy} alt="(주)잇츠비솔루션" />
-                </Link>
+                <img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt="(주)씨엠이노베이션" />
             </h1>
 
             <div className="gnb">

@@ -1,7 +1,7 @@
 // npm import
 import React from 'react';
 import Image from 'react-bootstrap/Image';
-import mainImg from '@/assets/images/Index/main.png';
+import mainImg from '@/assets/images/Index/MainImg/main.png';
 
 function MainImg() {
     return (

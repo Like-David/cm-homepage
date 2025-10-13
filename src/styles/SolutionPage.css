@@ -1,0 +1,322 @@
+/* SolutionPage.css */
+
+.solution-page {
+  width: 100%;
+  color: #333;
+  position: relative; /* For positioning the scroll-nav */
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Right-side Scroll Navigation */
+.scroll-nav {
+  position: fixed;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+.scroll-nav ul {
+  list-style: none;
+  padding: 15px 12px; /* Added padding */
+  margin: 0;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.05); /* Semi-transparent black background */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* The connecting line */
+.scroll-nav ul::before {
+  content: '';
+  position: absolute;
+  left: 19px; /* Centered with padding */
+  top: 15px;
+  bottom: 15px;
+  width: 2px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.scroll-nav li {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  cursor: pointer;
+  position: relative;
+  padding-left: 45px; /* Space for the circle */
+}
+
+/* The circle */
+.scroll-nav li::before {
+  content: '';
+  position: absolute;
+  left: 12px; /* Centered with padding */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #aaa;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.scroll-nav li span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 8px 15px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  margin-left: 15px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.scroll-nav li:hover span,
+.scroll-nav li.active span {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.scroll-nav li.active::before {
+  background-color: #1C2D60;
+  border-color: #1C2D60;
+  transform: translateY(-50%) scale(1.2);
+}
+
+/* Main Content Area */
+.solution-content {
+  width: 100%;
+}
+
+/* 1. 상단 인트로 섹션 */
+.solution-intro {
+  padding: 180px 0 140px; /* Adjusted padding to move text down */
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.solution-intro .container {
+    position: relative;
+    z-index: 2;
+}
+
+.solution-intro h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.solution-intro p {
+  font-size: 1.2rem;
+  color: #f0f0f0;
+  line-height: 1.7;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* 2. 솔루션 상세 섹션 */
+.solution-details-container {
+  background-color: #fff;
+}
+
+.solution-detail {
+  padding: 100px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.solution-detail:last-child {
+  border-bottom: none;
+}
+
+.detail-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.solution-main-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: contain;
+  margin-bottom: 30px;
+}
+
+.detail-header h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1C2D60;
+  margin-bottom: 5px;
+}
+
+.detail-header h3 {
+  font-size: 1.3rem;
+  color: #555;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.detail-header .one-liner {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.overview, .features, .strengths, .workflow {
+  margin-bottom: 50px;
+}
+
+.overview h4, .features h4, .strengths h4, .workflow h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #1C2D60;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 15px;
+}
+
+.overview p, .strengths p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  background-color: #f9f9f9;
+  border: 1px solid #e9e9e9;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.feature-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-top: 15px;
+}
+
+.feature-type {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.feature-기술력 { background-color: #3498db; } /* Blue */
+.feature-신뢰성 { background-color: #2ecc71; } /* Green */
+.feature-효율성 { background-color: #f39c12; } /* Orange */
+.feature-확장성 { background-color: #9b59b6; } /* Purple */
+
+.workflow p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+    line-height: 1.7;
+}
+
+.workflow-diagram {
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.catchy-phrase {
+  margin-top: 50px;
+  padding: 30px;
+  background-color: #f4f8ff;
+  border-left: 5px solid #1C2D60;
+  text-align: center;
+}
+
+.catchy-phrase p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #1C2D60;
+  line-height: 1.7;
+}
+
+.catchy-phrase strong {
+    color: #0056b3;
+}
+
+/* 3. 문의 CTA 섹션 */
+.solution-cta {
+  background-color: #1C2D60;
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.solution-cta h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.solution-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
+
+.solution-cta button {
+  background-color: white;
+  color: #1C2D60;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.solution-cta button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive styles */
+@media (max-width: 1600px) {
+  .scroll-nav {
+    display: none;
+  }
+}

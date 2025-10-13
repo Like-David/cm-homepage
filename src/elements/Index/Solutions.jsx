@@ -1,5 +1,6 @@
 import React from 'react';
 import { InView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 import RXCertImg from '@/assets/images/Index/Solutions/RX-Cert.png';
 import RXeFormImg from '@/assets/images/Index/Solutions/RX-eForm.png';
 import RXLoanImg from '@/assets/images/Index/Solutions/Rx-Loan.png';
@@ -7,18 +8,21 @@ import '@/styles/Index.css';
 
 const solutionsData = [
     {
+        id: 'report-express',
         image: RXCertImg,
         name: '전자문서(웹리포팅) 솔루션',
         use: '전자문서(웹리포팅) 시스템 구축',
         model: 'ReportExpress Enterprise',
     },
     {
+        id: 'rx-cert',
         image: RXeFormImg,
         name: '증명서 위·변조방지 솔루션',
         use: '증명서 위·변조방지 시스템 구축',
         model: 'RX-Cert',
     },
     {
+        id: 'rx-loan',
         image: RXLoanImg,
         name: '여신약정 솔루션',
         use: '여신약정 내 전자계약 시스템 구축',
@@ -46,7 +50,7 @@ function Solutions() {
                     <li key={index}>
                         <InView triggerOnce={true} delay={index * 200}>
                             {({ inView, ref }) => (
-                                <a ref={ref} className={`product-box ${inView ? 'animate-in' : ''}`} href="#">
+                                <Link ref={ref} className={`product-box ${inView ? 'animate-in' : ''}`} to={`/solution#${solution.id}`}>
                                     <div className="product-head">
                                         <em className="num">{String(index + 1).padStart(2, '0')}</em>
                                     </div>
@@ -61,7 +65,7 @@ function Solutions() {
                                             <img src={solution.image} alt={solution.name} />
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                             )}
                         </InView>
                     </li>

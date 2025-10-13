@@ -57,7 +57,7 @@
     height: auto;
 }
 
-.gnb {
+.header-primary-wrap .gnb {
     position: absolute;
     top: 0;
     left: 0;
@@ -203,11 +203,11 @@
     }
 
     /* 2. Style GNB as a hidden panel */
-    .gnb {
+    .header-primary-wrap .gnb {
         display: none; /* Hidden by default */
     }
     /* Disable desktop hover effects */
-    .gnb:hover {
+    .header-primary-wrap .gnb:hover {
         height: 100vh;
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     }

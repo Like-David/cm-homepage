@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { InView } from 'react-intersection-observer';
 import BAIImg from '@/assets/images/Index/Partners/BAI.png';
 import BusanImg from '@/assets/images/Index/Partners/Busan.png';
@@ -71,6 +71,20 @@ const partnerCategories = Object.keys(partnersData);
 
 function Partners() {
     const [activeCategory, setActiveCategory] = useState(partnerCategories[0]);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        handleResize(); // Set initial value
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <div className="partners-section">
@@ -101,7 +115,10 @@ function Partners() {
 
             <div className="partner-logos">
                 {partnersData[activeCategory].length > 0 ? (
-                    partnersData[activeCategory].map((partner, index) => (
+                    (activeCategory === '금융기관' && isMobile
+                        ? partnersData[activeCategory].slice(0, 8)
+                        : partnersData[activeCategory]
+                    ).map((partner, index) => (
                         <div key={index} className={`partner-logo ${activeCategory === '교육기관' ? 'education-logo' : ''}`}>
                             <img src={partner.logo} alt={partner.name} />
                         </div>

@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import '../styles/SolutionPage.css';
+import SolutionCard from '../components/Solution/SolutionCard';
+
+// Image Imports
 import solutionImage1 from '@/assets/images/Solution/rx.png';
 import solutionImage2 from '@/assets/images/Solution/rx-cert.png';
 import solutionImage3 from '@/assets/images/Solution/rx-loan.png';
@@ -64,25 +68,12 @@ const solutions = [
     ],
     strengths: '사용자 친화적인 인터페이스로 빠른 문서 작성 및 검토가 가능하여 업무 처리 **효율성**을 혁신합니다. 입력 데이터 기반으로 약정 문서가 자동 생성되고 리포트 출력이 가능하여 휴먼 에러를 최소화하는 **기술력**을 갖췄습니다. 한글 호환 환경에서 문서 편집, 결재, 관리 기능을 통합하여 시스템의 **확장성**과 사용 편의성을 높였습니다.',
     workflow: loanFlow,
-    catchyPhrase: '적용 사례\n* 금융기관: 차세대 여신약정 자동화 시스템\n* 보험사: 전자계약 관리 통합 플랫폼\n* 공공기관: 결재 문서 및 보고서 출력 시스템 통합',
+    catchyPhrase: `적용 사례
+* 금융기관: 차세대 여신약정 자동화 시스템
+* 보험사: 전자계약 관리 통합 플랫폼
+* 공공기관: 결재 문서 및 보고서 출력 시스템 통합`
   },
 ];
-
-// Helper to render text with bold tags
-const renderTextWithBold = (text) => {
-  if (!text) return null;
-  const textWithBreaks = text.replace(/\n/g, '<br />');
-  const parts = textWithBreaks.split(/(\*\*.*\*\*|<br \/>)/g);
-  return parts.map((part, index) => {
-    if (part.startsWith('**') && part.endsWith('**')) {
-      return <strong key={index}>{part.slice(2, -2)}</strong>;
-    }
-    if (part === '<br />') {
-        return <br key={index} />;
-    }
-    return part;
-  });
-};
 
 const SolutionPage = () => {
   const [activeSection, setActiveSection] = useState(solutions[0].id);
@@ -103,11 +94,22 @@ const SolutionPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Scroll to section from URL hash on page load
+  useEffect(() => {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      const timer = setTimeout(() => {
+        scrollToSection(hash);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   const scrollToSection = (id) => {
     const element = sectionRefs.current[id];
     if (element) {
       window.scrollTo({
-        top: element.offsetTop - 100, // Adjust for header height
+        top: element.offsetTop - 100,
         behavior: 'smooth',
       });
     }
@@ -147,47 +149,11 @@ const SolutionPage = () => {
         {/* 2. 솔루션 상세 섹션 */}
         <div className="solution-details-container">
           {solutions.map((solution) => (
-            <section key={solution.id} id={solution.id} className="solution-detail" ref={el => sectionRefs.current[solution.id] = el}>
-              <div className="container">
-                <div className="detail-header">
-                  <img src={solution.image} alt={solution.title} className="solution-main-image" />
-                  <h2>{solution.title}</h2>
-                  <h3>{solution.subtitle}</h3>
-                  <p className="one-liner">{solution.oneLiner}</p>
-                </div>
-
-                <div className="overview">
-                  <h4>개요</h4>
-                  <p>{renderTextWithBold(solution.overview)}</p>
-                </div>
-
-                <div className="features">
-                  <h4>주요 기능</h4>
-                  <div className="features-grid">
-                    {solution.keyFeatures.map((feature, index) => (
-                      <div key={index} className="feature-card">
-                        <div className={`feature-type feature-${feature.type.toLowerCase()}`}>{feature.type}</div>
-                        <p>{feature.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="strengths">
-                  <h4>특장점</h4>
-                  <p>{renderTextWithBold(solution.strengths)}</p>
-                </div>
-
-                <div className="workflow">
-                  <h4>업무 흐름</h4>
-                  <img src={solution.workflow} alt={`${solution.title} 업무 흐름도`} className="workflow-diagram" />
-                </div>
-                
-                <div className="catchy-phrase">
-                  <p>{renderTextWithBold(solution.catchyPhrase)}</p>
-                </div>
-              </div>
-            </section>
+            <SolutionCard 
+              key={solution.id} 
+              solution={solution} 
+              ref={el => sectionRefs.current[solution.id] = el}
+            />
           ))}
         </div>
 

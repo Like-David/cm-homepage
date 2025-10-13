@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '@/styles/Header.css';
 
+import cmLogoNavy from '@/assets/images/Header/cm-logo-navy.png';
+
 // Provided example structure translated into a data object
 const menuItems = [
     {
@@ -14,16 +16,20 @@ const menuItems = [
         ],
     },
     {
-        title: 'BUSINESS',
+        title: 'COMPANY',
         path: '/business/client',
         depth2: [
-            { title: '고객사', path: '/business/client' },
-            { title: '기업부설연구소', path: '/business/lab' },
+            { title: '고객사', path: '/business/client' }
         ],
     },
     {
-        title: 'SOLUTION',
-        path: '/solution',
+        title: 'SOLUTIONS',
+        path: '/product/web',
+        depth2: [
+            { title: 'ReportExpress Enterprise', path: '/product/web' },
+            { title: 'RX-Cert', path: '/product/database' },
+            { title: 'RX Loan', path: '/product/network' }
+        ],
     },
     {
         title: 'SUPPORT',
@@ -37,29 +43,38 @@ const menuItems = [
 function Header() {
     const [isGnbOpen, setGnbOpen] = useState(false);
     const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
+    const [isScrolled, setScrolled] = useState(false);
+    const [isHeaderHovered, setIsHeaderHovered] = useState(false); // New state
 
     useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+
         const handleResize = () => {
             if (window.innerWidth > 1024) { // Standard breakpoint for desktop
                 setGnbOpen(false);
             }
         };
+
+        window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     const handleMobileSubmenuToggle = (e, index) => {
-        if (menuItems[index].depth2) {
-            e.preventDefault(); // Prevent page navigation
-            setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
-        }
+        e.preventDefault(); // Prevent page navigation
+        setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
     };
 
     return (
         <div className={`header-primary-wrap ${isGnbOpen ? 'mobile-gnb-open' : ''}`}>
             <h1>
                 <Link className="logo" to="/">
-                    <img src="/src/assets/images/cm-logo.png" alt="(주)잇츠비솔루션" />
+                    <img src={cmLogoNavy} alt="(주)잇츠비솔루션" />
                 </Link>
             </h1>
 

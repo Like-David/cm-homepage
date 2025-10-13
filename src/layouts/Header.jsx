@@ -7,7 +7,7 @@ import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
 // Provided example structure translated into a data object
 const menuItems = [
     {
-        title: 'COMPANY',
+        title: 'ABOUT',
         path: '/about/history',
         depth2: [
             { title: '연혁', path: '/about/history' },
@@ -16,7 +16,7 @@ const menuItems = [
         ],
     },
     {
-        title: 'COMPANY',
+        title: 'BUSINESS',
         path: '/business/client',
         depth2: [
             { title: '고객사', path: '/business/client' }
@@ -33,9 +33,9 @@ const menuItems = [
     },
     {
         title: 'SUPPORT',
-        path: '/inquiry',
+        path: '/support',
         depth2: [
-            { title: 'CONTACT US', path: '/inquiry' },
+            { title: 'CONTACT US', path: '/support' },
         ],
     },
 ];

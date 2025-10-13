@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { InView } from 'react-intersection-observer';
 import RXCertImg from '@/assets/images/Index/Solutions/RX-Cert.png';
 import RXeFormImg from '@/assets/images/Index/Solutions/RX-eForm.png';
@@ -27,6 +27,15 @@ const solutionsData = [
 ];
 
 function Solutions() {
+    const [activeIndex, setActiveIndex] = useState(null);
+
+    const handleClick = (index) => {
+        // On mobile, toggle the active state
+        if (window.innerWidth <= 768) {
+            setActiveIndex(activeIndex === index ? null : index);
+        }
+    };
+
     return (
         <div className="my-5 solutions-container">
             <InView triggerOnce={true}>
@@ -43,10 +52,10 @@ function Solutions() {
             </InView>
             <ul className="product">
                 {solutionsData.map((solution, index) => (
-                    <li key={index}>
+                    <li key={index} onClick={() => handleClick(index)}>
                         <InView triggerOnce={true} delay={index * 200}>
                             {({ inView, ref }) => (
-                                <a ref={ref} className={`product-box ${inView ? 'animate-in' : ''}`} href="#">
+                                <div ref={ref} className={`product-box ${inView ? 'animate-in' : ''} ${activeIndex === index ? 'active' : ''}`}>
                                     <div className="product-head">
                                         <em className="num">{String(index + 1).padStart(2, '0')}</em>
                                     </div>
@@ -61,7 +70,7 @@ function Solutions() {
                                             <img src={solution.image} alt={solution.name} />
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                             )}
                         </InView>
                     </li>

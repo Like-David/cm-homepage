@@ -1,4 +1,4 @@
-/* Homepage Styles */
+/* Global Keyframes */
 @keyframes zoom-out {
     from {
         transform: scale(1.1);
@@ -8,9 +8,33 @@
     }
 }
 
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* General Animations */
+.animate-container {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-container.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Homepage Section */
 .homepage-container {
     position: relative; /* Needed for absolute positioning of child */
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     overflow: hidden; /* Prevents scrollbars if image is slightly larger */
 }
@@ -25,7 +49,7 @@
 .homepage-text-overlay {
     position: absolute;
     top: 50%;
-    left: 40%;
+    left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 1200px;
@@ -52,111 +76,7 @@
     animation-delay: 1s; /* Delay after main text */
 }
 
-@keyframes fade-in-up {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Media Query for responsiveness */
-@media (max-width: 768px) {
-
-    .homepage-text-overlay {
-        position: absolute;
-        top: 50%;
-        left: 50%; /* Changed to 50% for centering */
-        transform: translate(-50%, -50%);
-        width: 90%;
-        max-width: 1200px;
-        text-align: center; /* Changed to center */
-        color: #FFFFFF;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-        z-index: 10; /* Ensure text is above the swiper */
-    }
-
-    .main-text {
-        font-size: 25px;
-    }
-
-    .sub-text {
-        font-size: 18px;
-    }
-
-    .business-title-overlay {
-        font-size: 36px;
-        margin-left: 0; /* Changed to 0 for centering */
-        margin-bottom: 10px;
-        text-align: center; /* Added for centering */
-    }
-
-    .business-sub-description {
-        font-size: 16px; /* Adjusted for mobile */
-        margin-left: 0; /* Changed to 0 for centering */
-        margin-bottom: 20px; /* Adjusted for mobile */
-        text-align: center; /* Added for centering */
-    }
-
-    .business-image {
-        max-width: 90%;
-        padding: 0 10px;
-    }
-
-    .overlay-content-wrapper {
-        flex-direction: column;
-        width: 90%;
-        padding: 10px;
-    }
-
-    .counter-item {
-        padding: 5px;
-    }
-
-    .overlay-icon {
-        font-size: 2em; /* Adjusted for mobile */
-    }
-
-    .overlay-text {
-        font-size: 1em;
-    }
-
-    .overlay-number {
-        font-size: 1.5em;
-    }
-
-    .centerOverlaySwiper {
-        width: 100%;
-        height: 150px;
-    }
-
-    .partner-icon {
-        font-size: 2em; /* Adjusted for mobile */
-    }
-
-    .partner-text {
-        font-size: 0.9em; /* Adjusted for mobile */
-    }
-
-    .partner-image {
-        max-width: 60px; /* Adjusted for mobile */
-    }
-}
-
-.animate-container {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.animate-container.animate-in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
+/* Business Section */
 .business-title-overlay {
     color: #333;
     font-size: 58px;
@@ -172,7 +92,7 @@
 
 .business-main-subtext { /* New class for subtext */
     color: #333;
-    font-size: 15px;
+    font-size: 30px;
     text-align: left;
     margin: 0 auto 60px auto; /* Center horizontally, add bottom margin */
     width: 100%; /* Match image width */
@@ -273,56 +193,7 @@
     font-weight: bold;
 }
 
-/* Responsive adjustments for Business component */
-@media (max-width: 768px) {
-    .business-title-overlay {
-        font-size: 36px;
-        margin-left: 0; /* Changed to 0 for centering */
-        margin-bottom: 10px;
-        text-align: center; /* Added for centering */
-    }
-
-    .business-main-subtext {
-        font-size: 16px; /* Adjusted for mobile */
-        margin-left: 0; /* Changed to 0 for centering */
-        margin-bottom: 20px; /* Adjusted for mobile */
-        text-align: center; /* Added for centering */
-    }
-
-    .business-image {
-        max-width: 90%;
-        padding: 0 10px;
-    }
-
-    .overlay-content-wrapper {
-        flex-direction: column;
-        width: 90%;
-        padding: 10px;
-    }
-
-    .counter-item {
-        padding: 5px;
-    }
-
-    .overlay-emoji {
-        font-size: 2em;
-    }
-
-    .overlay-text {
-        font-size: 1em;
-    }
-
-    .overlay-number {
-        font-size: 1.5em;
-    }
-
-    .centerOverlaySwiper {
-        width: 100%;
-        height: 150px;
-    }
-}
-
-/* Solutions Component Styles */
+/* Solutions Section */
 .solutions-container {
     max-width: 1800px; /* Sets a max width for the content */
     margin-left: auto;
@@ -341,333 +212,179 @@
 }
 
 .solution-card-img {
-
     height: 620px; /* Fixed height for all images */
-
     object-fit: cover; /* Ensures image covers the area without distortion */
-
 }
 
-
-
-/* New Product List Styles */
-
+/* New Product List Section */
 .product {
-
     list-style: none;
-
     padding: 0;
-
     margin: 0;
-
     display: flex;
-
     flex-wrap: wrap;
-
-        justify-content: center;
-
-        gap: 20px;
-
-        align-items: flex-start;
-
+    justify-content: center;
+    gap: 20px;
+    align-items: flex-start;
 }
-
-
 
 .product li {
-
     width: 30%;
-
     min-width: 300px;
-
 }
-
-
 
 .product-box {
-
     display: block;
-
     padding: 30px;
-
     background-color: #f8f9fa;
-
     border-radius: 8px;
-
     text-decoration: none;
-
     color: #333;
-
     height: 100%;
-
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
     opacity: 0;
-
     transform: translateY(20px);
-
 }
-
-
 
 .product-box.animate-in {
-
     opacity: 1;
-
     transform: translateY(0);
-
 }
-
-
 
 .product-head {
-
     margin-bottom: 20px;
-
 }
-
-
 
 .product-head .num {
-
     font-size: 24px;
-
     font-weight: bold;
-
     color: #007bff;
-
 }
-
-
 
 .product-body .title {
-
     font-size: 20px;
-
     font-weight: 600;
-
     margin-bottom: 15px;
-
 }
-
-
 
 .product-body .text,
-
 .product-body .thumbnail {
-
     opacity: 0;
-
     max-height: 0;
-
     overflow: hidden;
-
     transition: opacity 0.4s ease, max-height 0.6s ease;
-
 }
-
-
 
 .product-body .text {
-
     font-size: 16px;
-
     color: #555;
-
     line-height: 1.6;
-
 }
-
-
 
 .product-body .model-name {
-
     display: block;
-
     margin-top: 10px;
-
     font-weight: bold;
-
     color: #000;
-
 }
-
-
 
 .product-box:hover {
-
     background-color: #fff;
-
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-
     transform: translateY(-5px);
-
 }
-
-
 
 .product-box:hover .product-body .text,
-
 .product-box:hover .product-body .thumbnail {
-
     opacity: 1;
-
     max-height: 500px; /* Adjust based on content height */
-
 }
-
-
 
 .thumbnail {
-
     margin-top: 20px;
-
 }
-
-
 
 .thumbnail img {
-
     width: 100%;
-
     height: auto;
-
     border-radius: 4px;
-
 }
 
-
-/* Partners Section Styles */
-
+/* Partners Section */
 .partners-section {
-
     padding: 80px 0;
-
     background-color: #f8f9fa; /* Light gray background */
-
 }
 
 .partner-buttons {
-
     display: flex;
-
     gap: 15px;
-
     max-width: 1500px;
-
     margin: auto auto 20px auto;
-
 }
 
 .partner-button {
-
     padding: 12px 25px;
-
     font-size: 18px;
-
     font-weight: 500;
-
     color: #555;
-
     background-color: #fff;
-
     border: 1px solid #ddd;
-
     border-radius: 30px;
-
     cursor: pointer;
-
 }
 
 .partner-button:hover {
-
     background-color: #333;
-
     color: #fff;
-
     border-color: #333;
-
 }
 
 .partner-button.active {
-
     background-color: #333;
-
     color: #fff;
-
     border-color: #333;
-
     box-shadow: 0 4px 12px rgba(51, 51, 51, 0.2);
-
 }
 
 .partner-logos {
-
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: center;
-
     align-items: center;
-
     gap: 40px;
-
     max-width: 1200px;
-
     margin: 0 auto;
-
 }
 
 .partner-logo {
-
     height: 80px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
 }
 
 .partner-logo img {
-
     max-height: 60px;
-
     width: auto;
-
     max-width: 180px;
-
     object-fit: contain;
-
     filter: grayscale(100%);
-
     opacity: 0.7;
-
     transition: all 0.3s ease;
-
 }
 
 .partner-logo:hover img {
-
     filter: grayscale(0);
-
     opacity: 1;
-
     transform: scale(1.1);
-
 }
-
-
 
 .partner-logo.education-logo img {
-
     max-height: 100px;
-
 }
 
-
+/* Service Center Section */
 .service-center-container {
     position: relative;
     width: 100%;
@@ -717,4 +434,210 @@
 .service-center-button:hover {
     background-color: white;
     color: black;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    /* Homepage */
+    .homepage-container {
+        position: relative; /* Needed for absolute positioning of child */
+        width: 100%;
+        height: 100%;
+        overflow: hidden; /* Prevents scrollbars if image is slightly larger */
+    }
+
+    .homepage-text-overlay {
+        position: absolute;
+        top: 65%;
+        left: 50%; /* Changed to 50% for centering */
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 1200px;
+        text-align: center; /* Changed to center */
+        color: #FFFFFF;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        z-index: 10; /* Ensure text is above the swiper */
+    }
+
+    .main-text {
+        font-size: 1rem;
+    }
+
+    .sub-text {
+        font-size: 1.2rem;
+    }
+
+    /* Business */
+    .business-sub-description {
+        font-size: 16px; /* Adjusted for mobile */
+        margin-left: 0; /* Changed to 0 for centering */
+        margin-bottom: 20px; /* Adjusted for mobile */
+        text-align: center; /* Added for centering */
+    }
+
+    .business-image {
+        max-width: 90%;
+        padding: 0 10px;
+    }
+
+    .business-title-overlay {
+        font-size: 1.5rem;
+        margin-left: 0; /* Changed to 0 for centering */
+        margin-top: 40px; /* Reduced top margin for mobile */
+        margin-bottom: 10px;
+        padding: 0px 30px 0px 30px; /* Added left padding for mobile */
+        text-align: center; /* Added for centering */
+    }
+
+    .business-main-subtext {
+        font-size: 0.9rem; /* Adjusted for mobile */
+        padding: 0px 30px 0px 30px; /* Added left padding for mobile */
+        margin-left: 0; /* Changed to 0 for centering */
+        margin-bottom: 20px; /* Adjusted for mobile */
+        text-align: left; /* Added for centering */
+    }
+
+    .overlay-content-wrapper {
+        flex-direction: row;
+        width: 85%;
+        padding: 10px;
+    }
+
+    .counter-item {
+        padding: 10px 5px;
+    }
+
+    .overlay-icon {
+        font-size: 1.5rem; /* Adjusted for mobile */
+    }
+
+    .overlay-text {
+        font-size: 0.8rem;
+    }
+
+    .overlay-number {
+        font-size: 1.2rem;
+    }
+
+    /* Partners */
+    .partners-section {
+        padding: 1px 0px 50px 0px;
+        background-color: #f8f9fa; /* Light gray background */
+    }
+
+    .partner-buttons {
+        display: flex;
+        gap: 15px;
+        max-width: 1500px;
+        margin: auto auto 20px auto;
+        justify-content: center;
+    }
+
+    .partner-button {
+        padding: 12px 25px;
+        font-size: 18px;
+        font-weight: 500;
+        color: #555;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
+    .partner-button:hover {
+        background-color: #333;
+        color: #fff;
+        border-color: #333;
+    }
+
+    .partner-button.active {
+        background-color: #333;
+        color: #fff;
+        border-color: #333;
+        box-shadow: 0 4px 12px rgba(51, 51, 51, 0.2);
+    }
+
+    .partner-logos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .partner-logo {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .partner-logo img {
+        max-height: 60px;
+        width: auto;
+        max-width: 180px;
+        object-fit: contain;
+        filter: grayscale(100%);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+
+    .partner-logo:hover img {
+        filter: grayscale(0);
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    .partner-logo.education-logo img {
+        max-height: 100px;
+    }
+
+    /* Service Center */
+    .service-center-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .service-center-image {
+        width: 100%;
+        height: 500px;
+        display: block;
+        object-fit: contain;
+    }
+
+    .service-center-text-overlay {
+        position: absolute;
+        top: 45%;
+        left: 45%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: left;
+        width: 80%;
+    }
+
+    .service-center-text-overlay .main-text {
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    .service-center-text-overlay .sub-text {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .service-center-button {
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 20px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
 }

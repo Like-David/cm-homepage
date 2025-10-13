@@ -1,4 +1,6 @@
-/* src/styles/Footer.css */
+/* ===================================
+   FOOTER MAIN STYLES
+   =================================== */
 #footer.main {
     background: #fff;
     color: #555;
@@ -8,7 +10,7 @@
 }
 
 #footer .wrap {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -26,6 +28,9 @@
     text-decoration: none;
 }
 
+/* ===================================
+   FOOTER NAVIGATION (GNB)
+   =================================== */
 #footer .gnb ul {
     list-style: none;
     padding: 0;
@@ -43,6 +48,9 @@
     color: #000;
 }
 
+/* ===================================
+   FOOTER LEFT SECTION
+   =================================== */
 #footer .f_left {
     width: 100%;
     margin-top: 20px;
@@ -57,7 +65,7 @@
 }
 
 #footer .f_left dt {
-    font-weight: bold;
+    font-weight: normal;
     color: #000;
 }
 
@@ -65,12 +73,18 @@
     margin: 0;
 }
 
+/* ===================================
+   COPYRIGHT
+   =================================== */
 #footer .copyright {
     margin-top: 20px;
     font-size: 12px;
     color: #888;
 }
 
+/* ===================================
+   TOP BUTTON
+   =================================== */
 #top_btn {
     position: fixed;
     bottom: 30px;
@@ -92,6 +106,9 @@
     color: #fff;
 }
 
+/* ===================================
+   UTILITY CLASSES
+   =================================== */
 .sound_only {
     position: absolute;
     width: 1px;
@@ -106,23 +123,47 @@
     display: none;
 }
 
+/* ===================================
+   MEDIA QUERIES
+   =================================== */
 @media (max-width: 768px) {
+
+    #footer.main {
+        background: #fff;
+        color: #555;
+        padding: 15px 10px;
+        font-size: 0.75rem;
+        border-top: 1px solid #eee;
+    }
+
+    #footer h1 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
     #footer .wrap {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: start;
+        text-align: left;
     }
 
     #footer .gnb ul {
-        justify-content: center;
+        justify-content: start;
         margin-top: 15px;
     }
 
     #footer .f_left dl {
-        justify-content: center;
+        justify-content: start;
     }
 
     .s_mobile_only {
         display: block;
     }
+
+    #footer .f_left dl {
+        display: flex;
+        flex-direction: column;
+        gap: 10px 5px;
+    }
+
 }

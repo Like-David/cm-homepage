@@ -1,4 +1,11 @@
-/* Reset & Common */
+/* Global Reset & Common */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 .blind {
     position: absolute;
     width: 1px;
@@ -26,12 +33,6 @@
     box-sizing: border-box;
     z-index: 1000;
     transition: background-color 0.3s ease, border-bottom 0.3s ease;
-}
-
-@media (max-width: 768px) {
-    .header-primary-wrap {
-        padding: 0 20px; /* Reduced padding for mobile */
-    }
 }
 
 .header-primary-wrap.scrolled {
@@ -67,18 +68,6 @@
     transition: height 0.4s ease-in-out;
     overflow: hidden;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-}
-
-@media (min-width: 1025px) {
-    .header-primary-wrap:hover .gnb {
-        background-color: #fff;
-        height: 350px; /* Expanded height */
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    }
-
-    .header-primary-wrap:hover .depth2 {
-        display: block;
-    }
 }
 
 .nav {
@@ -181,11 +170,21 @@
     cursor: pointer;
 }
 
+/* ===================================
+   MEDIA QUERIES
+   =================================== */
 @media (max-width: 1024px) {
-    /* 1. Hide desktop nav, show hamburger */
+    /* Header Layout */
+    .header-primary-wrap {
+        padding: 0 20px; /* Reduced padding for mobile */
+    }
+
+    /* Desktop GNB Menu (hidden on mobile) */
     .nav {
         display: none;
     }
+
+    /* Mobile & Hamburger */
     .hamburger {
         display: block;
         position: absolute;
@@ -198,14 +197,19 @@
         display: block;
         width: 25px;
         height: 3px;
-        background-color: #333;
+        background-color: #FFF; /* Initial color */
         margin: 5px 0;
+        transition: background-color 0.3s ease;
     }
 
-    /* 2. Style GNB as a hidden panel */
+    .header-primary-wrap.scrolled .hamburger .bar {
+        background-color: #333;
+    }
+
     .header-primary-wrap .gnb {
         display: none; /* Hidden by default */
     }
+
     /* Disable desktop hover effects */
     .header-primary-wrap .gnb:hover {
         height: 100vh;
@@ -213,33 +217,28 @@
     }
 
     .depth1 > li > a {
-        font-size: 1.2rem;
-        font-weight: 800;
         color: #333;
-        text-decoration: none;
     }
 
-    /* 3. Show GNB panel when open */
     .mobile-gnb-open .gnb {
         display: block; /* Show instantly */
         position: fixed;
         top: 0;
         left: auto; /* Reset desktop style */
         right: 0;
-        width: 80%;
-        max-width: 320px;
+        width: 100%;
+        max-width: none;
         height: 100vh; /* Full viewport height */
         background-color: #fff;
         z-index: 100;
         overflow-y: auto;
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     }
-    /* Hide hamburger when panel is open */
+
     .mobile-gnb-open .hamburger {
         display: none;
     }
 
-    /* 4. Style the navigation list for mobile */
     .mobile-gnb-open .nav {
         display: block;
         padding-left: 0;
@@ -273,7 +272,6 @@
         background-color: #f0f0f0;
     }
 
-    /* 5. Style the close button */
     .mobile-gnb-open .close {
         display: block;
         position: absolute;
@@ -306,78 +304,14 @@
     }
 }
 
-/* Homepage Styles */
-@keyframes zoom-out {
-    from {
-        transform: scale(1.1);
-    }
-    to {
-        transform: scale(1);
-    }
-}
-
-.homepage-container {
-    position: relative; /* Needed for absolute positioning of child */
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden; /* Prevents scrollbars if image is slightly larger */
-}
-
-.homepage-main-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image covers the container without distortion */
-    animation: zoom-out 2s ease-in-out forwards;
-}
-
-.homepage-text-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 1200px;
-    text-align: center;
-    color: #FFFFFF;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    z-index: 10; /* Ensure text is above the swiper */
-}
-
-.main-text {
-    font-size: 64px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    opacity: 0; /* Initial state for animation */
-    animation: fade-in-up 1s ease-out forwards;
-    animation-delay: 0.5s;
-}
-
-.sub-text {
-    font-size: 24px; /* A smaller size for the sub-text */
-    font-weight: normal;
-    opacity: 0; /* Initial state for animation */
-    animation: fade-in-up 1s ease-out forwards;
-    animation-delay: 1s; /* Delay after main text */
-}
-
-@keyframes fade-in-up {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Media Query for responsiveness */
-@media (max-width: 768px) {
-    .main-text {
-        font-size: 32px;
+@media (min-width: 1025px) {
+    .header-primary-wrap:hover .gnb {
+        background-color: #fff;
+        height: 350px; /* Expanded height */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
 
-    .sub-text {
-        font-size: 18px;
+    .header-primary-wrap:hover .depth2 {
+        display: block;
     }
 }

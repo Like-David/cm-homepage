@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'react-bootstrap/Image';
-import BusinessImg from '@/assets/images/Index/Business.jpg';
+import BusinessImg from '@/assets/images/Index/Info/Info.jpg';
 import '@/styles/Index.css';
 import CounterDisplay from '@/components/Index/CounterDisplay'
 import { InView } from 'react-intersection-observer';

@@ -1,11 +1,9 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
 import { InView } from 'react-intersection-observer';
-import RXCertImg from '@/assets/images/Index/RX-Cert.png';
-import RXeFormImg from '@/assets/images/Index/RX-eForm.png';
-import RXLoanImg from '@/assets/images/Index/Rx-Loan.png';
+import RXCertImg from '@/assets/images/Index/Solutions/RX-Cert.png';
+import RXeFormImg from '@/assets/images/Index/Solutions/RX-eForm.png';
+import RXLoanImg from '@/assets/images/Index/Solutions/Rx-Loan.png';
 import '@/styles/Index.css';
-import SolutionCard from '@/components/Index/SolutionCard'; // Import the new component
 
 const solutionsData = [
     {
@@ -43,17 +41,32 @@ function Solutions() {
                     </div>
                 )}
             </InView>
-            <Row className="justify-content-center g-4 mt-4">
+            <ul className="product">
                 {solutionsData.map((solution, index) => (
-                    <Col key={index} md={6} lg={4}>
+                    <li key={index}>
                         <InView triggerOnce={true} delay={index * 200}>
                             {({ inView, ref }) => (
-                                <SolutionCard solution={solution} inView={inView} fref={ref} />
+                                <a ref={ref} className={`product-box ${inView ? 'animate-in' : ''}`} href="#">
+                                    <div className="product-head">
+                                        <em className="num">{String(index + 1).padStart(2, '0')}</em>
+                                    </div>
+                                    <div className="product-body">
+                                        <p className="title">{solution.name}</p>
+                                        <p className="text">
+                                            {solution.use}
+                                            <br />
+                                            <span className="model-name">{solution.model}</span>
+                                        </p>
+                                        <div className="thumbnail">
+                                            <img src={solution.image} alt={solution.name} />
+                                        </div>
+                                    </div>
+                                </a>
                             )}
                         </InView>
-                    </Col>
+                    </li>
                 ))}
-            </Row>
+            </ul>
         </div>
     );
 }

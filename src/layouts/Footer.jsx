@@ -21,22 +21,15 @@ function Footer() {
                 </nav>
                 <div className="f_left">
                     <dl>
-                        <dt>회사명</dt>
-                        <dd>주식회사 씨엠이노베이션</dd>
-                        <dt>대표</dt>
-                        <dd>권정훈</dd><br className="s_mobile_only" />
-                        <dt>주소</dt>
-                        <dd>서울시 구로구 디지털로 272 3층, 310호 (한신IT타워)</dd><br />
-                        <dt>사업자등록번호</dt>
-                        <dd>561-88-01986</dd><br className="s_mobile_only" />
-                        <dt>대표전화</dt>
-                        <dd>02-6949-4170</dd>
+                        <dt>회사명: 주식회사 씨엠이노베이션</dt>
+                        <dt>대표: 권정훈</dt>
+                        <dt>주소: 서울시 구로구 디지털로 272, 310호 (한신IT타워)</dt>
+                        <dt>사업자등록번호: 561-88-01986</dt>
                     </dl>
                     <dl>
-                        <dt>기술지원</dt>
-                        <dd>0505-998-0888</dd>
-                        <dt>팩스</dt>
-                        <dd>0505-477-4170</dd>
+                        <dt>대표전화: 02-6949-4170</dt>
+                        <dt>기술지원: 0505-998-0888</dt>
+                        <dt>팩스: 0505-477-4170</dt>
                     </dl>
                     <p className="copyright">Copyright © <strong>CMInnovation. </strong> All Rights Reserved.</p>
                 </div>

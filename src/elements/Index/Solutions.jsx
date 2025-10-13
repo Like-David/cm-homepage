@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { InView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import RXCertImg from '@/assets/images/Index/Solutions/RX-Cert.png';
@@ -31,6 +31,15 @@ const solutionsData = [
 ];
 
 function Solutions() {
+    const [activeIndex, setActiveIndex] = useState(null);
+
+    const handleClick = (index) => {
+        // On mobile, toggle the active state
+        if (window.innerWidth <= 768) {
+            setActiveIndex(activeIndex === index ? null : index);
+        }
+    };
+
     return (
         <div className="my-5 solutions-container">
             <InView triggerOnce={true}>
@@ -47,7 +56,7 @@ function Solutions() {
             </InView>
             <ul className="product">
                 {solutionsData.map((solution, index) => (
-                    <li key={index}>
+                    <li key={index} onClick={() => handleClick(index)}>
                         <InView triggerOnce={true} delay={index * 200}>
                             {({ inView, ref }) => (
                                 <Link ref={ref} className={`product-box ${inView ? 'animate-in' : ''}`} to={`/solution#${solution.id}`}>

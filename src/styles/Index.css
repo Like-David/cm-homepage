@@ -661,4 +661,60 @@
 
 
 
+.partner-logo.education-logo img {
 
+    max-height: 100px;
+
+}
+
+
+.service-center-container {
+    position: relative;
+    width: 100%;
+}
+
+.service-center-image {
+    width: 100%;
+    height: 500px;
+    display: block;
+    object-fit: cover;
+}
+
+.service-center-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: left;
+    width: 100%;
+}
+
+.service-center-text-overlay .main-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.service-center-text-overlay .sub-text {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.service-center-button {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.service-center-button:hover {
+    background-color: white;
+    color: black;
+}

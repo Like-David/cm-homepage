@@ -102,7 +102,7 @@ function Partners() {
             <div className="partner-logos">
                 {partnersData[activeCategory].length > 0 ? (
                     partnersData[activeCategory].map((partner, index) => (
-                        <div key={index} className="partner-logo">
+                        <div key={index} className={`partner-logo ${activeCategory === '교육기관' ? 'education-logo' : ''}`}>
                             <img src={partner.logo} alt={partner.name} />
                         </div>
                     ))

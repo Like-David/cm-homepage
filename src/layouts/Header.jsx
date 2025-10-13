@@ -8,11 +8,12 @@ import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
 const menuItems = [
     {
         title: 'ABOUT',
-        path: '/about/history',
+        path: '/about',
         depth2: [
-            { title: '연혁', path: '/about/history' },
-            { title: '인증', path: '/bbs/certification' },
-            { title: '찾아오시는 길', path: '/about/location' },
+            { title: '회사소개', path: '/about#introduce' },
+            { title: 'CEO 인사말', path: '/about#CEO' },
+            { title: '회사연혁', path: '/about#hsitory' },
+            { title: '오시는 길', path: '/about#location' },
         ],
     },
     {
@@ -77,7 +78,7 @@ function Header() {
             onMouseLeave={() => window.innerWidth > 1024 && setIsHeaderHovered(false)} // Only for desktop
         >
             <h1>
-                <img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt="(주)씨엠이노베이션" />
+                <Link to="/"><img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt="(주)씨엠이노베이션" /></Link>
             </h1>
 
             <div className="gnb">

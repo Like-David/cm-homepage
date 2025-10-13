@@ -1,7 +1,7 @@
 // npm import
 import React from 'react';
 // component import
-import MainImg from '@/elements/Index/MainImg';
+import IndexImg from '@/elements/Index/IndexImg';
 import Info from '@/elements/Index/Info';
 import Solutions from '@/elements/Index/Solutions';
 import Partners from '@/elements/Index/Partners';
@@ -12,7 +12,7 @@ import '@/styles/Index.css';
 function Index() {
     return (
         <>
-            <MainImg/>
+            <IndexImg/>
             <Info/>
             <Solutions/>
             <Partners/>

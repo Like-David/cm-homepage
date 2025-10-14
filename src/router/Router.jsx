@@ -6,6 +6,8 @@ import SolutionPage from '@/pages/SolutionPage';
 //  확인
 import { ClientPage } from '../pages/ClientPage';
 import AboutPage from '@/pages/About';
+//  확인
+import { ClientPage } from '../pages/ClientPage';
 
 function Router() {
     return (

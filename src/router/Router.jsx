@@ -4,7 +4,6 @@ import MainLayout from '@/layouts/MainLayout';
 import Index from '@/pages/Index';
 import SolutionPage from '@/pages/SolutionPage';
 import AboutPage from '@/pages/About';
-import ClientPage from '@/pages/ClientPage';
 
 function Router() {
     return (
@@ -13,7 +12,6 @@ function Router() {
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/solution" element={<SolutionPage />} />
-                <Route path="/business/client" element={<ClientPage />} />
             </Route>
         </Routes>
     );

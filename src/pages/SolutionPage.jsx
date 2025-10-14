@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../styles/SolutionPage.css';
 import SolutionCard from '../components/Solution/SolutionCard';
@@ -96,28 +96,17 @@ const SolutionPage = () => {
 
   // Scroll to section from URL hash on page load
   useEffect(() => {
-    const handleHashChange = () => {
-      console.log('Hashchange event triggered!');
-      const hash = window.location.hash.substring(1);
-      if (hash) {
-        console.log('Attempting to scroll to hash from hashchange event:', hash);
-        console.log('Element ref for hash (from hashchange event):', sectionRefs.current[hash]);
+    const hash = window.location.hash.substring(1);
+    console.log('Hash changed:', hash);
+    if (hash) {
+      const timer = setTimeout(() => {
+        console.log('Element ref for hash (before scroll):', sectionRefs.current[hash]);
         scrollToSection(hash);
         setActiveSection(hash);
-      } else if (solutions.length > 0) {
-        // If no hash, set active to the first solution
-        setActiveSection(solutions[0].id);
-      }
-    };
-
-    // Initial check on mount
-    handleHashChange();
-
-    window.addEventListener('hashchange', handleHashChange);
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [location.hash]);
 
   const scrollToSection = (id) => {
     const element = sectionRefs.current[id];
@@ -126,7 +115,7 @@ const SolutionPage = () => {
     console.log('Element offsetTop:', element?.offsetTop);
     if (element) {
       window.scrollTo({
-        top: element.offsetTop,
+        top: element.offsetTop - 100,
         behavior: 'smooth',
       });
     }

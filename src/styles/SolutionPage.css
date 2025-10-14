@@ -71,9 +71,9 @@
   font-size: 1rem;
   font-weight: 600;
   color: #333;
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-10px);
   transition: all 0.3s ease;
   background-color: rgba(255, 255, 255, 0.95);
   padding: 8px 15px;
@@ -95,11 +95,6 @@
   background-color: #1C2D60;
   border-color: #1C2D60;
   transform: translateY(-50%) scale(1.2);
-}
-
-.scroll-nav li.active span {
-  color: #1C2D60; /* Darker color for active text */
-  font-weight: 700; /* Make it bolder */
 }
 
 /* Main Content Area */

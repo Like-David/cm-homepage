@@ -8,7 +8,7 @@ import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
 const menuItems = [
     {
         title: 'ABOUT',
-        path: '/about',
+        path: '/about#introduce',
         depth2: [
             { title: '회사소개', path: '/about#introduce' },
             { title: 'CEO 인사말', path: '/about#CEO' },
@@ -25,7 +25,7 @@ const menuItems = [
     },
     {
         title: 'SOLUTIONS',
-        path: '/solution',
+        path: '/solution#report-express',
         depth2: [
             { title: 'ReportExpress Enterprise', path: '/solution#report-express' },
             { title: 'RX-Cert', path: '/solution#rx-cert' },
@@ -67,7 +67,7 @@ function Header() {
     }, []);
 
     const handleMobileSubmenuToggle = (e, index) => {
-        e.preventDefault(); // Prevent page navigation
+        //e.preventDefault(); // Prevent page navigation
         setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
     };
 

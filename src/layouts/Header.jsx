@@ -8,7 +8,7 @@ import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
 const menuItems = [
     {
         title: 'ABOUT',
-        path: '/about/history',
+        path: '/about',
         depth2: [
             { title: '연혁', path: '/about/history' },
             { title: '인증', path: '/bbs/certification' },
@@ -66,7 +66,7 @@ function Header() {
     }, []);
 
     const handleMobileSubmenuToggle = (e, index) => {
-        e.preventDefault(); // Prevent page navigation
+        // e.preventDefault(); // Prevent page navigation
         setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
     };
 

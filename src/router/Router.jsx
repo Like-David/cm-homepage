@@ -5,12 +5,14 @@ import Index from '@/pages/Index';
 import SolutionPage from '@/pages/SolutionPage';
 //  확인
 import { ClientPage } from '../pages/ClientPage';
+import AboutPage from '@/pages/About';
 
 function Router() {
     return (
         <Routes>
             <Route element={<MainLayout />}>
                 <Route path="/" element={<Index />} />
+                <Route path="/about" element={<AboutPage />} />
                 <Route path="/solution" element={<SolutionPage />} />
                 <Route path="/business/client" element={<ClientPage />} />
             </Route>

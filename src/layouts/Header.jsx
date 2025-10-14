@@ -67,7 +67,7 @@ function Header() {
     }, []);
 
     const handleMobileSubmenuToggle = (e, index) => {
-        e.preventDefault(); // Prevent page navigation
+        // e.preventDefault(); // Prevent page navigation
         setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
     };
 

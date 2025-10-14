@@ -12,7 +12,7 @@ import { ClientPage } from '../pages/ClientPage';
 function Router() {
     return (
         <Routes>
-            <Route element={<MainLayout />}>
+            <Route element={<MainLayout  />}>
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/solution" element={<SolutionPage />} />

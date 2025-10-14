@@ -10,7 +10,6 @@ const PartnerCategory = ({ categoryName, partners }) => {
           <div key={`${categoryName}-${partner.name}-${index}`} className="partner-card">
             <img src={partner.logo} alt={partner.name} />
             <p className="partner-name">{partner.name}</p>
-              <p className="partner-name">{partner.name}</p>
           </div>
         ))}
       </div>

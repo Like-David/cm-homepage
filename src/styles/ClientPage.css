@@ -124,7 +124,7 @@
   z-index: 100;
 }
 
-.scroll-nav ul {
+.scroll-nav ul  {
   list-style: none;
   padding: 15px 12px; /* Added padding */
   margin: 0;

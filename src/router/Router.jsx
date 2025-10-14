@@ -9,7 +9,7 @@ import { ClientPage } from '../pages/ClientPage';
 function Router() {
     return (
         <Routes>
-            <Route element={<MainLayout />}>
+            <Route element={<MainLayout  />}>
                 <Route path="/" element={<Index />} />
                 <Route path="/solution" element={<SolutionPage />} />
                 <Route path="/business/client" element={<ClientPage />} />

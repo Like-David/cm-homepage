@@ -18,7 +18,7 @@
   margin-bottom: 0;
 }
 
-.partners-grid  {
+.partners-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 30px;
@@ -26,7 +26,7 @@
 }
 
 /* Adjust for 5 columns on larger screens, similar to the reference */
-@media (min-width: 1250px) {
+@media (min-width: 1200px) {
   .partners-grid {
     grid-template-columns: repeat(5, 1fr);
   }

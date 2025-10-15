@@ -5,6 +5,7 @@ import '@/styles/Scroll_nav.css';
 import PartnerCategory from '../components/business/PartnerCategory';
 
 import solutionBannerBg from '@/assets/images/Solution/solution-banner-bg.png';
+import Banner from '@/components/common/Banner';
 
 // Import all necessary images
 import BAIImg from '@/assets/images/Index/Partners/BAI.png';
@@ -143,14 +144,7 @@ const ClientPage = () => {
         </ul>
       </nav>
 
-      <div className="client-intro" style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${solutionBannerBg})`
-      }}>
-        <div className="container">
-          <h2>우리의 파트너</h2>
-          <p>씨엠이노베이션과 함께하는 소중한 파트너사들을 소개합니다.</p>
-        </div>
-      </div>
+      <Banner title="Our Partners" subtitle="씨엠이노베이션과 함께하는 소중한 파트너사들을 소개합니다." />
 
       <div className="partners-grid-section">
         <div className="container">

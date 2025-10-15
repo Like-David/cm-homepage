@@ -2,12 +2,11 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
 import Index from '@/pages/Index';
-import SolutionPage from '@/pages/SolutionPage';
 import AboutPage from '@/pages/About';
 import SupportBoardPage from '@/pages/SupportBoardPage';
 import SupportWritePage from '@/pages/SupportWritePage';
-//  확인
-import { ClientPage } from '../pages/ClientPage';
+import SolutionPage from '@/pages/SolutionPage';
+import ClientPage from '@/pages/ClientPage';
 
 function Router() {
     return (

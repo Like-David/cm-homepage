@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import '@/styles/ClientPage.css';
+import '@/styles/Scroll_nav.css';
 import PartnerCategory from '../components/business/PartnerCategory';
 
 import solutionBannerBg from '@/assets/images/Solution/solution-banner-bg.png';
@@ -38,13 +39,6 @@ import SMUImg from '@/assets/images/Index/Partners/SMU.jpg';
 
 
 const partnersData = {
-    '공공기관': [
-        { name: '감사원', logo: BAIImg },
-        { name: '한국저작권위원회', logo: CopyrightImg },
-        { name: '저축은행중앙회', logo: FSBImg },
-        { name: '한국방송전파진흥원', logo: KCAImg },
-        { name: '서울시 Etax', logo: SeoulEtaxImg }
-    ],
     '금융기관': [
         { name: 'BNK 부산은행', logo: BusanImg },
         { name: '처브라이프생명보험주식회사', logo: CHUBBImg },
@@ -65,74 +59,79 @@ const partnersData = {
         { name: 'SC 제일은행', logo: SCBankImg },
         { name: '신한신용정보', logo: ShinhanCiImg }
     ],
+    '공공기관': [
+        { name: '감사원', logo: BAIImg },
+        { name: '한국저작권위원회', logo: CopyrightImg },
+        { name: '저축은행중앙회', logo: FSBImg },
+        { name: '한국방송전파진흥원', logo: KCAImg },
+        { name: '서울시 Etax', logo: SeoulEtaxImg }
+    ],
     '교육기관': [
         { name: '인하대학교', logo: INHAUImg },
         { name: '세종사이버대학교', logo: SJCUImg },
         { name: '상명대학교', logo: SMUImg },
-    ],
+    ]
 };
 
-// Map category names to IDs for URL hashes and refs
+// Map category names to IDs     for URL hashes and refs
 const categoryIdMap = {
-  '공공기관': 'public-institutions',
   '금융기관': 'financial-institutions',
+  '공공기관': 'public-institutions',
   '교육기관': 'educational-institutions',
 };
 
 const ClientPage = () => {
-  const [activeSection, setActiveSection] = useState('');
-  const sectionRefs = useRef({});
-  const location = useLocation();
+    const [activeSection, setActiveSection] = useState('');
+    const sectionRefs = useRef({});
+    const location = useLocation();
 
-  // Function to scroll to a section
-  const scrollToSection = (id) => {
-    const element = sectionRefs.current[id];
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 100, // Adjust for fixed header height
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  // Effect to handle scroll events and update activeSection
-  useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
-      Object.keys(partnersData).forEach((categoryName) => {
-        const id = categoryIdMap[categoryName];
-        const ref = sectionRefs.current[id];
-        if (ref && ref.offsetTop <= scrollPosition && ref.offsetTop + ref.offsetHeight > scrollPosition) {
-          setActiveSection(id);
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
+        let currentSection = '';
+        Object.keys(partnersData).forEach(categoryName => {
+            const id = categoryIdMap[categoryName];
+            const ref = sectionRefs.current[id];
+            if (ref && ref.offsetTop <= scrollPosition && ref.offsetTop + ref.offsetHeight > scrollPosition) {
+                currentSection = id;
+            }
+        });
+        if (currentSection) {
+            setActiveSection(currentSection);
         }
-      });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-  // Effect to handle URL hash changes and scroll on load/hash change
-  useEffect(() => {
-    const hash = location.hash.substring(1);
-    if (hash && categoryIdMap[Object.keys(partnersData).find(key => categoryIdMap[key] === hash)]) { // Validate hash against known categories
-      const timer = setTimeout(() => { // Use a small timeout to allow DOM to render
-        scrollToSection(hash);
-        setActiveSection(hash);
-      }, 100); // Small delay
-      return () => clearTimeout(timer);
-    } else if (!hash && Object.keys(partnersData).length > 0) {
-      // If no hash, set active to the first category
-      setActiveSection(categoryIdMap[Object.keys(partnersData)[0]]);
-    }
-  }, [location.hash]); // Re-run when hash changes
+    const scrollToSection = (id) => {
+        const element = sectionRefs.current[id];
+        if (element) {
+            window.scrollTo({
+                top: element.offsetTop - 150, // Adjust for header height
+                behavior: 'smooth',
+            });
+        }
+    };
+
+    useEffect(() => {
+        const hash = location.hash.substring(1);
+        if (hash) {
+            const timer = setTimeout(() => {
+                scrollToSection(hash);
+                setActiveSection(hash);
+            }, 100);
+            return () => clearTimeout(timer);
+        }
+    }, [location.hash]);
 
 
   return (
     <div className="client-page">
       {/* Right-side Scroll Navigation */}
       <nav className="scroll-nav">
-        <ul>
+        <ul className="scroll-nav-list">
           {Object.keys(partnersData).map((categoryName) => (
             <li
               key={categoryName}
@@ -171,4 +170,4 @@ const ClientPage = () => {
   );
 };
 
-export { ClientPage };
+export default ClientPage;

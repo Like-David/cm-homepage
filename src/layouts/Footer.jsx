@@ -35,7 +35,8 @@ function Footer() {
                 </div>
             </div>
             <a href="#!" onClick={scrollToTop} id="top_btn">
-                <span className="sound_only">상단으로</span>^
+                <span className="sound_only">상단으로</span>
+                <i className="fa-solid fa-caret-up"></i>
             </a>
         </footer>
     );

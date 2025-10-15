@@ -1,0 +1,65 @@
+/* Right-side Scroll Navigation */
+.scroll-nav {
+    position: fixed;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    z-index: 1030;
+    display: flex;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 10px;
+    padding: 20px 20px 20px 20px;
+    max-width: 200px;
+    width: 100%;
+    justify-content: center;
+}
+
+.scroll-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.scroll-nav ul li {
+    cursor: pointer;
+    text-align: center;
+    margin: 1rem;
+    position: relative; /* Needed for absolute positioning of the indicator */
+    display: flex; /* To align span and indicator */
+    align-items: center; /* Vertically center */
+    justify-content: space-between; /* To push the bar to the right */
+    overflow: hidden; /* Hide overflow of the bar */
+}
+
+.scroll-nav ul li span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #868e96; /* Default Grey text */
+    transition: color 0.3s ease;
+    flex-grow: 1; /* Allow text to take available space */
+    text-align: left; /* Align text to the left */
+}
+
+.active-indicator-bar {
+    width: 4px; /* Width of the progress bar */
+    background-color: #007bff; /* Color of the progress bar */
+    position: absolute;
+    right: 0; /* Position it to the right of the li */
+    top: 0;
+    height: 0%; /* Initial height, will be set by inline style */
+    transition: height 0.1s ease-out; /* Smooth transition */
+    border-radius: 2px; /* Slightly rounded corners */
+}
+
+.scroll-nav ul li:hover span,
+.scroll-nav ul li.active span {
+    color: #333; /* Active/Hover color */
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .scroll-nav {
+        display: none;
+    }
+}

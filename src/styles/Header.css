@@ -139,6 +139,17 @@ html {
     color: #007bff;
 }
 
+/* Active state for depth1 items */
+.depth1 > li.active > a {
+    color: #007bff !important; /* Highlight active depth1 link */
+}
+
+/* Active state for depth2 items */
+.depth2 > li.active > a {
+    color: #007bff !important; /* Highlight active depth2 link */
+    font-weight: bold; /* Make it bold */
+}
+
 .depth3 {
     list-style: none;
     margin: 10px 0 0 0;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import '../styles/SolutionPage.css';
+import '@/styles/SolutionPage.css';
+import '@/styles/Scroll_nav.css';
 import SolutionCard from '../components/Solution/SolutionCard';
 
 // Image Imports
@@ -78,20 +79,24 @@ const solutions = [
 const SolutionPage = () => {
   const [activeSection, setActiveSection] = useState(solutions[0].id);
   const sectionRefs = useRef({});
-
   const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
-      solutions.forEach(solution => {
-        const ref = sectionRefs.current[solution.id];
-        if (ref && ref.offsetTop <= scrollPosition && ref.offsetTop + ref.offsetHeight > scrollPosition) {
-          setActiveSection(solution.id);
-        }
-      });
-    };
+  const handleScroll = () => {
+    // Active section logic
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
+    let currentSection = '';
+    solutions.forEach(solution => {
+      const ref = sectionRefs.current[solution.id];
+      if (ref && ref.offsetTop <= scrollPosition && ref.offsetTop + ref.offsetHeight > scrollPosition) {
+        currentSection = solution.id;
+      }
+    });
+    if (currentSection) {
+      setActiveSection(currentSection);
+    }
+  };
 
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -112,7 +117,7 @@ const SolutionPage = () => {
     const element = sectionRefs.current[id];
     if (element) {
       window.scrollTo({
-        top: element.offsetTop - 100, // Adjust for header height
+        top: element.offsetTop - 120, // Adjust for header height
         behavior: 'smooth',
       });
     }
@@ -122,7 +127,7 @@ const SolutionPage = () => {
     <div className="solution-page">
       {/* Right-side Scroll Navigation */}
       <nav className="scroll-nav">
-        <ul>
+        <ul className="scroll-nav-list">
           {solutions.map(solution => (
             <li key={solution.id} className={activeSection === solution.id ? 'active' : ''} onClick={() => scrollToSection(solution.id)}>
               <span>{solution.subtitle}</span>

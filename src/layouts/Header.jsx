@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom'; // Import useLocation
 import '@/styles/Header.css';
 import logo from '@/assets/images/Header/cm-logo.png';
 import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
@@ -11,16 +11,19 @@ const menuItems = [
         path: '/about#introduce',
         depth2: [
             { title: '회사소개', path: '/about#introduce' },
-            { title: 'CEO 인사말', path: '/about#CEO' },
+            { title: '가치체계', path: '/about#value' },
             { title: '회사연혁', path: '/about#hsitory' },
-            { title: '오시는 길', path: '/about#location' },
+            { title: 'CEO 인사말', path: '/about#CEO' },
+            /*{ title: '오시는 길', path: '/about#location' },*/
         ],
     },
     {
         title: 'BUSINESS',
         path: '/business/client',
         depth2: [
-            { title: '고객사', path: '/business/client' }
+            { title: '금융기관', path: '/business/client#financial-institutions' },
+            { title: '공공기관', path: '/business/client#public-institutions' },
+            { title: '교육기관', path: '/business/client#educational-institutions' }
         ],
     },
     {
@@ -46,6 +49,7 @@ function Header() {
     const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
     const [isScrolled, setScrolled] = useState(false);
     const [isHeaderHovered, setIsHeaderHovered] = useState(false); // New state
+    const location = useLocation(); // Get current location
 
     useEffect(() => {
         const handleScroll = () => {
@@ -81,32 +85,41 @@ function Header() {
                 <Link to="/"><img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt="(주)씨엠이노베이션" /></Link>
             </h1>
 
+
             <div className="gnb">
                 <nav className="nav">
                     <ul className="depth1">
-                        {menuItems.map((item, index) => (
-                            <li key={index} className={activeMobileSubmenu === index ? 'submenu-open' : ''}>
-                                <Link to={item.path} onClick={(e) => handleMobileSubmenuToggle(e, index)}><span>{item.title}</span></Link>
-                                {item.depth2 && (
-                                    <ul className="depth2">
-                                        {item.depth2.map((subItem, subIndex) => (
-                                            <li key={subIndex}>
-                                                <Link to={subItem.path}>{subItem.title}</Link>
-                                                {subItem.depth3 && (
-                                                    <ul className="depth3">
-                                                        {subItem.depth3.map((subItem3, subIndex3) => (
-                                                            <li key={subIndex3}>
-                                                                <Link to={subItem3.path}>{subItem3.title}</Link>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                )}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </li>
-                        ))}
+                        {menuItems.map((item, index) => {
+                            // Determine if depth1 item is active
+                            const isActiveDepth1 = location.pathname === item.path.split('#')[0];
+                            return (
+                                <li key={index} className={`${activeMobileSubmenu === index ? 'submenu-open' : ''} ${isActiveDepth1 ? 'active' : ''}`}>
+                                    <Link to={item.path} onClick={(e) => handleMobileSubmenuToggle(e, index)}><span>{item.title}</span></Link>
+                                    {item.depth2 && (
+                                        <ul className="depth2">
+                                            {item.depth2.map((subItem, subIndex) => {
+                                                // Determine if depth2 item is active
+                                                const isActiveDepth2 = location.pathname + location.hash === subItem.path;
+                                                return (
+                                                    <li key={subIndex} className={isActiveDepth2 ? 'active' : ''}>
+                                                        <Link to={subItem.path}>{subItem.title}</Link>
+                                                        {subItem.depth3 && (
+                                                            <ul className="depth3">
+                                                                {subItem.depth3.map((subItem3, subIndex3) => (
+                                                                    <li key={subIndex3}>
+                                                                        <Link to={subItem3.path}>{subItem3.title}</Link>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        )}
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                    )}
+                                </li>
+                            );
+                        })}
                     </ul>
                 </nav>
                 <div className="close">

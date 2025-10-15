@@ -12,7 +12,7 @@ const menuItems = [
         depth2: [
             { title: '회사소개', path: '/about#introduce' },
             { title: '가치체계', path: '/about#value' },
-            { title: '회사연혁', path: '/about#hsitory' },
+            { title: '회사연혁', path: '/about#history' },
             { title: 'CEO 인사말', path: '/about#CEO' },
             /*{ title: '오시는 길', path: '/about#location' },*/
         ],

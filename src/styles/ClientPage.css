@@ -25,10 +25,6 @@
   opacity: 0.9;
 }
 
-.partners-grid-section {
-  margin-top: 50px; /* Added margin to create space below the banner */
-}
-
 .partners-grid-section .container {
   max-width: 1200px;
 }

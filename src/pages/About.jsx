@@ -15,7 +15,7 @@ import '@/styles/Scroll_nav.css';
 const aboutSections = [
     { id: 'introduce', title: '회사소개' },
     { id: 'value', title: '가치체계' },
-    { id: 'hsitory', title: '회사연혁' },
+    { id: 'history', title: '회사연혁' },
     { id: 'CEO', title: 'CEO 인사말' },
 ];
 
@@ -92,7 +92,7 @@ function About() {
                 <IntroduceImg />
                 <div ref={el => sectionRefs.current['introduce'] = el}><Introduce /></div>
                 <div ref={el => sectionRefs.current['value'] = el}><Value /></div>
-                <div ref={el => sectionRefs.current['hsitory'] = el}><History /></div>
+                <div ref={el => sectionRefs.current['history'] = el}><History /></div>
                 <div ref={el => sectionRefs.current['CEO'] = el}><CEO /></div>
             </main>
         </div>

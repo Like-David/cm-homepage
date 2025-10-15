@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import '../styles/SolutionPage.css';
+import '@/styles/SolutionPage.css';
+import '@/styles/Scroll_nav.css';
 import SolutionCard from '../components/Solution/SolutionCard';
 
 // Image Imports
@@ -78,44 +79,45 @@ const solutions = [
 const SolutionPage = () => {
   const [activeSection, setActiveSection] = useState(solutions[0].id);
   const sectionRefs = useRef({});
+  const location = useLocation();
+
+  const handleScroll = () => {
+    // Active section logic
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
+    let currentSection = '';
+    solutions.forEach(solution => {
+      const ref = sectionRefs.current[solution.id];
+      if (ref && ref.offsetTop <= scrollPosition && ref.offsetTop + ref.offsetHeight > scrollPosition) {
+        currentSection = solution.id;
+      }
+    });
+    if (currentSection) {
+      setActiveSection(currentSection);
+    }
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
-      solutions.forEach(solution => {
-        const ref = sectionRefs.current[solution.id];
-        if (ref && ref.offsetTop <= scrollPosition && ref.offsetTop + ref.offsetHeight > scrollPosition) {
-          setActiveSection(solution.id);
-        }
-      });
-    };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Scroll to section from URL hash on page load
   useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    console.log('Hash changed:', hash);
+    const hash = location.hash.substring(1);
     if (hash) {
       const timer = setTimeout(() => {
-        console.log('Element ref for hash (before scroll):', sectionRefs.current[hash]);
         scrollToSection(hash);
         setActiveSection(hash);
-      }, 300);
+      }, 100); // Adjust delay as needed
       return () => clearTimeout(timer);
     }
   }, [location.hash]);
 
   const scrollToSection = (id) => {
     const element = sectionRefs.current[id];
-    console.log('Scrolling to ID:', id);
-    console.log('Element found for scrolling:', element);
-    console.log('Element offsetTop:', element?.offsetTop);
     if (element) {
       window.scrollTo({
-        top: element.offsetTop - 100,
+        top: element.offsetTop - 120, // Adjust for header height
         behavior: 'smooth',
       });
     }
@@ -125,7 +127,7 @@ const SolutionPage = () => {
     <div className="solution-page">
       {/* Right-side Scroll Navigation */}
       <nav className="scroll-nav">
-        <ul>
+        <ul className="scroll-nav-list">
           {solutions.map(solution => (
             <li key={solution.id} className={activeSection === solution.id ? 'active' : ''} onClick={() => scrollToSection(solution.id)}>
               <span>{solution.subtitle}</span>

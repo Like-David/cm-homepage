@@ -1,5 +1,4 @@
 import React from 'react';
-import '@/styles/PartnerCategory.css'; // New CSS file
 
 const PartnerCategory = ({ categoryName, partners }) => {
   return (

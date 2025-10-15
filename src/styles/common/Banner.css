@@ -9,6 +9,7 @@
     text-align: center;
     color: #fff;
     padding: 180px 20px 20px 20px; /* Increased padding-top to push content down */
+    margin-bottom: 80px;
 }
 
 .banner-content h1 {

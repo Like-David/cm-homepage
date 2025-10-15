@@ -38,7 +38,6 @@
     color: #868e96; /* Default Grey text */
     transition: color 0.3s ease;
     flex-grow: 1; /* Allow text to take available space */
-    text-align: left; /* Align text to the left */
 }
 
 .active-indicator-bar {

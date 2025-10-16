@@ -3,6 +3,11 @@ import { useLocation } from 'react-router-dom';
 import '@/styles/SolutionPage.css';
 import '@/styles/Scroll_nav.css';
 import SolutionCard from '../components/Solution/SolutionCard';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 // Image Imports
 import solutionImage1 from '@/assets/images/Solution/rx.png';
@@ -12,6 +17,102 @@ import bannerBg from '@/assets/images/Solution/solution-banner-bg.png';
 import flow from '@/assets/images/Solution/flow.png';
 import certFlow from '@/assets/images/Solution/rx-cert-flow.png';
 import loanFlow from '@/assets/images/Solution/rx-loan-flow.png';
+
+function MyVerticallyCenteredModal(props) {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [gender, setGender] = useState('');
+    const [age, setAge] = useState('');
+
+    useEffect(() => {
+        if(!props.show) {
+            setName('');
+            setEmail('');
+            setGender('');
+            setAge('');
+        }
+    }, [props.show]);
+    const sendOk = () => {
+        if(!name || !email || !gender || !age ) {
+            alert('빠진 항목이있습니다.');
+        } else {
+            props.onSubmit({name, email, gender, age});
+        }
+    // http://localhost:8080/eformbank/cdoc/eform/eform.jsp 여기로 가서 모달창? 아니면 그냥
+    }
+
+    return(
+
+    <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+    >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+                테스트
+            </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <Form>
+                <Form.Group className="m-3" controlId="formGridName">
+                    <Form.Label>이름</Form.Label>
+                    <Form.Control type="email" placeholder="이름을 입력해주세요" value={name} onChange={e => setName(e.target.value)} />
+                </Form.Group>
+
+                <Form.Group className="m-3" controlId="formGridEmail">
+                    <Form.Label>이메일</Form.Label>
+                    <Form.Control placeholder="이메일를 입력해주세요" value={email} onChange={e => setEmail(e.target.value)} />
+                </Form.Group>
+
+                <Row className="m-3">
+                    <Form.Group as={Col} controlId="formGridGender">
+                        <Form.Label>성별</Form.Label>
+                        <div key={`inline-radio`} className="mb-3">
+                            <Form.Check
+                                inline
+                                label="남성"
+                                name="group1"
+                                type="radio"
+                                id={`inline-radio-1`}
+                                value='남성'
+                                onChange={e => setGender(e.target.value)}
+                            />
+                            <Form.Check
+                                inline
+                                label="여성"
+                                name="group1"
+                                type="radio"
+                                id={`inline-radio-2`}
+                                value='여성'
+                                onChange={e => setGender(e.target.value)}
+                            />
+                        </div>
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridAge">
+                        <Form.Label>나이대</Form.Label>
+                        <Form.Select value={age} onChange={e => setAge(e.target.value)}>
+                            <option>선택하세요</option>
+                            <option>10대</option>
+                            <option>20대</option>
+                            <option>30대</option>
+                            <option>40대</option>
+                            <option>50대</option>
+                            <option>60대 이상</option>
+                        </Form.Select>
+                    </Form.Group>
+                </Row>
+
+                <Button variant="primary" onClick={sendOk}>
+                    확인
+                </Button>
+            </Form>
+        </Modal.Body>
+    </Modal>
+    );
+}
 
 const solutions = [
   {
@@ -80,6 +181,7 @@ const SolutionPage = () => {
   const [activeSection, setActiveSection] = useState(solutions[0].id);
   const sectionRefs = useRef({});
   const location = useLocation();
+  const [modalShow, setModalShow] = React.useState(false);
 
   const handleScroll = () => {
     // Active section logic
@@ -157,11 +259,12 @@ const SolutionPage = () => {
         {/* 2. 솔루션 상세 섹션 */}
         <div className="solution-details-container">
           {solutions.map((solution) => (
-            <SolutionCard 
-              key={solution.id} 
-              solution={solution} 
+            <SolutionCard
+              key={solution.id}
+              solution={solution}
               ref={el => sectionRefs.current[solution.id] = el}
-            />
+            >
+            </SolutionCard>
           ))}
         </div>
 
@@ -169,8 +272,19 @@ const SolutionPage = () => {
         <section className="solution-cta">
           <div className="container">
             <h3>솔루션 도입을 검토 중이신가요?</h3>
-            <p>전문가와 상담해보세요.</p>
-            <button>문의하기</button>
+            <p>솔루션 데모를 통해 테스트 해보세요.</p>
+              <Button variant="primary" onClick={() => setModalShow(true)}>
+                  테스트 해보기
+              </Button>
+
+              <MyVerticallyCenteredModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                  onSubmit={data => {
+                      console.log("모달창 데이터",data)
+                      setModalShow(false)
+                  }}
+              />
           </div>
         </section>
       </main>

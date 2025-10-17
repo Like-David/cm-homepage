@@ -59,7 +59,7 @@
     z-index: 10; /* Ensure text is above the swiper */
 }
 
-.main-text {
+.homepage-main-text {
     font-size: 64px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -68,7 +68,7 @@
     animation-delay: 0.5s;
 }
 
-.sub-text {
+.homepage-sub-text {
     font-size: 24px; /* A smaller size for the sub-text */
     font-weight: normal;
     opacity: 0; /* Initial state for animation */
@@ -308,6 +308,7 @@
     width: 100%;
     height: auto;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 /* Partners Section */
@@ -437,42 +438,56 @@
 }
 
 /* Media Queries */
+@media (max-width: 1024px) {
+    .homepage-main-text {
+        font-size: 48px;
+    }
+
+    .business-title-overlay {
+        font-size: 40px;
+    }
+
+    .overlay-number {
+        font-size: 4em;
+    }
+
+    .product li {
+        width: 45%;
+        min-width: 0;
+    }
+
+    .service-center-text-overlay {
+        left: 50%;
+        width: 80%;
+        text-align: center;
+    }
+}
+
 @media (max-width: 768px) {
     /* Homepage */
     .homepage-container {
-        position: relative; /* Needed for absolute positioning of child */
-        width: 100%;
         height: 100%;
-        overflow: hidden; /* Prevents scrollbars if image is slightly larger */
     }
 
     .homepage-text-overlay {
-        position: absolute;
         top: 65%;
-        left: 50%; /* Changed to 50% for centering */
-        transform: translate(-50%, -50%);
-        width: 90%;
-        max-width: 1200px;
-        text-align: center; /* Changed to center */
-        color: #FFFFFF;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-        z-index: 10; /* Ensure text is above the swiper */
+        text-align: center;
     }
 
-    .main-text {
+    .homepage-main-text {
         font-size: 1rem;
     }
 
-    .sub-text {
+    .homepage-sub-text {
         font-size: 1.2rem;
     }
 
     /* Business */
     .business-sub-description {
-        font-size: 16px; /* Adjusted for mobile */
-        margin-left: 0; /* Changed to 0 for centering */
-        margin-bottom: 20px; /* Adjusted for mobile */
-        text-align: center; /* Added for centering */
+        font-size: 16px;
+        margin-left: 0;
+        margin-bottom: 20px;
+        text-align: center;
     }
 
     .business-image {
@@ -482,19 +497,19 @@
 
     .business-title-overlay {
         font-size: 1.5rem;
-        margin-left: 0; /* Changed to 0 for centering */
-        margin-top: 40px; /* Reduced top margin for mobile */
+        margin-left: 0;
+        margin-top: 40px;
         margin-bottom: 10px;
-        padding: 0px 30px 0px 30px; /* Added left padding for mobile */
-        text-align: center; /* Added for centering */
+        padding: 0 30px;
+        text-align: center;
     }
 
     .business-main-subtext {
-        font-size: 0.9rem; /* Adjusted for mobile */
-        padding: 0px 30px 0px 30px; /* Added left padding for mobile */
-        margin-left: 0; /* Changed to 0 for centering */
-        margin-bottom: 20px; /* Adjusted for mobile */
-        text-align: left; /* Added for centering */
+        font-size: 0.9rem;
+        padding: 0 30px;
+        margin-left: 0;
+        margin-bottom: 20px;
+        text-align: left;
     }
 
     .overlay-content-wrapper {
@@ -508,7 +523,7 @@
     }
 
     .overlay-icon {
-        font-size: 1.5rem; /* Adjusted for mobile */
+        font-size: 1.5rem;
     }
 
     .overlay-text {
@@ -519,125 +534,36 @@
         font-size: 1.2rem;
     }
 
+    .product li {
+        width: 90%;
+    }
+
     /* Partners */
     .partners-section {
         padding: 1px 0px 50px 0px;
-        background-color: #f8f9fa; /* Light gray background */
     }
 
     .partner-buttons {
-        display: flex;
-        gap: 15px;
-        max-width: 1500px;
-        margin: auto auto 20px auto;
         justify-content: center;
-    }
-
-    .partner-button {
-        padding: 12px 25px;
-        font-size: 18px;
-        font-weight: 500;
-        color: #555;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 30px;
-        cursor: pointer;
-    }
-
-    .partner-button:hover {
-        background-color: #333;
-        color: #fff;
-        border-color: #333;
-    }
-
-    .partner-button.active {
-        background-color: #333;
-        color: #fff;
-        border-color: #333;
-        box-shadow: 0 4px 12px rgba(51, 51, 51, 0.2);
-    }
-
-    .partner-logos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 40px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .partner-logo {
-        height: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .partner-logo img {
-        max-height: 60px;
-        width: auto;
-        max-width: 180px;
-        object-fit: contain;
-        filter: grayscale(100%);
-        opacity: 0.7;
-        transition: all 0.3s ease;
-    }
-
-    .partner-logo:hover img {
-        filter: grayscale(0);
-        opacity: 1;
-        transform: scale(1.1);
-    }
-
-    .partner-logo.education-logo img {
-        max-height: 100px;
     }
 
     /* Service Center */
-    .service-center-container {
-        position: relative;
-        width: 100%;
-    }
-
     .service-center-image {
-        width: 100%;
         height: 500px;
-        display: block;
         object-fit: contain;
     }
 
     .service-center-text-overlay {
-        position: absolute;
         top: 45%;
         left: 45%;
-        transform: translate(-50%, -50%);
-        color: white;
-        text-align: left;
         width: 80%;
     }
 
     .service-center-text-overlay .main-text {
         font-size: 1.2rem;
-        font-weight: bold;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     }
 
     .service-center-text-overlay .sub-text {
         font-size: 1.2rem;
-        margin-bottom: 1rem;
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-    }
-
-    .service-center-button {
-        background-color: transparent;
-        color: white;
-        border: 1px solid white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1rem;
-        margin-top: 20px;
-        transition: background-color 0.3s ease, color 0.3s ease;
     }
 }

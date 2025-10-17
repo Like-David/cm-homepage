@@ -10,7 +10,7 @@ function CEO() {
                 <h2 className="about-title">CEO 인사말</h2>
                 <div className="ceo-grid">
                     <div className="ceo-image-placeholder">
-                        <Image src={image} />
+                        <img src={image} />
                     </div>
                     <div className="ceo-message">
                         <p>안녕하십니까?<br/>

@@ -401,3 +401,71 @@
     color: #f8f9fa;
     line-height: 1.6;
 }
+
+@media (max-width: 768px) {
+    .introduce-container {
+        height: 500px; /* Adjust height for mobile */
+    }
+
+    .main-text {
+        font-size: 36px; /* Reduce font size for mobile */
+    }
+
+    .sub-text {
+        font-size: 18px; /* Reduce font size for mobile */
+    }
+
+    .main-text-introduce {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .sub-text-introduce {
+        font-size: 16px;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .ceo-grid {
+        grid-template-columns: 1fr; /* Stack columns on mobile */
+        gap: 30px;
+        padding: 0 20px;
+    }
+
+    .value-grid {
+        grid-template-columns: 1fr; /* Stack columns on mobile */
+        gap: 50px;
+        padding: 0 20px;
+    }
+
+    .history-card {
+        flex: 0 0 90%; /* Make cards wider on mobile */
+    }
+
+    /* Simplified Timeline for Mobile */
+    .history-timeline-view-alt::after {
+        left: 20px; /* Move line to the left */
+        margin-left: 0;
+    }
+
+    .timeline-year-block,
+    .timeline-year-block.right,
+    .timeline-year-block.left {
+        width: 100%;
+        left: 0;
+        padding-left: 60px; /* Space for the line and dot */
+        padding-right: 15px;
+    }
+
+    .timeline-year-block::after,
+    .timeline-year-block.left::after,
+    .timeline-year-block.right::after {
+        left: 10px; /* Position dot on the line */
+    }
+
+    .timeline-year-block.left .timeline-year-header,
+    .timeline-year-block.right .timeline-year-header {
+        text-align: left;
+        padding-left: 0;
+    }
+}

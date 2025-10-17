@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { InView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
-import RXCertImg from '@/assets/images/Index/Solutions/RX-Cert.png';
 import RXeFormImg from '@/assets/images/Index/Solutions/RX-eForm.png';
+import RXCertImg from '@/assets/images/Index/Solutions/RX-Cert.png';
 import RXLoanImg from '@/assets/images/Index/Solutions/Rx-Loan.png';
 import '@/styles/Index.css';
 
 const solutionsData = [
     {
         id: 'report-express',
-        image: RXCertImg,
+        image: RXeFormImg,
         name: '전자문서(웹리포팅) 솔루션',
         use: '전자문서(웹리포팅) 시스템 구축',
         model: 'ReportExpress Enterprise',
     },
     {
         id: 'rx-cert',
-        image: RXeFormImg,
+        image: RXCertImg,
         name: '증명서 위·변조방지 솔루션',
         use: '증명서 위·변조방지 시스템 구축',
         model: 'RX-Cert',
@@ -59,7 +59,7 @@ function Solutions() {
                     <li key={index} onClick={() => handleClick(index)}>
                         <InView triggerOnce={true} delay={index * 200}>
                             {({ inView, ref }) => (
-                                <Link ref={ref} className={`product-box ${inView ? 'animate-in' : ''}`} to={`/solution#${solution.id}`}>
+                                <div ref={ref} className={`product-box ${inView ? 'animate-in' : ''}`}>
                                     <div className="product-head">
                                         <em className="num">{String(index + 1).padStart(2, '0')}</em>
                                     </div>
@@ -71,10 +71,12 @@ function Solutions() {
                                             <span className="model-name">{solution.model}</span>
                                         </p>
                                         <div className="thumbnail">
-                                            <img src={solution.image} alt={solution.name} />
+                                            <a href={`/solution#${solution.id}`}>
+                                                <img src={solution.image} alt={solution.name} />
+                                            </a>
                                         </div>
                                     </div>
-                                </Link>
+                                </div>
                             )}
                         </InView>
                     </li>

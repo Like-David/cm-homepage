@@ -46,21 +46,19 @@ const SupportBoardPage = () => {
                         <table className="board-table">
                             <thead>
                             <tr>
-                                <th>번호</th>
                                 <th>제목</th>
                                 <th>작성자</th>
-                                <th>작성일</th>
                                 <th>조회수</th>
+                                <th>작성일</th>
                             </tr>
                             </thead>
                             <tbody>
                             {posts.map(post => (
                                 <tr key={post.id}>
-                                    <td>{post.id}</td>
                                     <td className="board-title"><Link to={`/support/${post.id}`}>{post.title}</Link></td>
                                     <td>{post.author}</td>
-                                    <td>{new Date(post.created_at).toLocaleDateString()}</td>
                                     <td>{post.views}</td>
+                                    <td>{new Date(post.created_at).toLocaleDateString()}</td>
                                 </tr>
                             ))}
                             </tbody>

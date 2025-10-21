@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import '@/styles/SolutionPage.css';
 import '@/styles/Scroll_nav.css';
+import { showSolutionPopup } from '@/services/Solutions/Solution.js';
 import SolutionCard from '../components/Solution/SolutionCard';
+import SolutionModal from '../components/Solution/SolutionModal';
+import Button from 'react-bootstrap/Button';
 
 // Image Imports
 import solutionImage1 from '@/assets/images/Solution/rx.png';
@@ -80,6 +83,7 @@ const SolutionPage = () => {
   const [activeSection, setActiveSection] = useState(solutions[0].id);
   const sectionRefs = useRef({});
   const location = useLocation();
+  const [modalShow, setModalShow] = React.useState(false);
 
   const handleScroll = () => {
     // Active section logic
@@ -157,11 +161,12 @@ const SolutionPage = () => {
         {/* 2. 솔루션 상세 섹션 */}
         <div className="solution-details-container">
           {solutions.map((solution) => (
-            <SolutionCard 
-              key={solution.id} 
-              solution={solution} 
+            <SolutionCard
+              key={solution.id}
+              solution={solution}
               ref={el => sectionRefs.current[solution.id] = el}
-            />
+            >
+            </SolutionCard>
           ))}
         </div>
 
@@ -169,8 +174,19 @@ const SolutionPage = () => {
         <section className="solution-cta">
           <div className="container">
             <h3>솔루션 도입을 검토 중이신가요?</h3>
-            <p>전문가와 상담해보세요.</p>
-            <button>문의하기</button>
+            <p>솔루션 데모를 통해 테스트 해보세요.</p>
+              <Button onClick={() => setModalShow(true)}>
+                  테스트 해보기
+              </Button>
+
+              <SolutionModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                  onSubmit={data => {
+                      //setModalShow(false);
+                      showSolutionPopup(data);
+                  }}
+              />
           </div>
         </section>
       </main>

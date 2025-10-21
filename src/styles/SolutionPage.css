@@ -226,5 +226,19 @@
 }
 
 .solution-cta button:hover {
-  background-color: #f0f0f0;
+  background-color: #CCC;
+  color: #1C2D60;
+}
+
+#submitBtn {
+  background-color: #FFF;
+  color: #1C2D60;
+  border: solid 1px #1C2D60;
+  font-weight: 500;
+}
+
+#submitBtn:hover {
+  background-color: #1C2D60;
+  color: #FFF;
+  border: solid 1px #1C2D60;
 }

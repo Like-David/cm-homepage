@@ -8,7 +8,7 @@ import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
 const menuItems = [
     {
         title: 'ABOUT',
-        path: '/about#introduce',
+        path: '/about',
         depth2: [
             { title: '회사소개', path: '/about#introduce' },
             { title: '가치체계', path: '/about#value' },
@@ -28,7 +28,7 @@ const menuItems = [
     },
     {
         title: 'SOLUTIONS',
-        path: '/solution#report-express',
+        path: '/solution',
         depth2: [
             { title: 'ReportExpress Enterprise', path: '/solution#report-express' },
             { title: 'RX-Cert', path: '/solution#rx-cert' },

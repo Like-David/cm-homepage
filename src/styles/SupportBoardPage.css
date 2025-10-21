@@ -8,7 +8,8 @@
 .support-content-area {
     width: 100%;
     max-width: 1200px; /* Adjust as needed */
-    padding: 40px 20px;
+    margin: 0 auto;
+    padding: 40px 0px;
 }
 
 .section-header {
@@ -47,7 +48,7 @@
 
 .search-bar {
     display: flex;
-    gap: 10px;
+    gap: 2px;
     flex-grow: 1; /* Allow search bar to grow */
 }
 
@@ -74,18 +75,33 @@
 }
 
 .search-btn {
-    background-color: transparent;
+    background: none !important;  /* 완전 투명 */
     border: none;
-    padding: 10px;
+    padding: 8px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* hover 상태에서도 배경색 생기지 않게 */
+.search-btn:hover {
+    background: none !important;
+}
+
+/* SVG 내부도 배경 제거 */
+.search-btn svg {
+    background: none !important;
+    fill: none;                /* 내부 채움 제거 */
+    stroke: #666;              /* 선 색상 유지 */
+    transition: stroke 0.2s ease;
+}
+
+/* hover 시 색상만 진하게 */
 .search-btn:hover svg path {
     stroke: #333;
 }
+
 
 .write-btn {
     background-color: #1C2D60;
@@ -96,10 +112,12 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
 .write-btn:hover {
     background-color: #152245;
+    text-decoration: none;
 }
 
 .board-table {

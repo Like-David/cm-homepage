@@ -73,6 +73,20 @@
     background-color: #152245;
 }
 
+.search-btn {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-btn:hover svg path {
+    stroke: #333;
+}
+
 .write-btn {
     background-color: #1C2D60;
     color: #fff;

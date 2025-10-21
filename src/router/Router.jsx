@@ -7,6 +7,9 @@ import SupportBoardPage from '@/pages/SupportBoardPage';
 import SupportWritePage from '@/pages/SupportWritePage';
 import SolutionPage from '@/pages/SolutionPage';
 import ClientPage from '@/pages/ClientPage';
+import FaqPage from '@/pages/FaqPage';
+import OneOnOneInquiryPage from '@/pages/OneOnOneInquiryPage';
+import SupportViewPage from '@/pages/SupportViewPage';
 
 function Router() {
     return (
@@ -18,7 +21,9 @@ function Router() {
                 <Route path="/business/client" element={<ClientPage />} />
                 <Route path="/support" element={<SupportBoardPage />} />
                 <Route path="/support/write" element={<SupportWritePage />} />
-                <Route path="/support/:id" element={<SupportBoardPage />} />
+                <Route path="/support/faq" element={<FaqPage />} />
+                <Route path="/support/inquiry" element={<OneOnOneInquiryPage />} />
+                <Route path="/support/:id" element={<SupportViewPage />} />
             </Route>
         </Routes>
     );

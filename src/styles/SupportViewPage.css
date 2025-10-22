@@ -117,3 +117,248 @@
 .btn-cancel:hover {
     background-color: #e0e0e0;
 }
+
+/* src/styles/SupportViewPage.css */
+
+.post-view-container {
+    background:#fff; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,.05);
+    padding:24px; margin:24px 0;
+}
+
+.post-header h1 {
+    margin:0 0 8px; font-size:22px; font-weight:800; color:#1c1f2a;
+}
+.post-meta {
+    display:flex; flex-wrap:wrap; gap:10px; font-size:13px; color:#5a6175;
+}
+.post-meta .badge {
+    background:#eaf1ff; color:#1C2D60; padding:2px 8px; border-radius:999px; font-weight:700;
+}
+
+.post-content {
+    margin:18px 0; line-height:1.7; color:#2a2f44; font-size:15px;
+}
+
+.post-actions {
+    display:flex; gap:8px; justify-content:flex-end; margin-top: 16px;
+}
+.btn-list, .btn-edit, .btn-delete,
+.btn-confirm, .btn-cancel, .btn-danger {
+    border:none; border-radius:8px; padding:10px 14px; cursor:pointer; font-weight:700;
+}
+.btn-list { background:#f0f2f6; color:#333; }
+.btn-edit { background:#1C2D60; color:#fff; }
+.btn-delete, .btn-danger { background:#d93025; color:#fff; }
+.btn-cancel { background:#f0f2f6; color:#333; }
+.btn-confirm { background:#1C2D60; color:#fff; }
+
+.password-modal-form, .edit-modal-form, .delete-modal-form {
+    width: 100%; max-width: 600px;
+}
+
+.password-modal-form h2,
+.edit-modal-form h2,
+.delete-modal-form h2 {
+    margin:0 0 10px; font-size:20px; font-weight:800;
+}
+
+.password-modal-form input,
+.edit-modal-form input,
+.edit-modal-form textarea,
+.delete-modal-form input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dde1e6; border-radius: 10px;
+    font-size: 14px;
+    margin: 8px 0 12px;
+    outline: none; transition: border-color .2s, box-shadow .2s;
+}
+.password-modal-form input:focus,
+.edit-modal-form input:focus,
+.edit-modal-form textarea:focus,
+.delete-modal-form input:focus {
+    border-color:#1C2D60; box-shadow:0 0 0 3px rgba(28,45,96,.10);
+}
+
+.error-message {
+    margin: -4px 0 10px; color:#d93025; font-size:12px;
+}
+
+.modal-actions {
+    display:flex; gap:8px; justify-content:flex-end; margin-top:4px;
+}
+
+.hint { margin:-4px 0 10px; font-size:12px; color:#5a6175; }
+
+/* ──────────────
+   CM Modal Navy Version
+   ────────────── */
+
+.cm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(28, 45, 96, 0.65); /* 네이비 반투명 오버레이 */
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+}
+
+.cm-modal {
+    width: min(700px, 95%);
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    overflow: hidden;
+    transform: translateY(6px);
+    animation: slideUp 0.25s ease forwards;
+}
+@keyframes slideUp {
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.cm-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+    background: #1C2D60;           /* 💙 단색 네이비 */
+    color: #fff;
+    position: relative;
+}
+.cm-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    background: rgba(255,255,255,0.15);
+}
+.cm-titles h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+}
+.cm-titles p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+}
+.cm-close {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    transition: opacity .15s;
+}
+.cm-close:hover {
+    opacity: 0.7;
+}
+
+.cm-form {
+    padding: 22px 20px 24px;
+    display: flex;
+    flex-direction: column;
+}
+.cm-label {
+    font-weight: 700;
+    font-size: 14px;
+    color: #1C2D60;
+    margin-bottom: 8px;
+}
+.cm-input, .cm-textarea {
+    border: 1px solid #d4d7e5;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 14px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.cm-input:focus, .cm-textarea:focus {
+    border-color: #1C2D60;
+    box-shadow: 0 0 0 3px rgba(28,45,96,0.15);
+    outline: none;
+}
+.cm-error {
+    color: #d93025;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.cm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.cm-btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.05s ease;
+}
+.cm-btn.primary {
+    background: #1C2D60;
+    color: #fff;
+    border: none;
+}
+.cm-btn.primary:hover {
+    background: #152245;
+}
+.cm-btn.ghost {
+    background: transparent;
+    border: 1px solid #1C2D60;
+    color: #1C2D60;
+}
+.cm-btn.ghost:hover {
+    background: #1C2D60;
+    color: #fff;
+}
+
+/* 수정 카드 */
+.editor-card {
+    border: 1px solid #e2e5ef;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+}
+.editor-toolbar {
+    background: #1C2D60; /* 💙 동일 네이비 헤더 */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    font-weight: 700;
+}
+.editor-form {
+    padding: 16px 20px 24px;
+}
+.editor-form .cm-input,
+.editor-form .cm-textarea {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 8px;
+}
+.editor-form .cm-textarea {
+    min-height: 200px;
+    resize: vertical;
+}
+.privacy-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px;
+  background:#1C2D60; /* ← 단색 네이비로 변경 */
+  color:#fff;
+  background-image:none; /* 혹시 남아있을 gradient 제거 */
+}

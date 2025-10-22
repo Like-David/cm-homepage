@@ -10,6 +10,7 @@ import ClientPage from '@/pages/ClientPage';
 import FaqPage from '@/pages/FaqPage';
 import OneOnOneInquiryPage from '@/pages/OneOnOneInquiryPage';
 import SupportViewPage from '@/pages/SupportViewPage';
+import SupportEditPage from '@/pages/SupportEditPage';
 
 function Router() {
     return (
@@ -24,6 +25,7 @@ function Router() {
                 <Route path="/support/faq" element={<FaqPage />} />
                 <Route path="/support/inquiry" element={<OneOnOneInquiryPage />} />
                 <Route path="/support/:id" element={<SupportViewPage />} />
+                <Route path="/support/:id/edit" element={<SupportEditPage />} />
             </Route>
         </Routes>
     );

@@ -110,7 +110,6 @@ export default function SupportViewPage() {
                             </div>
                             <div className="cm-titles">
                                 <h2>비밀번호 확인</h2>
-                                <p>보안을 위해 비밀번호를 입력해 주세요.</p>
                             </div>
                             <button className="cm-close" onClick={() => navigate('/support')} aria-label="닫기">×</button>
                         </div>
@@ -120,7 +119,7 @@ export default function SupportViewPage() {
                             <input
                                 type="password"
                                 className={`cm-input ${pwError ? 'is-error' : ''}`}
-                                placeholder="••••••••"
+                                placeholder="보안을 위해 비밀번호를 입력해 주세요."
                                 value={pwInput}
                                 onChange={(e) => setPwInput(e.target.value)}
                                 required
@@ -195,7 +194,9 @@ export default function SupportViewPage() {
                         <div className="post-actions">
                             <button onClick={() => navigate('/support')} className="btn-list">목록</button>
                             {!isEditing && (
-                                <button className="btn-edit" onClick={openEdit} disabled={!viewPw}>수정</button>
+                                <button className="btn-edit"
+                                        onClick={() => navigate(`/support/${id}/edit`, { state: { pw: viewPw } })}
+                                        disabled={!viewPw}>수정</button>
                             )}
                             <button className="btn-delete" onClick={handleDelete}>삭제</button>
                         </div>

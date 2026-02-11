@@ -68,7 +68,7 @@ export default function SupportBoardPage() {
                                 <td className="board-title"><Link to={`/support/${p.id}`}>{p.title}</Link></td>
                                 <td>{p.author}</td>
                                 <td>{p.views}</td>
-                                <td>{new Date(p.created_at).toLocaleDateString()}</td>
+                                <td>{new Date(p.created_at).toLocaleDateString().replace(/\.$/, '')}</td>
                             </tr>
                         ))}
                         </tbody>

@@ -194,7 +194,9 @@ export default function SupportViewPage() {
                         <div className="post-actions">
                             <button onClick={() => navigate('/support')} className="btn-list">목록</button>
                             {!isEditing && (
-                                <button className="btn-edit" onClick={openEdit} disabled={!viewPw}>수정</button>
+                                <button className="btn-edit"
+                                        onClick={() => navigate(`/support/${id}/edit`, { state: { pw: viewPw } })}
+                                        disabled={!viewPw}>수정</button>
                             )}
                             <button className="btn-delete" onClick={handleDelete}>삭제</button>
                         </div>

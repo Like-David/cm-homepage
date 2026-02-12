@@ -40,7 +40,8 @@ const menuItems = [
         path: '/support',
         depth2: [
             { title: 'CONTACT US', path: '/support' },
-            { title: '자주 묻는 질문', path: '/support#faq' },
+            { title: '자주 묻는 질문', path: '/support/faq' },
+            { title: '1:1 문의', path: '/support/inquiry' },
         ],
     },
 ];

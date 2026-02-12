@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 export default function SupportBoardPage() {
     const [posts, setPosts] = useState([]);
-    const [isWriteOpen, setIsWriteOpen] = useState(false); // ✅ 모달 상태
+    const [isWriteOpen, setIsWriteOpen] = useState(false); // 모달 상태
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -83,7 +83,7 @@ export default function SupportBoardPage() {
                 </div>
             </div>
 
-            {/* ✅ 모달 붙이기 */}
+            {/* 모달 붙이기 */}
             <WriteModal
                 isOpen={isWriteOpen}
                 onClose={() => setIsWriteOpen(false)}

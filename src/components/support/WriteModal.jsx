@@ -133,7 +133,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
 
     // 핸들러
     const onCompanyChange = (v) => setCompany(normalizeSpaces(v));
-    const onEmailLocalChange = (v) => setEmailLocal(v.replace(/\s/g, ''));
+    const onEmailLocalChange = (v) => setEmailLocal(v.replace(/[^a-zA-Z0-9]/g, ''));
     const onEmailDomainChange = (v) => setEmailDomain(v.replace(/\s/g, ''));
     const onPhoneChange = (v) => setPhone(fmtPhone(v));
 

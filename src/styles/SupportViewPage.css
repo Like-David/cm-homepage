@@ -362,3 +362,38 @@
   color:#fff;
   background-image:none; /* 혹시 남아있을 gradient 제거 */
 }
+
+/* overlay: 화면 고정 + overlay 자체 스크롤 */
+.password-modal-overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px 16px;      /* 상하 여백 확보 */
+    overflow-y: auto;        /* 화면보다 크면 overlay에서 스크롤 */
+
+    background: rgba(0,0,0,.45);
+}
+
+/* modal: 화면 안에서만 커지고, 내부 스크롤 허용 */
+.password-modal{
+    width: 100%;
+    max-width: 880px;
+
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.18);
+}
+
+/* 기존에 width만 주는건 OK */
+.password-modal.wide{
+    width: 880px;
+    max-width: 100%;
+}

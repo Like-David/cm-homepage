@@ -136,17 +136,17 @@ html {
 }
 
 .depth2 > li > a:hover {
-    color: #007bff;
+    color: #333;
 }
 
 /* Active state for depth1 items */
 .depth1 > li.active > a {
-    color: #007bff !important; /* Highlight active depth1 link */
+    color: #333 !important; /* Highlight active depth1 link */
 }
 
 /* Active state for depth2 items */
 .depth2 > li.active > a {
-    color: #007bff !important; /* Highlight active depth2 link */
+    color: #333 !important; /* Highlight active depth2 link */
     font-weight: bold; /* Make it bold */
 }
 

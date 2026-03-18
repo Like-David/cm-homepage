@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import RXeFormImg from '@/assets/images/Index/Solutions/RX-eForm.png';
 import RXCertImg from '@/assets/images/Index/Solutions/RX-Cert.png';
 import RXLoanImg from '@/assets/images/Index/Solutions/Rx-Loan.png';
-import '@/styles/Index.css';
+
 
 const solutionsData = [
     {
@@ -41,12 +41,12 @@ function Solutions() {
     };
 
     return (
-        <div className="my-5 solutions-container">
+        <div className="solutions-container">
             <InView triggerOnce={true}>
                 {({ inView, ref }) => (
                     <div ref={ref} className={`animate-container ${inView ? 'animate-in' : ''}`}>
                         <div className="business-title-overlay">
-                            <i className="fa-solid fa-diagram-project"></i>&nbsp;Solutions
+                            Solutions
                         </div>
                         <p className="business-main-subtext">
                             문서 생성과 문서의 위조 및 변조방지 기능 및 문서 보관 기능을 제공합니다.

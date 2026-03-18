@@ -262,7 +262,7 @@
     position: relative;
     padding: 22px 28px 18px;
     margin: 0 -28px 18px;
-    background: linear-gradient(180deg, #1C2D60 0%, #0f1a3a 100%);
+    background: #1C2D60;
     color: #fff;
 }
 .modal-header-cm .badge{
@@ -289,7 +289,7 @@
 .fm-label{ display:block; margin:10px 0 6px; font-weight:700; color:#152245; }
 .req{ color:#d93025; margin-left:4px; }
 
-.password-modal form input,
+.password-modal form input:not([type="checkbox"]):not([type="radio"]),
 .password-modal form select,
 .password-modal form textarea {
     width: 100%;
@@ -355,7 +355,7 @@
 .privacy-header{
     display:flex; align-items:center; justify-content:space-between;
     padding:12px 16px;
-    background: linear-gradient(180deg,#1C2D60 0%, #0f1a3a 100%);
+    background: #1C2D60;
     color:#fff;
 }
 .privacy-header .left{ display:flex; align-items:center; gap:10px; }
@@ -368,7 +368,8 @@
 
 /* 본문 (접힘/펼침) */
 .privacy-body{
-    max-height:0;
+    max-height:200px;
+    overflow: hidden;
     transition:max-height .35s ease;
     background:#fafbff;
     border-top:1px solid #eef1f6;
@@ -378,7 +379,7 @@
 }
 .privacy-content{
     padding:14px 16px; color:#3a4054; font-size:13px; line-height:1.6;
-    overflow:auto; max-height:320px;
+    overflow:auto; max-height:200px;
 }
 .privacy-content h4{
     margin:14px 0 6px; font-size:14px; color:#152245;
@@ -387,12 +388,34 @@
 
 /* 동의 체크 */
 .agree-check{
-    display:flex; align-items:center; gap:8px;
-    padding:12px 16px; background:#fff; border-top:1px solid #eef1f6;
-    font-size:13px; color:#2a2f44;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:8px;
+    padding:12px 16px;
+    background:#fff;
+    border-top:1px solid #eef1f6;
+    font-size:13px;
+    color:#2a2f44;
+    flex-wrap: nowrap;
 }
-.agree-check input{ transform: translateY(1px); }
-.agree-check .req{ color:#d93025; margin-left:4px; }
+
+.agree-check input{
+    margin:0;
+    flex:0 0 auto;
+    width:auto;
+    padding:0;
+}
+
+.agree-check .agree-text{
+    white-space: nowrap;
+}
+
+.agree-check .req{
+    color:#d93025;
+    margin-left:4px;
+    flex:0 0 auto;
+}
 
 
 /* 액션 버튼 */
@@ -405,3 +428,30 @@
 .cancel-btn { background:#f0f2f6; color:#333; }
 .submit-btn { background:#1C2D60; color:#fff; }
 .submit-btn:hover { background:#152245; }
+
+.row-2 input,
+.row-2 select{
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dde1e6;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 0;
+    outline: none;
+    background: #fff;
+    height: 44px;
+    box-sizing: border-box;
+}
+
+.row-2 input:focus,
+.row-2 select:focus{
+    border-color: #1C2D60;
+    box-shadow: 0 0 0 3px rgba(28,45,96,.10);
+}
+
+.row-2 .at{
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

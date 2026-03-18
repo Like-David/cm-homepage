@@ -23,17 +23,36 @@ function passwordRule(pw='') {
     const hasUpper = /[A-Z]/.test(pw);
     const hasDigit = /\d/.test(pw);
     const hasSpecial = /[^A-Za-z0-9]/.test(pw);
-    const kinds = [hasLower, hasUpper, hasDigit, hasSpecial].filter(Boolean).length;
-    return { lenOk, kinds, passed: lenOk && kinds >= 2 };
+    const passed =
+        lenOk &&
+        hasUpper &&
+        hasLower &&
+        hasDigit &&
+        hasSpecial;
+
+    return {
+        lenOk,
+        hasUpper,
+        hasLower,
+        hasDigit,
+        hasSpecial,
+        passed
+    };
 }
-function strengthScore(pw='') {
-    const { lenOk, kinds } = passwordRule(pw);
-    let s = 0;
-    if (pw.length >= 8) s++;
-    if (pw.length >= 12) s++;
-    s += Math.min(kinds, 2);
-    if (!lenOk) s = Math.min(s, 1);
-    return Math.max(0, Math.min(4, s));
+function strengthScore(pw = '') {
+    const r = passwordRule(pw);
+
+    // 길이 1점 + (대/소/숫자/특수) 최대 4점 = 최대 5점
+    const raw =
+        (r.lenOk ? 1 : 0) +
+        (r.hasUpper ? 1 : 0) +
+        (r.hasLower ? 1 : 0) +
+        (r.hasDigit ? 1 : 0) +
+        (r.hasSpecial ? 1 : 0);
+
+    // raw: 0~5  →  score: 0~4로 변환
+    // 0 ->0, 1->1, 2->2, 3->3, 4~5->4
+    return Math.floor((raw / 5) * 4);
 }
 
 export default function WriteModal({ isOpen, onClose, onSuccess }) {
@@ -44,6 +63,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
     const [emailDomain, setEmailDomain] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [agree, setAgree] = useState(false);
@@ -66,7 +86,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
         if (!isOpen) {
             setProduct('ReportExpress Enterprise');
             setCompany(''); setEmailLocal(''); setEmailDomain('');
-            setPhone(''); setPassword('');
+            setPhone(''); setPassword(''); setPasswordConfirm('');
             setTitle(''); setContent('');
             setAgree(false);
             setTouched({}); setErrors({});
@@ -81,6 +101,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
         if (!emailCombined.trim()) e.email = '이메일을 입력하세요.';
         if (!phone.trim()) e.phone = '휴대폰 번호를 입력하세요.';
         if (!password) e.password = '비밀번호를 입력하세요.';
+        if (!passwordConfirm) e.passwordConfirm = '비밀번호 확인을 입력하세요.';
         if (!title.trim()) e.title = '제목을 입력하세요.';
         if (!content.trim()) e.content = '내용을 입력하세요.';
         if (!agree) e.agree = '개인정보 수집·이용에 동의가 필요합니다.';
@@ -99,7 +120,11 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
         // 비밀번호 규칙
         const pw = passwordRule(password);
         if (password && !pw.passed) {
-            e.password = '8~20자, 대/소문자/숫자/특수문자 중 2종 이상 조합하세요.';
+            e.password = '8~20자, 대/소문자/숫자/특수문자를 각각 1개 이상 포함해야 합니다.';
+        }
+
+        if (passwordConfirm && password !== passwordConfirm) {
+            e.passwordConfirm = '비밀번호가 일치하지 않습니다.';
         }
 
         setErrors(e);
@@ -108,7 +133,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
 
     // 핸들러
     const onCompanyChange = (v) => setCompany(normalizeSpaces(v));
-    const onEmailLocalChange = (v) => setEmailLocal(v.replace(/\s/g, ''));
+    const onEmailLocalChange = (v) => setEmailLocal(v.replace(/[^a-zA-Z0-9]/g, ''));
     const onEmailDomainChange = (v) => setEmailDomain(v.replace(/\s/g, ''));
     const onPhoneChange = (v) => setPhone(fmtPhone(v));
 
@@ -120,7 +145,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setTouched({
-            product: true, company: true, email: true, phone: true, password: true,
+            product: true, company: true, email: true, phone: true, password: true, passwordConfirm: true,
             title: true, content: true, agree: true,
         });
         const eMap = validate();
@@ -151,7 +176,6 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                     <div className="badge">고객센터</div>
                     <h2 className="title">
                         문의하기
-                        <span className="accent-bar" aria-hidden />
                     </h2>
                     <p className="subtitle">제품/유지보수/도입 상담 등 문의 내용을 남겨주세요. 담당자가 신속히 답변드립니다.</p>
                 </div>
@@ -201,18 +225,19 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                                     required
                                 />
                                 <span className="at">@</span>
-                                <input
-                                    list="emailDomains"
-                                    type="text"
-                                    placeholder="도메인"
+                                <select
                                     value={emailDomain}
                                     onChange={(e)=>onEmailDomainChange(e.target.value)}
                                     onBlur={()=>{ setTouched(t=>({...t,email:true})); validate(); }}
                                     required
-                                />
-                                <datalist id="emailDomains">
-                                    {EMAIL_DOMAINS.map(d => <option key={d} value={d} />)}
-                                </datalist>
+                                    className={emailDomain ? '' : 'placeholder'}
+                                >
+                                    <option value="" disabled hidden>도메인 선택</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="gmail.com">gmail.com</option>
+                                    <option value="daum.net">daum.net</option>
+                                    <option value="kakao.com">kakao.com</option>
+                                </select>
                             </div>
                             {touched.email && errors.email && <p className="err-txt">{errors.email}</p>}
                         </div>
@@ -243,17 +268,31 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                                 className={touched.password && errors.password ? 'error' : ''}
                                 placeholder="8~20자, 2종 이상 조합"
                                 value={password}
-                                onChange={(e)=>{ setPassword(e.target.value); if(touched.password) validate(); }}
+                                onChange={(e)=>{ setPassword(e.target.value); if(touched.password) validate(); if(touched.passwordConfirm) validate(); }}
                                 onBlur={()=>{ setTouched(t=>({...t,password:true})); validate(); }}
                                 required
                             />
+                            <input
+                                type="password"
+                                className={touched.passwordConfirm && errors.passwordConfirm ? 'error' : ''}
+                                placeholder="비밀번호 확인"
+                                value={passwordConfirm}
+                                onChange={(e)=>{ setPasswordConfirm(e.target.value); if(touched.passwordConfirm) validate(); }}
+                                onBlur={()=>{ setTouched(t=>({...t,passwordConfirm:true})); validate(); }}
+                                required
+                            />
+                            {touched.passwordConfirm && errors.passwordConfirm && <p className="err-txt">{errors.passwordConfirm}</p>}
+
                             <div className="pw-checklist">
                                 {(() => {
-                                    const { lenOk, kinds } = passwordRule(password);
+                                    const r = passwordRule(password);
                                     return (
                                         <>
-                                            <span className={lenOk ? 'ok' : 'no'}>8~20자</span>
-                                            <span className={kinds >= 2 ? 'ok' : 'no'}>대/소문자/숫자/특수문자 2종+</span>
+                                            <span className={r.lenOk ? 'ok' : 'no'}>8~20자</span>
+                                            <span className={r.hasUpper ? 'ok' : 'no'}>대문자</span>
+                                            <span className={r.hasLower ? 'ok' : 'no'}>소문자</span>
+                                            <span className={r.hasDigit ? 'ok' : 'no'}>숫자</span>
+                                            <span className={r.hasSpecial ? 'ok' : 'no'}>특수문자</span>
                                         </>
                                     );
                                 })()}
@@ -290,23 +329,12 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                     {touched.content && errors.content && <p className="err-txt">{errors.content}</p>}
 
                     {/* 5) 개인정보 수집·이용 동의 (CM 네이비 스타일 + 펼침/접기) */}
-                    <div className={`privacy-panel ${touched.agree && errors.agree ? 'error' : ''}`}>
+                    <div className={`privacy-panel open`}>
                         <div className="privacy-header">
                             <div className="left">
                                 <span className="shield" aria-hidden>🛡️</span>
                                 <strong>개인정보처리방침 (Privacy Policy)</strong>
                             </div>
-                            <button
-                                type="button"
-                                className="toggle"
-                                aria-expanded="false"
-                                onClick={(e) => {
-                                    const panel = e.currentTarget.closest('.privacy-panel');
-                                    panel.classList.toggle('open');
-                                }}
-                            >
-                                자세히 보기
-                            </button>
                         </div>
 
                         <div className="privacy-body">
@@ -364,12 +392,12 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                                 </ul>
 
                                 <h4>9. 개인정보 보호책임자</h4>
-                                <p><strong>개인정보 보호책임자:</strong> 김OO 실장<br/>
-                                    <strong>전화번호:</strong> 02-XXX-XXXX<br/>
-                                    <strong>이메일:</strong> privacy@cminnovation.co.kr</p>
+                                <p><strong>개인정보 보호책임자:</strong> 유지훈 상무 <br/>
+                                    <strong>전화번호:</strong> 02-6949-4170<br/>
+                                    <strong>이메일:</strong> support@cminnovation.co.kr</p>
 
                                 <h4>10. 개인정보 처리방침의 변경</h4>
-                                <p>이 개인정보처리방침은 <strong>2025년 1월 1일</strong>부터 적용됩니다. 법령 또는 정책 변경에 따라 내용이 수정될 경우, 홈페이지를 통해 공지합니다.</p>
+                                <p>이 개인정보처리방침은 <strong>2020년 1월 1일</strong>부터 적용됩니다. 법령 또는 정책 변경에 따라 내용이 수정될 경우, 홈페이지를 통해 공지합니다.</p>
                             </div>
                         </div>
 
@@ -381,12 +409,11 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                                 onBlur={()=>{ setTouched(t=>({...t,agree:true})); validate(); }}
                                 required
                             />
-                            <span>개인정보처리방침을 확인하였으며, 수집·이용에 동의합니다.</span>
+                            <span className="agree-text">개인정보처리방침을 확인하였으며, 수집·이용에 동의합니다.</span>
                             <span className="req">*</span>
                         </label>
                     </div>
                     {touched.agree && errors.agree && <p className="err-txt">{errors.agree}</p>}
-
 
                     {/* 액션 버튼 */}
                     <div className="modal-actions">

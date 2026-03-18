@@ -29,7 +29,7 @@
     padding: 20px 0;
     min-height: 200px;
     line-height: 1.8;
-    font-size: 1rem;
+    font-size: 6rem;
 }
 
 .post-actions {
@@ -136,7 +136,7 @@
 }
 
 .post-content {
-    margin:18px 0; line-height:1.7; color:#2a2f44; font-size:15px;
+    margin:18px 0; line-height:1.7; color:#2a2f44; font-size:20px;
 }
 
 .post-actions {
@@ -361,4 +361,141 @@
   background:#1C2D60; /* ← 단색 네이비로 변경 */
   color:#fff;
   background-image:none; /* 혹시 남아있을 gradient 제거 */
+}
+
+/* overlay: 화면 고정 + overlay 자체 스크롤 */
+.password-modal-overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px 16px;      /* 상하 여백 확보 */
+    overflow-y: auto;        /* 화면보다 크면 overlay에서 스크롤 */
+
+    background: rgba(0,0,0,.45);
+}
+
+/* modal: 화면 안에서만 커지고, 내부 스크롤 허용 */
+.password-modal{
+    width: 100%;
+    max-width: 880px;
+
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.18);
+}
+
+/* 기존에 width만 주는건 OK */
+.password-modal.wide{
+    width: 880px;
+    max-width: 100%;
+}
+/* ===== 공지사항 상세 구조로 post-*를 덮어쓰기 (맨 아래에 추가) ===== */
+
+.post-view-container{
+    background:#fff;
+    border-radius: 8px;
+    box-shadow: none;
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 상단 제목 영역 */
+.post-header{
+    padding: 26px 24px 18px;
+    border-bottom: 1px solid #e9edf2;
+    margin: 0;
+}
+
+/* 제목 줄 */
+.post-header h1{
+    margin: 0 0 22px;
+    font-size: 32px;
+    font-weight: 800;
+    color: #111;
+}
+
+/* 메타(등록일/조회수) - 한 줄씩 세로로 */
+.post-meta{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #333;
+    font-size: 17px;
+}
+
+/* 본문 */
+.post-content{
+    padding: 26px 24px;
+    margin: 0;
+    min-height: 240px;
+    line-height: 1.8;
+    font-size: 21px;
+    color: #111;
+    border-bottom: 1px solid #e9edf2;
+}
+
+/* 하단 버튼 영역: 우측 정렬 */
+.post-actions{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 18px 24px;
+    margin: 0;
+    border-top: none;
+}
+
+/* 버튼 공통 */
+.btn-list, .btn-edit, .btn-delete{
+    height: 45px;
+    padding: 0 22px;
+    border-radius: 6px;
+    border: 1px solid #d6dbe3;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+/* 목록: 연한 회색 */
+.btn-list{
+    background: #f0f2f6;
+    color: #333;
+}
+.btn-list:hover{
+    background: #e6e9ef;
+}
+
+.btn-edit{
+    background: #1C2D60;
+    border-color: #1C2D60;
+    color: #fff;
+}
+.btn-edit:hover{
+    background: #152245;
+    border-color: #152245;
+}
+.btn-edit:disabled{
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.btn-delete{
+    background: #6b7280;      /* 그레이 */
+    border-color: #6b7280;
+    color: #fff;
+}
+.btn-delete:hover{
+    background: #4b5563;      /* 진한 그레이 */
+    border-color: #4b5563;
+}
+.meta-sep{
+    margin: 0 6px;
+    color: rgb(138, 148, 158);
 }

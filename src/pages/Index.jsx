@@ -8,6 +8,7 @@ import Partners from '@/elements/Index/Partners';
 import ServiceCenter from '@/elements/Index/ServiceCenter';
 // assets import
 import '@/styles/Index.css';
+// import '@/styles/Index.mobile.css';
 
 function Index() {
     return (

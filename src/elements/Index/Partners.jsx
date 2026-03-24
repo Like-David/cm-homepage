@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { InView } from 'react-intersection-observer';
 import BAIImg from '@/assets/images/Index/Partners/BAI.png';
 import BusanImg from '@/assets/images/Index/Partners/Busan.png';
@@ -27,7 +28,7 @@ import SeoulEtaxImg from '@/assets/images/Index/Partners/SeoulEtax.jpg';
 import ShinhanCiImg from '@/assets/images/Index/Partners/ShinhanCi.png';
 import SJCUImg from '@/assets/images/Index/Partners/SJCU.jpg';
 import SMUImg from '@/assets/images/Index/Partners/SMU.jpg';
-import '@/styles/Index.css';
+
 
 const partnersData = {
     '공공기관': [
@@ -87,45 +88,55 @@ function Partners() {
     }, []);
 
     return (
-        <div className="partners-section">
-            <InView triggerOnce={true}>
-                {({ inView, ref }) => (
-                    <div ref={ref} className={`animate-container ${inView ? 'animate-in' : ''}`}>
-                        <div className="business-title-overlay">
-                            <i className="fa-solid fa-briefcase"></i>&nbsp;Partners
-                        </div>
-                        <p className="business-main-subtext">
-                            씨엠이노베이션은 주요 분야별 최적화된 전자문서 솔루션을 제공합니다.
-                        </p>
-                    </div>
-                )}
-            </InView>
-
-            <div className="partner-buttons">
-                {partnerCategories.map(category => (
-                    <button
-                        key={category}
-                        className={`partner-button ${activeCategory === category ? 'active' : ''}`}
-                        onClick={() => setActiveCategory(category)}
+        <div className="partners-section" style={{ padding: '300px' }}>
+            <div className="container">
+                {/* 헤더 부분 */}
+                <div className="text-center mb-5">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="solution-title-overlay"
                     >
-                        {category}
-                    </button>
-                ))}
-            </div>
+                        Partners
+                    </motion.h2>
+                    <p className="solution-main-subtext">분야별 최적화된 솔루션을 제공합니다.</p>
+                </div>
 
-            <div className="partner-logos">
-                {partnersData[activeCategory].length > 0 ? (
-                    (activeCategory === '금융기관' && isMobile
-                        ? partnersData[activeCategory].slice(0, 8)
-                        : partnersData[activeCategory]
-                    ).map((partner, index) => (
-                        <div key={index} className={`partner-logo ${activeCategory === '교육기관' ? 'education-logo' : ''}`}>
-                            <img src={partner.logo} alt={partner.name} />
-                        </div>
-                    ))
-                ) : (
-                    <p>해당 카테고리의 파트너가 없습니다.</p>
-                )}
+                {/* 탭 버튼 스타일 개선 */}
+                <div className="d-flex justify-content-center gap-2 mb-5">
+                    {partnerCategories.map(category => (
+                        <button
+                            key={category}
+                            className={`btn ${activeCategory === category ? 'btn-primary' : 'btn-outline-secondary'} rounded-pill partner-category-button`}
+                            onClick={() => setActiveCategory(category)}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+
+                {/* 로고 영역 애니메이션 */}
+                <motion.div
+                    layout
+                    className="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4 justify-content-center"
+                >
+                    <AnimatePresence mode='wait'>
+                        {partnersData[activeCategory].map((partner) => (
+                            <motion.div
+                                key={`${activeCategory}-${partner.name}`}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.3 }}
+                                className="col"
+                            >
+                                <div className="partner-card">
+                                    <img src={partner.logo} alt={partner.name} />
+                                </div>
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </motion.div>
             </div>
         </div>
     );

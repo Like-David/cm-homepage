@@ -19,6 +19,12 @@
     }
 }
 
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
 /* General Animations */
 .animate-container {
     opacity: 0;
@@ -33,75 +39,76 @@
 
 /* Homepage Section */
 .homepage-container {
-    position: relative; /* Needed for absolute positioning of child */
+    position: relative;
     width: 100%;
     height: 100vh;
-    overflow: hidden; /* Prevents scrollbars if image is slightly larger */
+    overflow: hidden;
 }
 
 .homepage-main-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the container without distortion */
+    object-fit: cover;
     animation: zoom-out 2s ease-in-out forwards;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .homepage-text-overlay {
     position: absolute;
-    top: 50%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 1200px;
-    text-align: left;
+    text-align: center;
     color: #FFFFFF;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    z-index: 10; /* Ensure text is above the swiper */
+    z-index: 10;
 }
 
 .homepage-main-text {
-    font-size: 64px;
+    font-size: clamp(32px, 5vw, 64px); /* Fluid font size */
     font-weight: bold;
     margin-bottom: 20px;
-    opacity: 0; /* Initial state for animation */
+    opacity: 0;
     animation: fade-in-up 1s ease-out forwards;
     animation-delay: 0.5s;
 }
 
 .homepage-sub-text {
-    font-size: 24px; /* A smaller size for the sub-text */
+    font-size: clamp(18px, 2.5vw, 24px); /* Fluid font size */
     font-weight: normal;
-    opacity: 0; /* Initial state for animation */
+    opacity: 0;
     animation: fade-in-up 1s ease-out forwards;
-    animation-delay: 1s; /* Delay after main text */
+    animation-delay: 1s;
 }
 
 /* Business Section */
 .business-title-overlay {
-    color: #333;
+    color: white;
     font-size: 58px;
     font-weight: bold;
-    z-index: 11; /* Ensure it's above the image and other overlays */
+    z-index: 11;
     display: flex;
     align-items: center;
-    margin: 150px auto 20px auto; /* Center horizontally, add bottom margin */
-    width: 100%; /* Match image width */
-    max-width: 1500px; /* Match image max-width if applicable */
-    justify-content: start; /* Center content if display:flex */
+    margin: 0px auto 20px auto;
+    width: 100%;
+    max-width: 1500px;
+    justify-content: center;
 }
 
-.business-main-subtext { /* New class for subtext */
-    color: #333;
+.business-main-subtext {
+    color: white;
     font-size: 30px;
-    text-align: left;
-    margin: 0 auto 60px auto; /* Center horizontally, add bottom margin */
-    width: 100%; /* Match image width */
-    max-width: 1500px; /* Match image max-width if applicable */
+    text-align: center;
+    margin: 0 auto 60px auto;
+    width: 100%;
+    max-width: 1500px;
     font-weight: bold;
 }
 
 .business-title-overlay span {
-    font-size: 0.8em; /* Adjust emoji size relative to text */
+    font-size: 0.8em;
     margin-right: 10px;
 }
 
@@ -109,12 +116,11 @@
     position: relative;
     width: 100%;
     height: auto;
-    margin-top: 0; /* Removed top margin as it's now handled by animate-container */
-    margin-bottom: 50px; /* Adjust as needed */
+    margin-bottom: 50px;
 }
 
 .business-image {
-    max-width: 80%; /* Adjusted width to 70% for desktop */
+    max-width: 80%;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -124,23 +130,23 @@
 
 .overlay-content-wrapper {
     position: absolute;
-    top: 0; /* Cover image top */
+    top: 0;
     left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
+    transform: translateX(-50%);
     color: white;
     text-align: center;
     z-index: 10;
-    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent dark background */
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: space-around;
-    width: 80%; /* Match image width */
-    height: 100%; /* Cover image height */
+    width: 80%;
+    height: 100%;
     align-items: center;
 }
 
 .counter-item {
     flex: 1;
-    padding: 20px 10px; /* Increased vertical padding */
+    padding: 20px 10px;
 }
 
 .center-overlay-image-container {
@@ -152,13 +158,13 @@
 }
 
 .centerOverlaySwiper {
-    width: 100%; /* Adjust size as needed */
-    height: 200px; /* Adjust size as needed */
-    border-radius: 10px; /* Optional: rounded corners */
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
 }
 
 .centerOverlaySwiper .swiper-slide {
-    width: 100% !important; /* Ensure slides takes full width */
+    width: 100% !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -176,16 +182,17 @@
     margin-bottom: 10px;
 }
 
-.overlay-icon { /* New class for icons */
+.overlay-icon {
     font-size: 4em;
     display: block;
     margin-bottom: 10px;
-    color: white; /* Assuming icons should be white on the image overlay */
+    color: white;
 }
 
 .overlay-text {
     font-size: 1.2em;
     margin-bottom: 5px;
+    color: #cccccc;
 }
 
 .overlay-number {
@@ -193,39 +200,50 @@
     font-weight: bold;
 }
 
+.overlay-date-text {
+    font-size: 0.8em;
+    color: #cccccc;
+    margin-top: -5px;
+}
+
 /* Solutions Section */
 .solutions-container {
-    max-width: 1800px; /* Sets a max width for the content */
     margin-left: auto;
     margin-right: auto;
+    padding-top: 150px; /* Adjusted padding */
+    padding-bottom: 150px; /* Adjusted padding */
+    padding-left: 300px; /* Keeping horizontal padding for desktop */
+    padding-right: 300px; /* Keeping horizontal padding for desktop */
+    background-color: #000000;
 }
 
 .solution-card {
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smooth animation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .solution-card:hover {
-    transform: translateY(-10px) scale(1.03); /* Lift and slightly enlarge the card */
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Enhance shadow on hover */
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
 .solution-card-img {
-    height: 620px; /* Fixed height for all images */
-    object-fit: cover; /* Ensures image covers the area without distortion */
+    height: 620px;
+    object-fit: cover;
 }
 
 /* New Product List Section */
 .product {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     align-items: flex-start;
+    max-width: 1500px;
 }
 
 .product li {
@@ -236,12 +254,12 @@
 .product-box {
     display: block;
     padding: 30px;
-    background-color: #f8f9fa;
+    background-color: #222;
     border-radius: 8px;
     text-decoration: none;
-    color: #333;
+    color: white;
     height: 100%;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
     opacity: 0;
     transform: translateY(20px);
 }
@@ -258,7 +276,7 @@
 .product-head .num {
     font-size: 24px;
     font-weight: bold;
-    color: #007bff;
+    color: #80bfff;
 }
 
 .product-body .title {
@@ -269,35 +287,24 @@
 
 .product-body .text,
 .product-body .thumbnail {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: opacity 0.4s ease, max-height 0.6s ease;
+    opacity: 1;
+    max-height: none;
+    overflow: visible;
+    transition: none;
 }
 
 .product-body .text {
     font-size: 16px;
-    color: #555;
+    color: #cccccc;
     line-height: 1.6;
+    min-height: 100px;
 }
 
 .product-body .model-name {
     display: block;
     margin-top: 10px;
     font-weight: bold;
-    color: #000;
-}
-
-.product-box:hover {
-    background-color: #fff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transform: translateY(-5px);
-}
-
-.product-box:hover .product-body .text,
-.product-box:hover .product-body .thumbnail {
-    opacity: 1;
-    max-height: 500px; /* Adjust based on content height */
+    color: white;
 }
 
 .thumbnail {
@@ -313,8 +320,10 @@
 
 /* Partners Section */
 .partners-section {
-    padding: 80px 0;
-    background-color: #f8f9fa; /* Light gray background */
+    padding-top: 150px; /* Adjusted padding */
+    padding-bottom: 150px; /* Adjusted padding */
+    padding-left: 300px; /* Keeping horizontal padding for desktop */
+    padding-right: 300px; /* Keeping horizontal padding for desktop */
 }
 
 .partner-buttons {
@@ -322,29 +331,30 @@
     gap: 15px;
     max-width: 1500px;
     margin: auto auto 20px auto;
+    justify-content: center;
 }
 
 .partner-button {
     padding: 12px 25px;
     font-size: 18px;
     font-weight: 500;
-    color: #555;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    color: #ccc;
+    background-color: #333;
+    border: 1px solid #555;
     border-radius: 30px;
     cursor: pointer;
 }
 
 .partner-button:hover {
-    background-color: #333;
+    background-color: #555;
     color: #fff;
-    border-color: #333;
+    border-color: #fff;
 }
 
 .partner-button.active {
-    background-color: #333;
+    background-color: #555;
     color: #fff;
-    border-color: #333;
+    border-color: #fff;
     box-shadow: 0 4px 12px rgba(51, 51, 51, 0.2);
 }
 
@@ -370,8 +380,8 @@
     width: auto;
     max-width: 180px;
     object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.7;
+    filter: invert(100%) grayscale(100%);
+    opacity: 0.8;
     transition: all 0.3s ease;
 }
 
@@ -401,11 +411,11 @@
 .service-center-text-overlay {
     position: absolute;
     top: 50%;
-    left: 70%;
+    left: 50%; /* Adjusted from 30% */
     transform: translate(-50%, -50%);
     color: white;
-    text-align: left;
-    width: 100%;
+    text-align: center; /* Adjusted from left */
+    width: auto;
 }
 
 .service-center-text-overlay .main-text {
@@ -437,133 +447,52 @@
     color: black;
 }
 
-/* Media Queries */
-@media (max-width: 1024px) {
-    .homepage-main-text {
-        font-size: 48px;
-    }
-
-    .business-title-overlay {
-        font-size: 40px;
-    }
-
-    .overlay-number {
-        font-size: 4em;
-    }
-
-    .product li {
-        width: 45%;
-        min-width: 0;
-    }
-
-    .service-center-text-overlay {
-        left: 50%;
-        width: 80%;
-        text-align: center;
-    }
+/* 탭 버튼 활성화 스타일 */
+.btn-primary {
+    background-color: #333 !important;
+    border-color: #333 !important;
+    color: white !important;
 }
 
-@media (max-width: 768px) {
-    /* Homepage */
-    .homepage-container {
-        height: 100%;
-    }
+/* 탭 버튼 비활성화 스타일 (btn-outline-secondary) */
+.btn-outline-secondary {
+    color: #333 !important;
+    border-color: #333 !important;
+    background-color: transparent !important;
+}
 
-    .homepage-text-overlay {
-        top: 65%;
-        text-align: center;
-    }
+.btn-outline-secondary:hover {
+    color: #FFF !important;
+    background-color: #333 !important;
+    border-color: #333 !important;
+}
 
-    .homepage-main-text {
-        font-size: 1rem;
-    }
+/* Custom styles for larger partner category buttons */
+.partner-category-button {
+    padding: 15px 30px;
+    font-size: 20px;
+    min-width: 150px;
+}
 
-    .homepage-sub-text {
-        font-size: 1.2rem;
-    }
+.solution-title-overlay {
+    color: #333;
+    font-size: 58px;
+    font-weight: bold;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    margin: 0px auto 20px auto;
+    width: 100%;
+    max-width: 1500px;
+    justify-content: center;
+}
 
-    /* Business */
-    .business-sub-description {
-        font-size: 16px;
-        margin-left: 0;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    .business-image {
-        max-width: 90%;
-        padding: 0 10px;
-    }
-
-    .business-title-overlay {
-        font-size: 1.5rem;
-        margin-left: 0;
-        margin-top: 40px;
-        margin-bottom: 10px;
-        padding: 0 30px;
-        text-align: center;
-    }
-
-    .business-main-subtext {
-        font-size: 0.9rem;
-        padding: 0 30px;
-        margin-left: 0;
-        margin-bottom: 20px;
-        text-align: left;
-    }
-
-    .overlay-content-wrapper {
-        flex-direction: row;
-        width: 85%;
-        padding: 10px;
-    }
-
-    .counter-item {
-        padding: 10px 5px;
-    }
-
-    .overlay-icon {
-        font-size: 1.5rem;
-    }
-
-    .overlay-text {
-        font-size: 0.8rem;
-    }
-
-    .overlay-number {
-        font-size: 1.2rem;
-    }
-
-    .product li {
-        width: 90%;
-    }
-
-    /* Partners */
-    .partners-section {
-        padding: 1px 0px 50px 0px;
-    }
-
-    .partner-buttons {
-        justify-content: center;
-    }
-
-    /* Service Center */
-    .service-center-image {
-        height: 500px;
-        object-fit: contain;
-    }
-
-    .service-center-text-overlay {
-        top: 45%;
-        left: 45%;
-        width: 80%;
-    }
-
-    .service-center-text-overlay .main-text {
-        font-size: 1.2rem;
-    }
-
-    .service-center-text-overlay .sub-text {
-        font-size: 1.2rem;
-    }
+.solution-main-subtext {
+    color: #333;
+    font-size: 30px;
+    text-align: center;
+    margin: 0 auto 60px auto;
+    width: 100%;
+    max-width: 1500px;
+    font-weight: bold;
 }

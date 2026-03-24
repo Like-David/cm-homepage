@@ -39,15 +39,16 @@ function CounterDisplay({ iconClass, text, endCount, unit, showPlusSign = true, 
             }
             return formatted.trim();
         } else {
-            return num.toLocaleString();
+            return num.toString();
         }
     };
 
     return (
         <div className="counter-item">
             {iconClass && <i className={`overlay-icon ${iconClass}`}></i>} {/* Render <i> tag with iconClass */}
-            <p className="overlay-number">{formatNumber(count)}{unit && unit !== '백만' ? unit : ''}{showPlusSign && unit !== '백만' ? '+' : ''}</p>
             <p className="overlay-text">{text}</p>
+            <p className="overlay-number">{formatNumber(count)}{unit && unit !== '백만' ? unit : ''}{showPlusSign && unit !== '백만' ? '+' : ''}</p>
+            <p className="overlay-date-text">2025.12.31 기준</p>
         </div>
     );
 }

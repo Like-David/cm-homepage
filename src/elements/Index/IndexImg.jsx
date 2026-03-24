@@ -6,10 +6,10 @@ import image from '@/assets/images/Index/IndexImg/index.png';
 function IndexImg() {
     return (
         <div className="homepage-container">
-            <Image src={image} fluid className="homepage-main-image" />
+            <Image src={image} fluid className="homepage-main-image" style={{ filter: 'brightness(70%)' }} />
             <div className="homepage-text-overlay">
-                <p className="homepage-sub-text">전자문서 ALL-IN-ONE 솔루션</p>
-                <p className="homepage-main-text">문서 생성부터 문서 보관과<br/>문서의 위조 및 변조방지 기능으로<br/>디지털기반 비대면 산업에 압장섭니다.</p>
+                <p className="homepage-main-text">디지털이라는 본질 위에,</p>
+                <p className="homepage-main-text">비대면 산업의 내일을 쌓아갑니다.</p>
             </div>
         </div>
     );

@@ -8,9 +8,9 @@
     "value_system": "Value System",
     "history": "History",
     "ceo_message": "CEO Message",
-    "financial": "Financial Institutions",
-    "public": "Public Institutions",
-    "educational": "Educational Institutions",
+    "financial": "Tier 1 Financial Institutions",
+    "public": "Public & Educational Institutions",
+    "educational": "Tier 2 Financial Institutions",
     "report_express": "ReportExpress Enterprise",
     "rx_cert": "RX-Cert",
     "rx_loan": "RX Loan",
@@ -59,7 +59,7 @@
       "title": "Electronic Document (Web Reporting) Solution",
       "subtitle": "ReportExpress Enterprise",
       "oneLiner": "Non-ActiveX based All-in-One integrated electronic document system that handles document generation, inquiry, conversion, and storage at once.",
-      "overview": "ReportExpress Enterprise is the optimal web reporting solution for integrated management of all electronic document tasks within a company in a web environment. Based on **HTML5 web standard technology**, it supports the entire process from document generation to electronic signature and secure storage, and strictly complies with international **PDF standards**. We guarantee optimal customization and flexible scalability for various business environments such as public institutions and financial institutions.",
+      "overview": "ReportExpress Enterprise is the optimal web reporting solution for integrated management of all electronic document tasks within a company in a web environment. Based on **HTML5 web standard technology**, it supports the entire process from document generation to electronic signature and secure storage, and strictly complies with international **PDF standards**. We guarantee optimal customization and flexible scalability for various business environments such as public & educational institutions and Tier 1 financial institutions.",
       "features": [
         { "type": "tech", "text": "Provides an intuitive form development environment using dedicated form tools" },
         { "type": "reliability", "text": "Ensures document authenticity with PKI electronic signature and timestamp authentication functions" },
@@ -91,7 +91,7 @@
       "title": "Loan Agreement Solution",
       "subtitle": "RX Loan",
       "oneLiner": "Efficient electronic agreement platform that perfectly supports HWP UI and integrates loan agreement tasks.",
-      "overview": "RX Loan is an **integrated electronic agreement system** that innovatively improves the loan agreement process, a core business of financial institutions. We have perfectly implemented the familiar **HWP document environment** for users in a web environment. It is a platform that maximizes work **efficiency** with an intuitive interface that can process the entire process from agreement preparation to output and report generation on one screen. It is optimized for various agreement and document tasks of financial institutions, insurance companies, and public institutions.",
+      "overview": "RX Loan is an **integrated electronic agreement system** that innovatively improves the loan agreement process, a core business of the financial sector. We have perfectly implemented the familiar **HWP document environment** for users in a web environment. It is a platform that maximizes work **efficiency** with an intuitive interface that can process the entire process from agreement preparation to output and report generation on one screen. It is optimized for various agreement and document tasks of Tier 1 financial institutions, insurance companies, and public & educational institutions.",
       "features": [
         { "type": "efficiency", "text": "Provides a seamless work environment with Web HWP UI support" },
         { "type": "tech", "text": "Supports automatic page splitting and complex document merging functions" },
@@ -101,7 +101,7 @@
         { "type": "scalability", "text": "HTML5-based, no-installation required architecture" }
       ],
       "strengths": "It innovates work processing **efficiency** by enabling fast document creation and review with a user-friendly interface. It possesses the **technology** to minimize human error by automatically generating agreement documents based on input data and enabling report output. By integrating document editing, approval, and management functions in a HWP-compatible environment, it increased system **scalability** and user convenience.",
-      "catchyPhrase": "Application Cases\n* Financial Institutions: Next-generation loan agreement automation system\n* Insurance Companies: Electronic contract management integrated platform\n* Public Institutions: Integrated approval document and report output system"
+      "catchyPhrase": "Application Cases\n* Tier 1 Financial Institutions: Next-generation loan agreement automation system\n* Insurance Companies: Electronic contract management integrated platform\n* Public & Educational Institutions: Integrated approval document and report output system"
     },
     "modal": {
       "title": "Test Demo",
@@ -297,9 +297,9 @@
     "title": "Our Partners",
     "subtitle": "Introducing the valuable partners working with CM Innovation.",
     "partners_subtext": "We provide optimized solutions for each field.",
-    "financial": "Financial Institutions",
-    "public": "Public Institutions",
-    "educational": "Educational Institutions"
+    "financial": "Tier 1 Financial Institutions",
+    "public": "Public & Educational Institutions",
+    "educational": "Tier 2 Financial Institutions"
   },
   "footer": {
     "company_name": "CM Innovation Co., Ltd.",
@@ -467,7 +467,7 @@
         "2021_10_1": "Conducted the 1st in-house workshop on the 22nd-23rd",
         "2021_21": "Won OK Savings Bank loan agreement next-generation project",
         "2020_07_1": "Company establishment on the 20th (jointly invested by Kim Joon-shik, Kwon Jung-hoon, Yoo Ji-hoon)",
-        "2020_07_2": "Completed transfer contract for 71 existing Capsoft solution maintenance sites on the 30th (transferred maintenance contracts from various financial institutions like Nonghyup, Woori Bank, IBK, and government/public institutions like MFDS, Seoul Etax)",
+        "2020_07_2": "Completed transfer contract for 71 existing Capsoft solution maintenance sites on the 30th (transferred maintenance contracts from various Tier 1 and Tier 2 financial institutions like Nonghyup, Woori Bank, IBK, and government/Public & Educational Institutions like MFDS, Seoul Etax)",
         "2020_08_1": "Signed agreement with KFTC for activation and mutual cooperation of financial authentication services on the 10th",
         "2020_1": "Won NH Nonghyup Kokfarm, Kokbank, Allone Bank new service electronic document solution introduction and development",
         "2020_2": "Won Woori Bank corporate banking Capsoft product enhancement project",

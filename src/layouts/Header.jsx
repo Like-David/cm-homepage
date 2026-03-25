@@ -29,8 +29,8 @@ function Header() {
             path: '/business/client',
             depth2: [
                 { title: t('menu.financial'), path: '/business/client#financial-institutions' },
-                { title: t('menu.public'), path: '/business/client#public-institutions' },
-                { title: t('menu.educational'), path: '/business/client#educational-institutions' }
+                { title: t('menu.educational'), path: '/business/client#financial2-institutions' },
+                { title: t('menu.public'), path: '/business/client#public-institutions' }
             ],
         },
         {

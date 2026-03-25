@@ -19,7 +19,7 @@ import KoreaInvestmentImg from '@/assets/images/Index/Partners/KoreaInvestment.p
 import KYOBOImg from '@/assets/images/Index/Partners/KYOBO.png';
 import KyongnamImg from '@/assets/images/Index/Partners/Kyongnam.jpg';
 import meritzImg from '@/assets/images/Index/Partners/meritz.jpg';
-import MGImg from '@/assets/images/Index/Partners/MG.jpg';
+import MGImg from '@/assets/images/Index/Partners/MG.png';
 import NHBankImg from '@/assets/images/Index/Partners/NHBank.png';
 import OKCapitalImg from '@/assets/images/Index/Partners/OKCapital.jpg';
 import SCBankImg from '@/assets/images/Index/Partners/SCBank.jpg';
@@ -30,37 +30,37 @@ import SMUImg from '@/assets/images/Index/Partners/SMU.jpg';
 
 
 const partnersData = {
+    'financial': [
+        { name: 'NH 농협은행', logo: NHBankImg },
+        { name: 'IBK 기업은행', logo: IBKImg },
+        { name: 'SC 제일은행', logo: SCBankImg },
+        { name: 'BNK 부산은행', logo: BusanImg },
+        { name: 'BNK 경남은행', logo: KyongnamImg },
+        { name: '전북은행', logo: JBBankImg },
+        { name: 'iM 뱅크', logo: IMBankImg }
+    ],
+    'educational': [
+        { name: 'KB 저축은행', logo: KBSavingImg },
+        { name: '저축은행중앙회', logo: FSBImg },
+        { name: 'MG 새마을금고', logo: MGImg },
+        { name: 'OK 캐피탈', logo: OKCapitalImg },
+        { name: '한화금융서비스', logo: HanwhaImg },
+        { name: 'KDB 생명', logo: KDBImg },
+        { name: 'DB생명', logo: DBLifeImg },
+        { name: '처브라이프생명보험주식회사', logo: CHUBBImg },
+        { name: '교보라이프플래닛', logo: KYOBOImg },
+        { name: '한국투자증권', logo: KoreaInvestmentImg },
+        { name: '메리츠증권', logo: meritzImg },
+        { name: '신한신용정보', logo: ShinhanCiImg }
+    ],
     'public': [
         { name: '감사원', logo: BAIImg },
         { name: '한국저작권위원회', logo: CopyrightImg },
-        { name: '저축은행중앙회', logo: FSBImg },
         { name: '한국방송전파진흥원', logo: KCAImg },
-        { name: '서울시 Etax', logo: SeoulEtaxImg }
-    ],
-    'financial': [
-        { name: 'BNK 부산은행', logo: BusanImg },
-        { name: '처브라이프생명보험주식회사', logo: CHUBBImg },
-        { name: 'DB생명', logo: DBLifeImg },
-        { name: '한화금융서비스', logo: HanwhaImg },
-        { name: 'IBK 기업은행', logo: IBKImg },
-        { name: 'iM 뱅크', logo: IMBankImg },
-        { name: '전북은행', logo: JBBankImg },
-        { name: 'KB 저축은행', logo: KBSavingImg },
-        { name: 'KDB 생명', logo: KDBImg },
-        { name: '한국투자증권', logo: KoreaInvestmentImg },
-        { name: '교보라이프플래닛', logo: KYOBOImg },
-        { name: 'BNK 경남은행', logo: KyongnamImg },
-        { name: '매리츠증권', logo: meritzImg },
-        { name: 'MG 새마을금고', logo: MGImg },
-        { name: 'NH 농협은행', logo: NHBankImg },
-        { name: 'OK 캐피탈', logo: OKCapitalImg },
-        { name: 'SC 제일은행', logo: SCBankImg },
-        { name: '신한신용정보', logo: ShinhanCiImg }
-    ],
-    'educational': [
+        { name: '서울시 Etax', logo: SeoulEtaxImg },
         { name: '인하대학교', logo: INHAUImg },
         { name: '세종사이버대학교', logo: SJCUImg },
-        { name: '상명대학교', logo: SMUImg },
+        { name: '상명대학교', logo: SMUImg }
     ],
 };
 
@@ -68,8 +68,8 @@ const partnerKeys = Object.keys(partnersData);
 
 const categoryKeys = {
     'financial': 'business.financial',
-    'public': 'business.public',
-    'educational': 'business.educational'
+    'educational': 'business.educational',
+    'public': 'business.public'
 };
 
 function Partners() {

@@ -1,7 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import '@/styles/Footer.css';
 
 function Footer() {
+    const { t } = useTranslation();
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
@@ -12,30 +15,30 @@ function Footer() {
     return (
         <footer id="footer" className="main">
             <div className="wrap">
-                <h1><a href="/">주식회사 씨엠이노베이션</a></h1>
+                <h1><a href="/">{t('footer.company_name')}</a></h1>
                 <nav className="gnb">
                     <ul>
-                        <li><a href="http://www.cminnovation.co.kr/bbs/content.php?co_id=privacy"><strong>개인정보처리방침</strong></a></li>
-                        <li><a href="http://www.cminnovation.co.kr/bbs/content.php?co_id=provision">서비스이용약관</a></li>
+                        <li><Link to="/privacy"><strong>{t('footer.privacy_policy')}</strong></Link></li>
+                        <li><Link to="/terms">{t('footer.terms_of_service')}</Link></li>
                     </ul>
                 </nav>
                 <div className="f_left">
                     <dl>
-                        <dt>회사명: 주식회사 씨엠이노베이션</dt>
-                        <dt>대표: 권정훈</dt>
-                        <dt>주소: 서울시 구로구 디지털로 272, 310호 (한신IT타워)</dt>
-                        <dt>사업자등록번호: 561-88-01986</dt>
+                        <dt>{t('footer.company_name')}</dt>
+                        <dt>{t('footer.ceo')}: {t('footer.ceo_name')}</dt>
+                        <dt>{t('footer.address_label')}: {t('footer.address')}</dt>
+                        <dt>{t('footer.biz_reg_no')}: 561-88-01986</dt>
                     </dl>
                     <dl>
-                        <dt>대표전화: 02-6949-4170</dt>
-                        <dt>기술지원: 0505-998-0888</dt>
-                        <dt>팩스: 0505-477-4170</dt>
+                        <dt>{t('footer.tel')}: 02-6949-4170</dt>
+                        <dt>{t('footer.tech_support')}: 0505-998-0888</dt>
+                        <dt>{t('footer.fax')}: 0505-477-4170</dt>
                     </dl>
                     <p className="copyright">Copyright © <strong>CMInnovation. </strong> All Rights Reserved.</p>
                 </div>
             </div>
             <a href="#!" onClick={scrollToTop} id="top_btn">
-                <span className="sound_only">상단으로</span>
+                <span className="sound_only">{t('footer.scroll_to_top')}</span>
                 <i className="fa-solid fa-caret-up"></i>
             </a>
         </footer>

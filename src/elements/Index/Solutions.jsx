@@ -1,37 +1,38 @@
 import React, { useState } from 'react';
 import { InView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import RXeFormImg from '@/assets/images/Index/Solutions/RX-eForm.png';
 import RXCertImg from '@/assets/images/Index/Solutions/RX-Cert.png';
 import RXLoanImg from '@/assets/images/Index/Solutions/Rx-Loan.png';
 
-
-const solutionsData = [
-    {
-        id: 'report-express',
-        image: RXeFormImg,
-        name: '전자문서(웹리포팅) 솔루션',
-        use: '전자문서(웹리포팅) 시스템 구축',
-        model: 'ReportExpress Enterprise',
-    },
-    {
-        id: 'rx-cert',
-        image: RXCertImg,
-        name: '증명서 위·변조방지 솔루션',
-        use: '증명서 위·변조방지 시스템 구축',
-        model: 'RX-Cert',
-    },
-    {
-        id: 'rx-loan',
-        image: RXLoanImg,
-        name: '여신약정 솔루션',
-        use: '여신약정 내 전자계약 시스템 구축',
-        model: 'RX-Loan',
-    },
-];
-
 function Solutions() {
+    const { t } = useTranslation();
     const [activeIndex, setActiveIndex] = useState(null);
+
+    const solutionsData = [
+        {
+            id: 'report-express',
+            image: RXeFormImg,
+            name: t('solutions.web_reporting_name'),
+            use: t('solutions.web_reporting_use'),
+            model: 'ReportExpress Enterprise',
+        },
+        {
+            id: 'rx-cert',
+            image: RXCertImg,
+            name: t('solutions.cert_name'),
+            use: t('solutions.cert_use'),
+            model: 'RX-Cert',
+        },
+        {
+            id: 'rx-loan',
+            image: RXLoanImg,
+            name: t('solutions.loan_name'),
+            use: t('solutions.loan_use'),
+            model: 'RX-Loan',
+        },
+    ];
 
     const handleClick = (index) => {
         // On mobile, toggle the active state
@@ -46,10 +47,10 @@ function Solutions() {
                 {({ inView, ref }) => (
                     <div ref={ref} className={`animate-container ${inView ? 'animate-in' : ''}`}>
                         <div className="business-title-overlay">
-                            Solutions
+                            {t('solutions.title')}
                         </div>
                         <p className="business-main-subtext">
-                            문서 생성과 문서의 위조 및 변조방지 기능 및 문서 보관 기능을 제공합니다.
+                            {t('solutions.description')}
                         </p>
                     </div>
                 )}

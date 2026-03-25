@@ -1,12 +1,14 @@
 // src/pages/SupportEditPage.jsx
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import Banner from '@/components/common/Banner';
 import SupportNav from '@/components/support/SupportNav';
 import '../styles/SupportEditPage.css';
 
 export default function SupportEditPage() {
+    const { t } = useTranslation();
     const { id } = useParams();
     const { state } = useLocation();
     const navigate = useNavigate();
@@ -57,7 +59,7 @@ export default function SupportEditPage() {
             setNeedVerify(false);
             setPwError('');
         } catch (err) {
-            setPwError(err.response?.data || '비밀번호가 일치하지 않습니다.');
+            setPwError(err.response?.data || t('support.password_modal.error'));
         }
     };
 
@@ -69,16 +71,16 @@ export default function SupportEditPage() {
                 content,
                 password: viewPw,
             });
-            alert('수정되었습니다.');
+            alert(t('support.editor.success_edit'));
             navigate(`/support/${id}`, { state: { pw: viewPw } });
         } catch (err) {
-            alert(err.response?.data || '수정에 실패했습니다.');
+            alert(err.response?.data || t('support.editor.fail_edit'));
         }
     };
 
     return (
         <div className="support-page-wrapper">
-            <Banner title="고객센터" subtitle="궁금한 점이 있으시면 언제든지 문의해 주세요." />
+            <Banner title={t('support.banner_title')} subtitle={t('support.banner_subtitle')} />
             <SupportNav />
 
             {needVerify && (
@@ -107,23 +109,23 @@ export default function SupportEditPage() {
                             </div>
 
                             <div className="cm-titles">
-                                <h2>비밀번호 확인</h2>
-                                <p>수정을 위해 비밀번호를 입력하세요.</p>
+                                <h2>{t('support.password_modal.title')}</h2>
+                                <p>{t('support.password_modal.subtitle')}</p>
                             </div>
 
-                            <button className="cm-close" onClick={goViewKeepPw} aria-label="닫기">
+                            <button className="cm-close" onClick={goViewKeepPw} aria-label={t('support.editor.cancel')}>
                                 ×
                             </button>
                         </div>
 
                         <form onSubmit={submitVerify} className="cm-form">
-                            <label className="cm-label">비밀번호</label>
+                            <label className="cm-label">{t('support.write.password')}</label>
                             <input
                                 type="password"
                                 className="cm-input"
                                 value={pwInput}
                                 onChange={(e) => setPwInput(e.target.value)}
-                                placeholder="비밀번호를 입력해 주세요."
+                                placeholder={t('support.password_modal.placeholder')}
                                 required
                                 autoFocus
                             />
@@ -132,10 +134,10 @@ export default function SupportEditPage() {
 
                             <div className="cm-actions">
                                 <button type="button" className="cm-btn ghost" onClick={goViewKeepPw}>
-                                    취소
+                                    {t('support.password_modal.cancel')}
                                 </button>
                                 <button type="submit" className="cm-btn primary">
-                                    확인
+                                    {t('support.password_modal.confirm')}
                                 </button>
                             </div>
                         </form>
@@ -147,41 +149,41 @@ export default function SupportEditPage() {
                 <div className="support-content-area">
                     <div className="editor-card">
                         <div className="editor-toolbar">
-                            <span className="chip">수정 중</span>
+                            <span className="chip">{t('support.editor.editing')}</span>
                             <div className="editor-toolbar-actions">
                                 <button type="button" className="cm-btn ghost sm" onClick={goViewKeepPw}>
-                                    취소
+                                    {t('support.editor.cancel')}
                                 </button>
                             </div>
                         </div>
 
                         <form onSubmit={onSubmit} className="editor-form">
-                            <label className="cm-label">제목</label>
+                            <label className="cm-label">{t('support.editor.title')}</label>
                             <input
                                 type="text"
                                 className="cm-input"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                                placeholder="제목"
+                                placeholder={t('support.editor.title')}
                                 required
                             />
 
-                            <label className="cm-label">내용</label>
+                            <label className="cm-label">{t('support.editor.content')}</label>
                             <textarea
                                 className="cm-textarea"
                                 rows={12}
                                 value={content}
                                 onChange={(e) => setContent(e.target.value)}
-                                placeholder="내용"
+                                placeholder={t('support.editor.content')}
                                 required
                             />
 
                             <div className="cm-actions right">
                                 <button type="button" className="cm-btn ghost" onClick={goViewKeepPw}>
-                                    취소
+                                    {t('support.editor.cancel')}
                                 </button>
                                 <button type="submit" className="cm-btn primary" disabled={!viewPw}>
-                                    저장
+                                    {t('support.editor.save')}
                                 </button>
                             </div>
                         </form>

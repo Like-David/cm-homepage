@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function CounterDisplay({ iconClass, text, endCount, unit, showPlusSign = true, inView }) {
+    const { t } = useTranslation();
     const [count, setCount] = useState(0);
 
     useEffect(() => {
@@ -32,10 +34,10 @@ function CounterDisplay({ iconClass, text, endCount, unit, showPlusSign = true, 
             const Million = Math.floor((num % 100000000) / 1000000);
             let formatted = '';
             if (billion > 0) {
-                formatted += `${billion}억 `;
+                formatted += `${billion}${t('info.count_billion')} `;
             }
             if (Million > 0) {
-                formatted += `${Million}백만`;
+                formatted += `${Million}${t('info.count_million')}`;
             }
             return formatted.trim();
         } else {
@@ -48,7 +50,7 @@ function CounterDisplay({ iconClass, text, endCount, unit, showPlusSign = true, 
             {iconClass && <i className={`overlay-icon ${iconClass}`}></i>} {/* Render <i> tag with iconClass */}
             <p className="overlay-text">{text}</p>
             <p className="overlay-number">{formatNumber(count)}{unit && unit !== '백만' ? unit : ''}{showPlusSign && unit !== '백만' ? '+' : ''}</p>
-            <p className="overlay-date-text">2025.12.31 기준</p>
+            <p className="overlay-date-text">2025.12.31 {t('info.as_of')}</p>
         </div>
     );
 }

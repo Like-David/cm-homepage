@@ -1,31 +1,33 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import SupportNav from "../components/support/SupportNav";
 import Banner from "@/components/common/Banner";
 import '../styles/SupportBoardPage.css';
 
 const OneOnOneInquiryPage = () => {
+    const { t } = useTranslation();
     const PHONE = '02-6949-4170';
     const LINK = 'https://988.co.kr';
 
     const copyPhone = async () => {
         try {
             await navigator.clipboard.writeText(PHONE);
-            alert('대표번호가 복사되었습니다.');
+            alert(t('contact.phone_copy_success'));
         } catch {
-            alert('복사에 실패했습니다. 직접 복사해주세요: ' + PHONE);
+            alert(t('contact.phone_copy_fail') + PHONE);
         }
     };
 
     return (
         <div className="support-page-wrapper">
-            <Banner title="고객센터" subtitle="궁금한 점이 있으시면 언제든지 문의해 주세요." />
+            <Banner title={t('contact.banner_title')} subtitle={t('contact.banner_subtitle')} />
             <SupportNav />
 
             <div className="support-content-area">
                 <div className="contact-us-section">
                     <div className="section-header">
-                        <h2>1:1 문의</h2>
-                        <p>문의 유형에 따라 아래 방법 중 하나를 선택해 주세요.</p>
+                        <h2>{t('contact.section_title')}</h2>
+                        <p>{t('contact.section_subtitle')}</p>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
@@ -38,8 +40,8 @@ const OneOnOneInquiryPage = () => {
                                 background: '#fff',
                             }}
                         >
-                            <div style={{ fontSize: 14, color: '#666', marginBottom: 8 }}>문의채널 1</div>
-                            <h3 style={{ margin: '0 0 10px', fontSize: 18, color: '#333' }}>대표번호로 문의</h3>
+                            <div style={{ fontSize: 14, color: '#666', marginBottom: 8 }}>{t('contact.channel')} 1</div>
+                            <h3 style={{ margin: '0 0 10px', fontSize: 18, color: '#333' }}>{t('contact.phone_inquiry_title')}</h3>
                             <div style={{ fontSize: 22, fontWeight: 800, color: '#1C2D60', marginBottom: 14 }}>
                                 {PHONE}
                             </div>
@@ -50,7 +52,7 @@ const OneOnOneInquiryPage = () => {
                                     className="write-btn"
                                     style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
                                 >
-                                    전화하기
+                                    {t('contact.call_btn')}
                                 </a>
                                 <button
                                     type="button"
@@ -62,13 +64,12 @@ const OneOnOneInquiryPage = () => {
                                         border: '1px solid #ddd',
                                     }}
                                 >
-                                    번호 복사
+                                    {t('contact.copy_btn')}
                                 </button>
                             </div>
 
                             <p style={{ margin: '12px 0 0', fontSize: 13, color: '#666' }}>
-                                전화 상담을 통해 담당자와 문의하신 후,
-                                원격지원이 필요한 경우 접속 방법을 안내해 드립니다.
+                                {t('contact.phone_inquiry_desc')}
                             </p>
                         </div>
 
@@ -81,8 +82,8 @@ const OneOnOneInquiryPage = () => {
                                 background: '#fff',
                             }}
                         >
-                            <div style={{ fontSize: 14, color: '#666', marginBottom: 8 }}>문의채널 2</div>
-                            <h3 style={{ margin: '0 0 10px', fontSize: 18, color: '#333' }}>원격지원 접속</h3>
+                            <div style={{ fontSize: 14, color: '#666', marginBottom: 8 }}>{t('contact.channel')} 2</div>
+                            <h3 style={{ margin: '0 0 10px', fontSize: 18, color: '#333' }}>{t('contact.remote_inquiry_title')}</h3>
 
                             <div style={{ marginBottom: 14 }}>
                                 <a
@@ -102,12 +103,12 @@ const OneOnOneInquiryPage = () => {
                                 className="write-btn"
                                 style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
                             >
-                                원격지원 페이지로 이동
+                                {t('contact.remote_btn')}
                             </a>
 
                             <p style={{ margin: '12px 0 0', fontSize: 13, color: '#666' }}>
-                                본 페이지는 <strong>원격지원 전용</strong>입니다.<br />
-                                담당자에게 안내받은 <strong>6자리 인증번호</strong>가 있는 경우에만 접속해 주세요.
+                                {t('contact.remote_inquiry_desc_1')}<strong>{t('contact.remote_inquiry_desc_2')}</strong>{t('contact.remote_inquiry_desc_3')}<br />
+                                {t('contact.remote_inquiry_desc_4')}<strong>{t('contact.remote_inquiry_desc_5')}</strong>{t('contact.remote_inquiry_desc_6')}
                             </p>
                         </div>
                     </div>

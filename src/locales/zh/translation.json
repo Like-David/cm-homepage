@@ -1,0 +1,130 @@
+{
+  "menu": {
+    "about": "关于我们",
+    "business": "业务领域",
+    "solutions": "解决方案",
+    "support": "客户支持",
+    "company_intro": "公司介绍",
+    "value_system": "价值体系",
+    "history": "公司沿革",
+    "ceo_message": "CEO致辞",
+    "financial": "金融机构",
+    "public": "公共机构",
+    "educational": "教育机构",
+    "report_express": "ReportExpress Enterprise",
+    "rx_cert": "RX-Cert",
+    "rx_loan": "RX Loan",
+    "contact_us": "联系我们",
+    "faq": "常见问题",
+    "one_on_one": "1:1 咨询",
+    "close_menu": "关闭菜单",
+    "open_menu": "打开菜单"
+  },
+  "info": {
+    "main_title": "凭借证明文档价值的技术，\n我们创造了改变客户未来的决定性差异。",
+    "founding_year": "成立年份",
+    "delivery_companies": "交付企业",
+    "growth_rate": "增长率",
+    "index_overlay_1": "在数字化的本质之上，",
+    "index_overlay_2": "构建非接触式产业的明天。",
+    "count_billion": "亿",
+    "count_million": "百万",
+    "as_of": "现在"
+  },
+  "solutions": {
+    "title": "解决方案",
+    "description": "提供文档生成、文档防伪及防篡改以及文档存储功能。",
+    "web_reporting_name": "电子文档（Web报表）解决方案",
+    "web_reporting_use": "构建电子文档（Web报表）系统",
+    "cert_name": "证书防伪及防篡改解决方案",
+    "cert_use": "构建证书防伪及防篡改系统",
+    "loan_name": "贷款协议解决方案",
+    "loan_use": "在贷款协议中构建电子合同系统",
+    "overview": "概况",
+    "key_features": "主要功能",
+    "strengths": "特长",
+    "workflow": "业务流程",
+    "test_demo": "体验演示",
+    "cta_title": "正在考虑导入解决方案吗？",
+    "cta_subtitle": "通过解决方案演示进行体验。",
+    "intro_1": "凭借在电子文档、安全和协议管理领域的先进IT技术，创新企业的工作效率和可靠性。",
+    "intro_2": "利用针对数字化转型时代优化的综合解决方案组合，增强您的业务竞争力。",
+    "feature_types": {
+      "tech": "技术力",
+      "reliability": "可靠性",
+      "efficiency": "效率性",
+      "scalability": "扩展性"
+    },
+    "report_express": {
+      "title": "电子文档（Web报表）解决方案",
+      "subtitle": "ReportExpress Enterprise",
+      "oneLiner": "基于Non-ActiveX的一站式集成电子文档系统，一次性处理文档生成、查询、转换和存储。",
+      "overview": "ReportExpress Enterprise是在Web环境中统一管理企业内所有电子文档任务的最佳Web报表解决方案. 基于**HTML5 Web标准技术**，支持从文档生成到电子签名和安全存储的全过程，并严格遵守国际**PDF标准**。我们保证为公共机构、金融机构等各种业务环境提供最佳的定制和灵活的可扩展性。",
+      "features": [
+        { "type": "tech", "text": "使用专用格式工具提供直观的格式开发环境" },
+        { "type": "reliability", "text": "通过PKI电子签名和时间戳认证功能确保文档真实性" },
+        { "type": "efficiency", "text": "支持PDF电子文档生成和长期存储系统" },
+        { "type": "tech", "text": "提供图像转换功能和高性能专用查看器" },
+        { "type": "scalability", "text": "基于Non-ActiveX / No Plugin的Web标准架构" },
+        { "type": "scalability", "text": "通过多平台（OS/浏览器）支持保证完美的可访问性" }
+      ],
+      "strengths": "作为在所有环境下无需单独安装即可运行的真正Web标准解决方案，它提供了卓越的**技术力**和**扩展性**。通过内置用于防抵赖的电子签名值插入和证书验证功能，最大限度地提高了文档的**可靠性**。通过与EDMS等其他系统的完美联动，实现文档流转和管理的**效率性**自动化。",
+      "catchyPhrase": "💡 通过基于Web标准的集成电子文档系统，将您的业务效率和可靠性提升到一个新的水平。"
+    },
+    "rx_cert": {
+      "title": "证书防伪及防篡改解决方案",
+      "subtitle": "RX-Cert",
+      "oneLiner": "通过加密条形码和二维码保证文档真实性的强力防伪电子证明解决方案",
+      "overview": "RX-Cert是一款尖端的**安全文档解决方案**，可以完美验证各种证明、资格证、合同等重要文档的真伪。采用2D高密度条形码、二维码和**PKI电子签名技术**，从源头上阻断伪造、篡改尝试。通过提供从文档颁发到查询、验证全过程的实时在线服务，确保业务的**可靠性**和**效率性**。",
+      "features": [
+        { "type": "reliability", "text": "通过2D高密度条形码技术对文档信息进行强力加密" },
+        { "type": "efficiency", "text": "提供利用二维码进行即时、便捷的原件确认服务" },
+        { "type": "reliability", "text": "通过插入PKI电子签名和水印增强文档安全性" },
+        { "type": "tech", "text": "提供输出控制和安全专用EXE模块" },
+        { "type": "efficiency", "text": "通过移动APP随时随地进行快速真伪验证" },
+        { "type": "scalability", "text": "基于HTML5的免安装服务，最大限度提高用户可访问性" }
+      ],
+      "strengths": "即使在普通PDF查看器中也可以进行时间戳和签名验证，确保了文档的**可靠性**和普遍的**扩展性**。具备基于**DES加密算法**的强력安全技术，可完美阻断文档伪造篡改的**技术力**。支持数字自助终端及Web API联动，拥有可灵活应用于各种颁发环境的**扩展性**。",
+      "catchyPhrase": "💡 通过应用了高度加密技术的证书防伪解决方案，革新核心文档的安全水平。"
+    },
+    "rx_loan": {
+      "title": "贷款协议解决方案",
+      "subtitle": "RX Loan",
+      "oneLiner": "完美支持韩文(HWP) UI，统一处理贷款协议业务的高效电子协议平台",
+      "overview": "RX Loan是一款创新改善金融机构核心业务——贷款协议流程的**集成电子协议系统**。在Web环境中完美实现了用户熟悉的**韩文(HWP)文档环境**。该平台通过直观的界面，可以在一个屏幕上处理从协议书编写到输出、报告生成的全过程，最大限度地提高工作**效率性**。针对金融机构、保险公司、公共机构等的各种协议及文档工作进行了优化。",
+      "features": [
+        { "type": "efficiency", "text": "支持Web韩文(HWP) UI，提供无异样感的工作环境" },
+        { "type": "tech", "text": "支持自动分页及复杂的文档合并功能" },
+        { "type": "reliability", "text": "集成DB联动输出及用于防抵赖的电子签名功能" },
+        { "type": "efficiency", "text": "PDF·Excel格式的报告下载及自动生成功能" },
+        { "type": "tech", "text": "通过支持各种图表及脚本，可以实现动态文档" },
+        { "type": "scalability", "text": "基于HTML5，无需安装的架构" }
+      ],
+      "strengths": "通过用户友好的界面实现快速的文档编写和审查，革新了业务处理**效率性**。具备根据输入数据自动生成协议文档并可输出报告，从而最大限度减少人为错误的**技术力**。在韩文兼容环境下集成了文档编辑、审批、管理功能，提高了系统的**扩展性**和使用便利性。",
+      "catchyPhrase": "应用案例\n* 金融机构：下一代贷款协议自动化系统\n* 保险公司：电子合同管理集成平台\n* 公共机构：审批文档及报告输出系统集成"
+    }
+  },
+  "footer": {
+    "company_name": "株式会社 CM Innovation",
+    "privacy_policy": "个人信息处理方针",
+    "terms_of_service": "服务利用条款",
+    "ceo": "代表",
+      "cost_desc": "通过显着降低纸张、打印、存储和分发等传统文档管理方式产生的所有杂费，直接为增加企业利润做出贡献。"
+    },
+    "ceo": {
+      "greeting": "您好？\n向访问我们网站的各位表示感谢，祝愿大家身体健康，幸福美满。",
+      "company_name": "株式会社 CM Innovation 是",
+      "p1": "以工作效率和客户便利为首要价值，迎接第四次工业革命时代，以建立信任、形成变化、加速增长为主题，主导增长发展而成立的IT初创公司。",
+      "p2": "我们将基于金融和企业工作架构及安全技术，积极应对瞬息万变的IT范式，在数字经济扩张引发的数字转型时代，通过不断的IT技术创新，努力成为引领IT趋势的企业。",
+      "p3": "我们将以竭诚服务客户业务的心和创新的技术诀窍，成为幸福可靠的合作伙伴，以此回报客户。\n谢谢。",
+      "p4": "CM Innovation 代表理事 权正勋"
+    },
+    "history": {
+      "view_timeline": "查看时间轴",
+      "view_card": "查看卡片",
+      "month": "月",
+      "ongoing": "为了拥有更专业的技术开发能力而不断发展中！！",
+      "won": "中标",
+      "won_planned": "计划中标"
+    }
+  }

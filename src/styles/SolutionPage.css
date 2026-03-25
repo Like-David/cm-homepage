@@ -153,10 +153,10 @@
   color: #fff;
 }
 
-.feature-기술력 { background-color: #3498db; } /* Blue */
-.feature-신뢰성 { background-color: #2ecc71; } /* Green */
-.feature-효율성 { background-color: #f39c12; } /* Orange */
-.feature-확장성 { background-color: #9b59b6; } /* Purple */
+.feature-tech { background-color: #3498db; } /* Blue */
+.feature-reliability { background-color: #2ecc71; } /* Green */
+.feature-efficiency { background-color: #f39c12; } /* Orange */
+.feature-scalability { background-color: #9b59b6; } /* Purple */
 
 .workflow p {
     font-size: 1.1rem;

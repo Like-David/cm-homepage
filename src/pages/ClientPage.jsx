@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import '@/styles/ClientPage.css';
 import '@/styles/Scroll_nav.css';
 import PartnerCategory from '../components/business/PartnerCategory';
@@ -81,9 +82,17 @@ const categoryIdMap = {
 };
 
 const ClientPage = () => {
+    const { t } = useTranslation();
     const [activeSection, setActiveSection] = useState('');
     const sectionRefs = useRef({});
     const location = useLocation();
+
+    // Mapping display names to translation keys
+    const categoryKeys = {
+        '금융기관': 'business.financial',
+        '공공기관': 'business.public',
+        '교육기관': 'business.educational'
+    };
 
     const handleScroll = () => {
         const scrollPosition = window.scrollY + window.innerHeight / 2;
@@ -138,13 +147,13 @@ const ClientPage = () => {
               className={activeSection === categoryIdMap[categoryName] ? 'active' : ''}
               onClick={() => scrollToSection(categoryIdMap[categoryName])}
             >
-              <span>{categoryName}</span>
+              <span>{t(categoryKeys[categoryName])}</span>
             </li>
           ))}
         </ul>
       </nav>
 
-      <Banner title="Our Partners" subtitle="씨엠이노베이션과 함께하는 소중한 파트너사들을 소개합니다." />
+      <Banner title={t('business.title')} subtitle={t('business.subtitle')} />
 
       <div className="partners-grid-section">
         <div className="container">
@@ -153,7 +162,7 @@ const ClientPage = () => {
                  id={categoryIdMap[categoryName]} // Assign ID
                  ref={el => sectionRefs.current[categoryIdMap[categoryName]] = el} // Assign ref
                  className="partner-category">
-              <h3>{categoryName}</h3>
+              <h3>{t(categoryKeys[categoryName])}</h3>
               <div className="partners-grid">
                 {partnersData[categoryName].map((partner, index) => (
                   <div key={`${categoryName}-${partner.name}-${index}`} className="partner-card">

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { InView } from 'react-intersection-observer';
 import BAIImg from '@/assets/images/Index/Partners/BAI.png';
 import BusanImg from '@/assets/images/Index/Partners/Busan.png';
 import CHUBBImg from '@/assets/images/Index/Partners/CHUBB.png';
 import CopyrightImg from '@/assets/images/Index/Partners/Copyright.png';
 import DBLifeImg from '@/assets/images/Index/Partners/DBLife.jpg';
 import FSBImg from '@/assets/images/Index/Partners/FSB.jpg';
-import HanaLifeImg from '@/assets/images/Index/Partners/HanaLife.png';
 import HanwhaImg from '@/assets/images/Index/Partners/Hanwha.png';
 import IBKImg from '@/assets/images/Index/Partners/IBK.png';
 import IMBankImg from '@/assets/images/Index/Partners/IMBank.jpg';
@@ -32,7 +31,6 @@ import SMUImg from '@/assets/images/Index/Partners/SMU.jpg';
 
 const partnersData = {
     '공공기관': [
-        // Add public institution logos here
         { name: '감사원', logo: BAIImg },
         { name: '한국저작권위원회', logo: CopyrightImg },
         { name: '저축은행중앙회', logo: FSBImg },
@@ -58,39 +56,39 @@ const partnersData = {
         { name: 'OK 캐피탈', logo: OKCapitalImg },
         { name: 'SC 제일은행', logo: SCBankImg },
         { name: '신한신용정보', logo: ShinhanCiImg }
-        // Add more financial institution logos here
     ],
     '교육기관': [
         { name: '인하대학교', logo: INHAUImg },
         { name: '세종사이버대학교', logo: SJCUImg },
         { name: '상명대학교', logo: SMUImg },
-        // Add educational institution logos here
     ],
 };
 
 const partnerCategories = Object.keys(partnersData);
 
 function Partners() {
+    const { t } = useTranslation();
     const [activeCategory, setActiveCategory] = useState(partnerCategories[0]);
     const [isMobile, setIsMobile] = useState(false);
+
+    const categoryKeys = {
+        '금융기관': 'business.financial',
+        '공공기관': 'business.public',
+        '교육기관': 'business.educational'
+    };
 
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
         };
-
-        handleResize(); // Set initial value
+        handleResize();
         window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     return (
         <div className="partners-section" style={{ padding: '300px' }}>
             <div className="container">
-                {/* 헤더 부분 */}
                 <div className="text-center mb-5">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -99,10 +97,9 @@ function Partners() {
                     >
                         Partners
                     </motion.h2>
-                    <p className="solution-main-subtext">분야별 최적화된 솔루션을 제공합니다.</p>
+                    <p className="solution-main-subtext">{t('business.partners_subtext')}</p>
                 </div>
 
-                {/* 탭 버튼 스타일 개선 */}
                 <div className="d-flex justify-content-center gap-2 mb-5">
                     {partnerCategories.map(category => (
                         <button
@@ -110,12 +107,11 @@ function Partners() {
                             className={`btn ${activeCategory === category ? 'btn-primary' : 'btn-outline-secondary'} rounded-pill partner-category-button`}
                             onClick={() => setActiveCategory(category)}
                         >
-                            {category}
+                            {t(categoryKeys[category])}
                         </button>
                     ))}
                 </div>
 
-                {/* 로고 영역 애니메이션 */}
                 <motion.div
                     layout
                     className="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4 justify-content-center"

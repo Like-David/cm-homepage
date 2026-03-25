@@ -30,14 +30,14 @@ import SMUImg from '@/assets/images/Index/Partners/SMU.jpg';
 
 
 const partnersData = {
-    '공공기관': [
+    'public': [
         { name: '감사원', logo: BAIImg },
         { name: '한국저작권위원회', logo: CopyrightImg },
         { name: '저축은행중앙회', logo: FSBImg },
         { name: '한국방송전파진흥원', logo: KCAImg },
         { name: '서울시 Etax', logo: SeoulEtaxImg }
     ],
-    '금융기관': [
+    'financial': [
         { name: 'BNK 부산은행', logo: BusanImg },
         { name: '처브라이프생명보험주식회사', logo: CHUBBImg },
         { name: 'DB생명', logo: DBLifeImg },
@@ -57,34 +57,24 @@ const partnersData = {
         { name: 'SC 제일은행', logo: SCBankImg },
         { name: '신한신용정보', logo: ShinhanCiImg }
     ],
-    '교육기관': [
+    'educational': [
         { name: '인하대학교', logo: INHAUImg },
         { name: '세종사이버대학교', logo: SJCUImg },
         { name: '상명대학교', logo: SMUImg },
     ],
 };
 
-const partnerCategories = Object.keys(partnersData);
+const partnerKeys = Object.keys(partnersData);
+
+const categoryKeys = {
+    'financial': 'business.financial',
+    'public': 'business.public',
+    'educational': 'business.educational'
+};
 
 function Partners() {
     const { t } = useTranslation();
-    const [activeCategory, setActiveCategory] = useState(partnerCategories[0]);
-    const [isMobile, setIsMobile] = useState(false);
-
-    const categoryKeys = {
-        '금융기관': 'business.financial',
-        '공공기관': 'business.public',
-        '교육기관': 'business.educational'
-    };
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const [activeKey, setActiveKey] = useState(partnerKeys[0]);
 
     return (
         <div className="partners-section" style={{ padding: '300px' }}>
@@ -101,13 +91,13 @@ function Partners() {
                 </div>
 
                 <div className="d-flex justify-content-center gap-2 mb-5">
-                    {partnerCategories.map(category => (
+                    {partnerKeys.map(key => (
                         <button
-                            key={category}
-                            className={`btn ${activeCategory === category ? 'btn-primary' : 'btn-outline-secondary'} rounded-pill partner-category-button`}
-                            onClick={() => setActiveCategory(category)}
+                            key={key}
+                            className={`btn ${activeKey === key ? 'btn-primary' : 'btn-outline-secondary'} rounded-pill partner-category-button`}
+                            onClick={() => setActiveKey(key)}
                         >
-                            {t(categoryKeys[category])}
+                            {t(categoryKeys[key])}
                         </button>
                     ))}
                 </div>
@@ -117,9 +107,9 @@ function Partners() {
                     className="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4 justify-content-center"
                 >
                     <AnimatePresence mode='wait'>
-                        {partnersData[activeCategory].map((partner) => (
+                        {partnersData[activeKey].map((partner) => (
                             <motion.div
-                                key={`${activeCategory}-${partner.name}`}
+                                key={`${activeKey}-${partner.name}`}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}

@@ -89,7 +89,7 @@ function Header() {
             onMouseLeave={() => window.innerWidth > 1024 && setIsHeaderHovered(false)}
         >
             <h1>
-                <Link to="/"><img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt="(주)씨엠이노베이션" /></Link>
+                <Link to="/"><img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt={t('footer.company_name')} /></Link>
             </h1>
 
             <div className="language-selector">

@@ -3,9 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '@/styles/ClientPage.css';
 import '@/styles/Scroll_nav.css';
-import PartnerCategory from '../components/business/PartnerCategory';
 
-import solutionBannerBg from '@/assets/images/Solution/solution-banner-bg.png';
 import Banner from '@/components/common/Banner';
 
 // Import all necessary images
@@ -40,7 +38,7 @@ import SMUImg from '@/assets/images/Index/Partners/SMU.jpg';
 
 
 const partnersData = {
-    '금융기관': [
+    'financial': [
         { name: 'BNK 부산은행', logo: BusanImg },
         { name: '처브라이프생명보험주식회사', logo: CHUBBImg },
         { name: 'DB생명', logo: DBLifeImg },
@@ -60,25 +58,30 @@ const partnersData = {
         { name: 'SC 제일은행', logo: SCBankImg },
         { name: '신한신용정보', logo: ShinhanCiImg }
     ],
-    '공공기관': [
+    'public': [
         { name: '감사원', logo: BAIImg },
         { name: '한국저작권위원회', logo: CopyrightImg },
         { name: '저축은행중앙회', logo: FSBImg },
         { name: '한국방송전파진흥원', logo: KCAImg },
         { name: '서울시 Etax', logo: SeoulEtaxImg }
     ],
-    '교육기관': [
+    'educational': [
         { name: '인하대학교', logo: INHAUImg },
         { name: '세종사이버대학교', logo: SJCUImg },
         { name: '상명대학교', logo: SMUImg },
     ]
 };
 
-// Map category names to IDs     for URL hashes and refs
 const categoryIdMap = {
-  '금융기관': 'financial-institutions',
-  '공공기관': 'public-institutions',
-  '교육기관': 'educational-institutions',
+  'financial': 'financial-institutions',
+  'public': 'public-institutions',
+  'educational': 'educational-institutions',
+};
+
+const categoryKeys = {
+    'financial': 'business.financial',
+    'public': 'business.public',
+    'educational': 'business.educational'
 };
 
 const ClientPage = () => {
@@ -87,18 +90,11 @@ const ClientPage = () => {
     const sectionRefs = useRef({});
     const location = useLocation();
 
-    // Mapping display names to translation keys
-    const categoryKeys = {
-        '금융기관': 'business.financial',
-        '공공기관': 'business.public',
-        '교육기관': 'business.educational'
-    };
-
     const handleScroll = () => {
         const scrollPosition = window.scrollY + window.innerHeight / 2;
         let currentSection = '';
-        Object.keys(partnersData).forEach(categoryName => {
-            const id = categoryIdMap[categoryName];
+        Object.keys(partnersData).forEach(key => {
+            const id = categoryIdMap[key];
             const ref = sectionRefs.current[id];
             if (ref && ref.offsetTop <= scrollPosition && ref.offsetTop + ref.offsetHeight > scrollPosition) {
                 currentSection = id;
@@ -118,7 +114,7 @@ const ClientPage = () => {
         const element = sectionRefs.current[id];
         if (element) {
             window.scrollTo({
-                top: element.offsetTop - 150, // Adjust for header height
+                top: element.offsetTop - 150,
                 behavior: 'smooth',
             });
         }
@@ -138,16 +134,15 @@ const ClientPage = () => {
 
   return (
     <div className="client-page">
-      {/* Right-side Scroll Navigation */}
       <nav className="scroll-nav">
         <ul className="scroll-nav-list">
-          {Object.keys(partnersData).map((categoryName) => (
+          {Object.keys(partnersData).map((key) => (
             <li
-              key={categoryName}
-              className={activeSection === categoryIdMap[categoryName] ? 'active' : ''}
-              onClick={() => scrollToSection(categoryIdMap[categoryName])}
+              key={key}
+              className={activeSection === categoryIdMap[key] ? 'active' : ''}
+              onClick={() => scrollToSection(categoryIdMap[key])}
             >
-              <span>{t(categoryKeys[categoryName])}</span>
+              <span>{t(categoryKeys[key])}</span>
             </li>
           ))}
         </ul>
@@ -157,15 +152,15 @@ const ClientPage = () => {
 
       <div className="partners-grid-section">
         <div className="container">
-          {Object.keys(partnersData).map((categoryName) => (
-            <div key={categoryName}
-                 id={categoryIdMap[categoryName]} // Assign ID
-                 ref={el => sectionRefs.current[categoryIdMap[categoryName]] = el} // Assign ref
+          {Object.keys(partnersData).map((key) => (
+            <div key={key}
+                 id={categoryIdMap[key]}
+                 ref={el => sectionRefs.current[categoryIdMap[key]] = el}
                  className="partner-category">
-              <h3>{t(categoryKeys[categoryName])}</h3>
+              <h3>{t(categoryKeys[key])}</h3>
               <div className="partners-grid">
-                {partnersData[categoryName].map((partner, index) => (
-                  <div key={`${categoryName}-${partner.name}-${index}`} className="partner-card">
+                {partnersData[key].map((partner, index) => (
+                  <div key={`${key}-${partner.name}-${index}`} className="partner-card">
                     <img src={partner.logo} alt={partner.name} />
                     <p className="partner-name">{partner.name}</p>
                   </div>

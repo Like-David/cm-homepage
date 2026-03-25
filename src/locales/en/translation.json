@@ -315,6 +315,94 @@
     "fax": "Fax",
     "scroll_to_top": "Scroll to Top"
   },
+  "policy": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "CM Innovation Co., Ltd. (hereinafter referred to as the 'Company') establishes and discloses the following privacy policy in accordance with Article 30 of the 'Personal Information Protection Act' to protect the personal information of customers and guarantee the rights and interests of information subjects.",
+      "section1_title": "1. Purpose of Processing Personal Information",
+      "section1_content": "The company processes personal information for the following purposes. Processed personal information will not be used for purposes other than the following:\n- Confirmation of customer's intention to join, identification and authentication for service provision, member qualification management, payment for goods or services, delivery of goods or services, etc.",
+      "section2_title": "2. Retention and Use Period of Personal Information",
+      "section2_content1": "① The company processes and retains personal information within the retention and use period agreed upon when collecting personal information from the information subject or within the period prescribed by law.",
+      "section2_content2": "② The specific retention and use periods are as follows:",
+      "section2_item1": "Customer registration and management: Until the termination of the service contract or membership; however, if any debt/credit relationship remains, until the settlement of such relationship.",
+      "section2_item2": "Records on contract/subscription withdrawal, payment, and supply of goods in electronic commerce: 5 years.",
+      "section3_title": "3. Provision of Personal Information to Third Parties",
+      "section3_content": "The company does not provide personal information to third parties unless it falls under Article 17 of the Personal Information Protection Act, such as the separate consent of the information subject or special provisions of the law.",
+      "section4_title": "4. Consignment of Personal Information Processing",
+      "section4_content1": "① The company entrusts personal information processing tasks to external parties for smooth task performance.",
+      "section4_content2": "② When concluding a consignment contract, the company clearly stipulates matters such as prohibition of processing beyond purpose, restrictions on re-consignment, management and supervision of the consignee, and responsibilities in accordance with Article 25 of the Personal Information Protection Act.",
+      "section5_title": "5. Rights and Obligations of Information Subjects",
+      "section5_content": "Information subjects can exercise their rights related to personal information protection at any time.",
+      "section5_item1": "1. Request for inspection of personal information",
+      "section5_item2": "2. Request for correction in case of errors",
+      "section5_item3": "3. Request for deletion",
+      "section5_item4": "4. Request for suspension of processing",
+      "section6_title": "6. Items of Personal Information Processed",
+      "section6_content": "The company processes the following personal information items:",
+      "section6_item1": "Name, date of birth, address, phone number, mobile number, gender, email address.",
+      "section7_title": "7. Destruction of Personal Information",
+      "section7_content1": "① The company destroys personal information without delay when it becomes unnecessary, such as the expiration of the retention period or achievement of the processing purpose.",
+      "section7_content2": "② The company destroys personal information using the following methods:",
+      "section7_item1": "Electronic files: Deleting files and formatting storage media such as disks.",
+      "section7_item2": "Hard copies: Shredding or incineration.",
+      "section8_title": "8. Measures to Ensure the Safety of Personal Information",
+      "section8_content": "The company is taking the following measures to ensure safety:",
+      "section8_item1": "Administrative measures: Establishment and implementation of internal management plans, regular education for employees, etc.",
+      "section8_item2": "Technical measures: Management of access rights such as password settings for processing systems, installation of security programs, and encryption of files.",
+      "section8_item3": "Physical measures: Locking of storage locations, access control, etc.",
+      "section9_title": "9. Personal Information Protection Officer",
+      "section9_content": "The company has designated a Personal Information Protection Officer to take overall responsibility for personal information processing and handle complaints and damage relief.",
+      "section9_label": "Personal Information Protection Officer (Owner or Representative)",
+      "section9_name": "Name: CM Innovation | Position: CEO",
+      "section9_contact": "Contact: 02-6949-4170 (Tech Support: 0505-998-0888 / Fax: 0505-477-4170)",
+      "footer": "This privacy policy is effective from Sep 30, 2011."
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "articles": {
+        "art1": {
+          "title": "Article 1 (Purpose)",
+          "content": "These terms and conditions are intended to prescribe the rights, obligations, and responsibilities of the Company and Users in using the internet-related services provided by the website (http://cminnovation.co.kr) operated by CM Innovation Co., Ltd. (hereinafter referred to as the 'Company')."
+        },
+        "art2": {
+          "title": "Article 2 (Definition of Terms)",
+          "content": "1. 'Site' refers to a virtual business place established by the Company to provide goods or services to users using information and communication facilities such as computers.\n2. 'User' refers to members and non-members who access the 'Site' and receive services provided by the 'Site' in accordance with these terms.\n3. 'Member' refers to a person who has registered as a member on the 'Site' and can continuously use the services.\n4. 'Non-member' refers to a person who uses the services provided by the 'Site' without registering."
+        },
+        "art3": {
+          "title": "Article 3 (Specification, Explanation and Revision of Terms)",
+          "content": "1. The 'Site' shall post the contents of these terms, company name, representative name, business address, phone number, and business registration number on the initial service screen.\n2. The 'Site' must provide a separate connection screen so that users can understand important contents such as cancellation of subscription and refund conditions before agreeing to the terms.\n3. The 'Site' may revise these terms to the extent that it does not violate relevant laws such as the 'Act on the Consumer Protection in Electronic Commerce'."
+        },
+        "art4": {
+          "title": "Article 4 (Provision and Change of Service)",
+          "content": "1. The 'Site' performs the following tasks:\n A. Providing information on goods or services and concluding purchase contracts\n B. Delivery of goods or services for which a purchase contract has been concluded\n C. Other tasks determined by the 'Site'\n2. In the event of goods being out of stock or changes in technical specifications, the 'Site' may change the contents of the goods or services to be provided by future contracts."
+        },
+        "art5": {
+          "title": "Article 5 (Suspension of Service)",
+          "content": "1. The 'Site' may temporarily suspend the provision of services in the event of maintenance, replacement, or breakdown of information and communication facilities.\n2. The 'Site' shall compensate for damages suffered by users or third parties due to the temporary suspension of service unless the 'Site' proves that there is no intentionality or negligence."
+        },
+        "art6": {
+          "title": "Article 6 (Membership)",
+          "content": "1. The user applies for membership by filling in the member information according to the form set by the 'Site' and expressing consent to these terms.\n2. The 'Site' shall register the user as a member unless there is a disqualification reason among those who have applied for membership."
+        },
+        "art7": {
+          "title": "Article 7 (Withdrawal and Disqualification of Membership)",
+          "content": "1. Members may request withdrawal from the 'Site' at any time, and the 'Site' will process it immediately.\n2. If a member registers false information or fails to pay debts related to the use of the 'Site', the 'Site' may limit or suspend membership."
+        },
+        "art17": {
+          "title": "Article 17 (Privacy Protection)",
+          "content": "1. The 'Site' collects the minimum amount of personal information necessary to provide services when collecting personal information of users.\n2. The 'Site' does not collect information necessary for the execution of purchase contracts in advance when registering for membership."
+        },
+        "art25": {
+          "title": "Article 25 (Jurisdiction and Governing Law)",
+          "content": "1. Lawsuits regarding electronic commerce disputes between the 'Site' and users shall be brought to the competent court under the Civil Procedure Act.\n2. Lawsuits filed between the 'Site' and users shall be governed by the laws of the Republic of Korea."
+        }
+      },
+      "appendix": {
+        "title": "Addendum",
+        "content": "1. (Enforcement Date) These terms and conditions are effective from December 1, 2017."
+      }
+    }
+  },
   "about": {
     "introduce": {
       "overlay_text": "We are doing our best to strengthen our customers' competitiveness\nthrough counter paperless solutions.",

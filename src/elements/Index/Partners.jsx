@@ -116,8 +116,9 @@ function Partners() {
                                 transition={{ duration: 0.3 }}
                                 className="col"
                             >
-                                <div className="partner-card">
-                                    <img src={partner.logo} alt={partner.name} />
+                                <div className="partner-card text-center">
+                                    <img src={partner.logo} alt={partner.name} className="img-fluid mb-2" />
+                                    <p className="partner-name-text" style={{ fontSize: '13px', color: '#666', marginTop: '10px' }}>{partner.name}</p>
                                 </div>
                             </motion.div>
                         ))}

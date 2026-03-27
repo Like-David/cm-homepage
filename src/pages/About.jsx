@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 // component import
 import IntroduceImg from '@/elements/About/IntroduceImg';
@@ -12,14 +13,14 @@ import History from '@/elements/About/History';
 import '@/styles/About.css';
 import '@/styles/Scroll_nav.css';
 
-const aboutSections = [
-    { id: 'introduce', title: '회사소개' },
-    { id: 'value', title: '가치체계' },
-    { id: 'history', title: '회사연혁' },
-    { id: 'CEO', title: 'CEO 인사말' },
-];
-
 function About() {
+    const { t } = useTranslation();
+    const aboutSections = [
+        { id: 'introduce', title: t('menu.company_intro') },
+        { id: 'value', title: t('menu.value_system') },
+        { id: 'history', title: t('menu.history') },
+        { id: 'CEO', title: t('menu.ceo_message') },
+    ];
     const [activeSection, setActiveSection] = useState('');
     const [scrollProgress, setScrollProgress] = useState(0);
     const sectionRefs = useRef({});

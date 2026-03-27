@@ -1,5 +1,6 @@
 // SupportBoardPage.jsx
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import '../styles/SupportBoardPage.css';
 import Banner from '@/components/common/Banner';
@@ -8,6 +9,7 @@ import WriteModal from '@/components/support/WriteModal';
 import { Link } from 'react-router-dom';
 
 export default function SupportBoardPage() {
+    const { t } = useTranslation();
     const [posts, setPosts] = useState([]);
     const [keyword, setKeyword] = useState('');
     const [page, setPage] = useState(1);
@@ -39,7 +41,7 @@ export default function SupportBoardPage() {
             setPage(currentPage);
             setTotalPages(tp);
         } catch (e) {
-            console.error('게시글을 불러오는 중 오류', e);
+            console.error(t('support.fail_fetch'), e);
             setPosts([]);
             setTotalPages(1);
         }
@@ -51,14 +53,14 @@ export default function SupportBoardPage() {
 
     return (
         <div className="support-page-wrapper">
-            <Banner title="고객센터" subtitle="궁금한 점이 있으시면 언제든지 문의해 주세요." />
+            <Banner title={t('support.banner_title')} subtitle={t('support.banner_subtitle')} />
             <SupportNav />
 
             <div className="support-content-area">
                 <div className="contact-us-section">
                     <div className="section-header">
-                        <h2>문의사항</h2>
-                        <p>궁금한 점이 있으시면 언제든지 문의해 주세요.</p>
+                        <h2>{t('support.board_title')}</h2>
+                        <p>{t('support.banner_subtitle')}</p>
                     </div>
 
                     <div className="board-container">
@@ -72,11 +74,11 @@ export default function SupportBoardPage() {
                             >
                                 <input
                                     type="text"
-                                    placeholder="검색어를 입력하세요"
+                                    placeholder={t('support.search_placeholder')}
                                     value={keyword}
                                     onChange={(e) => setKeyword(e.target.value)}
                                 />
-                                <button type="submit" className="search-btn" aria-label="검색">
+                                <button type="submit" className="search-btn" aria-label={t('support.search_btn')}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                                         <path
                                             d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
@@ -101,17 +103,17 @@ export default function SupportBoardPage() {
                                 className="write-btn"
                                 onClick={() => setIsWriteOpen(true)}
                             >
-                                문의하기
+                                {t('support.write_btn')}
                             </button>
                         </div>
 
                         <table className="board-table">
                             <thead>
                             <tr>
-                                <th>제목</th>
-                                <th>작성자</th>
-                                <th>조회수</th>
-                                <th>작성일</th>
+                                <th>{t('support.table.title')}</th>
+                                <th>{t('support.table.author')}</th>
+                                <th>{t('support.table.views')}</th>
+                                <th>{t('support.table.date')}</th>
                             </tr>
                             </thead>
                             <tbody>

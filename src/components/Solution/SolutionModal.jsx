@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { useTranslation } from 'react-i18next';
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -6,10 +7,12 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 function SolutionModal(props) {
+  const { t } = useTranslation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [age, setAge] = useState('');
+  const [solution, setSolution] = useState('ReportExpress Enterprise');
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {
@@ -18,6 +21,7 @@ function SolutionModal(props) {
       setEmail('');
       setGender('');
       setAge('');
+      setSolution('ReportExpress Enterprise');
       setValidated(false);
     }
   }, [props.show]);
@@ -45,11 +49,11 @@ function SolutionModal(props) {
 
     setValidated(true);
 
-    if (form.checkValidity() === false || !isValidName(name) || !isValidEmail(email) || !gender || !age) {
+    if (form.checkValidity() === false || !isValidName(name) || !isValidEmail(email) || !gender || !age || !solution) {
       return;
     }
 
-    props.onSubmit({name, email, gender, age});
+    props.onSubmit({name, email, gender, age, solution});
   };
 
 
@@ -64,49 +68,66 @@ function SolutionModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            테스트
+            {t('solutions.modal.title')}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form.Group className="m-3" controlId="formGridSolution">
+              <Form.Label>{t('solutions.modal.solution_select')}</Form.Label>
+              <Form.Select
+                  required
+                  value={solution}
+                  onChange={e => setSolution(e.target.value)}
+                  isInvalid={validated && !solution}
+              >
+                <option value="ReportExpress Enterprise">{t('solutions.modal.solution_options.report_express')}</option>
+                <option value="RX-Cert">{t('solutions.modal.solution_options.rx_cert')}</option>
+                <option value="RX-Loan">{t('solutions.modal.solution_options.rx_loan')}</option>
+              </Form.Select>
+              <Form.Control.Feedback type="invalid">
+                {t('solutions.modal.solution_invalid')}
+              </Form.Control.Feedback>
+            </Form.Group>
+
             <Form.Group className="m-3" controlId="formGridName">
-              <Form.Label>이름</Form.Label>
+              <Form.Label>{t('solutions.modal.name')}</Form.Label>
               <Form.Control
                   required
                   type="text"
-                  placeholder="이름을 입력해주세요"
+                  placeholder={t('solutions.modal.name_placeholder')}
                   value={name}
                   onChange={handleNameChange}
                   isInvalid={validated && !isValidName(name)}
               />
               <Form.Control.Feedback type="invalid">
-                이름은 두 글자 이상의 한글만 입력 가능합니다.
+                {t('solutions.modal.name_invalid')}
               </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="m-3" controlId="formGridEmail">
-              <Form.Label>이메일</Form.Label>
+              <Form.Label>{t('solutions.modal.email')}</Form.Label>
               <Form.Control
                   required
                   type="email"
-                  placeholder="이메일를 입력해주세요"
+                  placeholder={t('solutions.modal.email_placeholder')}
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   isInvalid={validated && !isValidEmail(email)}
               />
               <Form.Control.Feedback type="invalid">
-                올바른 이메일 주소를 입력해주세요.
+                {t('solutions.modal.email_invalid')}
               </Form.Control.Feedback>
             </Form.Group>
 
             <Row className="m-3">
               <Form.Group as={Col} controlId="formGridGender">
-                <Form.Label>성별</Form.Label>
+                <Form.Label>{t('solutions.modal.gender')}</Form.Label>
                 <div key={`inline-radio`} className="mb-3">
                   <Form.Check
                       required
                       inline
-                      label="남성"
+                      label={t('solutions.modal.male')}
                       name="group1"
                       type="radio"
                       id={`inline-radio-1`}
@@ -117,7 +138,7 @@ function SolutionModal(props) {
                   <Form.Check
                       required
                       inline
-                      label="여성"
+                      label={t('solutions.modal.female')}
                       name="group1"
                       type="radio"
                       id={`inline-radio-2`}
@@ -129,30 +150,30 @@ function SolutionModal(props) {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridAge">
-                <Form.Label>나이대</Form.Label>
+                <Form.Label>{t('solutions.modal.age_group')}</Form.Label>
                 <Form.Select
                     required
                     value={age}
                     onChange={e => setAge(e.target.value)}
                     isInvalid={validated && !age}
                 >
-                  <option value="">선택하세요</option>
-                  <option>10대</option>
-                  <option>20대</option>
-                  <option>30대</option>
-                  <option>40대</option>
-                  <option>50대</option>
-                  <option>60대 이상</option>
+                  <option value="">{t('solutions.modal.age_placeholder')}</option>
+                  <option value="10대">{t('solutions.modal.age_10s')}</option>
+                  <option value="20대">{t('solutions.modal.age_20s')}</option>
+                  <option value="30대">{t('solutions.modal.age_30s')}</option>
+                  <option value="40대">{t('solutions.modal.age_40s')}</option>
+                  <option value="50대">{t('solutions.modal.age_50s')}</option>
+                  <option value="60대 이상">{t('solutions.modal.age_60s_plus')}</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
-                  나이대를 선택해주세요.
+                  {t('solutions.modal.age_invalid')}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
 
             <div className="text-end">
               <Button id={'submitBtn'} type="submit">
-                확인
+                {t('solutions.modal.confirm')}
               </Button>
             </div>
           </Form>

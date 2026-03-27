@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 // Helper to render text with bold tags
 const renderTextWithBold = (text) => {
@@ -17,6 +18,7 @@ const renderTextWithBold = (text) => {
 };
 
 const SolutionCard = React.forwardRef(({ solution }, ref) => {
+  const { t } = useTranslation();
   return (
     <section id={solution.id} className="solution-detail" ref={ref}>
       <div className="container">
@@ -28,16 +30,18 @@ const SolutionCard = React.forwardRef(({ solution }, ref) => {
         </div>
 
         <div className="overview">
-          <h4>개요</h4>
+          <h4>{t('solutions.overview')}</h4>
           <p>{renderTextWithBold(solution.overview)}</p>
         </div>
 
         <div className="features">
-          <h4>주요 기능</h4>
+          <h4>{t('solutions.key_features')}</h4>
           <div className="features-grid">
-            {solution.keyFeatures.map((feature, index) => (
+            {solution.keyFeatures && solution.keyFeatures.map((feature, index) => (
               <div key={index} className="feature-card">
-                <div className={`feature-type feature-${feature.type.toLowerCase()}`}>{feature.type}</div>
+                <div className={`feature-type feature-${feature.type}`}>
+                  {t(`solutions.feature_types.${feature.type}`, { defaultValue: feature.type })}
+                </div>
                 <p>{feature.text}</p>
               </div>
             ))}
@@ -45,13 +49,13 @@ const SolutionCard = React.forwardRef(({ solution }, ref) => {
         </div>
 
         <div className="strengths">
-          <h4>특장점</h4>
+          <h4>{t('solutions.strengths')}</h4>
           <p>{renderTextWithBold(solution.strengths)}</p>
         </div>
 
         <div className="workflow">
-          <h4>업무 흐름</h4>
-          <img src={solution.workflow} alt={`${solution.title} 업무 흐름도`} className="workflow-diagram" />
+          <h4>{t('solutions.workflow')}</h4>
+          <img src={solution.workflow} alt={`${solution.title} ${t('solutions.workflow')}`} className="workflow-diagram" />
         </div>
         
         <div className="catchy-phrase">

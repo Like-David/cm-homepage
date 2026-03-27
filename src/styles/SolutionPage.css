@@ -19,20 +19,15 @@
 
 /* 1. 상단 인트로 섹션 */
 .solution-intro {
-  padding: 180px 0 140px; /* Adjusted padding to move text down */
+  padding: clamp(150px, 15vh, 180px) 0 clamp(80px, 10vh, 140px);
   text-align: center;
   background-size: cover;
   background-position: center;
   position: relative;
 }
 
-.solution-intro .container {
-    position: relative;
-    z-index: 2;
-}
-
 .solution-intro h2 {
-  font-size: 2.8rem;
+  font-size: clamp(2.2rem, 5vw, 2.8rem);
   font-weight: 700;
   color: #fff;
   margin-bottom: 16px;
@@ -40,7 +35,7 @@
 }
 
 .solution-intro p {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   color: #f0f0f0;
   line-height: 1.7;
   max-width: 800px;
@@ -55,7 +50,7 @@
 }
 
 .solution-detail {
-  padding: 100px 0;
+  padding: clamp(60px, 8vh, 100px) 0;
   border-bottom: 1px solid #f0f0f0;
 }
 .solution-detail:last-child {
@@ -76,14 +71,14 @@
 }
 
 .detail-header h2 {
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
   font-weight: 700;
   color: #1C2D60;
   margin-bottom: 5px;
 }
 
 .detail-header h3 {
-  font-size: 1.3rem;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
   color: #555;
   font-weight: 400;
   margin-bottom: 20px;
@@ -153,10 +148,10 @@
   color: #fff;
 }
 
-.feature-기술력 { background-color: #3498db; } /* Blue */
-.feature-신뢰성 { background-color: #2ecc71; } /* Green */
-.feature-효율성 { background-color: #f39c12; } /* Orange */
-.feature-확장성 { background-color: #9b59b6; } /* Purple */
+.feature-tech { background-color: #3498db; } /* Blue */
+.feature-reliability { background-color: #2ecc71; } /* Green */
+.feature-efficiency { background-color: #f39c12; } /* Orange */
+.feature-scalability { background-color: #9b59b6; } /* Purple */
 
 .workflow p {
     font-size: 1.1rem;

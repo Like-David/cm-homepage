@@ -42,15 +42,18 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    height: 100svh; /* More accurate for mobile viewports */
     overflow: hidden;
+    background-color: #000; /* Prevent white gap if image loading or resizing */
 }
 
 .homepage-main-image {
+    display: block; /* Remove default inline gap */
     width: 100%;
-    height: 100%;
+    height: 100% !important;
     object-fit: cover;
     animation: zoom-out 2s ease-in-out forwards;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #000;
 }
 
 .homepage-text-overlay {
@@ -86,7 +89,7 @@
 /* Business Section */
 .business-title-overlay {
     color: white;
-    font-size: 58px;
+    font-size: clamp(32px, 6vw, 58px);
     font-weight: bold;
     z-index: 11;
     display: flex;
@@ -99,7 +102,7 @@
 
 .business-main-subtext {
     color: white;
-    font-size: 30px;
+    font-size: clamp(18px, 4vw, 30px);
     text-align: center;
     margin: 0 auto 60px auto;
     width: 100%;
@@ -142,6 +145,22 @@
     width: 80%;
     height: 100%;
     align-items: center;
+}
+
+@media (max-width: 768px) {
+    .overlay-content-wrapper {
+        flex-direction: column;
+        padding: 20px 0;
+        width: 100%;
+        left: 0;
+        transform: none;
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    
+    .business-image {
+        max-width: 100%;
+    }
 }
 
 .counter-item {
@@ -196,7 +215,7 @@
 }
 
 .overlay-number {
-    font-size: 6em;
+    font-size: clamp(3em, 8vw, 6em);
     font-weight: bold;
 }
 
@@ -210,10 +229,7 @@
 .solutions-container {
     margin-left: auto;
     margin-right: auto;
-    padding-top: 150px; /* Adjusted padding */
-    padding-bottom: 150px; /* Adjusted padding */
-    padding-left: 300px; /* Keeping horizontal padding for desktop */
-    padding-right: 300px; /* Keeping horizontal padding for desktop */
+    padding: 100px clamp(20px, 5vw, 300px);
     background-color: #000000;
 }
 
@@ -320,79 +336,57 @@
 
 /* Partners Section */
 .partners-section {
-    padding-top: 150px; /* Adjusted padding */
-    padding-bottom: 150px; /* Adjusted padding */
-    padding-left: 300px; /* Keeping horizontal padding for desktop */
-    padding-right: 300px; /* Keeping horizontal padding for desktop */
+    padding: clamp(60px, 10vh, 100px) 0;
 }
 
-.partner-buttons {
+.partners-section .container {
+    max-width: 1100px; /* Reduced from default to make cards smaller */
+    padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .partners-section .container {
+        padding: 0 15px;
+    }
+}
+
+.partner-card {
     display: flex;
-    gap: 15px;
-    max-width: 1500px;
-    margin: auto auto 20px auto;
-    justify-content: center;
-}
-
-.partner-button {
-    padding: 12px 25px;
-    font-size: 18px;
-    font-weight: 500;
-    color: #ccc;
-    background-color: #333;
-    border: 1px solid #555;
-    border-radius: 30px;
-    cursor: pointer;
-}
-
-.partner-button:hover {
-    background-color: #555;
-    color: #fff;
-    border-color: #fff;
-}
-
-.partner-button.active {
-    background-color: #555;
-    color: #fff;
-    border-color: #fff;
-    box-shadow: 0 4px 12px rgba(51, 51, 51, 0.2);
-}
-
-.partner-logos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+    justify-content: flex-start;
+    padding: clamp(10px, 2vw, 15px);
+    height: 100%;
+    text-align: center;
+    background: #fff;
+    transition: transform 0.3s ease;
 }
 
-.partner-logo {
-    height: 80px;
+.partner-card:hover {
+    transform: translateY(-5px);
+}
+
+.partner-logo-wrapper {
+    height: clamp(50px, 8vw, 70px);
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    margin-bottom: 12px;
 }
 
-.partner-logo img {
-    max-height: 60px;
-    width: auto;
-    max-width: 180px;
+.partner-logo-wrapper img {
+    max-height: 100%;
+    max-width: 100%;
     object-fit: contain;
-    filter: invert(100%) grayscale(100%);
-    opacity: 0.8;
-    transition: all 0.3s ease;
 }
 
-.partner-logo:hover img {
-    filter: grayscale(0);
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-.partner-logo.education-logo img {
-    max-height: 100px;
+.partner-name-text {
+    font-size: clamp(11px, 1.5vw, 13px);
+    color: #444;
+    margin: 0;
+    font-weight: 500;
+    word-break: keep-all;
 }
 
 /* Service Center Section */
@@ -403,7 +397,7 @@
 
 .service-center-image {
     width: 100%;
-    height: 500px;
+    height: clamp(300px, 50vh, 500px);
     display: block;
     object-fit: cover;
 }
@@ -415,17 +409,17 @@
     transform: translate(-50%, -50%);
     color: white;
     text-align: center; /* Adjusted from left */
-    width: auto;
+    width: 90%;
 }
 
 .service-center-text-overlay .main-text {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: bold;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .service-center-text-overlay .sub-text {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
     margin-bottom: 1rem;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
@@ -469,14 +463,14 @@
 
 /* Custom styles for larger partner category buttons */
 .partner-category-button {
-    padding: 15px 30px;
-    font-size: 20px;
-    min-width: 150px;
+    padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 30px);
+    font-size: clamp(16px, 2.5vw, 20px);
+    min-width: clamp(120px, 20vw, 150px);
 }
 
 .solution-title-overlay {
     color: #333;
-    font-size: 58px;
+    font-size: clamp(32px, 6vw, 58px);
     font-weight: bold;
     z-index: 11;
     display: flex;
@@ -489,7 +483,7 @@
 
 .solution-main-subtext {
     color: #333;
-    font-size: 30px;
+    font-size: clamp(18px, 4vw, 30px);
     text-align: center;
     margin: 0 auto 60px auto;
     width: 100%;

@@ -1,16 +1,20 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Image from 'react-bootstrap/Image';
 import image from '@/assets/images/About/Introduce/introduce.png';
 import '@/styles/About.css';
 
 function IntroduceImg() {
+    const { t } = useTranslation();
 
     return (
         <>
             <div className="introduce-container">
                 <Image src={image} className="introduce-main-image" />
                 <div className="introduce-text-overlay">
-                    <p className="main-text">창구페이퍼리스를 통해<br/>고객사의 경쟁력 강화에 최선을 다하고 있습니다.</p>
+                    <p className="main-text">
+                        {t('about.introduce.overlay_text').split('\n').map((line, i) => <React.Fragment key={i}>{line}<br/></React.Fragment>)}
+                    </p>
                 </div>
             </div>
         </>

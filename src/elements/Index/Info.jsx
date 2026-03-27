@@ -1,8 +1,10 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
 import CounterDisplay from '../../components/Index/CounterDisplay';
 
 function Info() {
+    const { t } = useTranslation();
     const { ref, inView } = useInView({
         triggerOnce: true,
         threshold: 0.1,
@@ -52,9 +54,8 @@ function Info() {
                 <div className="container" style={{ position: 'relative', zIndex: 1 }}>
                     <div className="row justify-content-center mb-5">
                         <div className="col-lg-10">
-                            <h2 className="display-6 fw-bold mb-3" style={{ lineHeight: '1.4' }}>
-                                문서의 가치를 증명하는 기술로,<br />
-                                고객사의 내일을 바꿀 결정적 차이를 만듭니다.
+                            <h2 className="display-6 fw-bold mb-3" style={{ lineHeight: '1.4', whiteSpace: 'pre-line' }}>
+                                {t('info.main_title')}
                             </h2>
                         </div>
                     </div>
@@ -62,12 +63,12 @@ function Info() {
                     <div className="row justify-content-center g-4">
                         <div className="col-md-4 d-flex justify-content-center">
                             <div style={{ width: '200px' }} className="text-start">
-                                <CounterDisplay text="설립 연도" endCount={2020} showPlusSign={false} inView={inView} unit="" />
+                                <CounterDisplay text={t('info.founding_year')} endCount={2020} showPlusSign={false} inView={inView} unit="" />
                             </div>
                         </div>
                         <div className="col-md-4 d-flex justify-content-center">
                             <div style={{ width: '200px' }} className="text-start">
-                                <CounterDisplay text="납품 업체" endCount={50} inView={inView} unit="" />
+                                <CounterDisplay text={t('info.delivery_companies')} endCount={50} inView={inView} unit="" />
                             </div>
                         </div>
                     </div>
@@ -75,7 +76,7 @@ function Info() {
                     <div className="row justify-content-center g-4 mt-2">
                         <div className="col-md-4 d-flex justify-content-center">
                             <div style={{ width: '200px' }} className="text-start">
-                                <CounterDisplay text="성장률" endCount={325} showPlusSign={false} inView={inView} unit="%" />
+                                <CounterDisplay text={t('info.growth_rate')} endCount={325} showPlusSign={false} inView={inView} unit="%" />
                             </div>
                         </div>
                         <div className="col-md-4 d-flex justify-content-center">

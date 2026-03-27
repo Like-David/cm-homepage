@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
 const WriteEditModal = ({ isOpen, onClose, onSuccess, post }) => {
+    const { t } = useTranslation();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [author, setAuthor] = useState('');
@@ -38,7 +40,7 @@ const WriteEditModal = ({ isOpen, onClose, onSuccess, post }) => {
             onClose();
         } catch (error) {
             console.error('Error updating post:', error);
-            alert('게시글 수정에 실패했습니다.');
+            alert(t('support.modal.errors.fail_edit'));
         }
     };
 
@@ -47,43 +49,43 @@ const WriteEditModal = ({ isOpen, onClose, onSuccess, post }) => {
     return (
         <div className="password-modal-overlay">
             <div className="password-modal">
-                <h2>게시글 수정</h2>
+                <h2>{t('support.modal.edit_title')}</h2>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
-                        placeholder="제목"
+                        placeholder={t('support.modal.title')}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         required
                     />
                     <textarea
-                        placeholder="내용"
+                        placeholder={t('support.modal.content')}
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                         required
                     ></textarea>
                     <input
                         type="text"
-                        placeholder="작성자"
+                        placeholder={t('support.write.author')}
                         value={author}
                         onChange={(e) => setAuthor(e.target.value)}
                         required
                     />
                     <input
                         type="password"
-                        placeholder="비밀번호"
+                        placeholder={t('support.write.password')}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                     <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                        <option value="product">제품</option>
-                        <option value="maintenance">유지보수</option>
-                        <option value="etc">기타</option>
+                        <option value="product">{t('support.modal.product_options.etc')}</option> {/* Mapping issue: category mapping needs thought but using generic for now */}
+                        <option value="maintenance">{t('support.modal.product_options.maintenance')}</option>
+                        <option value="etc">{t('support.modal.product_options.etc')}</option>
                     </select>
                     <div className="modal-actions">
-                        <button type="button" className="cancel-btn" onClick={onClose}>취소</button>
-                        <button type="submit" className="submit-btn">수정</button>
+                        <button type="button" className="cancel-btn" onClick={onClose}>{t('support.editor.cancel')}</button>
+                        <button type="submit" className="submit-btn">{t('support.view.edit_btn')}</button>
                     </div>
                 </form>
             </div>

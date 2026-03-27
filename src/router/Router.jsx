@@ -11,6 +11,8 @@ import FaqPage from '@/pages/FaqPage';
 import OneOnOneInquiryPage from '@/pages/OneOnOneInquiryPage';
 import SupportViewPage from '@/pages/SupportViewPage';
 import SupportEditPage from '@/pages/SupportEditPage';
+import PrivacyPage from '@/pages/PrivacyPage';
+import TermsPage from '@/pages/TermsPage';
 
 function Router() {
     return (
@@ -26,6 +28,8 @@ function Router() {
                 <Route path="/support/inquiry" element={<OneOnOneInquiryPage />} />
                 <Route path="/support/:id" element={<SupportViewPage />} />
                 <Route path="/support/:id/edit" element={<SupportEditPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
+                <Route path="/terms" element={<TermsPage />} />
             </Route>
         </Routes>
     );

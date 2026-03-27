@@ -1,0 +1,489 @@
+{
+  "menu": {
+    "about": "About",
+    "business": "Business",
+    "solutions": "Solution",
+    "support": "Support",
+    "company_intro": "About Us",
+    "value_system": "Value System",
+    "history": "History",
+    "ceo_message": "CEO Message",
+    "financial": "Tier 1 Financial Institutions",
+    "public": "Public & Educational Institutions",
+    "educational": "Tier 2 Financial Institutions",
+    "report_express": "ReportExpress Enterprise",
+    "rx_cert": "RX-Cert",
+    "rx_loan": "RX Loan",
+    "contact_us": "CONTACT US",
+    "faq": "FAQ",
+    "one_on_one": "1:1 Inquiry",
+    "close_menu": "Close menu",
+    "open_menu": "Open menu"
+  },
+  "info": {
+    "main_title": "With technology that proves the value of documents,\nwe make a decisive difference that will change the tomorrow of our clients.",
+    "founding_year": "Founding Year",
+    "delivery_companies": "Delivery Companies",
+    "growth_rate": "Growth Rate",
+    "index_overlay_1": "On the essence of digital,",
+    "index_overlay_2": "Building the tomorrow of the untact industry.",
+    "count_billion": "B",
+    "count_million": "M",
+    "as_of": "As of"
+  },
+  "solutions": {
+    "title": "Solutions",
+    "description": "We provide document generation, anti-forgery and alteration prevention, and document storage functions.",
+    "web_reporting_name": "Electronic Document (Web Reporting) Solution",
+    "web_reporting_use": "Building an electronic document (web reporting) system",
+    "cert_name": "Certificate Anti-Forgery & Alteration Prevention Solution",
+    "cert_use": "Building a certificate anti-forgery & alteration prevention system",
+    "loan_name": "Loan Agreement Solution",
+    "loan_use": "Building an electronic contract system within loan agreements",
+    "overview": "Overview",
+    "key_features": "Key Features",
+    "strengths": "Strengths",
+    "workflow": "Workflow",
+    "test_demo": "Try Demo",
+    "cta_title": "Considering Solution Implementation?",
+    "cta_subtitle": "Test it out through our solution demo.",
+    "intro_1": "Innovate business efficiency and reliability with advanced IT technology in electronic documents, security, and agreement management.",
+    "intro_2": "Strengthen your business competitiveness with an integrated solution portfolio optimized for the digital transformation era.",
+    "feature_types": {
+      "tech": "Technology",
+      "reliability": "Reliability",
+      "efficiency": "Efficiency",
+      "scalability": "Scalability"
+    },
+    "report_express": {
+      "title": "Electronic Document (Web Reporting) Solution",
+      "subtitle": "ReportExpress Enterprise",
+      "oneLiner": "Non-ActiveX based All-in-One integrated electronic document system that handles document generation, inquiry, conversion, and storage at once.",
+      "overview": "ReportExpress Enterprise is the optimal web reporting solution for integrated management of all electronic document tasks within a company in a web environment. Based on **HTML5 web standard technology**, it supports the entire process from document generation to electronic signature and secure storage, and strictly complies with international **PDF standards**. We guarantee optimal customization and flexible scalability for various business environments such as public & educational institutions and Tier 1 financial institutions.",
+      "features": [
+        { "type": "tech", "text": "Provides an intuitive form development environment using dedicated form tools" },
+        { "type": "reliability", "text": "Ensures document authenticity with PKI electronic signature and timestamp authentication functions" },
+        { "type": "efficiency", "text": "Supports PDF electronic document generation and long-term storage systems" },
+        { "type": "tech", "text": "Provides image conversion function and high-performance dedicated viewer" },
+        { "type": "scalability", "text": "Non-ActiveX / No Plugin based web standard architecture" },
+        { "type": "scalability", "text": "Guarantees perfect accessibility with multi-platform (OS/browser) support" }
+      ],
+      "strengths": "As a true web standard solution that operates without separate installation in all environments, it provides excellent **technology** and **scalability**. It maximizes document **reliability** by embedding electronic signature value insertion and certificate verification functions for non-repudiation. It automates the **efficiency** of document distribution and management through perfect integration with other systems such as EDMS.",
+      "catchyPhrase": "💡 Elevate your business efficiency and reliability with a web standard-based integrated electronic document system."
+    },
+    "rx_cert": {
+      "title": "Certificate Forgery Prevention Solution",
+      "subtitle": "RX-Cert",
+      "oneLiner": "Powerful anti-forgery electronic certificate solution that ensures document authenticity through encrypted barcodes and QR codes.",
+      "overview": "RX-Cert is a state-of-the-art **security document solution** that can perfectly verify the authenticity of important documents such as various certificates, licenses, and contracts. It fundamentally blocks forgery/falsification attempts by applying 2D high-density barcodes, QR codes, and **PKI electronic signature technology**. By providing the entire process from document issuance to inquiry and verification as a real-time online service, it ensures business **reliability** and **efficiency**.",
+      "features": [
+        { "type": "reliability", "text": "Strong encryption of document information through 2D high-density barcode technology" },
+        { "type": "efficiency", "text": "Provides immediate and simple original confirmation service using QR codes" },
+        { "type": "reliability", "text": "Enhances document security with PKI electronic signature and watermark insertion" },
+        { "type": "tech", "text": "Provides output control and security-only EXE modules" },
+        { "type": "efficiency", "text": "Quick authenticity verification possible anytime, anywhere through a mobile app" },
+        { "type": "scalability", "text": "HTML5-based no-installation service maximizes user accessibility" }
+      ],
+      "strengths": "Document **reliability** and universal **scalability** are ensured as timestamp and signature verification are possible even in general PDF viewers. It possesses the **technology** to perfectly block document forgery/falsification with strong security technology based on the **DES encryption algorithm**. It boasts **scalability** that can be flexibly applied to various issuance environments by supporting digital kiosks and web API integration.",
+      "catchyPhrase": "💡 Innovate the security level of your core documents with a certificate forgery prevention solution applied with high-level encryption technology."
+    },
+    "rx_loan": {
+      "title": "Loan Agreement Solution",
+      "subtitle": "RX Loan",
+      "oneLiner": "Efficient electronic agreement platform that perfectly supports HWP UI and integrates loan agreement tasks.",
+      "overview": "RX Loan is an **integrated electronic agreement system** that innovatively improves the loan agreement process, a core business of the financial sector. We have perfectly implemented the familiar **HWP document environment** for users in a web environment. It is a platform that maximizes work **efficiency** with an intuitive interface that can process the entire process from agreement preparation to output and report generation on one screen. It is optimized for various agreement and document tasks of Tier 1 financial institutions, insurance companies, and public & educational institutions.",
+      "features": [
+        { "type": "efficiency", "text": "Provides a seamless work environment with Web HWP UI support" },
+        { "type": "tech", "text": "Supports automatic page splitting and complex document merging functions" },
+        { "type": "reliability", "text": "Integrates DB-linked output and electronic signature function for non-repudiation" },
+        { "type": "efficiency", "text": "PDF/Excel format report download and automatic generation function" },
+        { "type": "tech", "text": "Enables dynamic document implementation by supporting various charts and scripts" },
+        { "type": "scalability", "text": "HTML5-based, no-installation required architecture" }
+      ],
+      "strengths": "It innovates work processing **efficiency** by enabling fast document creation and review with a user-friendly interface. It possesses the **technology** to minimize human error by automatically generating agreement documents based on input data and enabling report output. By integrating document editing, approval, and management functions in a HWP-compatible environment, it increased system **scalability** and user convenience.",
+      "catchyPhrase": "Application Cases\n* Tier 1 Financial Institutions: Next-generation loan agreement automation system\n* Insurance Companies: Electronic contract management integrated platform\n* Public & Educational Institutions: Integrated approval document and report output system"
+    },
+    "modal": {
+      "title": "Test Demo",
+      "name": "Name",
+      "name_placeholder": "Please enter your name",
+      "name_invalid": "Name can only be entered in characters with two or more characters.",
+      "email": "Email",
+      "email_placeholder": "Please enter your email",
+      "email_invalid": "Please enter a valid email address.",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "age_group": "Age Group",
+      "age_placeholder": "Select",
+      "age_10s": "10s",
+      "age_20s": "20s",
+      "age_30s": "30s",
+      "age_40s": "40s",
+      "age_50s": "50s",
+      "age_60s_plus": "60s or older",
+      "age_invalid": "Please select your age group.",
+      "solution_select": "Select Solution",
+      "solution_placeholder": "Select a solution to test",
+      "solution_options": {
+        "report_express": "ReportExpress Enterprise",
+        "rx_cert": "RX-Cert (Certificate Forgery Prevention)",
+        "rx_loan": "RX-Loan (Loan Agreement)"
+      },
+      "solution_invalid": "Please select a solution.",
+      "confirm": "Confirm"
+    }
+  },
+  "faq": {
+    "banner_title": "Customer Support",
+    "banner_subtitle": "Please feel free to contact us if you have any questions.",
+    "section_title": "Frequently Asked Questions",
+    "section_subtitle": "We have collected questions that customers frequently ask.",
+    "q1": {
+      "question": "What is the procedure for product introduction?",
+      "answer": "Please contact us through the inquiry form on our website or call our main number, and a professional consultant will provide detailed guidance on the introduction procedure."
+    },
+    "q2": {
+      "question": "I would like to request a product demo.",
+      "answer": "Demo requests can be made online or by phone. After confirmation, our representative will provide a demo demonstration in person or remotely."
+    },
+    "q3": {
+      "question": "How can I receive technical support?",
+      "answer": "We operate a technical support portal and hotline for customers who have signed a maintenance contract. Details will be provided at the time of contract."
+    },
+    "q4": {
+      "question": "Question about licensing.",
+      "answer": "License policies vary by product, so please contact our sales team for detailed information."
+    },
+    "q5": {
+      "question": "An error occurs during installation.",
+      "answer": "Please refer to the installation guide or contact our technical support team, and we will resolve it quickly."
+    }
+  },
+  "contact": {
+    "banner_title": "Customer Support",
+    "banner_subtitle": "Please feel free to contact us if you have any questions.",
+    "section_title": "1:1 Inquiry",
+    "section_subtitle": "Please choose one of the following methods according to the type of inquiry.",
+    "channel": "Inquiry Channel",
+    "phone_inquiry_title": "Inquiry by Main Number",
+    "call_btn": "Call",
+    "copy_btn": "Copy Number",
+    "phone_inquiry_desc": "After consulting with a representative via phone, we will guide you on how to connect if remote support is needed.",
+    "remote_inquiry_title": "Remote Support Access",
+    "remote_btn": "Go to Remote Support Page",
+    "remote_inquiry_desc_1": "This page is ",
+    "remote_inquiry_desc_2": "exclusively for remote support",
+    "remote_inquiry_desc_3": ".",
+    "remote_inquiry_desc_4": "Please connect only if you have a ",
+    "remote_inquiry_desc_5": "6-digit authentication number",
+    "remote_inquiry_desc_6": " provided by the representative.",
+    "phone_copy_success": "Main number copied.",
+    "phone_copy_fail": "Copy failed. Please copy manually: "
+  },
+  "support": {
+    "banner_title": "Customer Support",
+    "banner_subtitle": "Please feel free to contact us if you have any questions.",
+    "board_title": "Inquiries",
+    "search_placeholder": "Enter search keyword",
+    "search_btn": "Search",
+    "write_btn": "Inquire",
+    "table": {
+      "title": "Title",
+      "author": "Author",
+      "views": "Views",
+      "date": "Date",
+      "anonymous": "Anonymous"
+    },
+    "password_modal": {
+      "title": "Password Verification",
+      "subtitle": "Please enter your password.",
+      "placeholder": "Please enter your password.",
+      "error": "Password does not match.",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    },
+    "editor": {
+      "editing": "Editing",
+      "title": "Title",
+      "content": "Content",
+      "title_placeholder": "Enter title",
+      "content_placeholder": "Enter content",
+      "save": "Save",
+      "cancel": "Cancel",
+      "preview": "Preview",
+      "success_edit": "Successfully edited.",
+      "fail_edit": "Failed to edit.",
+      "success_delete": "Successfully deleted.",
+      "fail_delete": "Failed to delete (check permission/password)",
+      "confirm_delete": "Are you sure you want to delete?"
+    },
+    "view": {
+      "list_btn": "List",
+      "edit_btn": "Edit",
+      "delete_btn": "Delete"
+    },
+    "write": {
+      "banner_title": "Online Inquiry",
+      "banner_subtitle": "We will respond quickly to your inquiries.",
+      "author": "Author",
+      "password": "Password",
+      "title": "Title",
+      "content": "Inquiry Content",
+      "privacy_policy": "Privacy Policy",
+      "consent": "I agree to the collection and use of personal information.",
+      "consent_error": "You must agree to the collection and use of personal information.",
+      "success": "Your inquiry has been successfully received.",
+      "fail": "An error occurred while receiving the inquiry."
+    },
+    "index": {
+      "service_center_main": "We are responding quickly to customer complaints\nby operating a customer service center.",
+      "service_center_btn": "Go to Service Center"
+    },
+    "modal": {
+      "write_title": "Inquiry",
+      "edit_title": "Edit Post",
+      "write_subtitle": "Please leave your inquiries regarding product/maintenance/introduction. We will respond quickly.",
+      "product_select": "Select Product",
+      "product_placeholder": "Select a product",
+      "product_options": {
+        "report_express": "ReportExpress Enterprise",
+        "rx_cert": "RX-Cert (Forgery Prevention)",
+        "rx_loan": "RX-Loan (Loan Agreement)",
+        "etc": "Other/Collaboration",
+        "maintenance": "Maintenance"
+      },
+      "company": "Company Name",
+      "company_placeholder": "e.g., CM Innovation",
+      "email": "Email",
+      "email_id": "ID",
+      "email_domain": "Select Domain",
+      "phone": "Phone Number",
+      "phone_placeholder": "010-1234-5678",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "password_placeholder": "8-20 characters, mix 2+ types",
+      "password_rule": "Must be 8-20 characters and include at least one of each: upper/lowercase letters, numbers, and special characters.",
+      "password_mismatch": "Passwords do not match.",
+      "title": "Title",
+      "title_placeholder": "Enter inquiry title",
+      "content": "Content",
+      "content_placeholder": "Please describe your inquiry in detail.",
+      "agree": "I have checked the privacy policy and agree to the collection and use.",
+      "privacy_policy": {
+        "title": "Privacy Policy",
+        "summary": "CM Innovation Co., Ltd. (hereinafter referred to as the 'Company') establishes and discloses the following privacy policy in accordance with Article 30 of the 'Personal Information Protection Act' to protect the personal information of customers and guarantee the rights and interests of information subjects.",
+        "section1_title": "1. Purpose of Processing Personal Information",
+        "section1_content": "The company processes personal information for the following purposes. Processed personal information will not be used for purposes other than the following.\n* Responding to customer inquiries and technical support services\n* Requesting contracts and quotes, maintenance management\n* Processing tasks related to solutions such as electronic documents, certificates, and reports\n* Providing website services and member management",
+        "section2_title": "2. Items of Personal Information Processed",
+        "section2_content": "The company may process the following personal information items for service use.\n* Required items: Name, company name, position, email, contact information\n* Optional items: Service use records, access logs, cookies, IP addresses, etc.",
+        "section3_title": "3. Retention and Use Period of Personal Information",
+        "section3_content": "The company destroys the personal information without delay after the purpose of collection and use of personal information is achieved. However, if retention is required according to related laws, it will be retained as follows.\n* Records related to contracts and transactions: 5 years (Electronic Commerce Act, etc.)\n* Records related to service use: 3 years (Protection of Communications Secrets Act, etc.)",
+        "section4_title": "4. Provision of Personal Information to Third Parties",
+        "section4_content": "In principle, the company does not provide user's personal information to outside parties. However, exceptions are made if there is prior consent from the information subject or if there are special provisions in the law.",
+        "section9_title": "9. Personal Information Protection Officer",
+        "section9_content": "Personal Information Protection Officer: Executive Director Yoo Ji-hoon\nPhone: 02-6949-4170\nEmail: support@cminnovation.co.kr"
+      },
+      "errors": {
+        "product": "Please select a product.",
+        "company": "Please enter the company name.",
+        "email": "Please enter your email.",
+        "email_invalid": "Invalid email format.",
+        "phone": "Please enter your phone number.",
+        "phone_invalid": "Please enter your phone number (10-11 digits) correctly.",
+        "password": "Please enter a password.",
+        "password_confirm": "Please enter the password confirmation.",
+        "title": "Please enter a title.",
+        "content": "Please enter the content.",
+        "agree": "You must agree to the collection and use of personal information.",
+        "fail_submit": "Failed to submit post.",
+        "fail_edit": "Failed to edit post."
+      }
+    }
+  },
+  "business": {
+    "title": "Our Partners",
+    "subtitle": "Introducing the valuable partners working with CM Innovation.",
+    "partners_subtext": "We provide optimized solutions for each field.",
+    "financial": "Tier 1 Financial Institutions",
+    "public": "Public & Educational Institutions",
+    "educational": "Tier 2 Financial Institutions"
+  },
+  "footer": {
+    "company_name": "CM Innovation Co., Ltd.",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service",
+    "ceo": "CEO",
+    "ceo_name": "Kwon Jung-hoon",
+    "address_label": "Address",
+    "address": "Room 310, 272 Digital-ro, Guro-gu, Seoul (Hanshin IT Tower)",
+    "biz_reg_no": "Business Registration Number",
+    "tel": "Main Phone",
+    "tech_support": "Tech Support",
+    "fax": "Fax",
+    "scroll_to_top": "Scroll to Top"
+  },
+  "policy": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "CM Innovation Co., Ltd. (hereinafter referred to as the 'Company') establishes and discloses the following privacy policy in accordance with Article 30 of the 'Personal Information Protection Act' to protect the personal information of customers and guarantee the rights and interests of information subjects.",
+      "section1_title": "1. Purpose of Processing Personal Information",
+      "section1_content": "The company processes personal information for the following purposes. Processed personal information will not be used for purposes other than the following:\n- Confirmation of customer's intention to join, identification and authentication for service provision, member qualification management, payment for goods or services, delivery of goods or services, etc.",
+      "section2_title": "2. Retention and Use Period of Personal Information",
+      "section2_content1": "① The company processes and retains personal information within the retention and use period agreed upon when collecting personal information from the information subject or within the period prescribed by law.",
+      "section2_content2": "② The specific retention and use periods are as follows:",
+      "section2_item1": "Customer registration and management: Until the termination of the service contract or membership; however, if any debt/credit relationship remains, until the settlement of such relationship.",
+      "section2_item2": "Records on contract/subscription withdrawal, payment, and supply of goods in electronic commerce: 5 years.",
+      "section3_title": "3. Provision of Personal Information to Third Parties",
+      "section3_content": "The company does not provide personal information to third parties unless it falls under Article 17 of the Personal Information Protection Act, such as the separate consent of the information subject or special provisions of the law.",
+      "section4_title": "4. Consignment of Personal Information Processing",
+      "section4_content1": "① The company entrusts personal information processing tasks to external parties for smooth task performance.",
+      "section4_content2": "② When concluding a consignment contract, the company clearly stipulates matters such as prohibition of processing beyond purpose, restrictions on re-consignment, management and supervision of the consignee, and responsibilities in accordance with Article 25 of the Personal Information Protection Act.",
+      "section5_title": "5. Rights and Obligations of Information Subjects",
+      "section5_content": "Information subjects can exercise their rights related to personal information protection at any time.",
+      "section5_item1": "1. Request for inspection of personal information",
+      "section5_item2": "2. Request for correction in case of errors",
+      "section5_item3": "3. Request for deletion",
+      "section5_item4": "4. Request for suspension of processing",
+      "section6_title": "6. Items of Personal Information Processed",
+      "section6_content": "The company processes the following personal information items:",
+      "section6_item1": "Name, date of birth, address, phone number, mobile number, gender, email address.",
+      "section7_title": "7. Destruction of Personal Information",
+      "section7_content1": "① The company destroys personal information without delay when it becomes unnecessary, such as the expiration of the retention period or achievement of the processing purpose.",
+      "section7_content2": "② The company destroys personal information using the following methods:",
+      "section7_item1": "Electronic files: Deleting files and formatting storage media such as disks.",
+      "section7_item2": "Hard copies: Shredding or incineration.",
+      "section8_title": "8. Measures to Ensure the Safety of Personal Information",
+      "section8_content": "The company is taking the following measures to ensure safety:",
+      "section8_item1": "Administrative measures: Establishment and implementation of internal management plans, regular education for employees, etc.",
+      "section8_item2": "Technical measures: Management of access rights such as password settings for processing systems, installation of security programs, and encryption of files.",
+      "section8_item3": "Physical measures: Locking of storage locations, access control, etc.",
+      "section9_title": "9. Personal Information Protection Officer",
+      "section9_content": "The company has designated a Personal Information Protection Officer to take overall responsibility for personal information processing and handle complaints and damage relief.",
+      "section9_label": "Personal Information Protection Officer (Owner or Representative)",
+      "section9_name": "Name: CM Innovation | Position: CEO",
+      "section9_contact": "Contact: 02-6949-4170 (Tech Support: 0505-998-0888 / Fax: 0505-477-4170)",
+      "footer": "This privacy policy is effective from Sep 30, 2011."
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "articles": {
+        "art1": {
+          "title": "Article 1 (Purpose)",
+          "content": "These terms and conditions are intended to prescribe the rights, obligations, and responsibilities of the Company and Users in using the internet-related services provided by the website (http://cminnovation.co.kr) operated by CM Innovation Co., Ltd. (hereinafter referred to as the 'Company')."
+        },
+        "art2": {
+          "title": "Article 2 (Definition of Terms)",
+          "content": "1. 'Site' refers to a virtual business place established by the Company to provide goods or services to users using information and communication facilities such as computers.\n2. 'User' refers to members and non-members who access the 'Site' and receive services provided by the 'Site' in accordance with these terms.\n3. 'Member' refers to a person who has registered as a member on the 'Site' and can continuously use the services.\n4. 'Non-member' refers to a person who uses the services provided by the 'Site' without registering."
+        },
+        "art3": {
+          "title": "Article 3 (Specification, Explanation and Revision of Terms)",
+          "content": "1. The 'Site' shall post the contents of these terms, company name, representative name, business address, phone number, and business registration number on the initial service screen.\n2. The 'Site' must provide a separate connection screen so that users can understand important contents such as cancellation of subscription and refund conditions before agreeing to the terms.\n3. The 'Site' may revise these terms to the extent that it does not violate relevant laws such as the 'Act on the Consumer Protection in Electronic Commerce'."
+        },
+        "art4": {
+          "title": "Article 4 (Provision and Change of Service)",
+          "content": "1. The 'Site' performs the following tasks:\n A. Providing information on goods or services and concluding purchase contracts\n B. Delivery of goods or services for which a purchase contract has been concluded\n C. Other tasks determined by the 'Site'\n2. In the event of goods being out of stock or changes in technical specifications, the 'Site' may change the contents of the goods or services to be provided by future contracts."
+        },
+        "art5": {
+          "title": "Article 5 (Suspension of Service)",
+          "content": "1. The 'Site' may temporarily suspend the provision of services in the event of maintenance, replacement, or breakdown of information and communication facilities.\n2. The 'Site' shall compensate for damages suffered by users or third parties due to the temporary suspension of service unless the 'Site' proves that there is no intentionality or negligence."
+        },
+        "art6": {
+          "title": "Article 6 (Membership)",
+          "content": "1. The user applies for membership by filling in the member information according to the form set by the 'Site' and expressing consent to these terms.\n2. The 'Site' shall register the user as a member unless there is a disqualification reason among those who have applied for membership."
+        },
+        "art7": {
+          "title": "Article 7 (Withdrawal and Disqualification of Membership)",
+          "content": "1. Members may request withdrawal from the 'Site' at any time, and the 'Site' will process it immediately.\n2. If a member registers false information or fails to pay debts related to the use of the 'Site', the 'Site' may limit or suspend membership."
+        },
+        "art17": {
+          "title": "Article 17 (Privacy Protection)",
+          "content": "1. The 'Site' collects the minimum amount of personal information necessary to provide services when collecting personal information of users.\n2. The 'Site' does not collect information necessary for the execution of purchase contracts in advance when registering for membership."
+        },
+        "art25": {
+          "title": "Article 25 (Jurisdiction and Governing Law)",
+          "content": "1. Lawsuits regarding electronic commerce disputes between the 'Site' and users shall be brought to the competent court under the Civil Procedure Act.\n2. Lawsuits filed between the 'Site' and users shall be governed by the laws of the Republic of Korea."
+        }
+      },
+      "appendix": {
+        "title": "Addendum",
+        "content": "1. (Enforcement Date) These terms and conditions are effective from December 1, 2017."
+      }
+    }
+  },
+  "about": {
+    "introduce": {
+      "overlay_text": "We are doing our best to strengthen our customers' competitiveness\nthrough counter paperless solutions.",
+      "main_text": "\"Our goal is to increase work efficiency\nand reduce costs in the electronic document field.\"",
+      "sub_text_1": "Since its establishment in 2013, CM Innovation has focused on the development and supply of paperless solutions and reporting tool solutions.",
+      "sub_text_2": "Based on the technology and know-how accumulated through various financial project experiences, we are highly evaluated by providing solutions optimized for the customer's business environment.",
+      "sub_text_3": "In addition, we are moving forward as a technology leader through innovation and continuous R&D in the electronic document field."
+    },
+    "value": {
+      "efficiency_title": "Increase Work Efficiency",
+      "efficiency_desc": "Our innovative paperless solution removes unnecessary manual work and automates all processes, providing an environment where employees can focus on core tasks.",
+      "cost_title": "Cost Reduction",
+      "cost_desc": "Directly contribute to the increase in corporate profits by dramatically reducing all incidental costs arising from traditional document management methods such as paper, printing, storage, and distribution."
+    },
+    "ceo": {
+      "greeting": "How do you do?\nWe would like to express our gratitude to everyone who visited our website, and we wish you health and happiness always.",
+      "company_name": "CM Innovation Co., Ltd.",
+      "company_name_suffix": "is",
+      "p1": "With work efficiency and customer convenience as the top priority, we are an IT startup established to lead growth and development under the themes of building trust, forming change, and accelerating growth, which are key tasks in IT technology in the era of the 4th Industrial Revolution.",
+      "p2": "We will continue to strive to become a company that leads IT trends by actively responding to the rapidly changing IT paradigm based on financial and corporate work architecture and security technology, and leaping forward with continuous IT technology innovation in the era of digital transformation triggered by the expansion of the digital economy.",
+      "p3": "We will reward our customers by becoming a happy and reliable partner with our heart to do our best for their business and innovative technological know-how.\nThank you."
+    },
+    "history": {
+      "view_timeline": "View Timeline",
+      "view_card": "View Card",
+      "month": "",
+      "ongoing": "Evolving to possess more professional technology development capabilities!!",
+      "won": "Won Project",
+      "won_planned": "To be won",
+      "items": {
+        "2024_09_1": "Patent application for \"System for transaction contract by online self-signature without paper or seal by applying non-repudiation technology through electronic signature\"",
+        "2023_09_1": "Signed the 2023 Startup Growth Technology Development Project Stepping Stone Agreement",
+        "2022_1": "Won the Woongji Tax College Web Reporting Non-Active-X conversion project",
+        "2022_2": "Won the BNK Busan Bank branch balance certificate issuance process improvement project",
+        "2022_3": "Expected to win the DGB Daegu Bank certificate development project in May",
+        "2022_4": "Expected to win the Jeonbuk Bank mortgage loan agreement enhancement project in May",
+        "2022_05_1": "Conducted the 2nd in-house workshop on the 27th-28th",
+        "2022_6": "Evolving to possess more professional technology development capabilities!!",
+        "2021_1": "Won the Korea Petroleum Quality & Distribution Authority electronic certificate issuance service project",
+        "2021_02_1": "Established corporate research institute on the 09th",
+        "2021_2": "Won OK Financial Group P2P service construction",
+        "2021_3": "Won Jeonbuk Bank Financial Consumer Protection Act response related project (15-month project until March 2022)",
+        "2021_4": "Won Jeonbuk Bank mobile banking enhancement project (12-month project until January 2022)",
+        "2021_5": "Won NH Nonghyup Kokfarm, Kokbank, Allone Bank new service electronic document solution introduction and development",
+        "2021_6": "Won Woori Bank corporate banking Capsoft product enhancement project",
+        "2021_7": "Won BNK Kyongnam Bank Capsoft electronic document solution app viewer enhancement project",
+        "2021_8": "Won Sejong Cyber University Capsoft Non-ActiveX product replacement project",
+        "2021_9": "Won Korea Workers' Compensation & Welfare Service solution new introduction project",
+        "2021_10": "Won BNK Busan Bank loan agreement (BPR) service expansion project",
+        "2021_04_1": "Resignation of CEO Kim Joon-shik and inauguration of Kwon Jung-hoon on the 02nd",
+        "2021_11": "Won Korea Petroleum Quality & Distribution Authority electronic certificate issuance service project",
+        "2021_12": "Won OK Financial Group P2P service construction",
+        "2021_13": "Won Jeonbuk Bank solution enhancement project",
+        "2021_14": "Won Jeonbuk Bank PDF viewer production",
+        "2021_15": "Won BNK Busan Bank electronic wallet service construction project",
+        "2021_16": "Won NH Nonghyup Card electronic certificate introduction project",
+        "2021_17": "Won Hanwha Life insurance sales support system electronic certificate issuance introduction project",
+        "2021_18": "Won NH Nonghyup Allone Bank loan agreement process enhancement project",
+        "2021_09_1": "Acquired venture company certification (innovation growth type) on the 15th",
+        "2021_19": "Won Jeonbuk Bank smart banking enhancement project",
+        "2021_20": "Won Lina Life new product development project",
+        "2021_10_1": "Conducted the 1st in-house workshop on the 22nd-23rd",
+        "2021_21": "Won OK Savings Bank loan agreement next-generation project",
+        "2020_07_1": "Company establishment on the 20th (jointly invested by Kim Joon-shik, Kwon Jung-hoon, Yoo Ji-hoon)",
+        "2020_07_2": "Completed transfer contract for 71 existing Capsoft solution maintenance sites on the 30th (transferred maintenance contracts from various Tier 1 and Tier 2 financial institutions like Nonghyup, Woori Bank, IBK, and government/Public & Educational Institutions like MFDS, Seoul Etax)",
+        "2020_08_1": "Signed agreement with KFTC for activation and mutual cooperation of financial authentication services on the 10th",
+        "2020_1": "Won NH Nonghyup Kokfarm, Kokbank, Allone Bank new service electronic document solution introduction and development",
+        "2020_2": "Won Woori Bank corporate banking Capsoft product enhancement project",
+        "2020_3": "Won BNK Kyongnam Bank Capsoft electronic document solution app viewer enhancement project",
+        "2020_4": "Won Sejong Cyber University Capsoft Non-ActiveX product replacement project",
+        "2020_5": "Won Korea Workers' Compensation & Welfare Service solution new introduction project",
+        "2020_6": "Won BNK Busan Bank loan agreement (BPR) service expansion project"
+      }
+    }
+  }
+}

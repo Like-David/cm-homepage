@@ -56,30 +56,47 @@
 .introduce-content-section {
     background-color: #000000;
     color: #FFFFFF;
-    padding: 300px 0;
+    padding: 200px 0; /* Reduced from 300px */
     text-align: center;
 }
 
 .main-text-introduce {
-    font-size: 42px;
+    font-size: clamp(28px, 4vw, 42px);
     font-weight: bold;
     max-width: 800px;
-    margin: auto auto 6rem auto;
+    margin: 0 auto 4rem auto;
     text-align: left;
+    padding: 0 20px;
 }
 
 .sub-text-introduce {
-    font-size: 18px;
+    font-size: clamp(15px, 2vw, 18px);
     line-height: 1.8;
     max-width: 800px;
     margin: 0 auto;
     text-align: left;
+    padding: 0 20px;
 }
 
 /* CEO Section */
 .ceo-section {
-    padding: 80px 0;
+    padding: 80px 20px;
     background-color: black; /* A light grey background */
+}
+
+@media (max-width: 768px) {
+    .introduce-content-section {
+        padding: 100px 0;
+    }
+    
+    .main-text-introduce {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    
+    .sub-text-introduce {
+        text-align: center;
+    }
 }
 
 .ceo-grid {

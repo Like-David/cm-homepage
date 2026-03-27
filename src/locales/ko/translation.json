@@ -123,6 +123,14 @@
       "age_50s": "50대",
       "age_60s_plus": "60대 이상",
       "age_invalid": "나이대를 선택해주세요.",
+      "solution_select": "솔루션 선택",
+      "solution_placeholder": "테스트할 솔루션을 선택하세요",
+      "solution_options": {
+        "report_express": "ReportExpress Enterprise",
+        "rx_cert": "RX-Cert (증명서·위변조방지)",
+        "rx_loan": "RX-Loan (여신약정)"
+      },
+      "solution_invalid": "솔루션을 선택해주세요.",
       "confirm": "확인"
     }
   },

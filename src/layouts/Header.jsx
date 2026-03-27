@@ -92,7 +92,7 @@ function Header() {
                 <Link to="/"><img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt={t('footer.company_name')} /></Link>
             </h1>
 
-            <div className="language-selector">
+            <div className={`language-selector ${isGnbOpen ? 'mobile-visible' : ''}`}>
                 <span className={currentLang === 'ko' ? 'active' : ''} onClick={() => changeLanguage('ko')}>KOR</span>
                 <span className="divider">|</span>
                 <span className={currentLang === 'en' ? 'active' : ''} onClick={() => changeLanguage('en')}>ENG</span>

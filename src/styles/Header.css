@@ -365,12 +365,23 @@ html {
 
 @media (max-width: 1024px) {
     .language-selector {
+        display: none; /* Hide on mobile by default */
         top: auto;
-        bottom: 30px;
+        bottom: 50px;
         right: 0;
         width: 100%;
         justify-content: center;
+        background-color: #fff;
+        padding: 20px 0;
+        border-top: 1px solid #eee;
     }
+
+    .language-selector.mobile-visible {
+        display: flex; /* Show only when mobile menu is open */
+        position: fixed;
+        z-index: 1001;
+    }
+    
     .language-selector span,
     .language-selector span.active {
         color: #333;

@@ -12,6 +12,7 @@ function SolutionModal(props) {
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [age, setAge] = useState('');
+  const [solution, setSolution] = useState('ReportExpress Enterprise');
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {
@@ -20,6 +21,7 @@ function SolutionModal(props) {
       setEmail('');
       setGender('');
       setAge('');
+      setSolution('ReportExpress Enterprise');
       setValidated(false);
     }
   }, [props.show]);
@@ -47,11 +49,11 @@ function SolutionModal(props) {
 
     setValidated(true);
 
-    if (form.checkValidity() === false || !isValidName(name) || !isValidEmail(email) || !gender || !age) {
+    if (form.checkValidity() === false || !isValidName(name) || !isValidEmail(email) || !gender || !age || !solution) {
       return;
     }
 
-    props.onSubmit({name, email, gender, age});
+    props.onSubmit({name, email, gender, age, solution});
   };
 
 
@@ -71,6 +73,23 @@ function SolutionModal(props) {
         </Modal.Header>
         <Modal.Body>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form.Group className="m-3" controlId="formGridSolution">
+              <Form.Label>{t('solutions.modal.solution_select')}</Form.Label>
+              <Form.Select
+                  required
+                  value={solution}
+                  onChange={e => setSolution(e.target.value)}
+                  isInvalid={validated && !solution}
+              >
+                <option value="ReportExpress Enterprise">{t('solutions.modal.solution_options.report_express')}</option>
+                <option value="RX-Cert">{t('solutions.modal.solution_options.rx_cert')}</option>
+                <option value="RX-Loan">{t('solutions.modal.solution_options.rx_loan')}</option>
+              </Form.Select>
+              <Form.Control.Feedback type="invalid">
+                {t('solutions.modal.solution_invalid')}
+              </Form.Control.Feedback>
+            </Form.Group>
+
             <Form.Group className="m-3" controlId="formGridName">
               <Form.Label>{t('solutions.modal.name')}</Form.Label>
               <Form.Control

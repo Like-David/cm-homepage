@@ -123,6 +123,14 @@
       "age_50s": "50s",
       "age_60s_plus": "60s or older",
       "age_invalid": "Please select your age group.",
+      "solution_select": "Select Solution",
+      "solution_placeholder": "Select a solution to test",
+      "solution_options": {
+        "report_express": "ReportExpress Enterprise",
+        "rx_cert": "RX-Cert (Certificate Forgery Prevention)",
+        "rx_loan": "RX-Loan (Loan Agreement)"
+      },
+      "solution_invalid": "Please select a solution.",
       "confirm": "Confirm"
     }
   },

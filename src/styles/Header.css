@@ -46,6 +46,10 @@ html {
 
 .header-primary-wrap h1 {
     z-index: 1000;
+    display: flex;
+    align-items: center;
+    height: 110px;
+    margin: 0;
 }
 
 .header-primary-wrap .logo {
@@ -56,6 +60,7 @@ html {
 .header-primary-wrap .logo img {
     width: 100%;
     height: auto;
+    display: block;
 }
 
 .header-primary-wrap .gnb {
@@ -72,11 +77,13 @@ html {
 
 .nav {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
-    justify-content: center;
-    padding-left: 150px; /* Offset for logo */
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0;
+    padding-right: 50px;
     box-sizing: border-box;
 }
 
@@ -85,16 +92,25 @@ html {
    =================================== */
 .depth1 {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     list-style: none;
-    margin: 0;
+    margin: 0 0 0 220px; /* 로고와 충분한 간격 확보 */
     padding: 0;
+    flex: 0 0 auto;
 }
 
 .depth1 > li {
     position: relative;
-    padding: 0 40px;
+    padding: 0 25px;
     line-height: 110px;
+}
+
+.depth1 > li:first-child {
+    padding-left: 0;
+}
+
+.depth1 > li:last-child {
+    padding-right: 0;
 }
 
 .depth1 > li > a {
@@ -257,6 +273,7 @@ html {
     }
     .mobile-gnb-open .depth1 {
         flex-direction: column;
+        margin-left: 0; /* 모바일에서는 왼쪽 여백 제거 */
     }
     .mobile-gnb-open .depth1 > li {
         line-height: 1.5;
@@ -318,14 +335,68 @@ html {
 /* ===================================
    LANGUAGE SELECTOR
    =================================== */
+.nav-right-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: auto;
+}
+
 .language-selector {
-    position: absolute;
-    top: 20px;
-    right: 50px;
+    position: relative;
+    top: 0;
+    right: 0;
     display: flex;
     align-items: center;
     gap: 8px;
     z-index: 1001;
+}
+
+.user-menu {
+    position: relative;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1001;
+    max-width: 200px;
+}
+
+.user-menu .user-name {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-menu span {
+    font-size: 0.85rem;
+    color: #FFF;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    font-weight: 400;
+}
+
+.user-menu .user-name {
+    cursor: default;
+    font-weight: 600;
+}
+
+.user-menu .divider {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: default;
+}
+
+.user-menu .login-btn,
+.user-menu .logout-btn {
+    font-weight: 600;
+}
+
+.user-menu .login-btn:hover,
+.user-menu .logout-btn:hover {
+    opacity: 0.8;
 }
 
 .language-selector span {
@@ -363,31 +434,96 @@ html {
     color: #333;
 }
 
+.header-primary-wrap.scrolled .user-menu span,
+.header-primary-wrap:hover .user-menu span {
+    color: #666;
+}
+
+.header-primary-wrap.scrolled .user-menu .divider,
+.header-primary-wrap:hover .user-menu .divider {
+    color: #ddd;
+}
+
+.header-primary-wrap.scrolled .user-menu .user-name,
+.header-primary-wrap:hover .user-menu .user-name {
+    color: #333;
+}
+
 @media (max-width: 1024px) {
+    .nav-right-section {
+        display: none;
+    }
+
+    .mobile-gnb-open .nav-right-section {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        margin-left: 0;
+        z-index: 1001;
+        background: #fff;
+    }
+
     .language-selector {
-        display: none; /* Hide on mobile by default */
+        display: none;
         top: auto;
-        bottom: 50px;
+        bottom: 120px;
         right: 0;
         width: 100%;
         justify-content: center;
         background-color: #fff;
-        padding: 20px 0;
+        padding: 15px 0;
         border-top: 1px solid #eee;
     }
 
     .language-selector.mobile-visible {
-        display: flex; /* Show only when mobile menu is open */
+        display: flex;
         position: fixed;
         z-index: 1001;
     }
-    
+
     .language-selector span,
     .language-selector span.active {
         color: #333;
     }
     .language-selector .divider {
         color: #ddd;
+    }
+
+    .user-menu {
+        display: none;
+        top: auto;
+        bottom: 60px;
+        right: 0;
+        width: 100%;
+        justify-content: center;
+        background-color: #f8f9fa;
+        padding: 15px 0;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+    }
+
+    .user-menu.mobile-visible {
+        display: flex;
+        position: fixed;
+        z-index: 1001;
+    }
+
+    .user-menu span,
+    .user-menu .user-name {
+        color: #333;
+    }
+
+    .user-menu .divider {
+        color: #ddd;
+    }
+
+    .user-menu .login-btn,
+    .user-menu .logout-btn {
+        font-weight: 700;
+        color: #1C2D60;
     }
 }
 

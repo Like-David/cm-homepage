@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
+import ProtectedRoute from '@/components/common/ProtectedRoute';
 import Index from '@/pages/Index';
 import AboutPage from '@/pages/About';
 import SupportBoardPage from '@/pages/SupportBoardPage';
@@ -13,6 +14,11 @@ import SupportViewPage from '@/pages/SupportViewPage';
 import SupportEditPage from '@/pages/SupportEditPage';
 import PrivacyPage from '@/pages/PrivacyPage';
 import TermsPage from '@/pages/TermsPage';
+import AdminPage from '@/pages/AdminPage';
+import EmployeeCertificatePage from '@/pages/EmployeeCertificatePage';
+import UserManagementPage from '@/pages/UserManagementPage';
+import StatisticsPage from '@/pages/StatisticsPage';
+import SettingsPage from '@/pages/SettingsPage';
 
 function Router() {
     return (
@@ -30,6 +36,46 @@ function Router() {
                 <Route path="/support/:id/edit" element={<SupportEditPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/terms" element={<TermsPage />} />
+                <Route
+                    path="/admin"
+                    element={
+                        <ProtectedRoute requiredRoles={['EMPLOYEE', 'ADMIN']}>
+                            <AdminPage />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/admin/employee-certificate"
+                    element={
+                        <ProtectedRoute requiredRoles={['EMPLOYEE', 'ADMIN']}>
+                            <EmployeeCertificatePage />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/admin/users"
+                    element={
+                        <ProtectedRoute requiredRoles={['EMPLOYEE', 'ADMIN']}>
+                            <UserManagementPage />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/admin/statistics"
+                    element={
+                        <ProtectedRoute requiredRoles={['EMPLOYEE', 'ADMIN']}>
+                            <StatisticsPage />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/admin/settings"
+                    element={
+                        <ProtectedRoute requiredRoles={['EMPLOYEE', 'ADMIN']}>
+                            <SettingsPage />
+                        </ProtectedRoute>
+                    }
+                />
             </Route>
         </Routes>
     );

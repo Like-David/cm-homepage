@@ -62,17 +62,32 @@ const SolutionPage = () => {
 
   const [activeSection, setActiveSection] = useState(solutions[0].id);
   const sectionRefs = useRef({});
+  const ctaRef = useRef(null);
   const location = useLocation();
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY + window.innerHeight / 2;
     let currentSection = '';
-    solutions.forEach(solution => {
-      const ref = sectionRefs.current[solution.id];
-      if (ref && ref.offsetTop <= scrollPosition && ref.offsetTop + ref.offsetHeight > scrollPosition) {
-        currentSection = solution.id;
+
+    // CTA 섹션 체크
+    if (ctaRef.current) {
+      const ctaTop = ctaRef.current.offsetTop;
+      const ctaHeight = ctaRef.current.offsetHeight;
+      if (ctaTop <= scrollPosition && ctaTop + ctaHeight > scrollPosition) {
+        currentSection = 'test-demo';
       }
-    });
+    }
+
+    // 솔루션 섹션 체크 (CTA가 활성화되지 않은 경우에만)
+    if (!currentSection) {
+      solutions.forEach(solution => {
+        const ref = sectionRefs.current[solution.id];
+        if (ref && ref.offsetTop <= scrollPosition && ref.offsetTop + ref.offsetHeight > scrollPosition) {
+          currentSection = solution.id;
+        }
+      });
+    }
+
     if (currentSection) {
       setActiveSection(currentSection);
     }
@@ -95,7 +110,13 @@ const SolutionPage = () => {
   }, [location.hash]);
 
   const scrollToSection = (id) => {
-    const element = sectionRefs.current[id];
+    let element;
+    if (id === 'test-demo') {
+      element = ctaRef.current;
+    } else {
+      element = sectionRefs.current[id];
+    }
+
     if (element) {
       window.scrollTo({
         top: element.offsetTop - 120,
@@ -113,6 +134,9 @@ const SolutionPage = () => {
               <span>{solution.subtitle}</span>
             </li>
           ))}
+          <li className={activeSection === 'test-demo' ? 'active' : ''} onClick={() => scrollToSection('test-demo')}>
+            <span>{t('solutions.test_demo')}</span>
+          </li>
         </ul>
       </nav>
 
@@ -141,7 +165,7 @@ const SolutionPage = () => {
           ))}
         </div>
 
-        <section className="solution-cta">
+        <section className="solution-cta" ref={ctaRef}>
           <div className="container">
             <h3>{t('solutions.cta_title')}</h3>
             <p>{t('solutions.cta_subtitle')}</p>

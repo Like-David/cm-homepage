@@ -1,19 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '@/contexts/AuthContext';
+import LoginModal from '@/components/common/LoginModal';
+import RegisterModal from '@/components/common/RegisterModal';
+import AlertModal from '@/components/common/AlertModal';
 import '@/styles/Header.css';
 import logo from '@/assets/images/Header/cm-logo.png';
 import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
 
 function Header() {
     const { t, i18n } = useTranslation();
+    const { user, logout } = useAuth();
     const [isGnbOpen, setGnbOpen] = useState(false);
     const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
     const [isScrolled, setScrolled] = useState(false);
     const [isHeaderHovered, setIsHeaderHovered] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [alert, setAlert] = useState({ isOpen: false, type: 'success', message: '', title: '' });
     const location = useLocation();
 
-    const menuItems = [
+    const handleShowAlert = (alertData) => {
+        setAlert({ isOpen: true, ...alertData });
+    };
+
+    const handleCloseAlert = () => {
+        setAlert({ isOpen: false, type: 'success', message: '', title: '' });
+    };
+
+    const handleLogout = () => {
+        logout();
+        handleShowAlert({
+            type: 'success',
+            message: t('auth.logout_success')
+        });
+    };
+
+    const baseMenuItems = [
         {
             title: t('menu.about'),
             path: '/about',
@@ -52,6 +76,21 @@ function Header() {
             ],
         },
     ];
+
+    // 관리자 메뉴 추가 (EMPLOYEE 또는 ADMIN만)
+    const adminMenuItem = user && (user.role === 'EMPLOYEE' || user.role === 'ADMIN') ? {
+        title: t('menu.admin'),
+        path: '/admin',
+        depth2: [
+            { title: t('menu.admin_dashboard'), path: '/admin' },
+            { title: t('menu.employee_certificate'), path: '/admin/employee-certificate' }
+        ],
+    } : null;
+
+    // 고객지원 다음에 관리자 메뉴 삽입
+    const menuItems = adminMenuItem
+        ? [...baseMenuItems.slice(0, 4), adminMenuItem, ...baseMenuItems.slice(4)]
+        : baseMenuItems;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -92,16 +131,6 @@ function Header() {
                 <Link to="/"><img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt={t('footer.company_name')} /></Link>
             </h1>
 
-            <div className={`language-selector ${isGnbOpen ? 'mobile-visible' : ''}`}>
-                <span className={currentLang === 'ko' ? 'active' : ''} onClick={() => changeLanguage('ko')}>KOR</span>
-                <span className="divider">|</span>
-                <span className={currentLang === 'en' ? 'active' : ''} onClick={() => changeLanguage('en')}>ENG</span>
-                <span className="divider">|</span>
-                <span className={currentLang === 'zh' ? 'active' : ''} onClick={() => changeLanguage('zh')}>CHN</span>
-                <span className="divider">|</span>
-                <span className={currentLang === 'ja' ? 'active' : ''} onClick={() => changeLanguage('ja')}>JPN</span>
-            </div>
-
             <div className="gnb">
                 <nav className="nav">
                     <ul className="depth1">
@@ -126,6 +155,30 @@ function Header() {
                             );
                         })}
                     </ul>
+
+                    <div className="nav-right-section">
+                        <div className={`language-selector ${isGnbOpen ? 'mobile-visible' : ''}`}>
+                            <span className={currentLang === 'ko' ? 'active' : ''} onClick={() => changeLanguage('ko')}>KOR</span>
+                            <span className="divider">|</span>
+                            <span className={currentLang === 'en' ? 'active' : ''} onClick={() => changeLanguage('en')}>ENG</span>
+                            <span className="divider">|</span>
+                            <span className={currentLang === 'zh' ? 'active' : ''} onClick={() => changeLanguage('zh')}>CHN</span>
+                            <span className="divider">|</span>
+                            <span className={currentLang === 'ja' ? 'active' : ''} onClick={() => changeLanguage('ja')}>JPN</span>
+                        </div>
+
+                        <div className={`user-menu ${isGnbOpen ? 'mobile-visible' : ''}`}>
+                            {user ? (
+                                <>
+                                    <span className="user-name">{user.name}</span>
+                                    <span className="divider">|</span>
+                                    <span className="logout-btn" onClick={handleLogout}>{t('auth.logout')}</span>
+                                </>
+                            ) : (
+                                <span className="login-btn" onClick={() => setShowLoginModal(true)}>{t('auth.login')}</span>
+                            )}
+                        </div>
+                    </div>
                 </nav>
                 <div className="close">
                     <button type="button" onClick={() => setGnbOpen(false)}>
@@ -143,6 +196,28 @@ function Header() {
                     <span className="blind">{t('menu.open_menu')}</span>
                 </button>
             </div>
+
+            <LoginModal
+                isOpen={showLoginModal}
+                onClose={() => setShowLoginModal(false)}
+                onShowRegister={() => setShowRegisterModal(true)}
+                onShowAlert={handleShowAlert}
+            />
+
+            <RegisterModal
+                isOpen={showRegisterModal}
+                onClose={() => setShowRegisterModal(false)}
+                onShowLogin={() => setShowLoginModal(true)}
+                onShowAlert={handleShowAlert}
+            />
+
+            <AlertModal
+                isOpen={alert.isOpen}
+                onClose={handleCloseAlert}
+                type={alert.type}
+                message={alert.message}
+                title={alert.title}
+            />
         </div>
     );
 }

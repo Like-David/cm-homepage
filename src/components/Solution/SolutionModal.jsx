@@ -53,7 +53,14 @@ function SolutionModal(props) {
       return;
     }
 
-    props.onSubmit({name, email, gender, age, solution});
+    const solutionMap = {
+      'ReportExpress Enterprise': 'report-express',
+      'RX-Cert': 'rx-cert',
+      'RX-Loan': 'rx-loan'
+    };
+    const mappedSolutionId = solutionMap[solution];
+
+    props.onSubmit({name, email, gender, age, solution, solutionId: mappedSolutionId});
   };
 
 

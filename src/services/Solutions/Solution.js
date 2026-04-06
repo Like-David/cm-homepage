@@ -11,12 +11,26 @@ export const showSolutionPopup = function(data) {
     const form = document.createElement('form');
     form.setAttribute('method', 'post');
     // Vite 프록시를 통하도록 상대 경로를 사용합니다.
-    form.setAttribute('action', 'http://localhost:8080/eform-demo/cdoc/eform/homepage/popup.jsp');
+    let actionUrl = '';
+    switch (data.solutionId) {
+        case 'report-express':
+            actionUrl = 'http://localhost:8080/eform-demo/cdoc/eform/homepage/rxEnt/rxEnt.jsp';
+            break;
+        case 'rx-cert':
+            actionUrl = 'http://localhost:8080/eform-demo/cdoc/eform/homepage/rxCert/rxCert.jsp';
+            break;
+        case 'rx-loan':
+            actionUrl = 'http://localhost:8080/eform-demo/cdoc/eform/homepage/rxLoan/rxLoan.jsp';
+            break;
+        default:
+            actionUrl = 'http://localhost:8080/eform-demo/cdoc/eform/homepage/rxEnt/rxEnt.jsp'; // Default case
+    }
+    form.setAttribute('action', actionUrl);
     form.setAttribute('target', 'solutionPopup'); // form의 제출 대상을 새 창으로 지정
 
     // 3. 전송할 데이터를 hidden input으로 form에 추가합니다.
     for (const key in data) {
-        if (data.hasOwnProperty(key)) {
+        if (data.hasOwnProperty(key) && key !== 'solutionId') { // solutionId는 전송하지 않음
             const hiddenField = document.createElement('input');
             hiddenField.setAttribute('type', 'hidden');
             hiddenField.setAttribute('name', key);

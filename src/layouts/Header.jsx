@@ -49,21 +49,28 @@ function Header() {
             ],
         },
         {
+            title: t('menu.solutions'),
+            path: '/solution',
+            depth2: [
+                {
+                    title: t('menu.eform'),
+                    path: '/solution',
+                    depth3: [
+                        { title: t('menu.report_sol'), path: '/solution#report-express' },
+                        { title: t('menu.cert_sol'), path: '/solution#rx-cert' },
+                        { title: t('menu.loan_sol'), path: '/solution#rx-loan' }
+                    ]
+                },
+                { title: t('solutions.test_demo'), path: '/solution#test-demo' },
+            ],
+        },
+        {
             title: t('menu.business'),
             path: '/business/client',
             depth2: [
                 { title: t('menu.financial'), path: '/business/client#financial-institutions' },
                 { title: t('menu.educational'), path: '/business/client#financial2-institutions' },
                 { title: t('menu.public'), path: '/business/client#public-institutions' }
-            ],
-        },
-        {
-            title: t('menu.solutions'),
-            path: '/solution',
-            depth2: [
-                { title: t('menu.report_express'), path: '/solution#report-express' },
-                { title: t('menu.rx_cert'), path: '/solution#rx-cert' },
-                { title: t('menu.rx_loan'), path: '/solution#rx-loan' }
             ],
         },
         {
@@ -81,15 +88,21 @@ function Header() {
     const adminMenuItem = user && (user.role === 'EMPLOYEE' || user.role === 'ADMIN') ? {
         title: t('menu.admin'),
         path: '/admin',
-        depth2: [
+        depth2: user.role === 'ADMIN' ? [
             { title: t('menu.admin_dashboard'), path: '/admin' },
-            { title: t('menu.employee_certificate'), path: '/admin/employee-certificate' }
+            { title: '재직증명서 발급', path: '/admin/employee-certificate' },
+            { title: '관리 - 재직증명서', path: '/admin/employee-certificate/manage' },
+            { title: t('admin.statistics'), path: '/admin/statistics' },
+            { title: t('admin.user_management'), path: '/admin/users' },
+        ] : [
+            { title: t('menu.admin_dashboard'), path: '/admin' },
+            { title: '재직증명서 발급', path: '/admin/employee-certificate' },
         ],
     } : null;
 
     // 고객지원 다음에 관리자 메뉴 삽입
     const menuItems = adminMenuItem
-        ? [...baseMenuItems.slice(0, 4), adminMenuItem, ...baseMenuItems.slice(4)]
+        ? [...baseMenuItems, adminMenuItem]
         : baseMenuItems;
 
     useEffect(() => {
@@ -112,7 +125,17 @@ function Header() {
     }, []);
 
     const handleMobileSubmenuToggle = (e, index) => {
-        setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
+        if (window.innerWidth <= 1024) {
+            e.preventDefault();
+            setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
+        }
+    };
+
+    const handleMenuClick = () => {
+        if (window.innerWidth <= 1024) {
+            setGnbOpen(false);
+            setActiveMobileSubmenu(null);
+        }
     };
 
     const changeLanguage = (lng) => {
@@ -128,7 +151,7 @@ function Header() {
             onMouseLeave={() => window.innerWidth > 1024 && setIsHeaderHovered(false)}
         >
             <h1>
-                <Link to="/"><img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt={t('footer.company_name')} /></Link>
+                <Link to="/" onClick={handleMenuClick}><img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt={t('footer.company_name')} /></Link>
             </h1>
 
             <div className="gnb">
@@ -144,8 +167,17 @@ function Header() {
                                             {item.depth2.map((subItem, subIndex) => {
                                                 const isActiveDepth2 = location.pathname + location.hash === subItem.path;
                                                 return (
-                                                    <li key={subIndex} className={isActiveDepth2 ? 'active' : ''}>
-                                                        <Link to={subItem.path}>{subItem.title}</Link>
+                                                    <li key={subIndex} className={`${isActiveDepth2 ? 'active' : ''} ${subItem.depth3 ? 'has-depth3' : ''}`}>
+                                                        <Link to={subItem.path} onClick={handleMenuClick}>{subItem.title}</Link>
+                                                        {subItem.depth3 && (
+                                                            <ul className="depth3">
+                                                                {subItem.depth3.map((thirdItem, thirdIndex) => (
+                                                                    <li key={thirdIndex}>
+                                                                        <Link to={thirdItem.path} onClick={handleMenuClick}>{thirdItem.title}</Link>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        )}
                                                     </li>
                                                 );
                                             })}
@@ -158,13 +190,22 @@ function Header() {
 
                     <div className="nav-right-section">
                         <div className={`language-selector ${isGnbOpen ? 'mobile-visible' : ''}`}>
-                            <span className={currentLang === 'ko' ? 'active' : ''} onClick={() => changeLanguage('ko')}>KOR</span>
-                            <span className="divider">|</span>
-                            <span className={currentLang === 'en' ? 'active' : ''} onClick={() => changeLanguage('en')}>ENG</span>
-                            <span className="divider">|</span>
-                            <span className={currentLang === 'zh' ? 'active' : ''} onClick={() => changeLanguage('zh')}>CHN</span>
-                            <span className="divider">|</span>
-                            <span className={currentLang === 'ja' ? 'active' : ''} onClick={() => changeLanguage('ja')}>JPN</span>
+                            <span className="lang-current">
+                                {{ ko: 'KOR', en: 'ENG', zh: 'CHN', ja: 'JPN' }[currentLang] ?? 'KOR'}
+                                <span className="lang-arrow" />
+                            </span>
+                            <ul className="lang-dropdown">
+                                {[
+                                    { code: 'ko', label: 'KOR' },
+                                    { code: 'en', label: 'ENG' },
+                                    { code: 'zh', label: 'CHN' },
+                                    { code: 'ja', label: 'JPN' },
+                                ].map(({ code, label }) => (
+                                    <li key={code} className={currentLang === code ? 'active' : ''} onClick={() => changeLanguage(code)}>
+                                        {label}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
 
                         <div className={`user-menu ${isGnbOpen ? 'mobile-visible' : ''}`}>

@@ -1,0 +1,438 @@
+/* ===================================
+   ONE-ON-ONE INQUIRY PAGE
+   =================================== */
+
+.inq-wrap {
+    padding: 48px 52px !important;
+}
+
+/* ── 헤더 ── */
+.inq-header {
+    text-align: center;
+    margin-bottom: 52px;
+}
+
+.inq-header-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #1C2D60;
+    margin-bottom: 10px;
+    opacity: 0.55;
+}
+
+.inq-header-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a1e2e;
+    margin: 0 0 12px;
+    line-height: 1.2;
+}
+
+.inq-header-desc {
+    font-size: 0.95rem;
+    color: #7a8499;
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* ── 스텝 레이아웃 ── */
+.inq-steps {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 40px;
+}
+
+/* ── 카드 공통 ── */
+.inq-card {
+    flex: 1;
+    border-radius: 16px;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.inq-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+/* 메인 카드 (Step 1) */
+.inq-card--primary {
+    background: #1C2D60;
+    color: #fff;
+    box-shadow: 0 8px 32px rgba(28, 45, 96, 0.28);
+}
+
+.inq-card--primary .inq-card-num {
+    color: rgba(255,255,255,0.18);
+}
+
+.inq-card--primary .inq-card-icon-wrap {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+.inq-card--primary .inq-card-title {
+    color: #fff;
+}
+
+.inq-card--primary .inq-card-phone {
+    color: #fff;
+}
+
+.inq-card--primary .inq-card-desc {
+    color: rgba(255,255,255,0.72);
+}
+
+/* 서브 카드 (Step 2) */
+.inq-card--secondary {
+    background: #fff;
+    border: 1.5px solid #e4e8f0;
+    box-shadow: 0 4px 20px rgba(28, 45, 96, 0.07);
+}
+
+.inq-card--secondary .inq-card-num {
+    color: #e8ebf4;
+}
+
+.inq-card--secondary .inq-card-icon-wrap {
+    background: #eef1f9;
+    color: #1C2D60;
+}
+
+.inq-card--secondary .inq-card-title {
+    color: #1a1e2e;
+}
+
+.inq-card--secondary .inq-card-desc {
+    color: #7a8499;
+}
+
+/* 카드 내부 요소 */
+.inq-card-num {
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 20px;
+    right: 24px;
+}
+
+.inq-card-icon-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.inq-card-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin: 0 0 10px;
+}
+
+.inq-card-phone {
+    font-size: 1.85rem;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+    line-height: 1.1;
+}
+
+.inq-card-link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #2E4F8E;
+    text-decoration: none;
+    margin-bottom: 14px;
+    word-break: break-all;
+}
+
+.inq-card-link:hover {
+    text-decoration: underline;
+}
+
+.inq-card-desc {
+    font-size: 0.85rem;
+    line-height: 1.75;
+    margin-bottom: 24px;
+    flex: 1;
+}
+
+.inq-card-desc strong {
+    font-weight: 700;
+}
+
+.inq-card--primary .inq-card-desc strong {
+    color: #fff;
+}
+
+.inq-card--secondary .inq-card-desc strong {
+    color: #1C2D60;
+}
+
+.inq-card-btns {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+/* ── 버튼 ── */
+.inq-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.inq-card--primary .inq-btn--solid {
+    background: #fff;
+    color: #1C2D60;
+}
+
+.inq-card--primary .inq-btn--solid:hover {
+    background: #f0f2f8;
+}
+
+.inq-card--primary .inq-btn--ghost {
+    background: rgba(255,255,255,0.14);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.inq-card--primary .inq-btn--ghost:hover {
+    background: rgba(255,255,255,0.22);
+}
+
+.inq-card--secondary .inq-btn--solid {
+    background: #1C2D60;
+    color: #fff;
+}
+
+.inq-card--secondary .inq-btn--solid:hover {
+    background: #152245;
+}
+
+/* ── 커넥터 ── */
+.inq-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.inq-connector-line {
+    width: 1px;
+    flex: 1;
+    background: linear-gradient(to bottom, #dde1eb, #c0c8d8);
+    min-height: 28px;
+}
+
+.inq-connector-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #eef1f9;
+    border: 1.5px solid #dde1eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.inq-connector-label {
+    font-size: 0.68rem;
+    color: #9aa3b2;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    writing-mode: vertical-lr;
+    letter-spacing: 0.05em;
+    margin: 4px 0;
+}
+
+/* ── 기술 지원 패널 ── */
+.inq-tech {
+    background: #f8f9fc;
+    border: 1px solid #e8ebf4;
+    border-radius: 14px;
+    padding: 24px 28px;
+}
+
+.inq-tech-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #8a93a8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 18px;
+}
+
+.inq-tech-body {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+}
+
+.inq-tech-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 220px;
+    padding: 6px 0;
+}
+
+.inq-tech-sep {
+    width: 1px;
+    height: 32px;
+    background: #dde1eb;
+    margin: 0 28px;
+    flex-shrink: 0;
+}
+
+.inq-tech-key {
+    font-size: 0.8rem;
+    color: #9aa3b2;
+    font-weight: 600;
+    white-space: nowrap;
+    min-width: 90px;
+}
+
+.inq-tech-val-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.inq-tech-val {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1C2D60;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.inq-tech-val:hover {
+    color: #2E4F8E;
+    text-decoration: underline;
+}
+
+.inq-copy-chip {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    border: 1px solid #dde1eb;
+    background: #fff;
+    color: #8a93a8;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.inq-copy-chip:hover {
+    background: #eef1f9;
+    color: #1C2D60;
+    border-color: #c5cfe8;
+}
+
+.inq-tech-hours {
+    font-size: 0.76rem;
+    color: #b0b8cc;
+    margin: 16px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid #eaedf4;
+}
+
+/* ── 반응형 ── */
+@media (max-width: 900px) {
+    .inq-wrap {
+        padding: 32px 24px !important;
+    }
+
+    .inq-steps {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .inq-connector {
+        flex-direction: row;
+        padding: 16px 0;
+        gap: 8px;
+    }
+
+    .inq-connector-line {
+        height: 1px;
+        width: auto;
+        flex: 1;
+        min-height: unset;
+        background: linear-gradient(to right, #dde1eb, #c0c8d8);
+    }
+
+    .inq-connector-label {
+        writing-mode: horizontal-tb;
+    }
+
+    .inq-card-num {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .inq-wrap {
+        padding: 24px 16px !important;
+    }
+
+    .inq-card {
+        padding: 28px 20px;
+    }
+
+    .inq-card-phone {
+        font-size: 1.5rem;
+    }
+
+    .inq-tech-sep {
+        display: none;
+    }
+
+    .inq-tech-body {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .inq-tech-row {
+        min-width: unset;
+        width: 100%;
+    }
+}

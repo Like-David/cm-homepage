@@ -15,15 +15,15 @@ import SupportEditPage from '@/pages/SupportEditPage';
 import PrivacyPage from '@/pages/PrivacyPage';
 import TermsPage from '@/pages/TermsPage';
 import AdminPage from '@/pages/AdminPage';
+import EmployeeCertificateIssuePage from '@/pages/EmployeeCertificateIssuePage';
 import EmployeeCertificatePage from '@/pages/EmployeeCertificatePage';
 import UserManagementPage from '@/pages/UserManagementPage';
 import StatisticsPage from '@/pages/StatisticsPage';
-import SettingsPage from '@/pages/SettingsPage';
 
 function Router() {
     return (
         <Routes>
-            <Route element={<MainLayout  />}>
+            <Route element={<MainLayout />}>
                 <Route path="/" element={<Index />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/solution" element={<SolutionPage />} />
@@ -36,6 +36,8 @@ function Router() {
                 <Route path="/support/:id/edit" element={<SupportEditPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/terms" element={<TermsPage />} />
+
+                {/* 관리자 대시보드 - EMPLOYEE, ADMIN 공통 */}
                 <Route
                     path="/admin"
                     element={
@@ -44,35 +46,43 @@ function Router() {
                         </ProtectedRoute>
                     }
                 />
+
+                {/* 재직증명서 발급 신청 - EMPLOYEE, ADMIN 공통 */}
                 <Route
                     path="/admin/employee-certificate"
                     element={
                         <ProtectedRoute requiredRoles={['EMPLOYEE', 'ADMIN']}>
+                            <EmployeeCertificateIssuePage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                {/* 재직증명서 관리 - ADMIN 전용 */}
+                <Route
+                    path="/admin/employee-certificate/manage"
+                    element={
+                        <ProtectedRoute requiredRoles={['ADMIN']}>
                             <EmployeeCertificatePage />
                         </ProtectedRoute>
                     }
                 />
+
+                {/* 사용자 관리 - ADMIN 전용 */}
                 <Route
                     path="/admin/users"
                     element={
-                        <ProtectedRoute requiredRoles={['EMPLOYEE', 'ADMIN']}>
+                        <ProtectedRoute requiredRoles={['ADMIN']}>
                             <UserManagementPage />
                         </ProtectedRoute>
                     }
                 />
+
+                {/* 통계 - ADMIN 전용 */}
                 <Route
                     path="/admin/statistics"
                     element={
-                        <ProtectedRoute requiredRoles={['EMPLOYEE', 'ADMIN']}>
+                        <ProtectedRoute requiredRoles={['ADMIN']}>
                             <StatisticsPage />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path="/admin/settings"
-                    element={
-                        <ProtectedRoute requiredRoles={['EMPLOYEE', 'ADMIN']}>
-                            <SettingsPage />
                         </ProtectedRoute>
                     }
                 />

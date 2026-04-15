@@ -315,7 +315,6 @@ const RegisterModal = ({ isOpen, onClose, onShowLogin, onShowAlert }) => {
                     >
                         <option value="GUEST">{t('auth.role_guest')}</option>
                         <option value="EMPLOYEE">{t('auth.role_employee')}</option>
-                        <option value="ADMIN">{t('auth.role_admin')}</option>
                     </select>
 
                     {/* Actions */}

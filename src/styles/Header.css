@@ -36,7 +36,7 @@ html {
 }
 
 .header-primary-wrap.scrolled {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.95); /* Opacity optimized as requested */
     border-bottom: 1px solid #e8e8e8;
 }
 
@@ -70,9 +70,11 @@ html {
     width: 100%;
     background-color: transparent;
     z-index: 10;
-    transition: height 0.4s ease-in-out;
+    height: 110px;
     overflow: hidden;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.3s ease,
+                box-shadow 0.4s ease;
 }
 
 .nav {
@@ -94,15 +96,19 @@ html {
     display: flex;
     justify-content: flex-start;
     list-style: none;
-    margin: 0 0 0 220px; /* 로고와 충분한 간격 확보 */
+    margin: 0 0 0 100px; /* Logo gap */
     padding: 0;
-    flex: 0 0 auto;
+    flex: 1;
+    justify-content: center;
+    gap: 15px; /* Added gap between menu items */
 }
 
 .depth1 > li {
     position: relative;
-    padding: 0 25px;
+    padding: 0 30px; /* Adjusted padding to work with gap */
     line-height: 110px;
+    display: flex;
+    justify-content: center;
 }
 
 .depth1 > li:first-child {
@@ -129,57 +135,118 @@ html {
 }
 
 .depth2 {
-    display: none;
     position: absolute;
     top: 110px;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    width: auto;
+    min-width: 160px;
     text-align: center;
     list-style: none;
     margin: 0;
-    padding: 20px 0;
+    padding: 12px 0;
     line-height: 1.5;
+    white-space: nowrap;
+    background-color: #fff;
+    border-top: 2px solid #1c2d60;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 12px 32px rgba(28, 45, 96, 0.1), 0 2px 8px rgba(0,0,0,0.06);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease,
+                transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s linear 0.25s;
 }
 
 .depth2 > li {
-    padding: 8px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .depth2 > li > a {
-    font-size: 1rem;
-    color: #555;
+    font-size: 0.95rem;
+    color: #444;
     text-decoration: none;
+    display: block;
+    width: 100%;
+    padding: 10px 28px;
+    transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .depth2 > li > a:hover {
-    color: #333;
+    color: #1c2d60;
+    background-color: rgba(28, 45, 96, 0.05);
 }
 
-/* Active state for depth1 items */
-.depth1 > li.active > a {
-    color: #333 !important; /* Highlight active depth1 link */
+/* Depth3 Styling */
+.depth2 > li.has-depth3 {
+    align-items: stretch;
 }
 
-/* Active state for depth2 items */
-.depth2 > li.active > a {
-    color: #333 !important; /* Highlight active depth2 link */
-    font-weight: bold; /* Make it bold */
+.depth2 > li.has-depth3 > a {
+    font-weight: 700;
+    color: #1c2d60;
+    font-size: 0.88rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 12px 28px 8px;
+    border-bottom: 1px solid rgba(28, 45, 96, 0.12);
+    margin-bottom: 4px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.depth2 > li.has-depth3 > a:hover {
+    color: #0f1d45;
+    background-color: rgba(28, 45, 96, 0.05);
 }
 
 .depth3 {
     list-style: none;
-    margin: 10px 0 0 0;
-    padding: 10px 0;
-    background-color: #f9f9f9;
+    margin: 0 0 6px 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
 }
 
 .depth3 > li {
-    padding: 5px 0;
+    padding: 0;
+    text-align: center;
 }
 
 .depth3 > li > a {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: #666;
+    font-weight: 400;
+    text-decoration: none;
+    display: block;
+    padding: 9px 28px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.depth3 > li > a:hover {
+    color: #1c2d60;
+    background-color: rgba(28, 45, 96, 0.05);
+}
+
+/* 제품 테스트 구분선 */
+.depth2 > li.has-depth3 + li > a {
+    border-top: 1px solid rgba(28, 45, 96, 0.1);
+    margin-top: 4px;
+    padding-top: 14px;
+}
+
+/* Active state */
+.depth1 > li.active > a {
+    color: #333 !important;
+}
+
+.depth2 > li.active > a {
+    color: #1c2d60 !important;
+    font-weight: 600;
 }
 
 /* ===================================
@@ -201,17 +268,14 @@ html {
    MEDIA QUERIES
    =================================== */
 @media (max-width: 1024px) {
-    /* Header Layout */
     .header-primary-wrap {
-        padding: 0 20px; /* Reduced padding for mobile */
+        padding: 0 20px;
     }
 
-    /* Desktop GNB Menu (hidden on mobile) */
     .nav {
         display: none;
     }
 
-    /* Mobile & Hamburger */
     .hamburger {
         display: block;
         position: absolute;
@@ -224,7 +288,7 @@ html {
         display: block;
         width: 25px;
         height: 3px;
-        background-color: #FFF; /* Initial color */
+        background-color: #FFF;
         margin: 5px 0;
         transition: background-color 0.3s ease;
     }
@@ -234,32 +298,19 @@ html {
     }
 
     .header-primary-wrap .gnb {
-        display: none; /* Hidden by default */
-    }
-
-    /* Disable desktop hover effects */
-    .header-primary-wrap .gnb:hover {
-        height: 100vh;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    }
-
-    .depth1 > li > a {
-        color: #333;
+        display: none;
     }
 
     .mobile-gnb-open .gnb {
-        display: block; /* Show instantly */
+        display: block;
         position: fixed;
         top: 0;
-        left: auto; /* Reset desktop style */
         right: 0;
         width: 100%;
-        max-width: none;
-        height: 100vh; /* Full viewport height */
+        height: 100vh;
         background-color: #fff;
         z-index: 100;
         overflow-y: auto;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     }
 
     .mobile-gnb-open .hamburger {
@@ -269,11 +320,11 @@ html {
     .mobile-gnb-open .nav {
         display: block;
         padding-left: 0;
-        margin-top: 60px; /* Space for close button */
+        margin-top: 60px;
     }
     .mobile-gnb-open .depth1 {
         flex-direction: column;
-        margin-left: 0; /* 모바일에서는 왼쪽 여백 제거 */
+        margin-left: 0;
     }
     .mobile-gnb-open .depth1 > li {
         line-height: 1.5;
@@ -283,21 +334,71 @@ html {
     .mobile-gnb-open .depth1 > li > a {
         display: block;
         padding: 18px 0;
+        color: #333;
     }
     .mobile-gnb-open .depth2 {
-        display: none; /* Hidden by default */
+        display: none;
         position: static;
+        transform: none;
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transition: none;
         background-color: #f9f9f9;
         padding: 10px 0;
     }
     .mobile-gnb-open .depth1 > li.submenu-open .depth2 {
-        display: block; /* Show on click */
+        display: block;
     }
     .mobile-gnb-open .depth2 > li {
         padding: 10px 0;
     }
     .mobile-gnb-open .depth3 {
         background-color: #f0f0f0;
+    }
+
+    /* 모바일 언어 선택기 */
+    .mobile-gnb-open .language-selector {
+        height: auto;
+        justify-content: center;
+        padding: 16px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .mobile-gnb-open .lang-current {
+        color: #333;
+    }
+
+    .mobile-gnb-open .lang-dropdown {
+        position: static;
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        box-shadow: none;
+        border-top: none;
+        border-radius: 0;
+        background: transparent;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 4px;
+        padding: 8px 0 0;
+        transition: none;
+    }
+
+    .mobile-gnb-open .lang-dropdown li {
+        padding: 4px 10px;
+        font-size: 0.85rem;
+        border-right: 1px solid #ddd;
+    }
+
+    .mobile-gnb-open .lang-dropdown li:last-child {
+        border-right: none;
+    }
+
+    .mobile-gnb-open .language-selector:hover .lang-dropdown {
+        transform: none;
     }
 
     .mobile-gnb-open .close {
@@ -344,94 +445,107 @@ html {
 
 .language-selector {
     position: relative;
-    top: 0;
-    right: 0;
     display: flex;
     align-items: center;
-    gap: 8px;
-    z-index: 1001;
+    height: 110px;
+}
+
+.lang-current {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: color 0.3s ease;
+    user-select: none;
+}
+
+.header-primary-wrap.scrolled .lang-current,
+.header-primary-wrap:hover .lang-current {
+    color: #333;
+}
+
+.lang-arrow {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 0.25s ease;
+}
+
+.language-selector:hover .lang-arrow {
+    transform: rotate(-135deg) translateY(-2px);
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: 110px;
+    right: 0;
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    background-color: #fff;
+    border-top: 2px solid #1c2d60;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 12px 32px rgba(28, 45, 96, 0.1), 0 2px 8px rgba(0,0,0,0.06);
+    min-width: 90px;
+    text-align: center;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.25s ease,
+                transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s linear 0.25s;
+    z-index: 20;
+}
+
+.language-selector:hover .lang-dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.25s ease 0.08s,
+                transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.08s,
+                visibility 0s linear 0s;
+}
+
+.lang-dropdown li {
+    font-size: 0.85rem;
+    color: #555;
+    padding: 9px 20px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.lang-dropdown li:hover {
+    color: #1c2d60;
+    background-color: rgba(28, 45, 96, 0.05);
+}
+
+.lang-dropdown li.active {
+    color: #1c2d60;
+    font-weight: 700;
 }
 
 .user-menu {
-    position: relative;
-    top: 0;
-    right: 0;
     display: flex;
     align-items: center;
     gap: 8px;
-    z-index: 1001;
-    max-width: 200px;
-}
-
-.user-menu .user-name {
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .user-menu span {
     font-size: 0.85rem;
-    color: #FFF;
+    color: #fff;
     cursor: pointer;
-    transition: color 0.2s ease;
-    font-weight: 400;
-}
-
-.user-menu .user-name {
-    cursor: default;
-    font-weight: 600;
-}
-
-.user-menu .divider {
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.4);
-    cursor: default;
-}
-
-.user-menu .login-btn,
-.user-menu .logout-btn {
-    font-weight: 600;
-}
-
-.user-menu .login-btn:hover,
-.user-menu .logout-btn:hover {
-    opacity: 0.8;
-}
-
-.language-selector span {
-    font-size: 0.85rem;
-    color: #FFF;
-    cursor: pointer;
-    transition: color 0.2s ease;
-    font-weight: 400;
-}
-
-.language-selector .divider {
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.4);
-    cursor: default;
-}
-
-.language-selector span.active {
-    font-weight: 800;
-    color: #FFF;
-}
-
-/* Scrolled/Hovered state */
-.header-primary-wrap.scrolled .language-selector span,
-.header-primary-wrap:hover .language-selector span {
-    color: #666;
-}
-
-.header-primary-wrap.scrolled .language-selector .divider,
-.header-primary-wrap:hover .language-selector .divider {
-    color: #ddd;
-}
-
-.header-primary-wrap.scrolled .language-selector span.active,
-.header-primary-wrap:hover .language-selector span.active {
-    color: #333;
+    transition: color 0.3s ease;
 }
 
 .header-primary-wrap.scrolled .user-menu span,
@@ -439,102 +553,20 @@ html {
     color: #666;
 }
 
-.header-primary-wrap.scrolled .user-menu .divider,
-.header-primary-wrap:hover .user-menu .divider {
-    color: #ddd;
-}
-
-.header-primary-wrap.scrolled .user-menu .user-name,
-.header-primary-wrap:hover .user-menu .user-name {
-    color: #333;
-}
-
-@media (max-width: 1024px) {
-    .nav-right-section {
-        display: none;
-    }
-
-    .mobile-gnb-open .nav-right-section {
-        display: block;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        margin-left: 0;
-        z-index: 1001;
-        background: #fff;
-    }
-
-    .language-selector {
-        display: none;
-        top: auto;
-        bottom: 120px;
-        right: 0;
-        width: 100%;
-        justify-content: center;
-        background-color: #fff;
-        padding: 15px 0;
-        border-top: 1px solid #eee;
-    }
-
-    .language-selector.mobile-visible {
-        display: flex;
-        position: fixed;
-        z-index: 1001;
-    }
-
-    .language-selector span,
-    .language-selector span.active {
-        color: #333;
-    }
-    .language-selector .divider {
-        color: #ddd;
-    }
-
-    .user-menu {
-        display: none;
-        top: auto;
-        bottom: 60px;
-        right: 0;
-        width: 100%;
-        justify-content: center;
-        background-color: #f8f9fa;
-        padding: 15px 0;
-        border-top: 1px solid #eee;
-        border-bottom: 1px solid #eee;
-    }
-
-    .user-menu.mobile-visible {
-        display: flex;
-        position: fixed;
-        z-index: 1001;
-    }
-
-    .user-menu span,
-    .user-menu .user-name {
-        color: #333;
-    }
-
-    .user-menu .divider {
-        color: #ddd;
-    }
-
-    .user-menu .login-btn,
-    .user-menu .logout-btn {
-        font-weight: 700;
-        color: #1C2D60;
-    }
-}
-
 @media (min-width: 1025px) {
     .header-primary-wrap:hover .gnb {
+        height: 370px;
         background-color: #fff;
-        height: 350px; /* Expanded height */
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
     }
 
-    .header-primary-wrap:hover .depth2 {
-        display: block;
+    .depth1 > li:hover .depth2 {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+        transition: opacity 0.25s ease 0.08s,
+                    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0.08s,
+                    visibility 0s linear 0s;
     }
 }

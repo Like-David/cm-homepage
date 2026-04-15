@@ -48,6 +48,12 @@
     outline: none;
 }
 
+.support-form input::placeholder,
+.support-form textarea::placeholder {
+    color: #bcc2cf;
+    font-weight: 400;
+}
+
 .support-form .required {
     color: #e74c3c;
     margin-left: 5px;

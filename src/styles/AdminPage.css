@@ -237,6 +237,25 @@
     margin-bottom: 1rem;
 }
 
+/* Admin Section Header */
+.admin-section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    gap: 12px;
+}
+
+.admin-section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1C2D60;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1C2D60;
+    display: inline-block;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .admin-menu-card {

@@ -7,11 +7,11 @@
     z-index: 1030;
     display: flex;
     align-items: center;
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: rgba(128, 128, 128, 0.5); /* Original background */
     border-radius: 10px;
-    padding: 20px 20px 20px 20px;
-    max-width: 200px;
-    width: 100%;
+    padding: 20px;
+    max-width: 320px; /* Expanded for long content */
+    width: auto;
     justify-content: center;
 }
 
@@ -25,35 +25,41 @@
     cursor: pointer;
     text-align: center;
     margin: 1rem;
-    position: relative; /* Needed for absolute positioning of the indicator */
-    display: flex; /* To align span and indicator */
-    align-items: center; /* Vertically center */
-    justify-content: space-between; /* To push the bar to the right */
-    overflow: hidden; /* Hide overflow of the bar */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* Ensure one line */
 }
 
 .scroll-nav ul li span {
     font-size: 1rem;
     font-weight: 600;
-    color: #868e96; /* Default Grey text */
+    color: #868e96; /* Original color */
     transition: color 0.3s ease;
-    flex-grow: 1; /* Allow text to take available space */
 }
 
-.active-indicator-bar {
-    width: 4px; /* Width of the progress bar */
-    background-color: #007bff; /* Color of the progress bar */
-    position: absolute;
-    right: 0; /* Position it to the right of the li */
-    top: 0;
-    height: 0%; /* Initial height, will be set by inline style */
-    transition: height 0.1s ease-out; /* Smooth transition */
-    border-radius: 2px; /* Slightly rounded corners */
-}
-
-.scroll-nav ul li:hover span,
 .scroll-nav ul li.active span {
-    color: #333; /* Active/Hover color */
+    color: #333;
+}
+
+.scroll-nav ul li.nav-group-title {
+    cursor: default;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 5px;
+}
+
+.scroll-nav ul li.nav-group-title span {
+    color: #ced4da; /* 흰색 대신 연한 회색으로 변경 */
+    font-weight: 800;
+}
+
+.scroll-nav ul li.nav-sub-item {
+    margin: 0.5rem 0;
+}
+
+.scroll-nav ul li.nav-sub-item span {
+    font-size: 0.9rem;
 }
 
 /* Responsive styles */

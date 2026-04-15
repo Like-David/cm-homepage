@@ -1,0 +1,343 @@
+/* ===================================
+   STATISTICS PAGE
+   =================================== */
+
+/* 요약 카드 */
+.st-summary-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(28, 45, 96, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.st-summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(28, 45, 96, 0.13);
+}
+
+.st-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.st-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1C2D60;
+    line-height: 1.1;
+    margin-bottom: 4px;
+}
+
+.st-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #8a93a8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+}
+
+.st-sub {
+    font-size: 0.82rem;
+    color: #b0b8cc;
+}
+
+.st-growth {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+}
+
+.st-growth.positive {
+    color: #059669;
+    background: #d1fae5;
+}
+
+.st-growth.negative {
+    color: #dc2626;
+    background: #fee2e2;
+}
+
+.st-growth.neutral {
+    color: #6b7280;
+    background: #f3f4f6;
+}
+
+.st-rate-label {
+    font-size: 0.72rem;
+    color: #b0b8cc;
+    margin-top: 3px;
+    text-align: right;
+}
+
+/* 공통 카드 */
+.st-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(28, 45, 96, 0.07);
+}
+
+.st-card-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #1C2D60;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1.5px solid #f0f2f6;
+}
+
+.st-card-sub {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #9aa3b2;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 6px;
+}
+
+/* 역할 분포 */
+.st-role-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.st-role-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.st-role-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.85rem;
+}
+
+.st-role-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+.st-role-name {
+    color: #333;
+    font-weight: 500;
+}
+
+.st-role-count {
+    color: #1C2D60;
+    font-weight: 700;
+}
+
+.st-role-pct {
+    color: #9aa3b2;
+    font-size: 0.78rem;
+    min-width: 34px;
+    text-align: right;
+}
+
+.st-bar-bg {
+    height: 6px;
+    background: #f0f2f6;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.st-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 도넛 차트 */
+.st-donut-wrap {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 20px;
+}
+
+.st-donut {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.st-donut circle {
+    transition: stroke-dasharray 0.6s ease;
+}
+
+.st-donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.st-donut-pct {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1C2D60;
+    line-height: 1;
+}
+
+.st-donut-label {
+    font-size: 0.7rem;
+    color: #9aa3b2;
+    margin-top: 2px;
+}
+
+.st-status-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.st-status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.st-status-item strong {
+    color: #1C2D60;
+}
+
+/* 최근 가입 사용자 */
+.st-user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.st-user-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f4f5f9;
+}
+
+.st-user-item:last-child {
+    border-bottom: none;
+}
+
+.st-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.st-user-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1a1e2e;
+}
+
+.st-user-email {
+    font-size: 0.75rem;
+    color: #9aa3b2;
+}
+
+.st-user-date {
+    font-size: 0.72rem;
+    color: #b0b8cc;
+    margin-top: 3px;
+    text-align: right;
+}
+
+/* 인기 게시글 테이블 */
+.st-top-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.st-top-table thead tr {
+    border-bottom: 1.5px solid #f0f2f6;
+}
+
+.st-top-table thead th {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #9aa3b2;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.st-top-table tbody tr {
+    border-bottom: 1px solid #f8f9fc;
+    transition: background 0.15s ease;
+}
+
+.st-top-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.st-top-table tbody tr:hover {
+    background: #f9fafd;
+}
+
+.st-top-table tbody td {
+    padding: 13px 12px;
+    vertical-align: middle;
+}
+
+.st-rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    background: #f0f2f6;
+    color: #8a93a8;
+}
+
+.st-rank.top {
+    background: #1C2D60;
+    color: #fff;
+}
+
+.st-post-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.st-views {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1C2D60;
+}
+
+/* 배지 (UserManagementPage에서도 사용) */
+.um-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+}

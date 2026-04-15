@@ -1,0 +1,110 @@
+/* ===================================
+   USER MANAGEMENT — support 페이지 통일 스타일
+   =================================== */
+
+/* 검색 아이콘 버튼 (search-bar 안) */
+.um-search-icon-btn {
+    background-color: #1C2D60;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.um-search-icon-btn:hover {
+    background-color: #152245;
+}
+
+/* 역할 필터 셀렉트 */
+.um-role-select {
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    color: #333;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+    min-width: 120px;
+}
+
+.um-role-select:focus {
+    border-color: #1C2D60;
+}
+
+/* 역할 배지 */
+.um-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* 나 태그 */
+.um-me-tag {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #1C2D60;
+    background: #eef1f9;
+    border-radius: 4px;
+    padding: 1px 6px;
+    vertical-align: middle;
+}
+
+/* 관리 버튼 그룹 */
+.um-action-group {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.um-btn-role,
+.um-btn-del {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    background: transparent;
+    white-space: nowrap;
+}
+
+.um-btn-role {
+    color: #1C2D60;
+    border-color: #c5cfe8;
+}
+
+.um-btn-role:hover:not(:disabled) {
+    background: #1C2D60;
+    color: #fff;
+    border-color: #1C2D60;
+}
+
+.um-btn-del {
+    color: #dc3545;
+    border-color: #f5ccd0;
+}
+
+.um-btn-del:hover:not(:disabled) {
+    background: #dc3545;
+    color: #fff;
+    border-color: #dc3545;
+}
+
+.um-btn-role:disabled,
+.um-btn-del:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}

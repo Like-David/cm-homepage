@@ -1,59 +1,228 @@
-.faq-page {
+/* ===================================
+   FAQ PAGE — C안 (카드 그리드)
+   =================================== */
+
+.faq-page-card {
+    padding: 44px 48px !important;
+}
+
+.faq-page-header {
+    margin-bottom: 32px;
+}
+
+.faq-page-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1a1e2e;
+    margin: 0 0 8px;
+}
+
+.faq-page-desc {
+    font-size: 0.9rem;
+    color: #9aa3b2;
+    margin: 0;
+}
+
+/* ── 카드 그리드 ── */
+.fc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.fc-card {
+    text-align: left;
+    padding: 22px 24px;
+    border-radius: 10px;
+    border: 1.5px solid #e8ebf4;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 60px 20px;
-    background-color: #f9f9f9;
+    gap: 8px;
 }
 
-.faq-header {
-    text-align: center;
-    margin-bottom: 40px;
+.fc-card:hover {
+    border-color: #c5cfe8;
+    box-shadow: 0 2px 12px rgba(28, 45, 96, 0.07);
 }
 
-.faq-header h2 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #333;
+.fc-card--open {
+    border-color: #1C2D60;
+    background: #f4f7fd;
+    box-shadow: 0 2px 16px rgba(28, 45, 96, 0.12);
 }
 
-.faq-container {
-    width: 100%;
-    max-width: 1000px;
-    border-top: 2px solid #0d2c54;
+.fc-card-cat {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
 }
 
-.faq-item {
-    border-bottom: 1px solid #ddd;
+.fc-card-cat--product {
+    color: #7c3aed;
+    opacity: 0.7;
 }
 
-.faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
+.fc-card-cat--support {
+    color: #b45309;
+    opacity: 0.75;
 }
 
-.faq-toggle {
-    width: 12px;
-    height: 12px;
-    border-right: 2px solid #333;
-    border-bottom: 2px solid #333;
-    transform: rotate(45deg);
-    transition: transform 0.3s;
+.fc-card-cat--install {
+    color: #1C2D60;
+    opacity: 0.55;
 }
 
-.faq-toggle.open {
-    transform: rotate(-135deg);
+.fc-card-cat--print {
+    color: #1a6b3c;
+    opacity: 0.65;
 }
 
-.faq-answer {
-    padding: 0 20px 20px 20px;
-    font-size: 1.1rem;
+.fc-card-q {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #2c3147;
+    margin: 0;
     line-height: 1.6;
-    color: #555;
-    background-color: #fff;
+    flex: 1;
+}
+
+.fc-card--open .fc-card-q {
+    color: #1C2D60;
+}
+
+.fc-card-icon {
+    display: flex;
+    color: #c0c8d8;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.15s;
+    align-self: flex-end;
+}
+
+.fc-card-icon--open {
+    transform: rotate(180deg);
+    color: #1C2D60;
+}
+
+/* ── 답변 패널 ── */
+.fc-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fc-panel--open {
+    max-height: 300px;
+}
+
+.fc-panel-q {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1C2D60;
+    margin: 20px 0 12px;
+    padding: 18px 20px 0;
+    border-top: 1.5px solid #e8ebf4;
+}
+
+.fc-panel-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 20px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fc-panel-list li {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.75;
+    padding-left: 14px;
+    position: relative;
+}
+
+.fc-panel-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #c0c8d8;
+}
+
+/* ── 하단 CTA ── */
+.faq-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 28px;
+    background: #f8f9fc;
+    border: 1px solid #eaedf4;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}
+
+.faq-cta-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1a1e2e;
+    margin: 0 0 3px;
+}
+
+.faq-cta-desc {
+    font-size: 0.82rem;
+    color: #9aa3b2;
+    margin: 0;
+}
+
+.faq-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    background: #1C2D60;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.18s;
+    flex-shrink: 0;
+}
+
+.faq-cta-btn:hover {
+    background: #152245;
+    color: #fff;
+}
+
+/* ── 반응형 ── */
+@media (max-width: 900px) {
+    .faq-page-card {
+        padding: 32px 24px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .faq-page-card {
+        padding: 24px 16px !important;
+    }
+
+    .fc-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .faq-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .faq-cta-btn {
+        width: 100%;
+        justify-content: center;
+    }
 }

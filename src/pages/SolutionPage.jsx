@@ -129,12 +129,23 @@ const SolutionPage = () => {
     <div className="solution-page">
       <nav className="scroll-nav">
         <ul className="scroll-nav-list">
+          <li className="nav-group-title">
+            <span>{t('menu.eform')}</span>
+          </li>
           {solutions.map(solution => (
-            <li key={solution.id} className={activeSection === solution.id ? 'active' : ''} onClick={() => scrollToSection(solution.id)}>
-              <span>{solution.subtitle}</span>
+            <li 
+              key={solution.id} 
+              className={`${activeSection === solution.id ? 'active' : ''} nav-sub-item`} 
+              onClick={() => scrollToSection(solution.id)}
+            >
+              <span>
+                {solution.id === 'report-express' ? t('menu.report_sol') : 
+                 solution.id === 'rx-cert' ? t('menu.cert_sol') : 
+                 t('menu.loan_sol')}
+              </span>
             </li>
           ))}
-          <li className={activeSection === 'test-demo' ? 'active' : ''} onClick={() => scrollToSection('test-demo')}>
+          <li className={`${activeSection === 'test-demo' ? 'active' : ''} nav-demo-item`} onClick={() => scrollToSection('test-demo')}>
             <span>{t('solutions.test_demo')}</span>
           </li>
         </ul>

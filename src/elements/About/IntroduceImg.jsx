@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Image from 'react-bootstrap/Image';
-import image from '@/assets/images/About/Introduce/introduce.png';
+import image from '@/assets/images/About/Introduce/testIntroduce.png';
 import '@/styles/About.css';
 
 function IntroduceImg() {

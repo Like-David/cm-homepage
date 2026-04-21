@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:www.samsungsds.com)",
       "Bash(npm list:*)",
-      "Bash(node server/create-admin.js)"
+      "Bash(node server/create-admin.js)",
+      "Bash(xargs grep:*)"
     ]
   }
 }

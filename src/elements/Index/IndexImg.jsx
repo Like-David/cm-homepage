@@ -1,8 +1,6 @@
-// npm import
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Image from 'react-bootstrap/Image';
-import image from '@/assets/images/Index/IndexImg/index.png';
+import image from '@/assets/images/Index/IndexImg/testImage.png';
 
 function IndexImg() {
     const { t } = useTranslation();

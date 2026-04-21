@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
-import ServiceCenterImg from '@/assets/images/Index/ServiceCenter/ServiceCenter.png';
+import ServiceCenterImg from '@/assets/images/Index/ServiceCenter/call.png';
 
 function ServiceCenter() {
     const { t } = useTranslation();

@@ -259,6 +259,7 @@ function Header() {
                 message={alert.message}
                 title={alert.title}
             />
+
         </div>
     );
 }

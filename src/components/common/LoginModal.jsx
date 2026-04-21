@@ -116,20 +116,26 @@ const LoginModal = ({ isOpen, onClose, onShowRegister, onShowAlert }) => {
                     <p className="subtitle">{t('auth.login_subtitle')}</p>
                 </div>
 
-                <form onSubmit={handleSubmit} noValidate>
+                <form onSubmit={handleSubmit} noValidate autoComplete="off">
+                    {/* 브라우저 자동완성 차단용 더미 입력 */}
+                    <input type="text" style={{ display: 'none' }} />
+                    <input type="password" style={{ display: 'none' }} />
+
                     {/* Email */}
                     <label className="fm-label">
                         {t('auth.email')} <span className="req">*</span>
                     </label>
                     <input
-                        type="email"
+                        type="text"
                         name="email"
                         className={`fm-input ${touched.email && errors.email ? 'error' : ''}`}
                         value={formData.email}
                         onChange={handleChange}
                         onBlur={() => handleBlur('email')}
-                        placeholder={t('auth.email_placeholder')}
-                        autoComplete="email"
+                        onFocus={(e) => e.target.removeAttribute('readOnly')}
+                        placeholder="이메일을 입력하세요"
+                        autoComplete="off"
+                        readOnly
                         required
                     />
                     {touched.email && errors.email && (
@@ -147,8 +153,10 @@ const LoginModal = ({ isOpen, onClose, onShowRegister, onShowAlert }) => {
                         value={formData.password}
                         onChange={handleChange}
                         onBlur={() => handleBlur('password')}
-                        placeholder={t('auth.password_placeholder')}
-                        autoComplete="current-password"
+                        onFocus={(e) => e.target.removeAttribute('readOnly')}
+                        placeholder="비밀번호를 입력하세요"
+                        autoComplete="new-password"
+                        readOnly
                         required
                     />
                     {touched.password && errors.password && (

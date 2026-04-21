@@ -34,7 +34,7 @@
 
 .partner-card {
   background-color: #fff;
-  border: 1px solid #eee;
+  border: none;
   border-radius: 8px;
   padding: 20px;
   display: flex;
@@ -42,9 +42,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-height: 200px; /* Slightly taller cards */
+  min-height: 200px;
 }
 
 .partner-card:hover {
@@ -54,11 +54,13 @@
 
 .partner-card img {
   max-width: 80%;
-  max-height: 120px; /* Allow images to be taller */
+  max-height: 120px;
   object-fit: contain;
   margin-bottom: 15px;
-  filter: none;   /* Ensure full color */
-  opacity: 1;     /* Ensure full opacity */
+  border: none;
+  outline: none;
+  box-shadow: none;
+  mix-blend-mode: multiply;
 }
 
 .partner-name {

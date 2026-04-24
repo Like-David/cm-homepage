@@ -74,6 +74,16 @@
   mix-blend-mode: multiply;
 }
 
+.partner-card img.img-white-border {
+  mix-blend-mode: normal;
+  filter: brightness(1.2);
+}
+
+.partner-card img.img-logo-padded {
+  max-height: 90px;
+  margin-bottom: 28px;
+}
+
 .partner-name {
   font-size: 1rem;
   font-weight: 600;
@@ -98,7 +108,7 @@
 }
 
 .partner-category {
-  margin-bottom: 150px;
+  margin-bottom: 30px;
 }
 
 .partner-category h3 {

@@ -33,15 +33,14 @@ const partnersData = {
     'financial': [
         { name: 'NH 농협은행', logo: NHBankImg },
         { name: 'IBK 기업은행', logo: IBKImg },
-        { name: 'SC 제일은행', logo: SCBankImg },
         { name: 'BNK 부산은행', logo: BusanImg },
         { name: 'BNK 경남은행', logo: KyongnamImg },
         { name: '전북은행', logo: JBBankImg },
-        { name: 'iM 뱅크', logo: IMBankImg }
+        { name: 'iM 뱅크', logo: IMBankImg, whiteBorder: true }
     ],
     'educational': [
         { name: 'KB 저축은행', logo: KBSavingImg },
-        { name: '저축은행중앙회', logo: FSBImg },
+        { name: '저축은행중앙회', logo: FSBImg, whiteBorder: true },
         { name: 'MG 새마을금고', logo: MGImg },
         { name: 'OK 캐피탈', logo: OKCapitalImg },
         { name: '한화금융서비스', logo: HanwhaImg },
@@ -59,8 +58,8 @@ const partnersData = {
         { name: '한국방송전파진흥원', logo: KCAImg },
         { name: '서울시 Etax', logo: SeoulEtaxImg },
         { name: '인하대학교', logo: INHAUImg },
-        { name: '세종사이버대학교', logo: SJCUImg },
-        { name: '상명대학교', logo: SMUImg }
+        { name: '세종사이버대학교', logo: SJCUImg, padded: true },
+        { name: '상명대학교', logo: SMUImg, padded: true }
     ],
 };
 
@@ -118,7 +117,7 @@ function Partners() {
                             >
                                 <div className="partner-card">
                                     <div className="partner-logo-wrapper">
-                                        <img src={partner.logo} alt={partner.name} className="img-fluid" />
+                                        <img src={partner.logo} alt={partner.name} className={['img-fluid', partner.whiteBorder && 'img-white-border', partner.padded && 'img-logo-padded'].filter(Boolean).join(' ')} />
                                     </div>
                                     <p className="partner-name-text">{partner.name}</p>
                                 </div>

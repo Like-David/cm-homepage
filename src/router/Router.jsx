@@ -19,6 +19,8 @@ import EmployeeCertificateIssuePage from '@/pages/EmployeeCertificateIssuePage';
 import EmployeeCertificatePage from '@/pages/EmployeeCertificatePage';
 import UserManagementPage from '@/pages/UserManagementPage';
 import StatisticsPage from '@/pages/StatisticsPage';
+import MyProfilePage from '@/pages/MyProfilePage';
+import SettingsPage from '@/pages/SettingsPage';
 
 function Router() {
     return (
@@ -77,12 +79,32 @@ function Router() {
                     }
                 />
 
+                {/* 내 정보 - EMPLOYEE, ADMIN 공통 */}
+                <Route
+                    path="/admin/my-profile"
+                    element={
+                        <ProtectedRoute requiredRoles={['EMPLOYEE', 'ADMIN']}>
+                            <MyProfilePage />
+                        </ProtectedRoute>
+                    }
+                />
+
                 {/* 통계 - ADMIN 전용 */}
                 <Route
                     path="/admin/statistics"
                     element={
                         <ProtectedRoute requiredRoles={['ADMIN']}>
                             <StatisticsPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                {/* 시스템 설정 - ADMIN 전용 */}
+                <Route
+                    path="/admin/settings"
+                    element={
+                        <ProtectedRoute requiredRoles={['ADMIN']}>
+                            <SettingsPage />
                         </ProtectedRoute>
                     }
                 />

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import SupportNav from "../components/support/SupportNav";
 import Banner from "@/components/common/Banner";
+import AlertModal from '@/components/common/AlertModal';
 import '../styles/SupportBoardPage.css';
 import '../styles/OneOnOneInquiryPage.css';
 
@@ -12,13 +13,14 @@ const REMOTE_LINK = 'https://988.co.kr';
 
 const OneOnOneInquiryPage = () => {
     const { t } = useTranslation();
+    const [alert, setAlert] = useState({ isOpen: false, type: 'success', message: '' });
 
     const copyToClipboard = async (text, label) => {
         try {
             await navigator.clipboard.writeText(text);
-            alert(`${label}이(가) 복사되었습니다.`);
+            setAlert({ isOpen: true, type: 'success', message: `${label}이(가) 복사되었습니다.` });
         } catch {
-            alert(`복사에 실패했습니다. 직접 복사해주세요: ${text}`);
+            setAlert({ isOpen: true, type: 'error', message: `복사에 실패했습니다. 직접 복사해주세요: ${text}` });
         }
     };
 
@@ -139,6 +141,12 @@ const OneOnOneInquiryPage = () => {
 
                 </div>
             </div>
+            <AlertModal
+                isOpen={alert.isOpen}
+                onClose={() => setAlert({ isOpen: false, type: 'success', message: '' })}
+                type={alert.type}
+                message={alert.message}
+            />
         </div>
     );
 };

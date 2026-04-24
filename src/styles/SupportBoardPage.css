@@ -120,8 +120,15 @@
     text-decoration: none;
 }
 
+.board-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .board-table {
     width: 100%;
+    min-width: 480px;
     border-collapse: collapse;
     margin-bottom: 20px;
     border-top: 2px solid #1C2D60;

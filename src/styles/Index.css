@@ -386,6 +386,16 @@
     mix-blend-mode: multiply;
 }
 
+.partner-logo-wrapper img.img-white-border {
+    mix-blend-mode: normal;
+    filter: brightness(1.2);
+}
+
+.partner-logo-wrapper img.img-logo-padded {
+    max-height: 75%;
+    max-width: 75%;
+}
+
 .partner-name-text {
     font-size: clamp(11px, 1.5vw, 13px);
     color: #444;

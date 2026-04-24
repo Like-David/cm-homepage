@@ -4,6 +4,40 @@
     background-color: #f8f9fa;
 }
 
+/* 관리자 모드 상단 컬러 띠 */
+.admin-mode-band {
+    height: 4px;
+    background-color: #0f1f4b;
+}
+
+/* 배너 */
+.admin-banner {
+    width: 100%;
+    height: 450px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    color: #fff;
+    padding: 180px 20px 20px;
+    margin-bottom: 80px;
+}
+
+.admin-banner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.admin-banner-content h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
 .admin-menu-card {
     border: none;
     border-radius: 12px;
@@ -256,6 +290,115 @@
     display: inline-block;
 }
 
+/* ── 프로필 카드 ── */
+.profile-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.profile-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #e8edf7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1C2D60;
+}
+
+.profile-name { font-size: 1.1rem; font-weight: 700; color: #1C2D60; }
+.profile-role { font-size: 0.82rem; }
+
+.profile-info { border-top: 1px solid #f0f2f6; padding-top: 16px; }
+
+.profile-info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 0.85rem;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.info-label { color: #868e96; font-weight: 500; }
+.info-value { color: #333; font-weight: 600; }
+
+.profile-edit-link {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 0.82rem;
+    color: #1C2D60;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.profile-edit-link:hover { text-decoration: underline; color: #1C2D60; }
+
+/* ── 2안: CTA 배너 ── */
+.cta-banner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 36px;
+    background: #1C2D60;
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.cta-banner:hover { opacity: 0.92; }
+
+.cta-icon { flex-shrink: 0; opacity: 0.9; }
+
+.cta-text { flex: 1; }
+.cta-text h4 { font-size: 1.3rem; font-weight: 700; margin: 0 0 6px; }
+.cta-text p  { font-size: 0.9rem; margin: 0; opacity: 0.8; }
+
+.cta-arrow { flex-shrink: 0; opacity: 0.7; }
+
+/* ── 2안: 발급 이력 ── */
+.history-title { font-size: 1rem; font-weight: 700; color: #1C2D60; }
+
+.history-more {
+    font-size: 0.82rem;
+    color: #1C2D60;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-weight: 600;
+}
+
+.history-more:hover { text-decoration: underline; color: #1C2D60; }
+
+.history-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f2f6;
+    font-size: 0.88rem;
+}
+
+.history-row:last-child { border-bottom: none; }
+
+.history-cert { color: #1C2D60; font-weight: 700; width: 80px; flex-shrink: 0; }
+.history-purpose { flex: 1; color: #555; }
+.history-date { color: #868e96; font-size: 0.82rem; flex-shrink: 0; text-align: right; }
+
+.history-status {
+    padding: 3px 10px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .admin-menu-card {
@@ -288,4 +431,34 @@
     .stat-value {
         font-size: 1.5rem;
     }
+}
+
+/* 관리자 프로필 미니 배너 */
+.admin-profile-mini {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #e8eaf0;
+    border-radius: 12px;
+    padding: 16px 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.admin-profile-mini-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-profile-mini-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #1C2D60;
+}
+
+.admin-profile-mini-sub {
+    font-size: 0.82rem;
+    color: #888;
+    margin-top: 2px;
 }

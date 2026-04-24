@@ -60,6 +60,7 @@ const StatisticsPage = () => {
     const s = data?.summary ?? {};
     const userWeeklyRate  = growthRate(s.newUsersThisWeek, s.newUsersLastWeek);
     const postMonthlyRate = growthRate(s.newPostsThisMonth, s.newPostsLastMonth);
+    const certMonthlyRate = growthRate(s.newCertificatesThisMonth, s.newCertificatesLastMonth);
 
     const summaryCards = [
         {
@@ -83,8 +84,9 @@ const StatisticsPage = () => {
         {
             title: '재직증명서 발급',
             value: (s.totalCertificates ?? 0).toLocaleString(),
-            sub: '누적 발급 건수',
-            rate: null,
+            sub: `이번 달 ${s.newCertificatesThisMonth ?? 0}건`,
+            rate: certMonthlyRate,
+            rateLabel: '저번 달 대비',
             icon: <Award size={36} />,
             color: '#4A6FA5',
         },

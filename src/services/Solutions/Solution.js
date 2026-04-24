@@ -1,6 +1,11 @@
 export const showSolutionPopup = function(data) {
     // 1. 새 창을 엽니다. (이름을 지정해야 form의 target으로 사용할 수 있습니다)
-    const newWindow = window.open('', 'solutionPopup', 'width=800,height=600,scrollbars=yes,resizable=yes');
+    let pw, ph;
+    pw = Math.round(screen.width * 0.45);
+    ph = Math.round(screen.height * 0.9);
+    const pl = Math.round((screen.width - pw) / 2);
+    const pt = Math.round((screen.height - ph) / 2);
+    const newWindow = window.open('', 'solutionPopup', `width=${pw},height=${ph},left=${pl},top=${pt},scrollbars=yes,resizable=yes`);
 
     if (!newWindow) {
         alert('팝업이 차단되었습니다. 팝업 차단을 해제하고 다시 시도해주세요.');
@@ -11,19 +16,20 @@ export const showSolutionPopup = function(data) {
     const form = document.createElement('form');
     form.setAttribute('method', 'post');
     // Vite 프록시를 통하도록 상대 경로를 사용합니다.
+    const eformBase = import.meta.env.VITE_EFORM_BASE_URL || '';
     let actionUrl = '';
     switch (data.solutionId) {
         case 'report-express':
-            actionUrl = 'http://localhost:8080/eform-demo/cdoc/eform/homepage/rxEnt/rxEnt.jsp';
+            actionUrl = `${eformBase}/eform-demo/cdoc/eform/homepage/rxEnt/rxEnt.jsp`;
             break;
         case 'rx-cert':
-            actionUrl = 'http://localhost:8080/eform-demo/cdoc/eform/homepage/rxCert/rxCert.jsp';
+            actionUrl = `${eformBase}/eform-demo/cdoc/eform/homepage/rxCert/rxCert.jsp`;
             break;
         case 'rx-loan':
-            actionUrl = 'http://localhost:8080/eform-demo/cdoc/eform/homepage/rxLoan/rxLoan.jsp';
+            actionUrl = `${eformBase}/eform-demo/cdoc/eform/homepage/rxLoan/rxLoan.jsp`;
             break;
         default:
-            actionUrl = 'http://localhost:8080/eform-demo/cdoc/eform/homepage/rxEnt/rxEnt.jsp'; // Default case
+            actionUrl = `${eformBase}/eform-demo/cdoc/eform/homepage/rxEnt/rxEnt.jsp`;
     }
     form.setAttribute('action', actionUrl);
     form.setAttribute('target', 'solutionPopup'); // form의 제출 대상을 새 창으로 지정

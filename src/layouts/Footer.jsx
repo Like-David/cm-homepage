@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { ChevronUp } from 'lucide-react';
 import '@/styles/Footer.css';
 
 function Footer() {
@@ -37,10 +38,9 @@ function Footer() {
                     <p className="copyright">Copyright © <strong>CMInnovation. </strong> All Rights Reserved.</p>
                 </div>
             </div>
-            <a href="#!" onClick={scrollToTop} id="top_btn">
-                <span className="sound_only">{t('footer.scroll_to_top')}</span>
-                <i className="fa-solid fa-caret-up"></i>
-            </a>
+            <button type="button" onClick={scrollToTop} id="top_btn" aria-label={t('footer.scroll_to_top')}>
+                <ChevronUp size={22} strokeWidth={2.5} />
+            </button>
         </footer>
     );
 }

@@ -241,12 +241,21 @@ html {
 
 /* Active state */
 .depth1 > li.active > a {
-    color: #333 !important;
+    color: #7eb8ff !important;
+}
+
+/* 스크롤된 흰 헤더에서 (hover 없을 때만) 네이비 */
+.header-primary-wrap.scrolled:not(:hover) .depth1 > li.active > a {
+    color: #1C2D60 !important;
 }
 
 .depth2 > li.active > a {
-    color: #1c2d60 !important;
-    font-weight: 600;
+    color: #7eb8ff !important;
+    font-weight: 700;
+}
+
+.header-primary-wrap.scrolled:not(:hover) .depth2 > li.active > a {
+    color: #1C2D60 !important;
 }
 
 /* ===================================
@@ -591,47 +600,48 @@ html {
         color: #fff;
     }
 
-    .header-primary-wrap.scrolled .depth2 {
+    /* scrolled 상태에서 hover 없을 때만 흰 테마 depth2 */
+    .header-primary-wrap.scrolled:not(:hover) .depth2 {
         background-color: #fff;
         border-top: 2px solid #1c2d60;
         box-shadow: 0 12px 32px rgba(28, 45, 96, 0.1);
         border-radius: 0 0 6px 6px;
     }
 
-    .header-primary-wrap.scrolled .depth2 > li > a,
-    .header-primary-wrap.scrolled .depth2 > li.has-depth3 > a,
-    .header-primary-wrap.scrolled .depth3 > li > a {
+    .header-primary-wrap.scrolled:not(:hover) .depth2 > li > a,
+    .header-primary-wrap.scrolled:not(:hover) .depth2 > li.has-depth3 > a,
+    .header-primary-wrap.scrolled:not(:hover) .depth3 > li > a {
         color: #444;
     }
 
-    .header-primary-wrap.scrolled .depth2 > li > a:hover,
-    .header-primary-wrap.scrolled .depth3 > li > a:hover {
+    .header-primary-wrap.scrolled:not(:hover) .depth2 > li > a:hover,
+    .header-primary-wrap.scrolled:not(:hover) .depth3 > li > a:hover {
         color: #1c2d60;
         background-color: rgba(28, 45, 96, 0.05);
     }
 
-    .header-primary-wrap.scrolled .depth2 > li.has-depth3 > a {
+    .header-primary-wrap.scrolled:not(:hover) .depth2 > li.has-depth3 > a {
         color: #1c2d60;
         border-bottom: 1px solid rgba(28, 45, 96, 0.12);
     }
 
-    .header-primary-wrap.scrolled .lang-dropdown {
+    .header-primary-wrap.scrolled:not(:hover) .lang-dropdown {
         background-color: #fff;
         border-top: 2px solid #1c2d60;
         box-shadow: 0 12px 32px rgba(28, 45, 96, 0.1);
         border-radius: 0 0 6px 6px;
     }
 
-    .header-primary-wrap.scrolled .lang-dropdown li {
+    .header-primary-wrap.scrolled:not(:hover) .lang-dropdown li {
         color: #555;
     }
 
-    .header-primary-wrap.scrolled .lang-dropdown li:hover {
+    .header-primary-wrap.scrolled:not(:hover) .lang-dropdown li:hover {
         color: #1c2d60;
         background-color: rgba(28, 45, 96, 0.05);
     }
 
-    .header-primary-wrap.scrolled .lang-dropdown li.active {
+    .header-primary-wrap.scrolled:not(:hover) .lang-dropdown li.active {
         color: #1c2d60;
     }
 

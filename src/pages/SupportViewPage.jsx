@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import Banner from '@/components/common/Banner';
 import SupportNav from '@/components/support/SupportNav';
+import AlertModal from '@/components/common/AlertModal';
 import '../styles/SupportViewPage.css';
 
 export default function SupportViewPage() {
@@ -22,6 +23,11 @@ export default function SupportViewPage() {
     const [isEditing, setIsEditing] = useState(false);
     const [editTitle, setEditTitle] = useState('');
     const [editContent, setEditContent] = useState('');
+    const [alertModal, setAlertModal] = useState({ isOpen: false, type: 'success', message: '' });
+    const [confirmModal, setConfirmModal] = useState({ isOpen: false });
+
+    const showAlert = (type, message) => setAlertModal({ isOpen: true, type, message });
+    const closeAlert = () => setAlertModal({ isOpen: false, type: 'success', message: '' });
 
     useEffect(() => {
         const autoVerify = async () => {
@@ -70,18 +76,22 @@ export default function SupportViewPage() {
             setPost((prev) => ({ ...prev, title: editTitle, content: editContent }));
             setIsEditing(false);
         } catch (err) {
-            alert(err.response?.data || t('support.editor.fail_edit'));
+            showAlert('error', err.response?.data || t('support.editor.fail_edit'));
         }
     };
 
-    const handleDelete = async () => {
-        if (!window.confirm(t('support.editor.confirm_delete'))) return;
+    const handleDelete = () => {
+        setConfirmModal({ isOpen: true });
+    };
+
+    const confirmDelete = async () => {
+        setConfirmModal({ isOpen: false });
         try {
             await axios.delete(`/api/posts/${id}`, { data: { password: viewPw } });
-            alert(t('support.editor.success_delete'));
-            navigate('/support');
+            showAlert('success', t('support.editor.success_delete'));
+            setTimeout(() => navigate('/support'), 1200);
         } catch (err) {
-            alert(err.response?.data || t('support.editor.fail_delete'));
+            showAlert('error', err.response?.data || t('support.editor.fail_delete'));
         }
     };
 
@@ -91,6 +101,38 @@ export default function SupportViewPage() {
 
     return (
         <div className="support-page-wrapper">
+        <AlertModal
+            isOpen={alertModal.isOpen}
+            onClose={closeAlert}
+            type={alertModal.type}
+            message={alertModal.message}
+        />
+
+        {/* 삭제 확인 모달 */}
+        {confirmModal.isOpen && (
+            <div className="cm-overlay" role="dialog" aria-modal="true">
+                <div className="cm-modal">
+                    <div className="cm-modal-header">
+                        <div className="cm-titles">
+                            <h2>게시글 삭제</h2>
+                        </div>
+                    </div>
+                    <div className="cm-form">
+                        <p style={{ color: '#444', marginBottom: '1.5rem' }}>
+                            이 게시글을 삭제하시겠습니까? 삭제된 게시글은 복구할 수 없습니다.
+                        </p>
+                        <div className="cm-actions">
+                            <button type="button" className="cm-btn ghost" onClick={() => setConfirmModal({ isOpen: false })}>
+                                취소
+                            </button>
+                            <button type="button" className="cm-btn primary" style={{ background: '#dc3545', borderColor: '#dc3545' }} onClick={confirmDelete}>
+                                삭제
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )}
             <Banner title={t('support.banner_title')} subtitle={t('support.banner_subtitle')} />
             <SupportNav />
 

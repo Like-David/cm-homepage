@@ -86,17 +86,17 @@ function Header() {
 
     // 관리자 메뉴 추가 (EMPLOYEE 또는 ADMIN만)
     const adminMenuItem = user && (user.role === 'EMPLOYEE' || user.role === 'ADMIN') ? {
-        title: t('menu.admin'),
+        title: user.role === 'ADMIN' ? '인사관리시스템' : '인사 서비스',
         path: '/admin',
         depth2: user.role === 'ADMIN' ? [
-            { title: t('menu.admin_dashboard'), path: '/admin' },
-            { title: '재직증명서 발급', path: '/admin/employee-certificate' },
-            { title: '관리 - 재직증명서', path: '/admin/employee-certificate/manage' },
-            { title: t('admin.statistics'), path: '/admin/statistics' },
-            { title: t('admin.user_management'), path: '/admin/users' },
+            { title: '발급 현황 관리', path: '/admin/employee-certificate/manage' },
+            { title: '이용 통계', path: '/admin/statistics' },
+            { title: '임직원 명부', path: '/admin/users' },
+            { title: '시스템 설정', path: '/admin/settings' },
+            { title: '내 정보', path: '/admin/my-profile' },
         ] : [
-            { title: t('menu.admin_dashboard'), path: '/admin' },
             { title: '재직증명서 발급', path: '/admin/employee-certificate' },
+            { title: '내 정보', path: '/admin/my-profile' },
         ],
     } : null;
 
@@ -123,6 +123,11 @@ function Header() {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    useEffect(() => {
+        setGnbOpen(false);
+        setActiveMobileSubmenu(null);
+    }, [location]);
 
     const handleMobileSubmenuToggle = (e, index) => {
         if (window.innerWidth <= 1024) {

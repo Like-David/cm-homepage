@@ -90,3 +90,14 @@ export const deleteUser = async (id) => {
     const response = await axios.delete(`/admin/users/${id}`);
     return response.data;
 };
+
+/**
+ * 내 발급 이력 조회 (이름 기준 필터)
+ * @param {string} employeeName
+ */
+export const getMyCertificates = async (employeeName) => {
+    const response = await axios.get('/admin/certificates', {
+        params: { search: employeeName, limit: 10 },
+    });
+    return response.data;
+};

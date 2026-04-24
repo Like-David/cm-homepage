@@ -1,25 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { CheckCircle, XCircle, AlertTriangle, Info } from 'lucide-react';
+
+const ICON_MAP = {
+    success: <CheckCircle size={32} strokeWidth={2} />,
+    error:   <XCircle size={32} strokeWidth={2} />,
+    warning: <AlertTriangle size={32} strokeWidth={2} />,
+    info:    <Info size={32} strokeWidth={2} />,
+};
 
 const AlertModal = ({ isOpen, onClose, type = 'success', message, title }) => {
     const { t } = useTranslation();
 
     if (!isOpen) return null;
 
-    const getIcon = () => {
-        switch (type) {
-            case 'success':
-                return '✓';
-            case 'error':
-                return '✕';
-            case 'warning':
-                return '⚠';
-            case 'info':
-                return 'ℹ';
-            default:
-                return '✓';
-        }
-    };
+    const getIcon = () => ICON_MAP[type] ?? ICON_MAP.success;
 
     const getTypeClass = () => {
         switch (type) {

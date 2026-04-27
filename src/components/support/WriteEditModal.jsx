@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import axios from 'axios';
+import axiosInstance from '@/services/axios';
 
 const WriteEditModal = ({ isOpen, onClose, onSuccess, post }) => {
     const { t } = useTranslation();
@@ -29,7 +29,7 @@ const WriteEditModal = ({ isOpen, onClose, onSuccess, post }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:3001/api/posts/${post.id}`, {
+            await axiosInstance.put(`/posts/${post.id}`, {
                 title,
                 content,
                 author,

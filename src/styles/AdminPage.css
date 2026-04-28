@@ -385,7 +385,7 @@
 
 .history-row:last-child { border-bottom: none; }
 
-.history-cert { color: #1C2D60; font-weight: 700; width: 80px; flex-shrink: 0; }
+.history-cert { color: #1C2D60; font-weight: 700; width: 150px; flex-shrink: 0; }
 .history-purpose { flex: 1; color: #555; }
 .history-date { color: #868e96; font-size: 0.82rem; flex-shrink: 0; text-align: right; }
 

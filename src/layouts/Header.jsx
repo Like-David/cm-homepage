@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
@@ -15,7 +15,8 @@ function Header() {
     const [isGnbOpen, setGnbOpen] = useState(false);
     const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
     const [isScrolled, setScrolled] = useState(false);
-    const [isHeaderHovered, setIsHeaderHovered] = useState(false);
+    const [isMenuHovered, setIsMenuHovered] = useState(false);
+    const gnbTimerRef = useRef(null);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [alert, setAlert] = useState({ isOpen: false, type: 'success', message: '', title: '' });
@@ -95,7 +96,6 @@ function Header() {
             { title: '발급 현황 관리', path: '/admin/employee-certificate/manage' },
             { title: '이용 통계', path: '/admin/statistics' },
             { title: '임직원 명부', path: '/admin/users' },
-            { title: '시스템 설정', path: '/admin/settings' },
             { title: '내 정보', path: '/admin/my-profile' },
         ] : [
             { title: '재직증명서 발급', path: '/admin/employee-certificate' },
@@ -103,7 +103,7 @@ function Header() {
         ],
     } : null;
 
-    // 고객지원 다음에 관리자 메뉴 삽입
+    // 고객지원 다음에 관리자 메뉴 삽입 (복구)
     const menuItems = adminMenuItem
         ? [...baseMenuItems, adminMenuItem]
         : baseMenuItems;
@@ -146,6 +146,26 @@ function Header() {
         }
     };
 
+    const handleDepth1Click = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (window.innerWidth <= 1024) {
+            setGnbOpen(false);
+        }
+    };
+
+    const handleMenuEnter = useCallback(() => {
+        if (window.innerWidth > 1024) {
+            clearTimeout(gnbTimerRef.current);
+            setIsMenuHovered(true);
+        }
+    }, []);
+
+    const handleMenuLeave = useCallback(() => {
+        if (window.innerWidth > 1024) {
+            gnbTimerRef.current = setTimeout(() => setIsMenuHovered(false), 80);
+        }
+    }, []);
+
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     };
@@ -153,14 +173,10 @@ function Header() {
     const currentLang = i18n.language;
 
     // 테마에 따른 클래스 결정
-    const headerClasses = `header-primary-wrap ${isGnbOpen ? 'mobile-gnb-open' : ''} ${isScrolled || isDarkThemePage ? 'scrolled' : ''} ${isDarkThemePage ? 'force-dark' : ''}`;
+    const headerClasses = `header-primary-wrap ${isGnbOpen ? 'mobile-gnb-open' : ''} ${isScrolled || isDarkThemePage ? 'scrolled' : ''} ${isDarkThemePage ? 'force-dark' : ''} ${isMenuHovered ? 'gnb-expanded' : ''}`;
 
     return (
-        <div
-            className={headerClasses}
-            onMouseEnter={() => window.innerWidth > 1024 && setIsHeaderHovered(true)}
-            onMouseLeave={() => window.innerWidth > 1024 && setIsHeaderHovered(false)}
-        >
+        <div className={headerClasses}>
             <h1>
                 <Link to="/" onClick={handleMenuClick}>
                     <img 
@@ -177,8 +193,11 @@ function Header() {
                         {menuItems.map((item, index) => {
                             const isActiveDepth1 = location.pathname === item.path.split('#')[0];
                             return (
-                                <li key={index} className={`${isActiveDepth1 ? 'active' : ''}`}>
-                                    <Link to={item.path} onClick={handleMenuClick}><span>{item.title}</span></Link>
+                                <li key={index} className={`${isActiveDepth1 ? 'active' : ''}`}
+                                    onMouseEnter={handleMenuEnter}
+                                    onMouseLeave={handleMenuLeave}
+                                >
+                                    <Link to={item.path} onClick={handleDepth1Click}><span>{item.title}</span></Link>
                                     {item.depth2 && (
                                         <ul className="depth2">
                                             {item.depth2.map((subItem, subIndex) => {
@@ -206,17 +225,18 @@ function Header() {
                     </ul>
 
                     <div className="nav-right-section">
-                        <div className={`language-selector ${isGnbOpen ? 'mobile-visible' : ''}`}>
+                        <div className={`language-selector ${isGnbOpen ? 'mobile-visible' : ''}`}
+                            onMouseEnter={handleMenuEnter}
+                            onMouseLeave={handleMenuLeave}
+                        >
                             <span className="lang-current">
-                                {{ ko: 'KOR', en: 'ENG', zh: 'CHN', ja: 'JPN' }[currentLang] ?? 'KOR'}
+                                {{ ko: 'KOR', en: 'ENG' }[currentLang] ?? 'KOR'}
                                 <span className="lang-arrow" />
                             </span>
                             <ul className="lang-dropdown">
                                 {[
                                     { code: 'ko', label: 'KOR' },
                                     { code: 'en', label: 'ENG' },
-                                    { code: 'zh', label: 'CHN' },
-                                    { code: 'ja', label: 'JPN' },
                                 ].map(({ code, label }) => (
                                     <li key={code} className={currentLang === code ? 'active' : ''} onClick={() => changeLanguage(code)}>
                                         {label}

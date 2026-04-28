@@ -34,7 +34,7 @@ const OneOnOneInquiryPage = () => {
 
                     {/* 헤더 */}
                     <div className="inq-header">
-                        <p className="inq-header-label">CONTACT US</p>
+                        <p className="inq-header-label">{t('menu.contact_us')}</p>
                         <h2 className="inq-header-title">1:1 문의</h2>
                         <p className="inq-header-desc">
                             아래 순서에 따라 문의해 주시면 담당자가 신속하게 도움을 드리겠습니다.

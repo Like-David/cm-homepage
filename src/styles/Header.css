@@ -200,7 +200,7 @@ html {
 
 /* Depth3 Styling */
 .depth2 > li.has-depth3 {
-    align-items: stretch;
+    align-items: center;
 }
 
 .depth2 > li.has-depth3 > a {
@@ -227,6 +227,7 @@ html {
     background-color: transparent;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .depth3 > li {
@@ -312,6 +313,10 @@ html {
 
     .header-primary-wrap.scrolled .hamburger .bar {
         background-color: #333;
+    }
+
+    .header-primary-wrap.force-dark .hamburger .bar {
+        background-color: #fff;
     }
 
     .header-primary-wrap .gnb {
@@ -445,6 +450,45 @@ html {
         height: auto;
         border-bottom: none;
         padding: 0;
+    }
+
+    .mobile-gnb-open .lang-current {
+        display: none;
+    }
+
+    .mobile-gnb-open .lang-dropdown {
+        position: static;
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+        padding: 0;
+        min-width: unset;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-radius: 0;
+    }
+
+    .mobile-gnb-open .lang-dropdown li {
+        padding: 5px 12px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        font-size: 0.78rem;
+        color: #555;
+        background: #f5f5f5;
+        letter-spacing: 0.03em;
+    }
+
+    .mobile-gnb-open .lang-dropdown li.active {
+        background: #1a1e2e;
+        color: #fff;
+        border-color: #1a1e2e;
     }
 
     .mobile-gnb-open .user-menu {
@@ -617,7 +661,7 @@ html {
 }
 
 @media (min-width: 1025px) {
-    .header-primary-wrap:hover .gnb {
+    .header-primary-wrap.gnb-expanded .gnb {
         height: 460px;
         background-color: rgba(5, 10, 30, 0.88);
         backdrop-filter: blur(18px);
@@ -625,80 +669,74 @@ html {
         box-shadow: none;
     }
 
-    /* 스크롤 후엔 흰 배경 유지 */
-    .header-primary-wrap.scrolled:hover .gnb {
-        height: 460px;
-        background-color: rgba(5, 10, 30, 0.88);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        box-shadow: none;
-    }
-
-    .header-primary-wrap.scrolled:hover .depth1 > li > a {
+    .header-primary-wrap.gnb-expanded.scrolled .depth1 > li > a,
+    .header-primary-wrap.gnb-expanded .depth1 > li > a {
         color: #fff;
     }
 
-    .header-primary-wrap.scrolled:hover .lang-current {
+    .header-primary-wrap.gnb-expanded.scrolled .lang-current,
+    .header-primary-wrap.gnb-expanded .lang-current {
         color: #fff;
     }
 
-    .header-primary-wrap.scrolled:hover .user-menu span {
+    .header-primary-wrap.gnb-expanded.scrolled .user-menu span,
+    .header-primary-wrap.gnb-expanded .user-menu span {
         color: #fff;
     }
 
-    /* scrolled 또는 force-dark 상태에서 hover 없을 때만 흰 테마 depth2 */
-    .header-primary-wrap.scrolled:not(:hover) .depth2,
-    .header-primary-wrap.force-dark:not(:hover) .depth2 {
+    /* scrolled 또는 force-dark 상태에서 gnb 미확장 시 흰 테마 depth2 */
+    .header-primary-wrap.scrolled:not(.gnb-expanded) .depth2,
+    .header-primary-wrap.force-dark:not(.gnb-expanded) .depth2 {
         background-color: #fff;
         border-top: 2px solid #1c2d60;
         box-shadow: 0 12px 32px rgba(28, 45, 96, 0.1);
         border-radius: 0 0 6px 6px;
     }
 
-    .header-primary-wrap.scrolled:not(:hover) .depth2 > li > a,
-    .header-primary-wrap.scrolled:not(:hover) .depth2 > li.has-depth3 > a,
-    .header-primary-wrap.scrolled:not(:hover) .depth3 > li > a,
-    .header-primary-wrap.force-dark:not(:hover) .depth2 > li > a,
-    .header-primary-wrap.force-dark:not(:hover) .depth2 > li.has-depth3 > a,
-    .header-primary-wrap.force-dark:not(:hover) .depth3 > li > a {
+    .header-primary-wrap.scrolled:not(.gnb-expanded) .depth2 > li > a,
+    .header-primary-wrap.scrolled:not(.gnb-expanded) .depth2 > li.has-depth3 > a,
+    .header-primary-wrap.scrolled:not(.gnb-expanded) .depth3 > li > a,
+    .header-primary-wrap.force-dark:not(.gnb-expanded) .depth2 > li > a,
+    .header-primary-wrap.force-dark:not(.gnb-expanded) .depth2 > li.has-depth3 > a,
+    .header-primary-wrap.force-dark:not(.gnb-expanded) .depth3 > li > a {
         color: #444;
     }
 
-    .header-primary-wrap.scrolled:not(:hover) .depth2 > li > a:hover,
-    .header-primary-wrap.scrolled:not(:hover) .depth3 > li > a:hover,
-    .header-primary-wrap.force-dark:not(:hover) .depth2 > li > a:hover,
-    .header-primary-wrap.force-dark:not(:hover) .depth3 > li > a:hover {
+    .header-primary-wrap.scrolled:not(.gnb-expanded) .depth2 > li > a:hover,
+    .header-primary-wrap.scrolled:not(.gnb-expanded) .depth3 > li > a:hover,
+    .header-primary-wrap.force-dark:not(.gnb-expanded) .depth2 > li > a:hover,
+    .header-primary-wrap.force-dark:not(.gnb-expanded) .depth3 > li > a:hover {
         color: #1c2d60;
         background-color: rgba(28, 45, 96, 0.05);
     }
 
-    .header-primary-wrap.scrolled:not(:hover) .depth2 > li.has-depth3 > a,
-    .header-primary-wrap.force-dark:not(:hover) .depth2 > li.has-depth3 > a {
+    .header-primary-wrap.scrolled:not(.gnb-expanded) .depth2 > li.has-depth3 > a,
+    .header-primary-wrap.force-dark:not(.gnb-expanded) .depth2 > li.has-depth3 > a {
         color: #1c2d60;
         border-bottom: 1px solid rgba(28, 45, 96, 0.12);
     }
 
-    .header-primary-wrap.scrolled:not(:hover) .lang-dropdown,
-    .header-primary-wrap.force-dark:not(:hover) .lang-dropdown {
+    .header-primary-wrap.scrolled:not(.gnb-expanded) .lang-dropdown,
+    .header-primary-wrap.force-dark:not(.gnb-expanded) .lang-dropdown {
         background-color: #fff;
         border-top: 2px solid #1c2d60;
         box-shadow: 0 12px 32px rgba(28, 45, 96, 0.1);
         border-radius: 0 0 6px 6px;
     }
 
-    .header-primary-wrap.scrolled:not(:hover) .lang-dropdown li,
-    .header-primary-wrap.force-dark:not(:hover) .lang-dropdown li {
+    .header-primary-wrap.scrolled:not(.gnb-expanded) .lang-dropdown li,
+    .header-primary-wrap.force-dark:not(.gnb-expanded) .lang-dropdown li {
         color: #555;
     }
 
-    .header-primary-wrap.scrolled:not(:hover) .lang-dropdown li:hover,
-    .header-primary-wrap.force-dark:not(:hover) .lang-dropdown li:hover {
+    .header-primary-wrap.scrolled:not(.gnb-expanded) .lang-dropdown li:hover,
+    .header-primary-wrap.force-dark:not(.gnb-expanded) .lang-dropdown li:hover {
         color: #1c2d60;
         background-color: rgba(28, 45, 96, 0.05);
     }
 
-    .header-primary-wrap.scrolled:not(:hover) .lang-dropdown li.active,
-    .header-primary-wrap.force-dark:not(:hover) .lang-dropdown li.active {
+    .header-primary-wrap.scrolled:not(.gnb-expanded) .lang-dropdown li.active,
+    .header-primary-wrap.force-dark:not(.gnb-expanded) .lang-dropdown li.active {
         color: #1c2d60;
     }
 

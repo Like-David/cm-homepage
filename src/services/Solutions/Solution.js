@@ -1,7 +1,7 @@
 export const showSolutionPopup = function(data) {
     // 1. 새 창을 엽니다. (이름을 지정해야 form의 target으로 사용할 수 있습니다)
     let pw, ph;
-    pw = Math.round(screen.width * 0.45);
+    pw = Math.min(1200, Math.max(920, Math.round(screen.width * 0.60)));
     ph = Math.round(screen.height * 0.9);
     const pl = Math.round((screen.width - pw) / 2);
     const pt = Math.round((screen.height - ph) / 2);

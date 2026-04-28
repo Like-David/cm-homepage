@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SupportNav from "../components/support/SupportNav";
@@ -138,8 +138,18 @@ const ALL_ITEMS = FAQ_DATA.flatMap(cat =>
 const FaqPage = () => {
     const { t } = useTranslation();
     const [openId, setOpenId] = useState(null);
+    const panelRef = useRef(null);
+
     const toggle = (id) => setOpenId(p => p === id ? null : id);
     const openItem = ALL_ITEMS.find(i => i.id === openId);
+
+    useEffect(() => {
+        if (openId && panelRef.current) {
+            setTimeout(() => {
+                panelRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+    }, [openId]);
 
     return (
         <div className="support-page-wrapper">
@@ -178,7 +188,7 @@ const FaqPage = () => {
                         })}
                     </div>
 
-                    <div className={`fc-panel ${openId ? 'fc-panel--open' : ''}`}>
+                    <div ref={panelRef} className={`fc-panel ${openId ? 'fc-panel--open' : ''}`}>
                         {openItem && (
                             <>
                                 <p className="fc-panel-q">{openItem.question}</p>

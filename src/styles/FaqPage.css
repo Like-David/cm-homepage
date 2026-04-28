@@ -109,48 +109,67 @@
 .fc-panel {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    margin-top: 0;
+    background: #fff;
+    border-radius: 12px;
 }
 
 .fc-panel--open {
-    max-height: 300px;
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 40px;
+    padding: 32px;
+    background: #f8faff;
+    border: 1.5px solid #dce4f2;
+    box-shadow: 0 4px 20px rgba(28, 45, 96, 0.08);
 }
 
 .fc-panel-q {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #1C2D60;
-    margin: 20px 0 12px;
-    padding: 18px 20px 0;
-    border-top: 1.5px solid #e8ebf4;
+    margin: 0 0 20px;
+    padding-bottom: 15px;
+    border-bottom: 1.5px solid #e2e8f0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.fc-panel-q::before {
+    content: 'Q.';
+    color: #1C2D60;
+    font-size: 1.2rem;
+    font-weight: 900;
 }
 
 .fc-panel-list {
     list-style: none;
     margin: 0;
-    padding: 0 20px 4px;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .fc-panel-list li {
-    font-size: 0.875rem;
-    color: #6b7280;
-    line-height: 1.75;
-    padding-left: 14px;
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.8;
+    padding-left: 28px;
     position: relative;
 }
 
 .fc-panel-list li::before {
-    content: '';
+    content: 'A.';
     position: absolute;
     left: 0;
-    top: 10px;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #c0c8d8;
+    top: 0;
+    font-weight: 800;
+    color: #3b82f6;
+    font-size: 0.9rem;
 }
 
 /* ── 하단 CTA ── */
@@ -214,6 +233,15 @@
 
     .fc-grid {
         grid-template-columns: 1fr;
+    }
+
+    .fc-panel--open {
+        padding: 20px 16px;
+        margin-top: 30px;
+    }
+
+    .fc-panel-q {
+        font-size: 1rem;
     }
 
     .faq-cta {

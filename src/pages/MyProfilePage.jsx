@@ -30,7 +30,7 @@ const MyProfilePage = () => {
             .finally(() => setLoading(false));
     }, [user?.name]);
 
-    const formatDate = (d) => d ? new Date(d).toLocaleDateString('ko-KR') : '-';
+    const formatDate = (d) => d ? new Date(d).toLocaleDateString('ko-KR').replace(/\.$/, '') : '-';
 
     const infoRows = [
         { icon: <User size={16} />,      label: '이름',     value: user?.name ?? '-' },

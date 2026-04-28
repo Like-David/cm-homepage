@@ -25,7 +25,7 @@ const EmployeeDashboardView = ({ user }) => {
             .finally(() => setHistoryLoading(false));
     }, [user?.name]);
 
-    const formatDate = (d) => d ? new Date(d).toLocaleDateString('ko-KR') : '-';
+    const formatDate = (d) => d ? new Date(d).toLocaleDateString('ko-KR').replace(/\.$/, '') : '-';
     const STATUS_LABEL = { pending: '대기 중', approved: '승인됨', rejected: '반려됨', issued: '발급 완료' };
 
     return (
@@ -57,59 +57,61 @@ const EmployeeDashboardView = ({ user }) => {
                                 <span className="info-value">{empInfo?.ext ?? '-'}</span>
                             </div>
                         </div>
-                        <Link to="/admin/my-profile" className="profile-edit-link mt-3">
+                        <Link to="/admin/my-profile" className="profile-edit-link mt-auto pt-3">
                             내 정보 보기 <ChevronRight size={14} />
                         </Link>
                     </Card.Body>
                 </Card>
             </Col>
 
-            {/* 우측 */}
+            {/* 우측: 배너 및 최근 내역 */}
             <Col xs={12} md={9}>
-                <Row className="g-4">
+                <div className="d-flex flex-column h-100 gap-4">
                     {/* CTA 배너 */}
-                    <Col xs={12}>
-                        <Link to="/admin/employee-certificate" style={{ textDecoration: 'none' }}>
-                            <div className="cta-banner">
-                                <div className="cta-icon"><FileText size={48} /></div>
-                                <div className="cta-text">
-                                    <h4>재직증명서 즉시 발급하기</h4>
-                                    <p>재직증명서를 온라인으로 신청하고 바로 출력하세요.</p>
-                                </div>
-                                <ChevronRight size={32} className="cta-arrow" />
+                    <Link to="/admin/employee-certificate" style={{ textDecoration: 'none' }}>
+                        <div className="cta-banner h-100">
+                            <div className="cta-icon"><FileText size={48} /></div>
+                            <div className="cta-text">
+                                <h4>재직증명서 즉시 발급하기</h4>
+                                <p>재직증명서를 온라인으로 신청하고 바로 출력하세요.</p>
                             </div>
-                        </Link>
-                    </Col>
+                            <ChevronRight size={32} className="cta-arrow" />
+                        </div>
+                    </Link>
 
                     {/* 최근 발급 이력 */}
-                    <Col xs={12}>
-                        <Card className="admin-menu-card">
-                            <Card.Body className="p-4">
-                                <div className="d-flex justify-content-between align-items-center mb-3">
-                                    <h6 className="history-title mb-0">최근 발급 이력</h6>
-                                    <Link to="/admin/my-profile" className="history-more">
-                                        전체 보기 <ChevronRight size={14} />
-                                    </Link>
-                                </div>
+                    <Card className="admin-menu-card" style={{ flex: 1 }}>
+                        <Card.Body className="p-4 d-flex flex-column">
+                            <div className="d-flex justify-content-between align-items-center mb-3">
+                                <h6 className="history-title mb-0">최근 발급 이력</h6>
+                                <Link to="/admin/my-profile" className="history-more">
+                                    전체 보기 <ChevronRight size={14} />
+                                </Link>
+                            </div>
+                            <div style={{ flex: 1, overflowY: 'auto' }}>
                                 {historyLoading ? (
-                                    <div className="text-center py-3">
+                                    <div className="text-center py-4">
                                         <Spinner animation="border" size="sm" style={{ color: '#1C2D60' }} />
                                     </div>
                                 ) : history.length === 0 ? (
-                                    <p className="text-muted text-center py-3 mb-0" style={{ fontSize: '0.88rem' }}>
-                                        발급 이력이 없습니다.
-                                    </p>
-                                ) : history.slice(0, 5).map((item, i) => (
-                                    <div key={i} className="history-row">
-                                        <span className="history-cert">재직증명서</span>
-                                        <span className="history-purpose">{item.purpose ?? '-'}</span>
-                                        <span className="history-date">{formatDate(item.issue_date)}</span>
+                                    <div className="h-100 d-flex align-items-center justify-content-center">
+                                        <p className="text-muted text-center mb-0" style={{ fontSize: '0.88rem' }}>
+                                            발급 이력이 없습니다.
+                                        </p>
                                     </div>
-                                ))}
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
+                                ) : (
+                                    history.slice(0, 5).map((item, i) => (
+                                        <div key={i} className="history-row">
+                                            <span className="history-cert">재직증명서</span>
+                                            <span className="history-purpose">{item.purpose ?? '-'}</span>
+                                            <span className="history-date">{formatDate(item.issue_date)}</span>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        </Card.Body>
+                    </Card>
+                </div>
             </Col>
         </Row>
     );

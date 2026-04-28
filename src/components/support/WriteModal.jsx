@@ -52,7 +52,7 @@ function strengthScore(pw = '') {
 
 export default function WriteModal({ isOpen, onClose, onSuccess }) {
     const { t } = useTranslation();
-    // 필드 (요청 순서에 맞춤)
+    // 필드 (초기값 빈 문자열로 설정)
     const [product, setProduct] = useState('ReportExpress Enterprise');
     const [company, setCompany] = useState('');
     const [emailLocal, setEmailLocal] = useState('');
@@ -176,7 +176,11 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                     <p className="subtitle">{t('support.modal.write_subtitle')}</p>
                 </div>
 
-                <form onSubmit={handleSubmit} noValidate>
+                <form onSubmit={handleSubmit} noValidate autoComplete="off">
+                    {/* 브라우저 자동완성 차단용 더미 */}
+                    <input type="text" style={{ display: 'none' }} />
+                    <input type="password" style={{ display: 'none' }} />
+
                     {/* 1) 제품 선택 */}
                     <label className="fm-label">{t('support.modal.product_select')} <span className="req">*</span></label>
                     <select
@@ -185,6 +189,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                         onChange={(e)=>setProduct(e.target.value)}
                         onBlur={()=>{ setTouched(t=>({...t,product:true})); validate(); }}
                         required
+                        autoComplete="off"
                     >
                         <option>{t('support.modal.product_options.report_express')}</option>
                         <option>{t('support.modal.product_options.rx_cert')}</option>
@@ -205,6 +210,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                                 onChange={(e)=>onCompanyChange(e.target.value)}
                                 onBlur={()=>{ setTouched(t=>({...t,company:true})); validate(); }}
                                 required
+                                autoComplete="off"
                             />
                             {touched.company && errors.company && <p className="err-txt">{errors.company}</p>}
                         </div>
@@ -219,6 +225,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                                     onChange={(e)=>onEmailLocalChange(e.target.value)}
                                     onBlur={()=>{ setTouched(t=>({...t,email:true})); validate(); }}
                                     required
+                                    autoComplete="off"
                                 />
                                 <span className="at">@</span>
                                 <select
@@ -227,6 +234,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                                     onBlur={()=>{ setTouched(t=>({...t,email:true})); validate(); }}
                                     required
                                     className={emailDomain ? '' : 'placeholder'}
+                                    autoComplete="off"
                                 >
                                     <option value="" disabled hidden>{t('support.modal.email_domain')}</option>
                                     <option value="naver.com">naver.com</option>
@@ -253,6 +261,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                                 onDrop={preventNonDigitPasteDrop}
                                 onBlur={()=>{ setTouched(t=>({...t,phone:true})); validate(); }}
                                 required
+                                autoComplete="one-time-code"
                             />
                             {touched.phone && errors.phone && <p className="err-txt">{errors.phone}</p>}
                         </div>
@@ -267,6 +276,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                                 onChange={(e)=>{ setPassword(e.target.value); if(touched.password) validate(); if(touched.passwordConfirm) validate(); }}
                                 onBlur={()=>{ setTouched(t=>({...t,password:true})); validate(); }}
                                 required
+                                autoComplete="new-password"
                             />
                             <input
                                 type="password"
@@ -276,6 +286,7 @@ export default function WriteModal({ isOpen, onClose, onSuccess }) {
                                 onChange={(e)=>{ setPasswordConfirm(e.target.value); if(touched.passwordConfirm) validate(); }}
                                 onBlur={()=>{ setTouched(t=>({...t,passwordConfirm:true})); validate(); }}
                                 required
+                                autoComplete="new-password"
                             />
                             {touched.passwordConfirm && errors.passwordConfirm && <p className="err-txt">{errors.passwordConfirm}</p>}
 

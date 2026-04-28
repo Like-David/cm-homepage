@@ -6,7 +6,7 @@ import LoginModal from '@/components/common/LoginModal';
 import RegisterModal from '@/components/common/RegisterModal';
 import AlertModal from '@/components/common/AlertModal';
 import '@/styles/Header.css';
-import logo from '@/assets/images/Header/cm-logo.png';
+import logo from '@/assets/images/Header/cm-logo-new.png';
 import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
 
 function Header() {
@@ -20,6 +20,9 @@ function Header() {
     const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [alert, setAlert] = useState({ isOpen: false, type: 'success', message: '', title: '' });
     const location = useLocation();
+
+    // /support 또는 /admin 으로 시작하는 페이지인지 확인
+    const isDarkThemePage = location.pathname.startsWith('/support') || location.pathname.startsWith('/admin');
 
     const handleShowAlert = (alertData) => {
         setAlert({ isOpen: true, ...alertData });
@@ -131,15 +134,15 @@ function Header() {
 
     const handleMobileSubmenuToggle = (e, index) => {
         if (window.innerWidth <= 1024) {
-            e.preventDefault();
-            setActiveMobileSubmenu(activeMobileSubmenu === index ? null : index);
+            // No longer toggling, just allowing navigation if it's a link
+            // or preventing default if we want it to just be a header (JobKorea style)
+            // But user said "all menus expanded", so we just show them.
         }
     };
 
     const handleMenuClick = () => {
         if (window.innerWidth <= 1024) {
             setGnbOpen(false);
-            setActiveMobileSubmenu(null);
         }
     };
 
@@ -149,14 +152,23 @@ function Header() {
 
     const currentLang = i18n.language;
 
+    // 테마에 따른 클래스 결정
+    const headerClasses = `header-primary-wrap ${isGnbOpen ? 'mobile-gnb-open' : ''} ${isScrolled || isDarkThemePage ? 'scrolled' : ''} ${isDarkThemePage ? 'force-dark' : ''}`;
+
     return (
         <div
-            className={`header-primary-wrap ${isGnbOpen ? 'mobile-gnb-open' : ''} ${isScrolled ? 'scrolled' : ''}`}
+            className={headerClasses}
             onMouseEnter={() => window.innerWidth > 1024 && setIsHeaderHovered(true)}
             onMouseLeave={() => window.innerWidth > 1024 && setIsHeaderHovered(false)}
         >
             <h1>
-                <Link to="/" onClick={handleMenuClick}><img className="logo" src={ isScrolled || isGnbOpen || isHeaderHovered ? logoNavy : logo } alt={t('footer.company_name')} /></Link>
+                <Link to="/" onClick={handleMenuClick}>
+                    <img 
+                        className="logo" 
+                        src={logo} 
+                        alt={t('footer.company_name')} 
+                    />
+                </Link>
             </h1>
 
             <div className="gnb">
@@ -165,8 +177,8 @@ function Header() {
                         {menuItems.map((item, index) => {
                             const isActiveDepth1 = location.pathname === item.path.split('#')[0];
                             return (
-                                <li key={index} className={`${activeMobileSubmenu === index ? 'submenu-open' : ''} ${isActiveDepth1 ? 'active' : ''}`}>
-                                    <Link to={item.path} onClick={(e) => handleMobileSubmenuToggle(e, index)}><span>{item.title}</span></Link>
+                                <li key={index} className={`${isActiveDepth1 ? 'active' : ''}`}>
+                                    <Link to={item.path} onClick={handleMenuClick}><span>{item.title}</span></Link>
                                     {item.depth2 && (
                                         <ul className="depth2">
                                             {item.depth2.map((subItem, subIndex) => {

@@ -18,7 +18,7 @@ const OneOnOneInquiryPage = () => {
     const copyToClipboard = async (text, label) => {
         try {
             await navigator.clipboard.writeText(text);
-            setAlert({ isOpen: true, type: 'success', message: `${label}이(가) 복사되었습니다.` });
+            // 알림창 없이 즉시 복사 (사용자 요청)
         } catch {
             setAlert({ isOpen: true, type: 'error', message: `복사에 실패했습니다. 직접 복사해주세요: ${text}` });
         }
@@ -52,18 +52,15 @@ const OneOnOneInquiryPage = () => {
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                                 </svg>
                             </div>
-                            <h3 className="inq-card-title">대표번호로 문의</h3>
+                            <h3 className="inq-card-title">문의 및 상담</h3>
                             <div className="inq-card-phone">{PHONE}</div>
                             <p className="inq-card-desc">
-                                먼저 대표번호로 전화 주시면 담당자가 문의 내용을 확인하고,
+                                대표번호나 이메일로 문의 내용을 전달해 주시면 담당자가 확인 후,
                                 원격지원이 필요한 경우 접속 방법을 안내해 드립니다.
                             </p>
                             <div className="inq-card-btns">
-                                <a href={`tel:${PHONE.replace(/-/g, '')}`} className="inq-btn inq-btn--solid">
-                                    전화하기
-                                </a>
-                                <button type="button" onClick={() => copyToClipboard(PHONE, '대표번호')} className="inq-btn inq-btn--ghost">
-                                    번호 복사
+                                <button type="button" onClick={() => copyToClipboard(PHONE, '대표번호')} className="inq-btn inq-btn--solid">
+                                    번호 복사하기
                                 </button>
                             </div>
                         </div>

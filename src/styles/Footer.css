@@ -89,21 +89,34 @@
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 50px;
-    height: 50px;
-    background: #eee;
-    color: #333;
+    width: 45px;
+    height: 45px;
+    background: #fff;
+    color: #1C2D60;
     text-align: center;
-    line-height: 50px;
+    line-height: 45px;
     border-radius: 50%;
     cursor: pointer;
-    transition: background 0.3s, color 0.3s;
-    font-size: 24px;
+    transition: all 0.3s ease;
+    font-size: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #top_btn:hover {
-    background: #007bff;
+    background: #1C2D60;
     color: #fff;
+    border-color: #1C2D60;
+    transform: translateY(-5px);
+}
+
+#top_btn:active {
+    background: #152245;
+    transform: translateY(0);
 }
 
 /* ===================================

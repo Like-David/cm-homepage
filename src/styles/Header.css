@@ -562,11 +562,12 @@ html {
     user-select: none;
 }
 
-.header-primary-wrap.scrolled .lang-current {
+.header-primary-wrap.scrolled:not(.force-dark) .lang-current {
     color: #1a1e2e;
 }
 
-.header-primary-wrap:hover .lang-current {
+.header-primary-wrap:hover .lang-current,
+.header-primary-wrap.force-dark .lang-current {
     color: #fff;
 }
 
@@ -652,11 +653,12 @@ html {
     transition: color 0.3s ease;
 }
 
-.header-primary-wrap.scrolled .user-menu span {
+.header-primary-wrap.scrolled:not(.force-dark) .user-menu span {
     color: #1a1e2e;
 }
 
-.header-primary-wrap:hover .user-menu span {
+.header-primary-wrap:hover .user-menu span,
+.header-primary-wrap.force-dark .user-menu span {
     color: #fff;
 }
 

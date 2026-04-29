@@ -415,6 +415,7 @@
     height: clamp(400px, 70vh, 700px); /* Increased height: min 400px, target 70vh, max 700px */
     display: block;
     object-fit: cover;
+    object-position: center 30%; /* Shift focus to show more of the upper part */
 }
 
 .service-center-text-overlay {

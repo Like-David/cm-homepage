@@ -39,35 +39,35 @@ import SMUImg from '@/assets/images/Index/Partners/SMU.jpg';
 
 const partnersData = {
     'financial': [
-        { name: 'NH 농협은행', logo: NHBankImg },
-        { name: 'IBK 기업은행', logo: IBKImg },
-        { name: 'BNK 부산은행', logo: BusanImg },
-        { name: 'BNK 경남은행', logo: KyongnamImg },
-        { name: '전북은행', logo: JBBankImg },
-        { name: 'iM 뱅크', logo: IMBankImg, whiteBorder: true }
+        { key: 'NHBank', logo: NHBankImg },
+        { key: 'IBK', logo: IBKImg },
+        { key: 'Busan', logo: BusanImg },
+        { key: 'Kyongnam', logo: KyongnamImg },
+        { key: 'JBBank', logo: JBBankImg },
+        { key: 'IMBank', logo: IMBankImg, whiteBorder: true }
     ],
     'educational': [
-        { name: 'KB 저축은행', logo: KBSavingImg },
-        { name: '저축은행중앙회', logo: FSBImg, whiteBorder: true },
-        { name: 'MG 새마을금고', logo: MGImg },
-        { name: 'OK 캐피탈', logo: OKCapitalImg },
-        { name: '한화금융서비스', logo: HanwhaImg },
-        { name: 'KDB 생명', logo: KDBImg },
-        { name: 'DB생명', logo: DBLifeImg },
-        { name: '처브라이프생명보험주식회사', logo: CHUBBImg },
-        { name: '교보라이프플래닛', logo: KYOBOImg },
-        { name: '한국투자증권', logo: KoreaInvestmentImg },
-        { name: '메리츠증권', logo: meritzImg },
-        { name: '신한신용정보', logo: ShinhanCiImg }
+        { key: 'KBSaving', logo: KBSavingImg },
+        { key: 'FSB', logo: FSBImg, whiteBorder: true },
+        { key: 'MG', logo: MGImg },
+        { key: 'OKCapital', logo: OKCapitalImg },
+        { key: 'Hanwha', logo: HanwhaImg },
+        { key: 'KDB', logo: KDBImg },
+        { key: 'DBLife', logo: DBLifeImg },
+        { key: 'CHUBB', logo: CHUBBImg },
+        { key: 'KYOBO', logo: KYOBOImg },
+        { key: 'KoreaInvestment', logo: KoreaInvestmentImg },
+        { key: 'meritz', logo: meritzImg },
+        { key: 'ShinhanCi', logo: ShinhanCiImg }
     ],
     'public': [
-        { name: '감사원', logo: BAIImg },
-        { name: '한국저작권위원회', logo: CopyrightImg },
-        { name: '한국방송전파진흥원', logo: KCAImg },
-        { name: '서울시 Etax', logo: SeoulEtaxImg },
-        { name: '인하대학교', logo: INHAUImg },
-        { name: '세종사이버대학교', logo: SJCUImg, padded: true },
-        { name: '상명대학교', logo: SMUImg, padded: true }
+        { key: 'BAI', logo: BAIImg },
+        { key: 'Copyright', logo: CopyrightImg },
+        { key: 'KCA', logo: KCAImg },
+        { key: 'SeoulEtax', logo: SeoulEtaxImg },
+        { key: 'INHAU', logo: INHAUImg },
+        { key: 'SJCU', logo: SJCUImg, padded: true },
+        { key: 'SMU', logo: SMUImg, padded: true }
     ]
 };
 
@@ -159,9 +159,9 @@ const ClientPage = () => {
               <h3>{t(categoryKeys[key])}</h3>
               <div className="partners-grid">
                 {partnersData[key].map((partner, index) => (
-                  <div key={`${key}-${partner.name}-${index}`} className="partner-card">
-                    <img src={partner.logo} alt={partner.name} className={[partner.whiteBorder && 'img-white-border', partner.padded && 'img-logo-padded'].filter(Boolean).join(' ')} />
-                    <p className="partner-name">{partner.name}</p>
+                  <div key={`${key}-${partner.key}-${index}`} className="partner-card">
+                    <img src={partner.logo} alt={t(`partners.names.${partner.key}`)} className={[partner.whiteBorder && 'img-white-border', partner.padded && 'img-logo-padded'].filter(Boolean).join(' ')} />
+                    <p className="partner-name">{t(`partners.names.${partner.key}`)}</p>
                   </div>
                 ))}
               </div>

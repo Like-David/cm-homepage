@@ -190,6 +190,29 @@ const adminMenuItem = user && (user.role === 'EMPLOYEE' || user.role === 'ADMIN'
             </h1>
 
             <div className="gnb">
+                <div className="mobile-top-bar">
+                    <div className="mobile-language-selector">
+                        <button 
+                            className={`lang-btn ${currentLang === 'ko' ? 'active' : ''}`}
+                            onClick={() => changeLanguage('ko')}
+                        >
+                            KO
+                        </button>
+                        <span className="lang-divider">|</span>
+                        <button 
+                            className={`lang-btn ${currentLang === 'en' ? 'active' : ''}`}
+                            onClick={() => changeLanguage('en')}
+                        >
+                            EN
+                        </button>
+                    </div>
+                    <div className="close">
+                        <button type="button" onClick={() => setGnbOpen(false)}>
+                            <span className="circle"></span>
+                            <span className="blind">{t('menu.close_menu')}</span>
+                        </button>
+                    </div>
+                </div>
                 <nav className="nav">
                     <ul className="depth1">
                         {menuItems.map((item, index) => {
@@ -244,7 +267,7 @@ const adminMenuItem = user && (user.role === 'EMPLOYEE' || user.role === 'ADMIN'
                             </ul>
                         </div>
 
-                        <div className={`user-menu ${isGnbOpen ? 'mobile-visible' : ''}`}>
+                        <div className={`user-menu desktop-only ${isGnbOpen ? 'mobile-visible' : ''}`}>
                             {user ? (
                                 <>
                                     <span className="user-name">{user.name}</span>
@@ -257,12 +280,6 @@ const adminMenuItem = user && (user.role === 'EMPLOYEE' || user.role === 'ADMIN'
                         </div>
                     </div>
                 </nav>
-                <div className="close">
-                    <button type="button" onClick={() => setGnbOpen(false)}>
-                        <span className="circle"></span>
-                        <span className="blind">{t('menu.close_menu')}</span>
-                    </button>
-                </div>
             </div>
 
             <div className="hamburger">

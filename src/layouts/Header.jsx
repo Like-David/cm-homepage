@@ -196,14 +196,14 @@ const adminMenuItem = user && (user.role === 'EMPLOYEE' || user.role === 'ADMIN'
                             className={`lang-btn ${currentLang === 'ko' ? 'active' : ''}`}
                             onClick={() => changeLanguage('ko')}
                         >
-                            KO
+                            {currentLang === 'ko' ? '한국어' : 'KO'}
                         </button>
                         <span className="lang-divider">|</span>
                         <button 
                             className={`lang-btn ${currentLang === 'en' ? 'active' : ''}`}
                             onClick={() => changeLanguage('en')}
                         >
-                            EN
+                            {currentLang === 'ko' ? '영어' : 'EN'}
                         </button>
                     </div>
                     <div className="close">

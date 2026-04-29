@@ -113,8 +113,9 @@ const FaqPage = () => {
     useEffect(() => {
         if (openId && panelRef.current) {
             setTimeout(() => {
-                panelRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 100);
+                const top = panelRef.current.getBoundingClientRect().top + window.scrollY - 130;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }, 250);
         }
     }, [openId]);
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import LoginModal from '@/components/common/LoginModal';
@@ -12,6 +12,7 @@ import logoNavy from '@/assets/images/Header/cm-logo-navy.png';
 function Header() {
     const { t, i18n } = useTranslation();
     const { user, logout } = useAuth();
+    const navigate = useNavigate();
     const [isGnbOpen, setGnbOpen] = useState(false);
     const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
     const [isScrolled, setScrolled] = useState(false);
@@ -34,6 +35,7 @@ function Header() {
     };
 
     const handleLogout = () => {
+        navigate('/');
         logout();
         handleShowAlert({
             type: 'success',

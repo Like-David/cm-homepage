@@ -101,8 +101,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 0;
-    padding-right: 50px;
+    padding: 0 50px; /* Uniform padding */
     box-sizing: border-box;
 }
 
@@ -111,29 +110,20 @@ html {
    =================================== */
 .depth1 {
     display: flex;
-    justify-content: flex-start;
     list-style: none;
-    margin: 0 0 0 100px; /* Logo gap */
+    margin: 0; /* Removed logo gap margin */
     padding: 0;
     flex: 1;
     justify-content: center;
-    gap: 15px; /* Added gap between menu items */
+    gap: 20px; /* Reduced gap slightly for better fit */
 }
 
 .depth1 > li {
     position: relative;
-    padding: 0 30px; /* Adjusted padding to work with gap */
+    padding: 0 20px; /* Uniform padding for better centering */
     line-height: 110px;
     display: flex;
     justify-content: center;
-}
-
-.depth1 > li:first-child {
-    padding-left: 0;
-}
-
-.depth1 > li:last-child {
-    padding-right: 0;
 }
 
 .depth1 > li > a {
@@ -211,7 +201,7 @@ html {
     text-transform: uppercase;
     padding: 12px 28px 8px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    margin-bottom: 4px;
+    margin-bottom: 12px; /* Increased from 12px to 20px: much more space below the title underline */
     transition: color 0.2s ease, background-color 0.2s ease;
 }
 
@@ -222,7 +212,7 @@ html {
 
 .depth3 {
     list-style: none;
-    margin: 0 0 6px 0;
+    margin: 0 0 6px 0; /* Increased from 6px: space above the separator line */
     padding: 0;
     background-color: transparent;
     display: flex;
@@ -252,7 +242,7 @@ html {
 
 /* 제품 테스트 구분선 */
 .depth2 > li.has-depth3 + li > a {
-    border-top: 1px solid rgba(28, 45, 96, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 4px;
     padding-top: 14px;
 }

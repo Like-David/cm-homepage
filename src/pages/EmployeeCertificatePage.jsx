@@ -140,25 +140,23 @@ const EmployeeCertificatePage = () => {
                                 <th>{t('admin.employee_position')}</th>
                                 <th>{t('admin.issue_date')}</th>
                                 <th>{t('admin.purpose')}</th>
-                                <th>{t('admin.status.label')}</th>
                                 <th style={{ width: 80 }}>{t('admin.manage_label')}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {loading ? (
                                 <tr>
-                                    <td colSpan="7" className="text-center py-5">
+                                    <td colSpan="6" className="text-center py-5">
                                         <Spinner animation="border" style={{ color: '#1C2D60' }} />
                                     </td>
                                 </tr>
                             ) : certificates.length === 0 ? (
                                 <tr>
-                                    <td colSpan="7" className="text-center py-5 text-muted">
+                                    <td colSpan="6" className="text-center py-5 text-muted">
                                         {search ? t('admin.no_search_results', { search }) : t('admin.no_issue_history')}
                                     </td>
                                 </tr>
                             ) : certificates.map((cert) => {
-                                const badge = STATUS_BADGE[cert.status] ?? { label: cert.status, color: '#888', bg: '#f2f3f5' };
                                 return (
                                     <tr key={cert.id}>
                                         <td className="fw-bold">{cert.employee_name}</td>
@@ -166,18 +164,6 @@ const EmployeeCertificatePage = () => {
                                         <td style={{ color: '#555' }}>{cert.position || '-'}</td>
                                         <td style={{ color: '#555' }}>{formatDate(cert.issue_date)}</td>
                                         <td style={{ color: '#555' }}>{cert.purpose || '-'}</td>
-                                        <td>
-                                            <span style={{
-                                                padding: '3px 10px',
-                                                borderRadius: 12,
-                                                fontSize: '0.75rem',
-                                                fontWeight: 600,
-                                                color: badge.color,
-                                                background: badge.bg,
-                                            }}>
-                                                {badge.label}
-                                            </span>
-                                        </td>
                                         <td>
                                             <div className="um-action-group">
                                                 <button

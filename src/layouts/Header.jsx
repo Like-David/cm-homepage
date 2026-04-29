@@ -87,21 +87,21 @@ function Header() {
             ],
         },
     ];
-
-    // 관리자 메뉴 추가 (EMPLOYEE 또는 ADMIN만)
-    const adminMenuItem = user && (user.role === 'EMPLOYEE' || user.role === 'ADMIN') ? {
-        title: user.role === 'ADMIN' ? '인사관리시스템' : '인사 서비스',
-        path: '/admin',
-        depth2: user.role === 'ADMIN' ? [
-            { title: '발급 현황 관리', path: '/admin/employee-certificate/manage' },
-            { title: '이용 통계', path: '/admin/statistics' },
-            { title: '임직원 명부', path: '/admin/users' },
-            { title: '내 정보', path: '/admin/my-profile' },
-        ] : [
-            { title: '재직증명서 발급', path: '/admin/employee-certificate' },
-            { title: '내 정보', path: '/admin/my-profile' },
-        ],
-    } : null;
+// 관리자 메뉴 추가 (EMPLOYEE 또는 ADMIN만)
+const adminMenuItem = user && (user.role === 'EMPLOYEE' || user.role === 'ADMIN') ? {
+    title: user.role === 'ADMIN' ? t('admin.hr_management_system') : t('admin.hr_services'),
+    path: '/admin',
+    depth2: user.role === 'ADMIN' ? [
+        { title: t('admin.employee_certificate'), path: '/admin/employee-certificate/manage' },
+        { title: t('admin.create_certificate'), path: '/admin/employee-certificate' },
+        { title: t('admin.statistics'), path: '/admin/statistics' },
+        { title: t('admin.user_management'), path: '/admin/users' },
+        { title: t('admin.my_profile'), path: '/admin/my-profile' },
+    ] : [
+        { title: t('admin.create_certificate'), path: '/admin/employee-certificate' },
+        { title: t('admin.my_profile'), path: '/admin/my-profile' },
+    ],
+} : null;
 
     // 고객지원 다음에 관리자 메뉴 삽입 (복구)
     const menuItems = adminMenuItem
@@ -230,16 +230,13 @@ function Header() {
                             onMouseLeave={handleMenuLeave}
                         >
                             <span className="lang-current">
-                                {{ ko: 'KOR', en: 'ENG' }[currentLang] ?? 'KOR'}
+                                {t(`lang.${currentLang}`) || '한국어'}
                                 <span className="lang-arrow" />
                             </span>
                             <ul className="lang-dropdown">
-                                {[
-                                    { code: 'ko', label: 'KOR' },
-                                    { code: 'en', label: 'ENG' },
-                                ].map(({ code, label }) => (
+                                {['ko', 'en'].map((code) => (
                                     <li key={code} className={currentLang === code ? 'active' : ''} onClick={() => changeLanguage(code)}>
-                                        {label}
+                                        {t(`lang.${code}`)}
                                     </li>
                                 ))}
                             </ul>

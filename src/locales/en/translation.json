@@ -1,4 +1,8 @@
 {
+  "lang": {
+    "ko": "Korean",
+    "en": "English"
+  },
   "menu": {
     "about": "About",
     "business": "Business",
@@ -19,7 +23,7 @@
     "loan_sol": "Agreement Solution (RX-Loan)",
     "rx_cert": "RX-Cert",
     "rx_loan": "RX Loan",
-    "contact_us": "CONTACT US",
+    "contact_us": "Contact Us",
     "faq": "FAQ",
     "one_on_one": "1:1 Inquiry",
     "admin_dashboard": "Dashboard",
@@ -83,14 +87,93 @@
   "admin": {
     "banner_title": "Admin Page",
     "banner_subtitle": "Employee Service Management",
-    "employee_certificate": "Employee Certificate Management",
-    "employee_certificate_desc": "View and issue employee certificates",
-    "user_management": "User Management",
-    "user_management_desc": "Manage user information and permissions",
-    "statistics": "Statistics",
-    "statistics_desc": "Service usage statistics",
-    "settings": "Settings",
-    "settings_desc": "System settings",
+    "hr_management_system": "HR Management System",
+    "hr_services": "HR Services",
+    "my_profile": "My Profile",
+    "my_profile_subtitle": "Check your human resource information.",
+    "my_profile_view": "View My Profile",
+    "hr_info": "HR Information",
+    "employee_position": "Position",
+    "employee_duties": "Duties",
+    "extension_number": "Extension",
+    "cert_issue_cta_title": "Instant Certificate Issuance",
+    "cert_issue_cta_desc": "Apply for and print your employment certificate online immediately.",
+    "recent_issue_history": "Recent Issuance History",
+    "all_issue_history": "All Issuance History",
+    "certificate_type": "Certificate Type",
+    "submission_place": "Submission Place",
+    "view_all": "View All",
+    "no_issue_history": "No issuance history found.",
+    "management_menu": "Management Menu",
+    "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "issued": "Issued"
+    },
+    "cert_manage_subtitle": "View and manage all employment certificate issuance records.",
+    "search_name_placeholder": "Search by name",
+    "manual_issue_btn": "Manual Issuance",
+    "delete": "Delete",
+    "delete_confirm_title": "Delete Issuance Record",
+    "delete_confirm_msg": "Are you sure you want to delete the issuance record for {{name}}?",
+    "delete_warning": "Deleted records cannot be recovered.",
+    "manual_issue_title": "Register Manual Issuance",
+    "select_employee": "Select Employee",
+    "select_employee_placeholder": "Please select an employee",
+    "cert_detail_title": "Issuance Details",
+    "manage_label": "Manage",
+    "view_detail": "View Detail",
+    "delete_fail": "Failed to delete.",
+    "issue_register_fail": "Failed to register issuance.",
+    "no_search_results": "No issuance history found for '{{search}}'.",
+    "total_users_label": "Total Users",
+    "total_posts_label": "Total Posts",
+    "total_certs_label": "Certificates Issued",
+    "new_users_week": "New users this week: {{count}}",
+    "new_posts_month": "Posts this month: {{count}}",
+    "new_certs_month": "Certificates this month: {{count}}",
+    "vs_prev_week": "vs last week",
+    "vs_prev_month": "vs last month",
+    "role_distribution": "User Distribution by Role",
+    "inquiry_status": "Inquiry Response Status",
+    "recent_users": "Recently Registered Users",
+    "popular_posts": "Top 5 Popular Posts",
+    "by_views": "By views",
+    "count_unit_person": "",
+    "count_unit_case": "",
+    "rank_label": "Rank",
+    "answered_label": "Answered",
+    "waiting_label": "Waiting",
+    "no_recent_users": "No recently registered users.",
+    "no_posts": "No posts found.",
+    "stats_load_fail": "Failed to load statistics data.",
+    "user_list_desc": "A total of <strong>{{count}}</strong> users are registered.",
+    "search_user_placeholder": "Search by name or email",
+    "all_roles": "All Roles",
+    "me_tag": "Me",
+    "external_users": "Externally Registered Users",
+    "no_users": "No registered users found.",
+    "change_role": "Change Role",
+    "change_role_desc": "Changing the role for <strong>{{name}}</strong> ({{email}}).",
+    "new_role_select": "Select New Role",
+    "delete_user": "Delete User",
+    "delete_user_confirm": "Are you sure you want to delete the account for <strong>{{name}}</strong> ({{email}})?",
+    "delete_user_warning": "Deleted accounts cannot be recovered.",
+    "role_change_fail": "Failed to change role.",
+    "user_delete_fail": "Failed to delete user.",
+    "user_load_fail": "Failed to load user list.",
+    "no_search_results_board": "No results found for '{{keyword}}'.",
+    "no_posts_board": "No posts registered.",
+    "fail_fetch": "Failed to load posts.",
+    "employee_certificate": "Issuance Status",
+    "employee_certificate_desc": "View and approve issuance history for all employees.",
+    "user_management": "Employee Directory",
+    "user_management_desc": "Manage employee list and permissions by department.",
+    "statistics": "Usage Statistics",
+    "statistics_desc": "View certificate issuance and service usage status.",
+    "settings": "System Settings",
+    "settings_desc": "Manage system-wide configuration and settings.",
     "employee_name": "Name",
     "employee_number": "Employee ID",
     "department": "Department",
@@ -110,7 +193,66 @@
     "created_at": "Created At",
     "close": "Close",
     "load_error": "Failed to load data",
-    "load_detail_error": "Failed to load details"
+    "load_detail_error": "Failed to load details",
+    "user_list": "User List",
+    "total_users": "Total Users",
+    "add_user": "Add User",
+    "search_user": "Search User",
+    "all_roles": "All Roles",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "total_posts": "Total Posts",
+    "active_users": "Active Users",
+    "today_visits": "Today's Visits",
+    "weekly_growth": "Weekly Growth",
+    "monthly_growth": "Monthly Growth",
+    "vs_last_month": "vs last month",
+    "vs_yesterday": "vs yesterday",
+    "created_post": "Created post",
+    "registered": "Registered",
+    "commented": "Commented",
+    "updated_profile": "Updated profile",
+    "recent_activity": "Recent Activity",
+    "top_posts": "Top Posts",
+    "system_settings": "System Settings",
+    "general_settings": "General Settings",
+    "notifications": "Notifications",
+    "security": "Security",
+    "backup": "Backup",
+    "site_information": "Site Information",
+    "site_name": "Site Name",
+    "site_description": "Site Description",
+    "contact_settings": "Contact Settings",
+    "contact_email": "Contact Email",
+    "support_email": "Support Email",
+    "site_options": "Site Options",
+    "maintenance_mode": "Maintenance Mode",
+    "allow_registration": "Allow Registration",
+    "notification_settings": "Notification Settings",
+    "email_notifications": "Email Notifications",
+    "sms_notifications": "SMS Notifications",
+    "notification_desc": "Manage system notification settings",
+    "authentication_settings": "Authentication Settings",
+    "require_email_verification": "Require Email Verification",
+    "password_min_length": "Password Minimum Length",
+    "session_timeout": "Session Timeout",
+    "max_login_attempts": "Max Login Attempts",
+    "backup_settings": "Backup Settings",
+    "enable_auto_backup": "Enable Auto Backup",
+    "backup_frequency": "Backup Frequency",
+    "hourly": "Hourly",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "retention_days": "Retention Days",
+    "backup_now": "Backup Now",
+    "restore_backup": "Restore Backup",
+    "save_settings": "Save Settings",
+    "settings_saved_success": "Settings saved successfully"
   },
   "info": {
     "main_title": "With technology that proves the value of documents,\nwe make a decisive difference that will change the tomorrow of our clients.",
@@ -231,47 +373,112 @@
     "banner_subtitle": "Please feel free to contact us if you have any questions.",
     "section_title": "Frequently Asked Questions",
     "section_subtitle": "We have collected questions that customers frequently ask.",
-    "q1": {
-      "question": "What is the procedure for product introduction?",
-      "answer": "Please contact us through the inquiry form on our website or call our main number, and a professional consultant will provide detailed guidance on the introduction procedure."
+    "cta_title": "Didn't find the answer you were looking for?",
+    "cta_desc": "Our representative will answer you directly through 1:1 inquiry.",
+    "cta_btn": "1:1 Inquiry",
+    "categories": {
+        "product": "Product & Introduction",
+        "support": "Technical Support",
+        "install": "Installation & Execution",
+        "print": "Output & Printing"
     },
-    "q2": {
-      "question": "I would like to request a product demo.",
-      "answer": "Demo requests can be made online or by phone. After confirmation, our representative will provide a demo demonstration in person or remotely."
-    },
-    "q3": {
-      "question": "How can I receive technical support?",
-      "answer": "We operate a technical support portal and hotline for customers who have signed a maintenance contract. Details will be provided at the time of contract."
-    },
-    "q4": {
-      "question": "Question about licensing.",
-      "answer": "License policies vary by product, so please contact our sales team for detailed information."
-    },
-    "q5": {
-      "question": "An error occurs during installation.",
-      "answer": "Please refer to the installation guide or contact our technical support team, and we will resolve it quickly."
+    "items": {
+      "pr1": {
+        "question": "What is the procedure for product introduction?",
+        "answer": "Please contact us through the inquiry form on our website or call our main number, and a professional consultant will provide detailed guidance on the introduction procedure."
+      },
+      "pr2": {
+        "question": "I would like to request a product demo.",
+        "answer": "Demo requests can be made online or by phone. After confirmation, our representative will provide a demo demonstration in person or remotely."
+      },
+      "pr3": {
+        "question": "Question about licensing.",
+        "answer": "License policies vary by product, so please contact our sales team for detailed information."
+      },
+      "s1": {
+        "question": "How can I receive technical support?",
+        "answer": "We operate a technical support portal and hotline for customers who have signed a maintenance contract. Details will be provided at the time of contract."
+      },
+      "s2": {
+        "question": "What are the technical support operating hours?",
+        "answer": [
+            "We operate from 9 AM to 6 PM on weekdays, excluding lunch hours (12 PM to 1 PM) and weekends/holidays.",
+            "In case of urgent failure, please contact the technical support hotline (0505-998-0888) and a representative will guide you."
+        ]
+      },
+      "s3": {
+        "question": "How do I get remote support?",
+        "answer": [
+            "First, call our main number (02-6949-4170) and a representative will check your inquiry.",
+            "If remote support is needed, follow the representative's instructions to access 988.co.kr and enter the 6-digit authentication number."
+        ]
+      },
+      "s4": {
+        "question": "How do I proceed with a maintenance contract?",
+        "answer": [
+            "After product introduction, you can conclude a separate maintenance contract through your sales representative.",
+            "Technical support scope and response time may vary depending on the contract details, so please contact your representative for details."
+        ]
+      },
+      "i1": {
+        "question": "An error occurs during installation.",
+        "answer": "Please refer to the installation guide or contact our technical support team, and we will resolve it quickly."
+      },
+      "i2": {
+        "question": "When the installation guide appears repeatedly even after the program is installed",
+        "answer": [
+            "Delete the existing program and reinstall it.",
+            "If the same problem persists after reinstallation, you need to check if it was blocked by a PC security program (antivirus, etc.)."
+        ]
+      },
+      "i3": {
+        "question": "When the program does not run due to a 'No Response' error",
+        "answer": "If it does not run even after reinstalling the program, please temporarily turn off the real-time monitoring function of your security program or check the block list."
+      },
+      "p1": {
+        "question": "When the 'Processing' status persists on the preview screen",
+        "answer": [
+            "Close the preview window and run it again.",
+            "If the problem persists, please remove and reinstall the program."
+        ]
+      },
+      "p2": {
+        "question": "When the print button is pressed but the printer does not respond",
+        "answer": [
+            "Turn the printer off and on to check the connection status.",
+            "If not resolved, try printing with that printer after registering a new identical driver through 'Add Printer' in the Control Panel."
+        ]
+      },
+      "p3": {
+        "question": "When printing is not possible due to a document stuck in the print queue",
+        "answer": [
+            "Go to [PC Settings → Devices → Printers & Scanners].",
+            "Click 'Open Queue' for the printer you are using, delete all documents in the queue, and try printing again."
+        ]
+      }
     }
   },
   "contact": {
     "banner_title": "Customer Support",
     "banner_subtitle": "Please feel free to contact us if you have any questions.",
     "section_title": "1:1 Inquiry",
-    "section_subtitle": "Please choose one of the following methods according to the type of inquiry.",
-    "channel": "Inquiry Channel",
-    "phone_inquiry_title": "Inquiry by Main Number",
-    "call_btn": "Call",
-    "copy_btn": "Copy Number",
-    "phone_inquiry_desc": "After consulting with a representative via phone, we will guide you on how to connect if remote support is needed.",
-    "remote_inquiry_title": "Remote Support Access",
-    "remote_btn": "Go to Remote Support Page",
-    "remote_inquiry_desc_1": "This page is ",
-    "remote_inquiry_desc_2": "exclusively for remote support",
-    "remote_inquiry_desc_3": ".",
-    "remote_inquiry_desc_4": "Please connect only if you have a ",
-    "remote_inquiry_desc_5": "6-digit authentication number",
-    "remote_inquiry_desc_6": " provided by the representative.",
-    "phone_copy_success": "Main number copied.",
-    "phone_copy_fail": "Copy failed. Please copy manually: "
+    "section_subtitle": "Please follow the sequence below, and our representative will assist you quickly.",
+    "step1_title": "Inquiry & Consultation",
+    "step1_desc": "Please deliver your inquiry via main number or email. Our representative will guide you through the connection method if remote support is needed.",
+    "step1_btn": "Copy Number",
+    "connector_label": "After guidance",
+    "step2_title": "Remote Support Access",
+    "step2_desc": "After representative's guidance, access the remote support page using the button below. Connection is only possible if you have the {{code}}.",
+    "step2_code_label": "6-digit authentication number",
+    "step2_btn": "Access Remote Support",
+    "tech_support_title": "Direct Tech Support Contacts",
+    "tech_phone_label": "Tech Support Phone",
+    "tech_email_label": "Tech Support Email",
+    "copy": "Copy",
+    "hours_label": "Operating Hours",
+    "hours_weekdays": "Weekdays 09:00 – 18:00",
+    "hours_lunch": "Lunch 12:00 – 13:00",
+    "hours_exclude": "Excluding Weekends & Holidays"
   },
   "support": {
     "banner_title": "Customer Support",
@@ -401,6 +608,36 @@
     "public": "Public & Educational Institutions",
     "educational": "Tier 2 Financial Institutions"
   },
+  "partners": {
+    "names": {
+      "Busan": "BNK Busan Bank",
+      "CHUBB": "Chubb Life Insurance Korea Co., Ltd.",
+      "DBLife": "DB Life Insurance",
+      "Hanwha": "Hanwha Financial Service",
+      "IBK": "IBK Industrial Bank of Korea",
+      "IMBank": "iM Bank",
+      "JBBank": "Jeonbuk Bank",
+      "KBSaving": "KB Savings Bank",
+      "KDB": "KDB Life Insurance",
+      "KoreaInvestment": "Korea Investment & Securities",
+      "KYOBO": "Kyobo Lifeplanet",
+      "Kyongnam": "BNK Kyongnam Bank",
+      "meritz": "Meritz Securities",
+      "MG": "MG Community Credit Cooperatives",
+      "NHBank": "NH Nonghyup Bank",
+      "OKCapital": "OK Capital",
+      "SCBank": "SC First Bank",
+      "ShinhanCi": "Shinhan Credit Information",
+      "BAI": "Board of Audit and Inspection",
+      "Copyright": "Korea Copyright Commission",
+      "FSB": "Korea Federation of Savings Banks",
+      "KCA": "Korea Communications Agency",
+      "SeoulEtax": "Seoul ETAX",
+      "INHAU": "Inha University",
+      "SJCU": "Sejong Cyber University",
+      "SMU": "Sangmyung University"
+    }
+  },
   "footer": {
     "company_name": "CM Innovation Co., Ltd.",
     "privacy_policy": "Privacy Policy",
@@ -488,9 +725,73 @@
           "title": "Article 7 (Withdrawal and Disqualification of Membership)",
           "content": "1. Members may request withdrawal from the 'Site' at any time, and the 'Site' will process it immediately.\n2. If a member registers false information or fails to pay debts related to the use of the 'Site', the 'Site' may limit or suspend membership."
         },
+        "art8": {
+          "title": "Article 8 (Notice to Members)",
+          "content": "1. When the 'Site' notifies a member, it may be done to the e-mail address designated by the member in advance.\n2. In the case of notification to unspecified many members, the 'Site' may substitute individual notification by posting on the 'Site' bulletin board for more than one week."
+        },
+        "art9": {
+          "title": "Article 9 (Purchase Application and Consent to Provide Personal Information)",
+          "content": "1. Users of the 'Site' apply for purchase on the 'Site' by the following or similar methods, and the 'Site' shall provide each content in an easy-to-understand manner when the user applies for purchase."
+        },
+        "art10": {
+          "title": "Article 10 (Formation of Contract)",
+          "content": "1. The 'Site' may not accept the purchase application as in Article 9 if it falls under any of the following items.\n2. The contract is deemed to be established at the time when the acceptance of the 'Site' reaches the user."
+        },
+        "art11": {
+          "title": "Article 11 (Payment Method)",
+          "content": "The payment method for goods purchased from the 'Site' can be made by available methods such as phone banking, internet banking, and credit card payment."
+        },
+        "art12": {
+          "title": "Article 12 (Notice of Confirmation, Change and Cancellation of Purchase Application)",
+          "content": "1. The 'Site' shall notify the user of receipt confirmation when there is a purchase application from the user.\n2. The user who has received the receipt confirmation notice may request to change or cancel the purchase application immediately if there is any discordance in expression of intention."
+        },
+        "art13": {
+          "title": "Article 13 (Supply of Goods)",
+          "content": "1. The 'Site' shall take necessary measures so that the goods can be delivered within 7 days from the date of the user's subscription, unless there is a separate agreement with the user regarding the supply period of the goods."
+        },
+        "art14": {
+          "title": "Article 14 (Refund)",
+          "content": "1. When the 'Site' cannot deliver or provide the goods requested by the user for reasons such as being out of stock, it shall notify the user of the reason without delay and refund within 3 business days from the date of receiving the payment."
+        },
+        "art15": {
+          "title": "Article 15 (Cancellation of Subscription)",
+          "content": "1. Users who have concluded a contract for the purchase of goods with the 'Site' may cancel the subscription within 7 days from the date of receiving the written contract contents."
+        },
+        "art16": {
+          "title": "Article 16 (Effect of Cancellation of Subscription)",
+          "content": "1. When the 'Site' receives the goods back from the user, it shall refund the payment for the goods already received within 3 business days."
+        },
         "art17": {
           "title": "Article 17 (Privacy Protection)",
           "content": "1. The 'Site' collects the minimum amount of personal information necessary to provide services when collecting personal information of users.\n2. The 'Site' does not collect information necessary for the execution of purchase contracts in advance when registering for membership."
+        },
+        "art18": {
+          "title": "Article 18 (Obligations of the Site)",
+          "content": "1. The 'Site' shall not engage in acts prohibited by laws and these terms or contrary to public order and morals, and shall do its best to provide goods continuously and stably as prescribed by these terms."
+        },
+        "art19": {
+          "title": "Article 19 (Obligations for Member ID and Password)",
+          "content": "1. Members are responsible for managing their ID and password.\n2. Members shall not allow third parties to use their ID and password."
+        },
+        "art20": {
+          "title": "Article 20 (Obligations of Users)",
+          "content": "Users shall not engage in the following acts:\n1. Registration of false information when applying or changing\n2. Stealing other people's information\n3. Changing information posted on the 'Site'\n4. Sending or posting information other than the information set by the 'Site'"
+        },
+        "art21": {
+          "title": "Article 21 (Relationship between Linked Website and Connected Website)",
+          "content": "When the upper website and the lower website are connected by hyperlink, etc., the former is called a linked website and the latter is called a connected website."
+        },
+        "art22": {
+          "title": "Article 22 (Attribution of Copyright and Restriction of Use)",
+          "content": "1. Copyright and other intellectual property rights for works created by the 'Site' belong to the 'Site'.\n2. Users shall not use information obtained by using the 'Site' for commercial purposes or allow third parties to use it."
+        },
+        "art23": {
+          "title": "Article 23 (Company's Exemption)",
+          "content": "1. The 'Site' is exempted from responsibility for service provision if it cannot provide services due to natural disasters or equivalent force majeure."
+        },
+        "art24": {
+          "title": "Article 24 (Dispute Resolution)",
+          "content": "1. The 'Site' shall establish and operate a damage compensation processing mechanism to reflect legitimate opinions or complaints raised by users and handle compensation for damages."
         },
         "art25": {
           "title": "Article 25 (Jurisdiction and Governing Law)",
@@ -528,7 +829,7 @@
     "history": {
       "view_timeline": "View Timeline",
       "view_card": "View Card",
-      "month": "",
+      "month": "Month",
       "ongoing": "Evolving to possess more professional technology development capabilities!!",
       "won": "Won Project",
       "won_planned": "To be won",

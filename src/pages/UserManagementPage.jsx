@@ -9,15 +9,15 @@ import * as adminService from '../services/admin';
 import '../styles/AdminPage.css';
 import '../styles/UserManagementPage.css';
 
-const ROLE_BADGE = {
-    ADMIN:    { label: '관리자', color: '#dc3545', bg: '#fff0f0' },
-    EMPLOYEE: { label: '임직원', color: '#1C2D60', bg: '#eef1f9' },
-    GUEST:    { label: '게스트', color: '#6c757d', bg: '#f2f3f5' },
-};
-
 const UserManagementPage = () => {
     const { t } = useTranslation();
     const { user: currentUser } = useAuth();
+
+    const ROLE_BADGE = {
+        ADMIN:    { label: t('auth.role_admin'), color: '#dc3545', bg: '#fff0f0' },
+        EMPLOYEE: { label: t('auth.role_employee'), color: '#1C2D60', bg: '#eef1f9' },
+        GUEST:    { label: t('auth.role_guest'), color: '#6c757d', bg: '#f2f3f5' },
+    };
 
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -38,15 +38,15 @@ const UserManagementPage = () => {
             if (searchTerm) params.search = searchTerm;
             if (filterRole !== 'ALL') params.role = filterRole;
             const result = await adminService.getUsers(params);
-            setUsers(result.data);
+            setUsers(Array.isArray(result) ? result : (result?.data ?? []));
         } catch (err) {
-            setError(err.response?.data?.message || '사용자 목록을 불러오는데 실패했습니다.');
+            setError(err.response?.data?.message || t('admin.user_load_fail'));
         } finally {
             setLoading(false);
         }
-    }, [searchTerm, filterRole]);
+    }, [searchTerm, filterRole, t]);
 
-    useEffect(() => { fetchUsers(); }, [filterRole]);
+    useEffect(() => { fetchUsers(); }, [filterRole, fetchUsers]);
 
     const handleSearch = (e) => { e.preventDefault(); fetchUsers(); };
 
@@ -57,7 +57,7 @@ const UserManagementPage = () => {
             setRoleModal({ show: false, user: null, role: '' });
             fetchUsers();
         } catch (err) {
-            setError(err.response?.data?.message || '역할 변경에 실패했습니다.');
+            setError(err.response?.data?.message || t('admin.role_change_fail'));
         } finally {
             setActionLoading(false);
         }
@@ -70,13 +70,11 @@ const UserManagementPage = () => {
             setDeleteModal({ show: false, user: null });
             fetchUsers();
         } catch (err) {
-            setError(err.response?.data?.message || '사용자 삭제에 실패했습니다.');
+            setError(err.response?.data?.message || t('admin.user_delete_fail'));
         } finally {
             setActionLoading(false);
         }
     };
-
-    const formatDate = (d) => d ? new Date(d).toLocaleDateString('ko-KR') : '-';
 
     return (
         <div className="support-page-wrapper">
@@ -92,7 +90,7 @@ const UserManagementPage = () => {
                 <div className="contact-us-section">
                     <div className="section-header">
                         <h2>{t('admin.user_list')}</h2>
-                        <p>전체 <strong>{users.length}</strong>명의 사용자가 등록되어 있습니다</p>
+                        <p dangerouslySetInnerHTML={{ __html: t('admin.user_list_desc', { count: users.length }) }} />
                     </div>
 
                     {/* 검색 + 필터 */}
@@ -100,11 +98,11 @@ const UserManagementPage = () => {
                         <form className="search-bar" onSubmit={handleSearch}>
                             <input
                                 type="text"
-                                placeholder="이름 또는 이메일로 검색"
+                                placeholder={t('admin.search_user_placeholder')}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
-                            <button type="submit" className="um-search-icon-btn" aria-label="검색">
+                            <button type="submit" className="um-search-icon-btn" aria-label={t('support.search_btn')}>
                                 <Search size={18} color="#fff" />
                             </button>
                         </form>
@@ -114,10 +112,10 @@ const UserManagementPage = () => {
                             value={filterRole}
                             onChange={(e) => setFilterRole(e.target.value)}
                         >
-                            <option value="ALL">전체 역할</option>
-                            <option value="ADMIN">관리자</option>
-                            <option value="EMPLOYEE">임직원</option>
-                            <option value="GUEST">게스트</option>
+                            <option value="ALL">{t('admin.all_roles')}</option>
+                            <option value="ADMIN">{t('auth.role_admin')}</option>
+                            <option value="EMPLOYEE">{t('auth.role_employee')}</option>
+                            <option value="GUEST">{t('auth.role_guest')}</option>
                         </select>
                     </div>
 
@@ -131,19 +129,19 @@ const UserManagementPage = () => {
                             <thead>
                                 <tr>
                                     <th style={{ width: 40 }}>No.</th>
-                                    <th>이름</th>
-                                    <th>직급</th>
-                                    <th>소속</th>
-                                    <th>이메일</th>
-                                    <th>역할</th>
-                                    <th style={{ width: 100 }}>관리</th>
+                                    <th>{t('admin.employee_name')}</th>
+                                    <th>{t('admin.employee_position')}</th>
+                                    <th>{t('admin.department')}</th>
+                                    <th>{t('auth.email')}</th>
+                                    <th>{t('auth.role')}</th>
+                                    <th style={{ width: 100 }}>{t('admin.manage_label')}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {users.length === 0 ? (
                                     <tr>
                                         <td colSpan="7" className="text-center py-5 text-muted">
-                                            등록된 사용자가 없습니다
+                                            {t('admin.no_users')}
                                         </td>
                                     </tr>
                                 ) : SORTED_EMPLOYEES
@@ -163,7 +161,7 @@ const UserManagementPage = () => {
                                                 <td className="text-muted" style={{ fontSize: '0.85rem' }}>{idx + 1}</td>
                                                 <td>
                                                     <span className="fw-bold">{emp.name}</span>
-                                                    {isSelf && <span className="um-me-tag">나</span>}
+                                                    {isSelf && <span className="um-me-tag">{t('admin.me_tag')}</span>}
                                                 </td>
                                                 <td style={{ color: '#555' }}>{emp.rank}</td>
                                                 <td style={{ color: '#555' }}>{emp.department}</td>
@@ -180,14 +178,14 @@ const UserManagementPage = () => {
                                                             disabled={isSelf}
                                                             onClick={() => setRoleModal({ show: true, user: u, role: u?.role })}
                                                         >
-                                                            역할
+                                                            {t('auth.role')}
                                                         </button>
                                                         <button
                                                             className="um-btn-del"
                                                             disabled={isSelf}
                                                             onClick={() => setDeleteModal({ show: true, user: u })}
                                                         >
-                                                            삭제
+                                                            {t('admin.delete')}
                                                         </button>
                                                     </div>
                                                 </td>
@@ -212,18 +210,18 @@ const UserManagementPage = () => {
                         return (
                             <div className="mt-5">
                                 <h6 style={{ color: '#888', fontWeight: 600, fontSize: '0.85rem', marginBottom: 12, paddingBottom: 8, borderBottom: '1px solid #eee' }}>
-                                    외부 가입 사용자
+                                    {t('admin.external_users')}
                                 </h6>
                                 <table className="board-table">
                                     <thead>
                                         <tr>
                                             <th style={{ width: 40 }}>No.</th>
-                                            <th>이름</th>
-                                            <th>직급</th>
-                                            <th>소속</th>
-                                            <th>이메일</th>
-                                            <th>역할</th>
-                                            <th style={{ width: 100 }}>관리</th>
+                                            <th>{t('admin.employee_name')}</th>
+                                            <th>{t('admin.employee_position')}</th>
+                                            <th>{t('admin.department')}</th>
+                                            <th>{t('auth.email')}</th>
+                                            <th>{t('auth.role')}</th>
+                                            <th style={{ width: 100 }}>{t('admin.manage_label')}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -235,7 +233,7 @@ const UserManagementPage = () => {
                                                     <td className="text-muted" style={{ fontSize: '0.85rem' }}>{idx + 1}</td>
                                                     <td>
                                                         <span className="fw-bold">{u.name ?? '-'}</span>
-                                                        {isSelf && <span className="um-me-tag">나</span>}
+                                                        {isSelf && <span className="um-me-tag">{t('admin.me_tag')}</span>}
                                                     </td>
                                                     <td style={{ color: '#bbb' }}>-</td>
                                                     <td style={{ color: '#bbb' }}>-</td>
@@ -252,14 +250,14 @@ const UserManagementPage = () => {
                                                                 disabled={isSelf}
                                                                 onClick={() => setRoleModal({ show: true, user: u, role: u?.role })}
                                                             >
-                                                                역할
+                                                                {t('auth.role')}
                                                             </button>
                                                             <button
                                                                 className="um-btn-del"
                                                                 disabled={isSelf}
                                                                 onClick={() => setDeleteModal({ show: true, user: u })}
                                                             >
-                                                                삭제
+                                                                {t('admin.delete')}
                                                             </button>
                                                         </div>
                                                     </td>
@@ -278,61 +276,61 @@ const UserManagementPage = () => {
             <Modal show={roleModal.show} onHide={() => setRoleModal({ show: false, user: null, role: '' })} centered>
                 <Modal.Header closeButton style={{ borderBottom: '2px solid #1C2D60' }}>
                     <Modal.Title style={{ color: '#1C2D60', fontWeight: 700, fontSize: '1rem' }}>
-                        역할 변경
+                        {t('admin.change_role')}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="py-4">
                     {roleModal.user && (
                         <>
-                            <p className="mb-3">
-                                <strong>{roleModal.user.name}</strong>({roleModal.user.email})의 역할을 변경합니다.
-                            </p>
-                            <Form.Label className="fw-semibold mb-2">새 역할 선택</Form.Label>
+                            <p className="mb-3" dangerouslySetInnerHTML={{
+                                __html: t('admin.change_role_desc', { name: roleModal.user.name, email: roleModal.user.email })
+                            }} />
+                            <Form.Label className="fw-semibold mb-2">{t('admin.new_role_select')}</Form.Label>
                             <Form.Select
                                 value={roleModal.role}
                                 onChange={(e) => setRoleModal((p) => ({ ...p, role: e.target.value }))}
                             >
-                                <option value="GUEST">게스트</option>
-                                <option value="EMPLOYEE">임직원</option>
-                                <option value="ADMIN">관리자</option>
+                                <option value="GUEST">{t('auth.role_guest')}</option>
+                                <option value="EMPLOYEE">{t('auth.role_employee')}</option>
+                                <option value="ADMIN">{t('auth.role_admin')}</option>
                             </Form.Select>
                         </>
                     )}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="light" onClick={() => setRoleModal({ show: false, user: null, role: '' })}>
-                        취소
+                        {t('common.cancel')}
                     </Button>
                     <Button style={{ backgroundColor: '#1C2D60', borderColor: '#1C2D60' }}
                         onClick={handleRoleChange} disabled={actionLoading}>
-                        {actionLoading ? '처리 중...' : '변경 완료'}
+                        {actionLoading ? t('admin.issuing') : t('common.confirm')}
                     </Button>
                 </Modal.Footer>
             </Modal>
 
-            {/* 삭제 확인 모달 */}
+            {/* 사용자 삭제 모달 */}
             <Modal show={deleteModal.show} onHide={() => setDeleteModal({ show: false, user: null })} centered>
                 <Modal.Header closeButton style={{ borderBottom: '2px solid #dc3545' }}>
                     <Modal.Title style={{ color: '#dc3545', fontWeight: 700, fontSize: '1rem' }}>
-                        사용자 삭제
+                        {t('admin.delete_user')}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="py-4">
                     {deleteModal.user && (
                         <>
-                            <p className="mb-1">
-                                <strong>{deleteModal.user.name}</strong>({deleteModal.user.email}) 계정을 삭제하시겠습니까?
-                            </p>
+                            <p className="mb-1" dangerouslySetInnerHTML={{
+                                __html: t('admin.delete_user_confirm', { name: deleteModal.user.name, email: deleteModal.user.email })
+                            }} />
                             <p className="text-danger mb-0" style={{ fontSize: '0.85rem' }}>
-                                삭제된 계정은 복구할 수 없습니다.
+                                {t('admin.delete_user_warning')}
                             </p>
                         </>
                     )}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="light" onClick={() => setDeleteModal({ show: false, user: null })}>취소</Button>
+                    <Button variant="light" onClick={() => setDeleteModal({ show: false, user: null })}>{t('common.cancel')}</Button>
                     <Button variant="danger" onClick={handleDelete} disabled={actionLoading}>
-                        {actionLoading ? '처리 중...' : '삭제'}
+                        {actionLoading ? t('admin.issuing') : t('admin.delete')}
                     </Button>
                 </Modal.Footer>
             </Modal>

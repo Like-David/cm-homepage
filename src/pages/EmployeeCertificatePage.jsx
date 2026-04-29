@@ -8,15 +8,16 @@ import * as adminService from '../services/admin';
 import '../styles/EmployeeCertificatePage.css';
 import '../styles/UserManagementPage.css';
 
-const STATUS_BADGE = {
-    pending:  { label: '대기 중',   color: '#f59e0b', bg: '#fffbeb' },
-    approved: { label: '승인됨',    color: '#3b82f6', bg: '#eff6ff' },
-    rejected: { label: '반려됨',    color: '#ef4444', bg: '#fef2f2' },
-    issued:   { label: '발급 완료', color: '#10b981', bg: '#ecfdf5' },
-};
-
 const EmployeeCertificatePage = () => {
     const { t } = useTranslation();
+
+    const STATUS_BADGE = {
+        pending:  { label: t('admin.status.pending'),   color: '#f59e0b', bg: '#fffbeb' },
+        approved: { label: t('admin.status.approved'),    color: '#3b82f6', bg: '#eff6ff' },
+        rejected: { label: t('admin.status.rejected'),    color: '#ef4444', bg: '#fef2f2' },
+        issued:   { label: t('admin.status.issued'), color: '#10b981', bg: '#ecfdf5' },
+    };
+
     const [certificates, setCertificates] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -74,7 +75,7 @@ const EmployeeCertificatePage = () => {
             setDeleteModal({ show: false, id: null, name: '' });
             fetchCertificates(pagination.page);
         } catch (err) {
-            setError(err.response?.data?.message || '삭제에 실패했습니다.');
+            setError(err.response?.data?.message || t('admin.delete_fail'));
         } finally {
             setDeleteLoading(false);
         }
@@ -97,7 +98,7 @@ const EmployeeCertificatePage = () => {
             setCreateForm({ employee_name: '', purpose: '' });
             fetchCertificates(1);
         } catch (err) {
-            setError(err.response?.data?.message || '발급 등록에 실패했습니다.');
+            setError(err.response?.data?.message || t('admin.issue_register_fail'));
         } finally {
             setCreateLoading(false);
         }
@@ -107,7 +108,7 @@ const EmployeeCertificatePage = () => {
 
     return (
         <div className="employee-certificate-page">
-            <Banner title={t('admin.employee_certificate')} subtitle="전체 재직증명서 발급 이력을 조회합니다" />
+            <Banner title={t('admin.employee_certificate')} subtitle={t('admin.cert_manage_subtitle')} />
 
             <Container className="py-5">
                 {error && (
@@ -123,7 +124,7 @@ const EmployeeCertificatePage = () => {
                             <Form.Group className="d-flex">
                                 <Form.Control
                                     type="text"
-                                    placeholder="이름으로 검색"
+                                    placeholder={t('admin.search_name_placeholder')}
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                                 />
@@ -143,7 +144,7 @@ const EmployeeCertificatePage = () => {
                             onClick={() => setCreateModal({ show: true })}
                         >
                             <Plus size={18} className="me-1" />
-                            직접 발급
+                            {t('admin.manual_issue_btn')}
                         </Button>
                     </Col>
                 </Row>
@@ -153,13 +154,13 @@ const EmployeeCertificatePage = () => {
                     <table className="board-table">
                         <thead>
                             <tr>
-                                <th>이름</th>
-                                <th>부서</th>
-                                <th>직급</th>
-                                <th>발급일</th>
-                                <th>발급 목적</th>
-                                <th>상태</th>
-                                <th style={{ width: 80 }}>관리</th>
+                                <th>{t('admin.employee_name')}</th>
+                                <th>{t('admin.department')}</th>
+                                <th>{t('admin.employee_position')}</th>
+                                <th>{t('admin.issue_date')}</th>
+                                <th>{t('admin.purpose')}</th>
+                                <th>{t('admin.status.label') || t('admin.status.pending') && '상태'}</th>
+                                <th style={{ width: 80 }}>{t('admin.manage_label')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -172,7 +173,7 @@ const EmployeeCertificatePage = () => {
                             ) : certificates.length === 0 ? (
                                 <tr>
                                     <td colSpan="7" className="text-center py-5 text-muted">
-                                        {search ? `'${search}'에 대한 발급 이력이 없습니다.` : '발급 이력이 없습니다.'}
+                                        {search ? t('admin.no_search_results', { search }) : t('admin.no_issue_history')}
                                     </td>
                                 </tr>
                             ) : certificates.map((cert) => {
@@ -201,14 +202,14 @@ const EmployeeCertificatePage = () => {
                                                 <button
                                                     className="um-btn-role"
                                                     onClick={() => handleViewDetail(cert.id)}
-                                                    title="상세보기"
+                                                    title={t('admin.view_detail')}
                                                 >
                                                     <Eye size={14} />
                                                 </button>
                                                 <button
                                                     className="um-btn-del"
                                                     onClick={() => setDeleteModal({ show: true, id: cert.id, name: cert.employee_name })}
-                                                    title="삭제"
+                                                    title={t('admin.delete')}
                                                 >
                                                     <Trash2 size={14} />
                                                 </button>
@@ -230,7 +231,7 @@ const EmployeeCertificatePage = () => {
                             disabled={pagination.page === 1}
                             onClick={() => fetchCertificates(pagination.page - 1)}
                         >
-                            이전
+                            {t('admin.previous')}
                         </Button>
                         <span style={{ fontSize: '0.9rem', color: '#555' }}>
                             {pagination.page} / {pagination.totalPages}
@@ -241,7 +242,7 @@ const EmployeeCertificatePage = () => {
                             disabled={pagination.page === pagination.totalPages}
                             onClick={() => fetchCertificates(pagination.page + 1)}
                         >
-                            다음
+                            {t('admin.next')}
                         </Button>
                     </div>
                 )}
@@ -251,18 +252,18 @@ const EmployeeCertificatePage = () => {
             <Modal show={showDetailModal} onHide={() => setShowDetailModal(false)} centered>
                 <Modal.Header closeButton style={{ borderBottom: '2px solid #1C2D60' }}>
                     <Modal.Title style={{ color: '#1C2D60', fontWeight: 700, fontSize: '1rem' }}>
-                        발급 상세 정보
+                        {t('admin.cert_detail_title')}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="py-4">
                     {selectedCertificate && (
                         <div style={{ fontSize: '0.9rem' }}>
                             {[
-                                { label: '이름',    value: selectedCertificate.employee_name },
-                                { label: '부서',    value: selectedCertificate.department || '-' },
-                                { label: '직급',    value: selectedCertificate.position || '-' },
-                                { label: '발급일',  value: formatDate(selectedCertificate.issue_date) },
-                                { label: '발급 목적', value: selectedCertificate.purpose || '-' },
+                                { label: t('admin.employee_name'),    value: selectedCertificate.employee_name },
+                                { label: t('admin.department'),    value: selectedCertificate.department || '-' },
+                                { label: t('admin.employee_position'),    value: selectedCertificate.position || '-' },
+                                { label: t('admin.issue_date'),  value: formatDate(selectedCertificate.issue_date) },
+                                { label: t('admin.purpose'), value: selectedCertificate.purpose || '-' },
                             ].map(({ label, value }) => (
                                 <div key={label} className="myprofile-info-row" style={{ display: 'flex', padding: '10px 0', borderBottom: '1px solid #f0f2f6' }}>
                                     <span style={{ width: 90, color: '#888', flexShrink: 0 }}>{label}</span>
@@ -273,7 +274,7 @@ const EmployeeCertificatePage = () => {
                     )}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="light" onClick={() => setShowDetailModal(false)}>닫기</Button>
+                    <Button variant="light" onClick={() => setShowDetailModal(false)}>{t('admin.close')}</Button>
                 </Modal.Footer>
             </Modal>
 
@@ -281,21 +282,21 @@ const EmployeeCertificatePage = () => {
             <Modal show={deleteModal.show} onHide={() => setDeleteModal({ show: false, id: null, name: '' })} centered>
                 <Modal.Header closeButton style={{ borderBottom: '2px solid #dc3545' }}>
                     <Modal.Title style={{ color: '#dc3545', fontWeight: 700, fontSize: '1rem' }}>
-                        발급 이력 삭제
+                        {t('admin.delete_confirm_title')}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="py-4">
                     <p className="mb-1">
-                        <strong>{deleteModal.name}</strong>의 발급 이력을 삭제하시겠습니까?
+                        <strong>{deleteModal.name}</strong>{t('admin.delete_confirm_msg', { name: '' })}
                     </p>
                     <p className="text-danger mb-0" style={{ fontSize: '0.85rem' }}>
-                        삭제된 이력은 복구할 수 없습니다.
+                        {t('admin.delete_warning')}
                     </p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="light" onClick={() => setDeleteModal({ show: false, id: null, name: '' })}>취소</Button>
+                    <Button variant="light" onClick={() => setDeleteModal({ show: false, id: null, name: '' })}>{t('common.cancel')}</Button>
                     <Button variant="danger" onClick={handleDelete} disabled={deleteLoading}>
-                        {deleteLoading ? '처리 중...' : '삭제'}
+                        {deleteLoading ? t('admin.issuing') : t('admin.delete')}
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -304,19 +305,19 @@ const EmployeeCertificatePage = () => {
             <Modal show={createModal.show} onHide={() => setCreateModal({ show: false })} centered>
                 <Modal.Header closeButton style={{ borderBottom: '2px solid #1C2D60' }}>
                     <Modal.Title style={{ color: '#1C2D60', fontWeight: 700, fontSize: '1rem' }}>
-                        직접 발급 등록
+                        {t('admin.manual_issue_title')}
                     </Modal.Title>
                 </Modal.Header>
                 <Form onSubmit={handleCreate}>
                     <Modal.Body className="py-4">
                         <Form.Group className="mb-3">
-                            <Form.Label className="fw-semibold">임직원 선택</Form.Label>
+                            <Form.Label className="fw-semibold">{t('admin.select_employee')}</Form.Label>
                             <Form.Select
                                 value={createForm.employee_name}
                                 onChange={(e) => setCreateForm((p) => ({ ...p, employee_name: e.target.value }))}
                                 required
                             >
-                                <option value="">임직원을 선택하세요</option>
+                                <option value="">{t('admin.select_employee_placeholder')}</option>
                                 {SORTED_EMPLOYEES.map((emp) => (
                                     <option key={emp.email} value={emp.name}>
                                         {emp.name} ({emp.rank} · {emp.department})
@@ -325,24 +326,24 @@ const EmployeeCertificatePage = () => {
                             </Form.Select>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label className="fw-semibold">발급 목적</Form.Label>
+                            <Form.Label className="fw-semibold">{t('admin.issue_purpose')}</Form.Label>
                             <Form.Select
                                 value={createForm.purpose}
                                 onChange={(e) => setCreateForm((p) => ({ ...p, purpose: e.target.value }))}
                                 required
                             >
-                                <option value="">발급 목적을 선택하세요</option>
-                                <option value="금융기관 제출용">금융기관 제출용</option>
-                                <option value="관공서 제출용">관공서 제출용</option>
-                                <option value="보험사 제출용">보험사 제출용</option>
-                                <option value="기타">기타</option>
+                                <option value="">{t('admin.issue_purpose_placeholder')}</option>
+                                <option value={t('admin.issue_purpose_financial')}>{t('admin.issue_purpose_financial')}</option>
+                                <option value={t('admin.issue_purpose_public')}>{t('admin.issue_purpose_public')}</option>
+                                <option value={t('admin.issue_purpose_insurance')}>{t('admin.issue_purpose_insurance')}</option>
+                                <option value={t('admin.issue_purpose_etc')}>{t('admin.issue_purpose_etc')}</option>
                             </Form.Select>
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="light" onClick={() => setCreateModal({ show: false })}>취소</Button>
+                        <Button variant="light" onClick={() => setCreateModal({ show: false })}>{t('common.cancel')}</Button>
                         <Button type="submit" style={{ backgroundColor: '#1C2D60', borderColor: '#1C2D60' }} disabled={createLoading}>
-                            {createLoading ? '처리 중...' : '발급 등록'}
+                            {createLoading ? t('admin.issuing') : t('admin.create_certificate')}
                         </Button>
                     </Modal.Footer>
                 </Form>

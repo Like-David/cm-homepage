@@ -13,6 +13,7 @@ import bannerBg from '@/assets/images/Solution/solution-banner-bg.png';
    임직원 · 대시보드형
 ────────────────────────────────────────── */
 const EmployeeDashboardView = ({ user }) => {
+    const { t } = useTranslation();
     const empInfo = findByName(user?.name);
     const [history, setHistory] = useState([]);
     const [historyLoading, setHistoryLoading] = useState(true);
@@ -26,7 +27,7 @@ const EmployeeDashboardView = ({ user }) => {
     }, [user?.name]);
 
     const formatDate = (d) => d ? new Date(d).toLocaleDateString('ko-KR').replace(/\.$/, '') : '-';
-    const STATUS_LABEL = { pending: '대기 중', approved: '승인됨', rejected: '반려됨', issued: '발급 완료' };
+    // const STATUS_LABEL = { pending: '대기 중', approved: '승인됨', rejected: '반려됨', issued: '발급 완료' };
 
     return (
         <Row className="g-4">
@@ -38,27 +39,27 @@ const EmployeeDashboardView = ({ user }) => {
                             <User size={40} />
                         </div>
                         <h5 className="profile-name mt-3 mb-1">{user?.name ?? '-'}</h5>
-                        <p className="profile-role text-muted mb-3">{empInfo?.rank ?? '임직원'}</p>
+                        <p className="profile-role text-muted mb-3">{empInfo?.rank ?? t('auth.role_employee')}</p>
                         <div className="profile-info w-100">
                             <div className="profile-info-row">
-                                <span className="info-label">소속</span>
+                                <span className="info-label">{t('admin.department')}</span>
                                 <span className="info-value">{empInfo?.department ?? '-'}</span>
                             </div>
                             <div className="profile-info-row">
-                                <span className="info-label">담당 업무</span>
-                                <span className="info-value">{empInfo?.duties ?? '-'}</span>
+                                <span className="info-label">{t('admin.employee_position') || '직급'}</span>
+                                <span className="info-value">{empInfo?.rank ?? '-'}</span>
                             </div>
                             <div className="profile-info-row">
-                                <span className="info-label">이메일</span>
+                                <span className="info-label">{t('auth.email')}</span>
                                 <span className="info-value" style={{ fontSize: '0.78rem' }}>{empInfo?.email ?? user?.email ?? '-'}</span>
                             </div>
                             <div className="profile-info-row">
-                                <span className="info-label">내선번호</span>
+                                <span className="info-label">{t('admin.extension_number') || '내선번호'}</span>
                                 <span className="info-value">{empInfo?.ext ?? '-'}</span>
                             </div>
                         </div>
                         <Link to="/admin/my-profile" className="profile-edit-link mt-auto pt-3">
-                            내 정보 보기 <ChevronRight size={14} />
+                            {t('admin.my_profile_view')} <ChevronRight size={14} />
                         </Link>
                     </Card.Body>
                 </Card>
@@ -72,8 +73,8 @@ const EmployeeDashboardView = ({ user }) => {
                         <div className="cta-banner h-100">
                             <div className="cta-icon"><FileText size={48} /></div>
                             <div className="cta-text">
-                                <h4>재직증명서 즉시 발급하기</h4>
-                                <p>재직증명서를 온라인으로 신청하고 바로 출력하세요.</p>
+                                <h4>{t('admin.cert_issue_cta_title')}</h4>
+                                <p>{t('admin.cert_issue_cta_desc')}</p>
                             </div>
                             <ChevronRight size={32} className="cta-arrow" />
                         </div>
@@ -83,9 +84,9 @@ const EmployeeDashboardView = ({ user }) => {
                     <Card className="admin-menu-card" style={{ flex: 1 }}>
                         <Card.Body className="p-4 d-flex flex-column">
                             <div className="d-flex justify-content-between align-items-center mb-3">
-                                <h6 className="history-title mb-0">최근 발급 이력</h6>
+                                <h6 className="history-title mb-0">{t('admin.recent_issue_history')}</h6>
                                 <Link to="/admin/my-profile" className="history-more">
-                                    전체 보기 <ChevronRight size={14} />
+                                    {t('admin.view_all')} <ChevronRight size={14} />
                                 </Link>
                             </div>
                             <div style={{ flex: 1, overflowY: 'auto' }}>
@@ -96,13 +97,13 @@ const EmployeeDashboardView = ({ user }) => {
                                 ) : history.length === 0 ? (
                                     <div className="h-100 d-flex align-items-center justify-content-center">
                                         <p className="text-muted text-center mb-0" style={{ fontSize: '0.88rem' }}>
-                                            발급 이력이 없습니다.
+                                            {t('admin.no_issue_history')}
                                         </p>
                                     </div>
                                 ) : (
                                     history.slice(0, 5).map((item, i) => (
                                         <div key={i} className="history-row">
-                                            <span className="history-cert">재직증명서</span>
+                                            <span className="history-cert">{t('menu.employee_certificate')}</span>
                                             <span className="history-purpose">{item.purpose ?? '-'}</span>
                                             <span className="history-date">{formatDate(item.issue_date)}</span>
                                         </div>
@@ -128,20 +129,20 @@ const AdminPage = () => {
 
     const adminMenuItems = [
         {
-            title: '발급 현황 관리',
-            description: '전체 임직원의 발급 내역을 확인하고 승인합니다.',
+            title: t('admin.employee_certificate'),
+            description: t('admin.employee_certificate_desc'),
             icon: <ClipboardList size={44} />,
             path: '/admin/employee-certificate/manage',
         },
         {
-            title: '이용 통계',
-            description: '증명서 발급 및 서비스 이용 현황을 조회합니다.',
+            title: t('admin.statistics'),
+            description: t('admin.statistics_desc'),
             icon: <BarChart size={44} />,
             path: '/admin/statistics',
         },
         {
-            title: '임직원 명부',
-            description: '부서별 임직원 목록 및 권한을 관리합니다.',
+            title: t('admin.user_management'),
+            description: t('admin.user_management_desc'),
             icon: <Users size={44} />,
             path: '/admin/users',
         },
@@ -156,7 +157,7 @@ const AdminPage = () => {
                 style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${bannerBg})` }}
             >
                 <div className="admin-banner-content">
-                    <h1>{isAdmin ? '인사 관리 시스템' : '인사 서비스'}</h1>
+                    <h1>{isAdmin ? t('admin.hr_management_system') : t('admin.hr_services')}</h1>
                 </div>
             </div>
 
@@ -175,12 +176,12 @@ const AdminPage = () => {
                                 </div>
                             </div>
                             <Link to="/admin/my-profile" className="profile-edit-link">
-                                내 정보 보기 <ChevronRight size={14} />
+                                {t('admin.my_profile_view')} <ChevronRight size={14} />
                             </Link>
                         </div>
 
                         <div className="admin-section-header mb-4">
-                            <span className="admin-section-title">관리 메뉴</span>
+                            <span className="admin-section-title">{t('admin.management_menu')}</span>
                         </div>
                         <Row>
                             {adminMenuItems.map((item, i) => (

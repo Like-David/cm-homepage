@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Container, Form, Button, Alert, Row, Col, Card } from 'react-bootstrap';
 import { FileText } from 'lucide-react';
 import Banner from '../components/common/Banner';
@@ -9,6 +10,7 @@ import * as adminService from '../services/admin';
 import '../styles/AdminPage.css';
 
 const EmployeeCertificateIssuePage = () => {
+    const { t } = useTranslation();
     const { user } = useAuth();
     const empInfo = findByName(user?.name);
     const [purpose, setPurpose] = useState('');
@@ -29,9 +31,9 @@ const EmployeeCertificateIssuePage = () => {
                 issue_date: new Date().toISOString().split('T')[0],
             });
             setPurpose('');
-            setAlertModal({ isOpen: true, type: 'success', message: '재직증명서가 발급되었습니다.' });
+            setAlertModal({ isOpen: true, type: 'success', message: t('admin.issue_success') });
         } catch (err) {
-            setError(err.response?.data?.message || '발급 중 오류가 발생했습니다.');
+            setError(err.response?.data?.message || t('admin.issue_fail'));
         } finally {
             setLoading(false);
         }
@@ -39,7 +41,7 @@ const EmployeeCertificateIssuePage = () => {
 
     return (
         <div className="admin-page">
-            <Banner title="재직증명서 발급" subtitle="재직증명서를 즉시 발급합니다" />
+            <Banner title={t('admin.cert_issue_title')} subtitle={t('admin.cert_issue_subtitle')} />
             <Container className="py-5" style={{ maxWidth: 660 }}>
                 {error && (
                     <Alert variant="danger" onClose={() => setError('')} dismissible>
@@ -54,7 +56,7 @@ const EmployeeCertificateIssuePage = () => {
                     >
                         <FileText size={22} color="#1C2D60" />
                         <h5 style={{ color: '#1C2D60', fontWeight: 700, margin: 0 }}>
-                            재직증명서 발급
+                            {t('admin.cert_issue_title')}
                         </h5>
                     </div>
 
@@ -62,19 +64,19 @@ const EmployeeCertificateIssuePage = () => {
                         <Row>
                             <Col md={4}>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className="fw-semibold">이름</Form.Label>
+                                    <Form.Label className="fw-semibold">{t('admin.employee_name')}</Form.Label>
                                     <Form.Control value={user?.name || ''} disabled />
                                 </Form.Group>
                             </Col>
                             <Col md={4}>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className="fw-semibold">직급</Form.Label>
+                                    <Form.Label className="fw-semibold">{t('admin.employee_position')}</Form.Label>
                                     <Form.Control value={empInfo?.rank || '-'} disabled />
                                 </Form.Group>
                             </Col>
                             <Col md={4}>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className="fw-semibold">소속</Form.Label>
+                                    <Form.Label className="fw-semibold">{t('admin.department')}</Form.Label>
                                     <Form.Control value={empInfo?.department || '-'} disabled />
                                 </Form.Group>
                             </Col>
@@ -82,18 +84,18 @@ const EmployeeCertificateIssuePage = () => {
 
                         <Form.Group className="mb-4">
                             <Form.Label className="fw-semibold">
-                                발급 목적 <span className="text-danger">*</span>
+                                {t('admin.issue_purpose')} <span className="text-danger">*</span>
                             </Form.Label>
                             <Form.Select
                                 value={purpose}
                                 onChange={(e) => setPurpose(e.target.value)}
                                 required
                             >
-                                <option value="">발급 목적을 선택하세요</option>
-                                <option value="금융기관 제출용">금융기관 제출용</option>
-                                <option value="관공서 제출용">관공서 제출용</option>
-                                <option value="보험사 제출용">보험사 제출용</option>
-                                <option value="기타">기타</option>
+                                <option value="">{t('admin.issue_purpose_placeholder')}</option>
+                                <option value={t('admin.issue_purpose_financial')}>{t('admin.issue_purpose_financial')}</option>
+                                <option value={t('admin.issue_purpose_public')}>{t('admin.issue_purpose_public')}</option>
+                                <option value={t('admin.issue_purpose_insurance')}>{t('admin.issue_purpose_insurance')}</option>
+                                <option value={t('admin.issue_purpose_etc')}>{t('admin.issue_purpose_etc')}</option>
                             </Form.Select>
                         </Form.Group>
 
@@ -108,7 +110,7 @@ const EmployeeCertificateIssuePage = () => {
                             }}
                             disabled={loading}
                         >
-                            {loading ? '처리 중...' : '발급하기'}
+                            {loading ? t('admin.issuing') : t('admin.issue_btn')}
                         </Button>
                     </Form>
                 </Card>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Card, Spinner } from 'react-bootstrap';
 import { User, Mail, Phone, Briefcase, Building2, Clock } from 'lucide-react';
 import Banner from '../components/common/Banner';
@@ -8,14 +9,8 @@ import * as adminService from '../services/admin';
 import '../styles/AdminPage.css';
 import '../styles/MyProfilePage.css';
 
-const STATUS_LABEL = {
-    pending:  { text: '대기 중',  color: '#f59e0b', bg: '#fffbeb' },
-    approved: { text: '승인됨',   color: '#3b82f6', bg: '#eff6ff' },
-    rejected: { text: '반려됨',   color: '#ef4444', bg: '#fef2f2' },
-    issued:   { text: '발급 완료', color: '#10b981', bg: '#ecfdf5' },
-};
-
 const MyProfilePage = () => {
+    const { t } = useTranslation();
     const { user } = useAuth();
     const empInfo = findByName(user?.name);
 
@@ -33,17 +28,17 @@ const MyProfilePage = () => {
     const formatDate = (d) => d ? new Date(d).toLocaleDateString('ko-KR').replace(/\.$/, '') : '-';
 
     const infoRows = [
-        { icon: <User size={16} />,      label: '이름',     value: user?.name ?? '-' },
-        { icon: <Briefcase size={16} />, label: '직급',     value: empInfo?.rank ?? '-' },
-        { icon: <Building2 size={16} />, label: '소속',     value: empInfo?.department ?? '-' },
-        { icon: <Briefcase size={16} />, label: '담당 업무', value: empInfo?.duties ?? '-' },
-        { icon: <Mail size={16} />,      label: '이메일',   value: empInfo?.email ?? user?.email ?? '-' },
-        { icon: <Phone size={16} />,     label: '내선번호', value: empInfo?.ext ?? '-' },
+        { icon: <User size={16} />,      label: t('admin.employee_name'),     value: user?.name ?? '-' },
+        { icon: <Briefcase size={16} />, label: t('admin.employee_position'), value: empInfo?.rank ?? '-' },
+        { icon: <Building2 size={16} />, label: t('admin.department'),     value: empInfo?.department ?? '-' },
+        { icon: <Briefcase size={16} />, label: t('admin.employee_duties'), value: empInfo?.duties ?? '-' },
+        { icon: <Mail size={16} />,      label: t('auth.email'),   value: empInfo?.email ?? user?.email ?? '-' },
+        { icon: <Phone size={16} />,     label: t('admin.extension_number'), value: empInfo?.ext ?? '-' },
     ];
 
     return (
         <div className="admin-page">
-            <Banner title="내 정보" subtitle="나의 인사 정보를 확인합니다." />
+            <Banner title={t('admin.my_profile')} subtitle={t('admin.my_profile_subtitle')} />
 
             <Container className="py-5" style={{ maxWidth: 860 }}>
                 <Row className="g-4">
@@ -55,7 +50,7 @@ const MyProfilePage = () => {
                                     <User size={44} />
                                 </div>
                                 <h5 className="profile-name mb-1">{user?.name ?? '-'}</h5>
-                                <p className="profile-role text-muted mb-0">{empInfo?.rank ?? '임직원'}</p>
+                                <p className="profile-role text-muted mb-0">{empInfo?.rank ?? t('auth.role_employee')}</p>
                                 <p className="text-muted mt-1" style={{ fontSize: '0.82rem' }}>
                                     {empInfo?.department ?? '-'}
                                 </p>
@@ -67,7 +62,7 @@ const MyProfilePage = () => {
                     <Col xs={12} md={8}>
                         <Card className="admin-content-card h-100">
                             <Card.Body className="p-4">
-                                <h6 className="history-title mb-4">인사 정보</h6>
+                                <h6 className="history-title mb-4">{t('admin.hr_info')}</h6>
                                 {infoRows.map((row, i) => (
                                     <div key={i} className="myprofile-info-row">
                                         <span className="myprofile-label">
@@ -87,7 +82,7 @@ const MyProfilePage = () => {
                             <Card.Body className="p-4">
                                 <div className="d-flex align-items-center gap-2 mb-4">
                                     <Clock size={18} color="#1C2D60" />
-                                    <h6 className="history-title mb-0">전체 발급 이력</h6>
+                                    <h6 className="history-title mb-0">{t('admin.all_issue_history')}</h6>
                                 </div>
 
                                 {loading ? (
@@ -96,7 +91,7 @@ const MyProfilePage = () => {
                                     </div>
                                 ) : history.length === 0 ? (
                                     <p className="text-muted text-center py-3 mb-0" style={{ fontSize: '0.88rem' }}>
-                                        발급 이력이 없습니다.
+                                        {t('admin.no_issue_history')}
                                     </p>
                                 ) : (
                                     <div className="board-table-wrap">
@@ -104,16 +99,16 @@ const MyProfilePage = () => {
                                         <thead>
                                             <tr>
                                                 <th style={{ width: 40 }}>No.</th>
-                                                <th>증명서 종류</th>
-                                                <th>제출처</th>
-                                                <th style={{ width: 110 }}>발급일</th>
+                                                <th>{t('admin.certificate_type')}</th>
+                                                <th>{t('admin.submission_place')}</th>
+                                                <th style={{ width: 110 }}>{t('admin.issue_date')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {history.map((item, i) => (
                                                 <tr key={i}>
                                                     <td className="text-muted" style={{ fontSize: '0.85rem' }}>{i + 1}</td>
-                                                    <td style={{ fontWeight: 600 }}>재직증명서</td>
+                                                    <td style={{ fontWeight: 600 }}>{t('menu.employee_certificate')}</td>
                                                     <td style={{ color: '#555' }}>{item.purpose ?? '-'}</td>
                                                     <td style={{ color: '#888', fontSize: '0.85rem' }}>{formatDate(item.issue_date)}</td>
                                                 </tr>

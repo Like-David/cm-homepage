@@ -7,34 +7,16 @@ import { getStatistics } from '../services/admin';
 import '../styles/AdminPage.css';
 import '../styles/StatisticsPage.css';
 
-const ROLE_LABEL = { ADMIN: '관리자', EMPLOYEE: '임직원', GUEST: '게스트' };
-const ROLE_COLOR = { ADMIN: '#1C2D60', EMPLOYEE: '#2E4F8E', GUEST: '#9aa3b2' };
-
-const growthRate = (current, previous) => {
-    if (previous === 0) return current > 0 ? 100 : 0;
-    return Math.round(((current - previous) / previous) * 100);
-};
-
-const GrowthBadge = ({ rate }) => {
-    if (rate > 0) return (
-        <span className="st-growth positive">
-            <TrendingUp size={13} /> +{rate}%
-        </span>
-    );
-    if (rate < 0) return (
-        <span className="st-growth negative">
-            <TrendingDown size={13} /> {rate}%
-        </span>
-    );
-    return (
-        <span className="st-growth neutral">
-            <Minus size={13} /> 0%
-        </span>
-    );
-};
-
 const StatisticsPage = () => {
     const { t } = useTranslation();
+
+    const ROLE_LABEL = {
+        ADMIN:    t('auth.role_admin'),
+        EMPLOYEE: t('auth.role_employee'),
+        GUEST:    t('auth.role_guest')
+    };
+    const ROLE_COLOR = { ADMIN: '#1C2D60', EMPLOYEE: '#2E4F8E', GUEST: '#9aa3b2' };
+
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -42,11 +24,34 @@ const StatisticsPage = () => {
     useEffect(() => {
         getStatistics()
             .then(setData)
-            .catch(() => setError('통계 데이터를 불러오는데 실패했습니다.'))
+            .catch(() => setError(t('admin.stats_load_fail')))
             .finally(() => setLoading(false));
-    }, []);
+    }, [t]);
 
     const formatDate = (d) => d ? new Date(d).toLocaleDateString('ko-KR') : '-';
+
+    const growthRate = (current, previous) => {
+        if (previous === 0) return current > 0 ? 100 : 0;
+        return Math.round(((current - previous) / previous) * 100);
+    };
+
+    const GrowthBadge = ({ rate }) => {
+        if (rate > 0) return (
+            <span className="st-growth positive">
+                <TrendingUp size={13} /> +{rate}%
+            </span>
+        );
+        if (rate < 0) return (
+            <span className="st-growth negative">
+                <TrendingDown size={13} /> {rate}%
+            </span>
+        );
+        return (
+            <span className="st-growth neutral">
+                <Minus size={13} /> 0%
+            </span>
+        );
+    };
 
     if (loading) return (
         <div className="admin-page">
@@ -64,29 +69,29 @@ const StatisticsPage = () => {
 
     const summaryCards = [
         {
-            title: '전체 사용자',
+            title: t('admin.total_users_label'),
             value: (s.totalUsers ?? 0).toLocaleString(),
-            sub: `이번 주 신규 ${s.newUsersThisWeek ?? 0}명`,
+            sub: t('admin.new_users_week', { count: s.newUsersThisWeek ?? 0 }),
             rate: userWeeklyRate,
-            rateLabel: '저번 주 대비',
+            rateLabel: t('admin.vs_prev_week'),
             icon: <Users size={36} />,
             color: '#1C2D60',
         },
         {
-            title: '전체 게시글',
+            title: t('admin.total_posts_label'),
             value: (s.totalPosts ?? 0).toLocaleString(),
-            sub: `이번 달 ${s.newPostsThisMonth ?? 0}건`,
+            sub: t('admin.new_posts_month', { count: s.newPostsThisMonth ?? 0 }),
             rate: postMonthlyRate,
-            rateLabel: '저번 달 대비',
+            rateLabel: t('admin.vs_prev_month'),
             icon: <FileText size={36} />,
             color: '#2E4F8E',
         },
         {
-            title: '재직증명서 발급',
+            title: t('admin.total_certs_label'),
             value: (s.totalCertificates ?? 0).toLocaleString(),
-            sub: `이번 달 ${s.newCertificatesThisMonth ?? 0}건`,
+            sub: t('admin.new_certs_month', { count: s.newCertificatesThisMonth ?? 0 }),
             rate: certMonthlyRate,
-            rateLabel: '저번 달 대비',
+            rateLabel: t('admin.vs_prev_month'),
             icon: <Award size={36} />,
             color: '#4A6FA5',
         },
@@ -136,7 +141,7 @@ const StatisticsPage = () => {
                     <Col lg={4} className="mb-4">
                         <Card className="st-card h-100">
                             <Card.Body>
-                                <h6 className="st-card-title">역할별 사용자 분포</h6>
+                                <h6 className="st-card-title">{t('admin.role_distribution')}</h6>
                                 <div className="st-role-list">
                                     {(data?.roleDistribution ?? []).map((r) => {
                                         const pct = s.totalUsers > 0
@@ -147,7 +152,7 @@ const StatisticsPage = () => {
                                                 <div className="st-role-header">
                                                     <span className="st-role-dot" style={{ background: ROLE_COLOR[r.role] }} />
                                                     <span className="st-role-name">{ROLE_LABEL[r.role] ?? r.role}</span>
-                                                    <span className="st-role-count ms-auto">{r.count}명</span>
+                                                    <span className="st-role-count ms-auto">{r.count}{t('admin.count_unit_person')}</span>
                                                     <span className="st-role-pct">{pct}%</span>
                                                 </div>
                                                 <div className="st-bar-bg">
@@ -168,7 +173,7 @@ const StatisticsPage = () => {
                     <Col lg={4} className="mb-4">
                         <Card className="st-card h-100">
                             <Card.Body>
-                                <h6 className="st-card-title">게시글 답변 현황</h6>
+                                <h6 className="st-card-title">{t('admin.inquiry_status')}</h6>
                                 <div className="st-donut-wrap">
                                     <svg viewBox="0 0 36 36" className="st-donut">
                                         <circle cx="18" cy="18" r="15.9" fill="none" stroke="#f0f2f6" strokeWidth="3" />
@@ -182,19 +187,19 @@ const StatisticsPage = () => {
                                     </svg>
                                     <div className="st-donut-center">
                                         <div className="st-donut-pct">{answeredPct}%</div>
-                                        <div className="st-donut-label">답변완료</div>
+                                        <div className="st-donut-label">{t('admin.answered_label')}</div>
                                     </div>
                                 </div>
                                 <div className="st-status-row">
                                     <div className="st-status-item">
                                         <span className="st-role-dot" style={{ background: '#1C2D60' }} />
-                                        <span>답변완료</span>
-                                        <strong className="ms-auto">{answered}건</strong>
+                                        <span>{t('admin.answered_label')}</span>
+                                        <strong className="ms-auto">{answered}{t('admin.count_unit_case')}</strong>
                                     </div>
                                     <div className="st-status-item">
                                         <span className="st-role-dot" style={{ background: '#e4e8f0' }} />
-                                        <span>답변대기</span>
-                                        <strong className="ms-auto">{waiting}건</strong>
+                                        <span>{t('admin.waiting_label')}</span>
+                                        <strong className="ms-auto">{waiting}{t('admin.count_unit_case')}</strong>
                                     </div>
                                 </div>
                             </Card.Body>
@@ -205,11 +210,11 @@ const StatisticsPage = () => {
                     <Col lg={4} className="mb-4">
                         <Card className="st-card h-100">
                             <Card.Body>
-                                <h6 className="st-card-title">최근 가입 사용자</h6>
+                                <h6 className="st-card-title">{t('admin.recent_users')}</h6>
                                 <div className="st-user-list">
                                     {(data?.recentUsers ?? []).length === 0 ? (
                                         <p className="text-muted text-center mt-3" style={{ fontSize: '0.85rem' }}>
-                                            가입 사용자가 없습니다
+                                            {t('admin.no_recent_users')}
                                         </p>
                                     ) : (data?.recentUsers ?? []).map((u) => (
                                         <div key={u.id} className="st-user-item">
@@ -239,19 +244,19 @@ const StatisticsPage = () => {
                     <Col>
                         <Card className="st-card">
                             <Card.Body>
-                                <h6 className="st-card-title">인기 게시글 Top 5 <span className="st-card-sub">조회수 기준</span></h6>
+                                <h6 className="st-card-title">{t('admin.popular_posts')} <span className="st-card-sub">{t('admin.by_views')}</span></h6>
                                 {(data?.topPosts ?? []).length === 0 ? (
                                     <p className="text-muted text-center py-3" style={{ fontSize: '0.85rem' }}>
-                                        게시글이 없습니다
+                                        {t('admin.no_posts')}
                                     </p>
                                 ) : (
                                     <table className="st-top-table">
                                         <thead>
                                             <tr>
-                                                <th style={{ width: 40 }}>순위</th>
-                                                <th>제목</th>
-                                                <th style={{ width: 80 }}>작성자</th>
-                                                <th style={{ width: 80 }}>조회수</th>
+                                                <th style={{ width: 40 }}>{t('admin.rank_label')}</th>
+                                                <th>{t('support.table.title')}</th>
+                                                <th style={{ width: 80 }}>{t('support.table.author')}</th>
+                                                <th style={{ width: 80 }}>{t('support.table.views')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

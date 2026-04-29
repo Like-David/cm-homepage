@@ -18,9 +18,9 @@ const OneOnOneInquiryPage = () => {
     const copyToClipboard = async (text, label) => {
         try {
             await navigator.clipboard.writeText(text);
-            // 알림창 없이 즉시 복사 (사용자 요청)
+            // 알림창 없이 즉시 복사
         } catch {
-            setAlert({ isOpen: true, type: 'error', message: `복사에 실패했습니다. 직접 복사해주세요: ${text}` });
+            setAlert({ isOpen: true, type: 'error', message: `${t('contact.phone_copy_fail')}${text}` });
         }
     };
 
@@ -35,9 +35,9 @@ const OneOnOneInquiryPage = () => {
                     {/* 헤더 */}
                     <div className="inq-header">
                         <p className="inq-header-label">{t('menu.contact_us')}</p>
-                        <h2 className="inq-header-title">1:1 문의</h2>
+                        <h2 className="inq-header-title">{t('contact.section_title')}</h2>
                         <p className="inq-header-desc">
-                            아래 순서에 따라 문의해 주시면 담당자가 신속하게 도움을 드리겠습니다.
+                            {t('contact.section_subtitle')}
                         </p>
                     </div>
 
@@ -52,17 +52,16 @@ const OneOnOneInquiryPage = () => {
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                                 </svg>
                             </div>
-                            <h3 className="inq-card-title">문의 및 상담</h3>
+                            <h3 className="inq-card-title">{t('contact.step1_title')}</h3>
                             <div className="inq-card-phone">{PHONE}</div>
                             <p className="inq-card-desc">
-                                대표번호나 이메일로 문의 내용을 전달해 주시면 담당자가 확인 후,
-                                원격지원이 필요한 경우 접속 방법을 안내해 드립니다.
+                                {t('contact.step1_desc')}
                             </p>
-                            <div className="inq-card-btns">
-                                <button type="button" onClick={() => copyToClipboard(PHONE, '대표번호')} className="inq-btn inq-btn--solid">
-                                    번호 복사하기
-                                </button>
-                            </div>
+                            {/*<div className="inq-card-btns">*/}
+                            {/*    /!*<button type="button" onClick={() => copyToClipboard(PHONE, '대표번호')} className="inq-btn inq-btn--solid">*!/*/}
+                            {/*    /!*    {t('contact.step1_btn')}*!/*/}
+                            {/*    /!*</button>*!/*/}
+                            {/*</div>*/}
                         </div>
 
                         {/* Connector */}
@@ -75,7 +74,7 @@ const OneOnOneInquiryPage = () => {
                                 </svg>
                             </div>
                             <div className="inq-connector-line" />
-                            <span className="inq-connector-label">담당자 안내 후</span>
+                            <span className="inq-connector-label">{t('contact.connector_label')}</span>
                         </div>
 
                         {/* Step 2 */}
@@ -88,17 +87,16 @@ const OneOnOneInquiryPage = () => {
                                     <line x1="12" y1="17" x2="12" y2="21" />
                                 </svg>
                             </div>
-                            <h3 className="inq-card-title">원격지원 접속</h3>
+                            <h3 className="inq-card-title">{t('contact.step2_title')}</h3>
                             <a href={REMOTE_LINK} target="_blank" rel="noreferrer" className="inq-card-link">
                                 {REMOTE_LINK}
                             </a>
                             <p className="inq-card-desc">
-                                담당자 안내 후 아래 버튼으로 원격지원 페이지에 접속해 주세요.
-                                안내받은 <strong>6자리 인증번호</strong>가 있는 경우에만 접속 가능합니다.
+                                {t('contact.step2_desc', { code: t('contact.step2_code_label') })}
                             </p>
                             <div className="inq-card-btns">
                                 <a href={REMOTE_LINK} target="_blank" rel="noreferrer" className="inq-btn inq-btn--solid">
-                                    원격지원 접속하기
+                                    {t('contact.step2_btn')}
                                 </a>
                             </div>
                         </div>
@@ -112,27 +110,27 @@ const OneOnOneInquiryPage = () => {
                                 <line x1="12" y1="8" x2="12" y2="12" />
                                 <line x1="12" y1="16" x2="12.01" y2="16" />
                             </svg>
-                            기술 지원 직통 연락처
+                            {t('contact.tech_support_title')}
                         </div>
                         <div className="inq-tech-body">
                             <div className="inq-tech-row">
-                                <span className="inq-tech-key">기술지원 전화</span>
+                                <span className="inq-tech-key">{t('contact.tech_phone_label')}</span>
                                 <div className="inq-tech-val-wrap">
                                     <a href={`tel:${TECH_PHONE.replace(/-/g, '')}`} className="inq-tech-val">{TECH_PHONE}</a>
-                                    <button type="button" onClick={() => copyToClipboard(TECH_PHONE, '기술지원 전화번호')} className="inq-copy-chip">복사</button>
+                                    {/*<button type="button" onClick={() => copyToClipboard(TECH_PHONE, '기술지원 전화번호')} className="inq-copy-chip">{t('contact.copy')}</button>*/}
                                 </div>
                             </div>
                             <div className="inq-tech-sep" />
                             <div className="inq-tech-row">
-                                <span className="inq-tech-key">기술지원 이메일</span>
+                                <span className="inq-tech-key">{t('contact.tech_email_label')}</span>
                                 <div className="inq-tech-val-wrap">
                                     <a href={`mailto:${TECH_EMAIL}`} className="inq-tech-val">{TECH_EMAIL}</a>
-                                    <button type="button" onClick={() => copyToClipboard(TECH_EMAIL, '기술지원 이메일')} className="inq-copy-chip">복사</button>
+                                    {/*<button type="button" onClick={() => copyToClipboard(TECH_EMAIL, '기술지원 이메일')} className="inq-copy-chip">{t('contact.copy')}</button>*/}
                                 </div>
                             </div>
                         </div>
                         <p className="inq-tech-hours">
-                            운영시간&nbsp;&nbsp;평일 09:00 – 18:00&nbsp;&nbsp;·&nbsp;&nbsp;점심 12:00 – 13:00&nbsp;&nbsp;·&nbsp;&nbsp;주말·공휴일 제외
+                            {t('contact.hours_label')}&nbsp;&nbsp;{t('contact.hours_weekdays')}&nbsp;&nbsp;·&nbsp;&nbsp;{t('contact.hours_lunch')}&nbsp;&nbsp;·&nbsp;&nbsp;{t('contact.hours_exclude')}
                         </p>
                     </div>
 

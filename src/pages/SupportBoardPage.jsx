@@ -120,7 +120,7 @@ export default function SupportBoardPage() {
                             {posts.length === 0 ? (
                                 <tr>
                                     <td colSpan="4" className="text-center py-5 text-muted">
-                                        {keyword ? `'${keyword}'에 대한 검색 결과가 없습니다.` : '등록된 게시글이 없습니다.'}
+                                        {keyword ? t('support.no_search_results_board', { keyword }) : t('support.no_posts_board')}
                                     </td>
                                 </tr>
                             ) : posts.map((p) => (

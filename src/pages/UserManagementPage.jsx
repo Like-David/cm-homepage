@@ -4,7 +4,6 @@ import { Alert, Spinner, Modal, Form, Button } from 'react-bootstrap';
 import { Search } from 'lucide-react';
 import Banner from '../components/common/Banner';
 import { useAuth } from '@/contexts/AuthContext';
-import { SORTED_EMPLOYEES } from '@/data/employees';
 import * as adminService from '../services/admin';
 import '../styles/AdminPage.css';
 import '../styles/UserManagementPage.css';
@@ -130,10 +129,10 @@ const UserManagementPage = () => {
                                 <tr>
                                     <th style={{ width: 40 }}>No.</th>
                                     <th>{t('admin.employee_name')}</th>
+                                    <th>{t('auth.role')}</th>
                                     <th>{t('admin.employee_position')}</th>
                                     <th>{t('admin.department')}</th>
                                     <th>{t('auth.email')}</th>
-                                    <th>{t('auth.role')}</th>
                                     <th style={{ width: 100 }}>{t('admin.manage_label')}</th>
                                 </tr>
                             </thead>
@@ -144,131 +143,48 @@ const UserManagementPage = () => {
                                             {t('admin.no_users')}
                                         </td>
                                     </tr>
-                                ) : SORTED_EMPLOYEES
-                                    .filter((emp) => {
-                                        const matched = users.find((u) => u.name === emp.name);
-                                        if (!matched) return false;
-                                        if (searchTerm && !emp.name.includes(searchTerm) && !emp.email.includes(searchTerm)) return false;
-                                        if (filterRole !== 'ALL' && matched.role !== filterRole) return false;
-                                        return true;
-                                    })
-                                    .map((emp, idx) => {
-                                        const u = users.find((u) => u.name === emp.name);
-                                        const isSelf = u?.id === currentUser?.id;
-                                        const badge = ROLE_BADGE[u?.role] || ROLE_BADGE.GUEST;
-                                        return (
-                                            <tr key={emp.email}>
-                                                <td className="text-muted" style={{ fontSize: '0.85rem' }}>{idx + 1}</td>
-                                                <td>
-                                                    <span className="fw-bold">{emp.name}</span>
-                                                    {isSelf && <span className="um-me-tag">{t('admin.me_tag')}</span>}
-                                                </td>
-                                                <td style={{ color: '#555' }}>{emp.rank}</td>
-                                                <td style={{ color: '#555' }}>{emp.department}</td>
-                                                <td style={{ color: '#888', fontSize: '0.85rem' }}>{emp.email}</td>
-                                                <td>
-                                                    <span className="um-badge" style={{ color: badge.color, background: badge.bg }}>
-                                                        {badge.label}
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <div className="um-action-group">
-                                                        <button
-                                                            className="um-btn-role"
-                                                            disabled={isSelf}
-                                                            onClick={() => setRoleModal({ show: true, user: u, role: u?.role })}
-                                                        >
-                                                            {t('auth.role')}
-                                                        </button>
-                                                        <button
-                                                            className="um-btn-del"
-                                                            disabled={isSelf}
-                                                            onClick={() => setDeleteModal({ show: true, user: u })}
-                                                        >
-                                                            {t('admin.delete')}
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
+                                ) : users.map((u, idx) => {
+                                    const isSelf = u.id === currentUser?.id;
+                                    const badge = ROLE_BADGE[u.role] || ROLE_BADGE.GUEST;
+                                    return (
+                                        <tr key={u.id}>
+                                            <td className="text-muted" style={{ fontSize: '0.85rem' }}>{idx + 1}</td>
+                                            <td>
+                                                <span className="fw-bold">{u.name}</span>
+                                                {isSelf && <span className="um-me-tag">{t('admin.me_tag')}</span>}
+                                            </td>
+                                            <td>
+                                                <span className="um-badge" style={{ color: badge.color, background: badge.bg }}>
+                                                    {badge.label}
+                                                </span>
+                                            </td>
+                                            <td style={{ color: '#555' }}>{u.position || '-'}</td>
+                                            <td style={{ color: '#555' }}>{u.department || '-'}</td>
+                                            <td style={{ color: '#888', fontSize: '0.85rem' }}>{u.email}</td>
+                                            <td>
+                                                <div className="um-action-group">
+                                                    <button
+                                                        className="um-btn-role"
+                                                        disabled={isSelf}
+                                                        onClick={() => setRoleModal({ show: true, user: u, role: u.role })}
+                                                    >
+                                                        {t('auth.role')}
+                                                    </button>
+                                                    <button
+                                                        className="um-btn-del"
+                                                        disabled={isSelf}
+                                                        onClick={() => setDeleteModal({ show: true, user: u })}
+                                                    >
+                                                        {t('admin.delete')}
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
                         </table>
                     )}
-
-                    {/* 외부 가입 사용자 (GUEST - employees.js 미등록) */}
-                    {(() => {
-                        const guestUsers = users.filter((u) => {
-                            if (!SORTED_EMPLOYEES.find((e) => e.name === u.name)) {
-                                if (searchTerm && !u.name?.includes(searchTerm) && !u.email?.includes(searchTerm)) return false;
-                                if (filterRole !== 'ALL' && u.role !== filterRole) return false;
-                                return true;
-                            }
-                            return false;
-                        });
-                        if (guestUsers.length === 0) return null;
-                        return (
-                            <div className="mt-5">
-                                <h6 style={{ color: '#888', fontWeight: 600, fontSize: '0.85rem', marginBottom: 12, paddingBottom: 8, borderBottom: '1px solid #eee' }}>
-                                    {t('admin.external_users')}
-                                </h6>
-                                <table className="board-table">
-                                    <thead>
-                                        <tr>
-                                            <th style={{ width: 40 }}>No.</th>
-                                            <th>{t('admin.employee_name')}</th>
-                                            <th>{t('admin.employee_position')}</th>
-                                            <th>{t('admin.department')}</th>
-                                            <th>{t('auth.email')}</th>
-                                            <th>{t('auth.role')}</th>
-                                            <th style={{ width: 100 }}>{t('admin.manage_label')}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {guestUsers.map((u, idx) => {
-                                            const isSelf = u?.id === currentUser?.id;
-                                            const badge = ROLE_BADGE[u?.role] || ROLE_BADGE.GUEST;
-                                            return (
-                                                <tr key={u.id ?? u.email}>
-                                                    <td className="text-muted" style={{ fontSize: '0.85rem' }}>{idx + 1}</td>
-                                                    <td>
-                                                        <span className="fw-bold">{u.name ?? '-'}</span>
-                                                        {isSelf && <span className="um-me-tag">{t('admin.me_tag')}</span>}
-                                                    </td>
-                                                    <td style={{ color: '#bbb' }}>-</td>
-                                                    <td style={{ color: '#bbb' }}>-</td>
-                                                    <td style={{ color: '#888', fontSize: '0.85rem' }}>{u.email ?? '-'}</td>
-                                                    <td>
-                                                        <span className="um-badge" style={{ color: badge.color, background: badge.bg }}>
-                                                            {badge.label}
-                                                        </span>
-                                                    </td>
-                                                    <td>
-                                                        <div className="um-action-group">
-                                                            <button
-                                                                className="um-btn-role"
-                                                                disabled={isSelf}
-                                                                onClick={() => setRoleModal({ show: true, user: u, role: u?.role })}
-                                                            >
-                                                                {t('auth.role')}
-                                                            </button>
-                                                            <button
-                                                                className="um-btn-del"
-                                                                disabled={isSelf}
-                                                                onClick={() => setDeleteModal({ show: true, user: u })}
-                                                            >
-                                                                {t('admin.delete')}
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table>
-                            </div>
-                        );
-                    })()}
                 </div>
             </div>
 

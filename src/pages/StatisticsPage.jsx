@@ -244,7 +244,7 @@ const StatisticsPage = () => {
                     <Col>
                         <Card className="st-card">
                             <Card.Body>
-                                <h6 className="st-card-title">{t('admin.popular_posts')} <span className="st-card-sub">{t('admin.by_views')}</span></h6>
+                                <h6 className="st-card-title">{t('admin.popular_posts')}</h6>
                                 {(data?.topPosts ?? []).length === 0 ? (
                                     <p className="text-muted text-center py-3" style={{ fontSize: '0.85rem' }}>
                                         {t('admin.no_posts')}
@@ -253,10 +253,10 @@ const StatisticsPage = () => {
                                     <table className="st-top-table">
                                         <thead>
                                             <tr>
-                                                <th style={{ width: 40 }}>{t('admin.rank_label')}</th>
+                                                <th style={{ width: 80 }}>{t('admin.rank_label')}</th>
                                                 <th>{t('support.table.title')}</th>
-                                                <th style={{ width: 80 }}>{t('support.table.author')}</th>
-                                                <th style={{ width: 80 }}>{t('support.table.views')}</th>
+                                                <th style={{ width: 150 }}>{t('support.table.author')}</th>
+                                                <th style={{ width: 120 }}>{t('support.table.views')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

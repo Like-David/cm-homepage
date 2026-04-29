@@ -61,6 +61,63 @@
     vertical-align: middle;
 }
 
+/* 사용자 타입 태그 (이름 아래) */
+.um-type-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    margin-top: 3px;
+    display: inline-block;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.03);
+    text-transform: uppercase;
+}
+
+/* 행별 배경 차별화 */
+.um-row-internal {
+    background-color: #ffffff;
+}
+
+.um-row-external {
+    background-color: #fffcf5; /* 연한 노란색/베이지색 배경으로 외부 사용자 강조 */
+}
+
+.um-row-external:hover {
+    background-color: #fff8e6 !important;
+}
+
+/* 외부 사용자 섹션 강화 */
+.um-external-section {
+    border: 1px solid #ffeeba;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: #fffdf8;
+}
+
+.um-external-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #856404;
+    font-weight: 800;
+    font-size: 0.95rem;
+    border-bottom: 2px solid #ffeeba;
+    padding-bottom: 10px;
+}
+
+.um-count-badge {
+    background: #856404;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    margin-left: 8px;
+}
+
+.um-external-table {
+    background: transparent !important;
+}
+
 /* 관리 버튼 그룹 */
 .um-action-group {
     display: flex;

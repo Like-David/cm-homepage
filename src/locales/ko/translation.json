@@ -106,6 +106,7 @@
     "no_issue_history": "발급 이력이 없습니다.",
     "management_menu": "관리 메뉴",
     "status": {
+        "label": "상태",
         "pending": "대기 중",
         "approved": "승인됨",
         "rejected": "반려됨",
@@ -124,7 +125,7 @@
     "issue_success": "재직증명서가 발급되었습니다.",
     "issue_fail": "발급 중 오류가 발생했습니다.",
     "cert_manage_subtitle": "전체 재직증명서 발급 이력을 조회합니다",
-    "search_name_placeholder": "이름으로 검색",
+    "search_name_placeholder": "이름 또는 용도로 검색",
     "manual_issue_btn": "직접 발급",
     "delete": "삭제",
     "delete_confirm_title": "발급 이력 삭제",
@@ -182,8 +183,8 @@
     "fail_fetch": "게시글을 불러오는데 실패했습니다.",
     "employee_certificate": "발급 현황 관리",
     "employee_certificate_desc": "전체 임직원의 발급 내역을 확인하고 승인합니다.",
-    "user_management": "임직원 명부",
-    "user_management_desc": "부서별 임직원 목록 및 권한을 관리합니다.",
+    "user_management": "사용자 목록",
+    "user_management_desc": "전체 사용자 목록 및 권한을 관리합니다.",
     "statistics": "이용 통계",
     "statistics_desc": "증명서 발급 및 서비스 이용 현황을 조회합니다.",
     "settings": "시스템 설정",
@@ -216,7 +217,6 @@
     "name": "이름",
     "email": "이메일",
     "role": "역할",
-    "status": "상태",
     "active": "활성",
     "inactive": "비활성",
     "total_posts": "전체 게시글",
@@ -295,7 +295,7 @@
     "test_demo": "제품 테스트",
     "cta_title": "솔루션 도입을 검토 중이신가요?",
     "cta_subtitle": "솔루션 데모를 통해 테스트 해 보세요.",
-    "intro_1": "전자문서, 보안, 약정관리 분야의 첨단 IT 기술로 기업의 업무 효율과 신뢰성을 혁신합니다.",
+    "intro_1": "전자문서, 보안, 약정관리 분야의 첨단 IT 기술로 기업의 업무 효율 och 신뢰성을 혁신합니다.",
     "intro_2": "디지털 전환 시대에 최적화된 통합 솔루션 포트폴리오로 비즈니스 경쟁력을 한 단계 강화하세요.",
     "feature_types": {
       "tech": "기술력",
@@ -817,7 +817,7 @@
         "content": "1. (시행일) 이 약관은 2017년 12월 1일부터 시행됩니다."
       }
     }
-    },
+  },
   "about": {
     "introduce": {
       "overlay_text": "창구페이퍼리스를 통해\n고객사의 경쟁력 강화에 최선을 다하고 있습니다.",

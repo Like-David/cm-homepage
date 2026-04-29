@@ -106,6 +106,7 @@
     "no_issue_history": "No issuance history found.",
     "management_menu": "Management Menu",
     "status": {
+        "label": "Status",
         "pending": "Pending",
         "approved": "Approved",
         "rejected": "Rejected",
@@ -168,8 +169,8 @@
     "fail_fetch": "Failed to load posts.",
     "employee_certificate": "Issuance Status",
     "employee_certificate_desc": "View and approve issuance history for all employees.",
-    "user_management": "Employee Directory",
-    "user_management_desc": "Manage employee list and permissions by department.",
+    "user_management": "User List",
+    "user_management_desc": "Manage all users and their permissions.",
     "statistics": "Usage Statistics",
     "statistics_desc": "View certificate issuance and service usage status.",
     "settings": "System Settings",

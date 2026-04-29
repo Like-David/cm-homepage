@@ -104,7 +104,7 @@ const EmployeeCertificatePage = () => {
         }
     };
 
-    const formatDate = (d) => d ? new Date(d).toLocaleDateString('ko-KR') : '-';
+    const formatDate = (d) => d ? new Date(d).toLocaleDateString('ko-KR').replace(/\.$/, '') : '-';
 
     return (
         <div className="employee-certificate-page">
@@ -117,28 +117,9 @@ const EmployeeCertificatePage = () => {
                     </Alert>
                 )}
 
-                {/* 검색 + 추가 */}
+                {/* 추가 버튼만 남김 (검색창 제거) */}
                 <Row className="mb-4">
-                    <Col md={8}>
-                        <Form onSubmit={handleSearch}>
-                            <Form.Group className="d-flex">
-                                <Form.Control
-                                    type="text"
-                                    placeholder={t('admin.search_name_placeholder')}
-                                    value={search}
-                                    onChange={(e) => setSearch(e.target.value)}
-                                />
-                                <Button
-                                    type="submit"
-                                    className="ms-2"
-                                    style={{ backgroundColor: '#1C2D60', borderColor: '#1C2D60' }}
-                                >
-                                    <Search size={18} />
-                                </Button>
-                            </Form.Group>
-                        </Form>
-                    </Col>
-                    <Col md={4} className="text-end">
+                    <Col className="text-end">
                         <Button
                             style={{ backgroundColor: '#1C2D60', borderColor: '#1C2D60' }}
                             onClick={() => setCreateModal({ show: true })}
@@ -159,7 +140,7 @@ const EmployeeCertificatePage = () => {
                                 <th>{t('admin.employee_position')}</th>
                                 <th>{t('admin.issue_date')}</th>
                                 <th>{t('admin.purpose')}</th>
-                                <th>{t('admin.status.label') || t('admin.status.pending') && '상태'}</th>
+                                <th>{t('admin.status.label')}</th>
                                 <th style={{ width: 80 }}>{t('admin.manage_label')}</th>
                             </tr>
                         </thead>

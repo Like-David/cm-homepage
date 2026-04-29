@@ -7,12 +7,15 @@
     z-index: 1030;
     display: flex;
     align-items: center;
-    background-color: rgba(128, 128, 128, 0.5); /* Original background */
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 320px; /* Expanded for long content */
+    background-color: rgba(5, 10, 30, 0.85); /* Deep navy background for premium look */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px 25px;
+    max-width: 320px;
     width: auto;
     justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .scroll-nav ul {
@@ -24,45 +27,70 @@
 .scroll-nav ul li {
     cursor: pointer;
     text-align: center;
-    margin: 1rem;
+    margin: 0.8rem 0;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    white-space: nowrap; /* Ensure one line */
+    white-space: nowrap;
 }
 
 .scroll-nav ul li span {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #868e96; /* Original color */
-    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6); /* Muted white for inactive */
+    transition: all 0.3s ease;
+}
+
+.scroll-nav ul li:hover span {
+    color: #fff;
+    transform: translateX(-3px);
 }
 
 .scroll-nav ul li.active span {
-    color: #333;
+    color: #7eb8ff; /* Vibrant light blue for active item */
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(126, 184, 255, 0.4);
 }
 
 .scroll-nav ul li.nav-group-title {
     cursor: default;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    margin-top: 15px;
+}
+
+.scroll-nav ul li.nav-group-title:first-child {
+    margin-top: 5px;
 }
 
 .scroll-nav ul li.nav-group-title span {
-    color: #ced4da; /* 흰색 대신 연한 회색으로 변경 */
+    color: #fff;
     font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
 }
 
 .scroll-nav ul li.nav-sub-item {
-    margin: 0.5rem 0;
+    margin: 0.4rem 0;
 }
 
 .scroll-nav ul li.nav-sub-item span {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
 }
 
 /* Responsive styles */
+@media (max-width: 1366px) {
+    .scroll-nav {
+        right: 20px; /* Bring it closer on smaller screens */
+        padding: 12px 20px;
+    }
+    .scroll-nav ul li span {
+        font-size: 0.88rem;
+    }
+}
+
 @media (max-width: 1200px) {
     .scroll-nav {
         display: none;

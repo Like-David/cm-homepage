@@ -648,7 +648,7 @@ html {
 
 @media (min-width: 1025px) {
     .header-primary-wrap.gnb-expanded .gnb {
-        height: 460px;
+        height: 380px;
         background-color: rgba(5, 10, 30, 0.88);
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);

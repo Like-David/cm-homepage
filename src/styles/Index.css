@@ -412,7 +412,7 @@
 
 .service-center-image {
     width: 100%;
-    height: clamp(300px, 50vh, 500px);
+    height: clamp(400px, 70vh, 700px); /* Increased height: min 400px, target 70vh, max 700px */
     display: block;
     object-fit: cover;
 }

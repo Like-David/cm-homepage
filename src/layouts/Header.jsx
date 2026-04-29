@@ -83,7 +83,7 @@ function Header() {
             title: t('menu.support'),
             path: '/support',
             depth2: [
-                { title: t('menu.contact_us'), path: '/support' },
+                { title: t('support.board_title'), path: '/support' },
                 { title: t('menu.faq'), path: '/support/faq' },
                 { title: t('menu.one_on_one'), path: '/support/inquiry' },
             ],

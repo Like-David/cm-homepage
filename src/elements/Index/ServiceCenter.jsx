@@ -8,6 +8,11 @@ function ServiceCenter() {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
+    const handleNavigate = () => {
+        navigate('/support');
+        window.scrollTo(0, 0);
+    };
+
     return (
         <div className="service-center-container">
             <Image src={ServiceCenterImg} className="service-center-image" />
@@ -20,7 +25,7 @@ function ServiceCenter() {
                         </React.Fragment>
                     ))}
                 </p>
-                <button className="service-center-button" onClick={() => navigate('/support')}>
+                <button className="service-center-button" onClick={handleNavigate}>
                     {t('support.index.service_center_btn')}
                 </button>
             </div>

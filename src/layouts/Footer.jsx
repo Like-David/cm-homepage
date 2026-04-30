@@ -33,6 +33,7 @@ function Footer() {
                     <dl>
                         <dt>{t('footer.tel')}: 02-6949-4170</dt>
                         <dt>{t('footer.tech_support')}: 0505-998-0888</dt>
+                        <dt>{t('footer.tech_email')}: support@cminnovation.co.kr</dt>
                         <dt>{t('footer.fax')}: 0505-477-4170</dt>
                     </dl>
                     <p className="copyright">Copyright © <strong>CMInnovation. </strong> All Rights Reserved.</p>

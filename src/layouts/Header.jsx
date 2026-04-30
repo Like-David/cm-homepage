@@ -83,9 +83,9 @@ function Header() {
             title: t('menu.support'),
             path: '/support',
             depth2: [
-                { title: t('support.board_title'), path: '/support' },
                 { title: t('menu.faq'), path: '/support/faq' },
-                { title: t('menu.one_on_one'), path: '/support/inquiry' },
+                { title: t('support.board_title'), path: '/support' },
+                { title: t('menu.remote_support'), path: '/support/inquiry' },
             ],
         },
     ];
@@ -250,7 +250,7 @@ const adminMenuItem = user && (user.role === 'EMPLOYEE' || user.role === 'ADMIN'
                     </ul>
 
                     <div className="nav-right-section">
-                        <div className={`language-selector ${isGnbOpen ? 'mobile-visible' : ''}`}
+                        <div className="language-selector"
                             onMouseEnter={handleMenuEnter}
                             onMouseLeave={handleMenuLeave}
                         >
@@ -267,7 +267,7 @@ const adminMenuItem = user && (user.role === 'EMPLOYEE' || user.role === 'ADMIN'
                             </ul>
                         </div>
 
-                        <div className={`user-menu desktop-only ${isGnbOpen ? 'mobile-visible' : ''}`}>
+                        <div className="user-menu desktop-only">
                             {user ? (
                                 <>
                                     <span className="user-name">{user.name}</span>

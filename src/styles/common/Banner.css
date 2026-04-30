@@ -1,24 +1,26 @@
 .common-banner {
     width: 100%;
-    height: 450px; /* Adjusted height to match client page */
     background-size: cover;
     background-position: center;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     text-align: center;
     color: #fff;
-    padding: 180px 20px 20px 20px; /* Increased padding-top to push content down */
-    margin-bottom: 80px;
+    padding: clamp(120px, 15vh, 180px) 20px clamp(60px, 8vh, 100px);
+    margin-bottom: 0;
 }
 
 .banner-content h1 {
-    font-size: 2.5rem; /* Adjusted to match client page h2 */
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .banner-content p {
-    font-size: 1.2rem; /* Adjusted to match client page p */
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
     max-width: 800px;
+    line-height: 1.7;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }

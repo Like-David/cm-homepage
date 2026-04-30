@@ -174,7 +174,7 @@ const FaqPage = () => {
                             <p className="faq-cta-title">{t('faq.cta_title')}</p>
                             <p className="faq-cta-desc">{t('faq.cta_desc')}</p>
                         </div>
-                        <Link to="/support/inquiry" className="faq-cta-btn">{t('faq.cta_btn')}</Link>
+                        <Link to="/support" className="faq-cta-btn">{t('faq.cta_btn')}</Link>
                     </div>
                 </div>
             </div>

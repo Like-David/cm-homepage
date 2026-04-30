@@ -8,6 +8,25 @@ import SupportNav from "@/components/support/SupportNav";
 import WriteModal from '@/components/support/WriteModal';
 import { Link } from 'react-router-dom';
 
+const formatDateTime = (dateStr) => {
+    if (!dateStr) return '';
+    const d = new Date(dateStr);
+    const pad = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+};
+
+const maskAuthor = (author) => {
+    if (!author) return '';
+    if (author.includes('@')) {
+        const [local, domain] = author.split('@');
+        const visible = local.slice(0, 2);
+        return `${visible}***@${domain}`;
+    }
+    if (author.length === 1) return author;
+    if (author.length === 2) return author[0] + '*';
+    return author[0] + '*'.repeat(author.length - 2) + author[author.length - 1];
+};
+
 export default function SupportBoardPage() {
     const { t } = useTranslation();
     const [posts, setPosts] = useState([]);
@@ -58,9 +77,10 @@ export default function SupportBoardPage() {
 
             <div className="support-content-area">
                 <div className="contact-us-section">
-                    <div className="section-header">
-                        <h2>{t('support.board_title')}</h2>
-                        <p>{t('support.banner_subtitle')}</p>
+                    <div className="board-section-header">
+                        <div className="board-section-label">Customer Support</div>
+                        <h2 className="board-section-title">{t('support.board_title')}</h2>
+                        <p className="board-section-desc">{t('support.banner_subtitle')}</p>
                     </div>
 
                     <div className="board-container">
@@ -79,17 +99,17 @@ export default function SupportBoardPage() {
                                     onChange={(e) => setKeyword(e.target.value)}
                                 />
                                 <button type="submit" className="search-btn" aria-label={t('support.search_btn')}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                                         <path
                                             d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
-                                            stroke="#666"
+                                            stroke="#888"
                                             strokeWidth="2"
                                             strokeLinecap="round"
                                             strokeLinejoin="round"
                                         />
                                         <path
                                             d="M21 21L16.65 16.65"
-                                            stroke="#666"
+                                            stroke="#888"
                                             strokeWidth="2"
                                             strokeLinecap="round"
                                             strokeLinejoin="round"
@@ -107,34 +127,41 @@ export default function SupportBoardPage() {
                             </button>
                         </div>
 
-                        <table className="board-table">
-                            <thead>
-                            <tr>
-                                <th>{t('support.table.title')}</th>
-                                <th>{t('support.table.author')}</th>
-                                <th>{t('support.table.views')}</th>
-                                <th>{t('support.table.date')}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {posts.length === 0 ? (
-                                <tr>
-                                    <td colSpan="4" className="text-center py-5 text-muted">
-                                        {keyword ? t('support.no_search_results_board', { keyword }) : t('support.no_posts_board')}
-                                    </td>
-                                </tr>
-                            ) : posts.map((p) => (
-                                <tr key={p.id}>
-                                    <td className="board-title">
-                                        <Link to={`/support/${p.id}`}>{p.title}</Link>
-                                    </td>
-                                    <td>{p.author}</td>
-                                    <td>{p.views}</td>
-                                    <td>{new Date(p.created_at).toLocaleDateString().replace(/\.$/, '')}</td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
+                        <div className="board-table-wrap">
+                            <table className="board-table">
+                                <thead>
+                                    <tr>
+                                        <th className="col-subject">{t('support.table.title')}</th>
+                                        <th className="col-author">{t('support.table.author')}</th>
+                                        <th className="col-date">{t('support.table.date')}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {posts.length === 0 ? (
+                                        <tr>
+                                            <td colSpan={3} className="post-list-empty">
+                                                {keyword ? t('support.no_search_results_board', { keyword }) : t('support.no_posts_board')}
+                                            </td>
+                                        </tr>
+                                    ) : posts.map((p) => (
+                                        <tr key={p.id}>
+                                            <td className="board-title">
+                                                <Link to={`/support/${p.id}`} className="secret-link">
+                                                    <svg className="lock-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden>
+                                                        <path d="M7 10V8a5 5 0 1 1 10 0v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                                        <rect x="4.5" y="10" width="15" height="10" rx="3" stroke="currentColor" strokeWidth="2" />
+                                                        <circle cx="12" cy="15" r="1.5" fill="currentColor" />
+                                                    </svg>
+                                                    <span>비밀글입니다.</span>
+                                                </Link>
+                                            </td>
+                                            <td className="board-author">{maskAuthor(p.author)}</td>
+                                            <td className="board-date">{formatDateTime(p.created_at)}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
 
                         <div className="pagination">
                             <button

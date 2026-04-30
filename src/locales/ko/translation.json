@@ -26,6 +26,7 @@
     "contact_us": "문의사항",
     "faq": "자주 묻는 질문",
     "one_on_one": "1:1 문의",
+    "remote_support": "기술지원",
     "admin_dashboard": "대시보드",
     "employee_certificate": "재직증명서",
     "close_menu": "전체메뉴 닫기",
@@ -180,6 +181,9 @@
     "post_delete_confirm": "이 게시글을 삭제하시겠습니까? 삭제된 게시글은 복구할 수 없습니다.",
     "no_search_results_board": "'{{keyword}}'에 대한 검색 결과가 없습니다.",
     "no_posts_board": "등록된 게시글이 없습니다.",
+    "col_title": "제목",
+    "col_author": "작성자",
+    "col_date": "작성 시간",
     "fail_fetch": "게시글을 불러오는데 실패했습니다.",
     "employee_certificate": "발급 현황 관리",
     "employee_certificate_desc": "전체 임직원의 발급 내역을 확인하고 승인합니다.",
@@ -476,7 +480,7 @@
   "contact": {
     "banner_title": "고객지원",
     "banner_subtitle": "궁금한 점이 있으시면 언제든지 문의해 주세요.",
-    "section_title": "1:1 문의",
+    "section_title": "기술지원",
     "section_subtitle": "아래 순서에 따라 문의해 주시면 담당자가 신속하게 도움을 드리겠습니다.",
     "step1_title": "문의 및 상담",
     "step1_desc": "대표번호나 이메일로 문의 내용을 전달해 주시면 담당자가 확인 후, 원격지원이 필요한 경우 접속 방법을 안내해 드립니다.",
@@ -506,7 +510,7 @@
       "title": "제목",
       "author": "작성자",
       "views": "조회수",
-      "date": "작성일",
+      "date": "작성 시간",
       "anonymous": "익명"
     },
     "password_modal": {
@@ -664,6 +668,7 @@
     "biz_reg_no": "사업자등록번호",
     "tel": "대표전화",
     "tech_support": "기술지원",
+    "tech_email": "이메일",
     "fax": "팩스",
     "scroll_to_top": "상단으로"
   },

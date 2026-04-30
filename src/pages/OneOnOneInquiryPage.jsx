@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import SupportNav from "../components/support/SupportNav";
 import Banner from "@/components/common/Banner";
-import AlertModal from '@/components/common/AlertModal';
 import '../styles/SupportBoardPage.css';
 import '../styles/OneOnOneInquiryPage.css';
 
@@ -13,15 +12,13 @@ const REMOTE_LINK = 'https://988.co.kr';
 
 const OneOnOneInquiryPage = () => {
     const { t } = useTranslation();
-    const [alert, setAlert] = useState({ isOpen: false, type: 'success', message: '' });
+    const [confirmOpen, setConfirmOpen] = useState(false);
 
-    const copyToClipboard = async (text, label) => {
-        try {
-            await navigator.clipboard.writeText(text);
-            // 알림창 없이 즉시 복사
-        } catch {
-            setAlert({ isOpen: true, type: 'error', message: `${t('contact.phone_copy_fail')}${text}` });
-        }
+    const handleRemoteClick = () => setConfirmOpen(true);
+
+    const handleConfirm = () => {
+        setConfirmOpen(false);
+        window.open(REMOTE_LINK, '_blank', 'noreferrer');
     };
 
     return (
@@ -36,9 +33,7 @@ const OneOnOneInquiryPage = () => {
                     <div className="inq-header">
                         <p className="inq-header-label">{t('menu.contact_us')}</p>
                         <h2 className="inq-header-title">{t('contact.section_title')}</h2>
-                        <p className="inq-header-desc">
-                            {t('contact.section_subtitle')}
-                        </p>
+                        <p className="inq-header-desc">{t('contact.section_subtitle')}</p>
                     </div>
 
                     {/* 스텝 카드 */}
@@ -54,26 +49,21 @@ const OneOnOneInquiryPage = () => {
                             </div>
                             <h3 className="inq-card-title">{t('contact.step1_title')}</h3>
                             <div className="inq-card-phone">{PHONE}</div>
-                            <p className="inq-card-desc">
-                                {t('contact.step1_desc')}
-                            </p>
-                            {/*<div className="inq-card-btns">*/}
-                            {/*    /!*<button type="button" onClick={() => copyToClipboard(PHONE, '대표번호')} className="inq-btn inq-btn--solid">*!/*/}
-                            {/*    /!*    {t('contact.step1_btn')}*!/*/}
-                            {/*    /!*</button>*!/*/}
-                            {/*</div>*/}
+                            <p className="inq-card-desc">{t('contact.step1_desc')}</p>
                         </div>
 
-                        {/* Connector */}
+                        {/* Connector — 가로 방향 */}
                         <div className="inq-connector">
-                            <div className="inq-connector-line" />
-                            <div className="inq-connector-arrow">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C2D60" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <line x1="12" y1="5" x2="12" y2="19" />
-                                    <polyline points="19 12 12 19 5 12" />
-                                </svg>
+                            <div className="inq-connector-row">
+                                <div className="inq-connector-line" />
+                                <div className="inq-connector-arrow">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C2D60" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <polyline points="12 5 19 12 12 19" />
+                                    </svg>
+                                </div>
+                                <div className="inq-connector-line" />
                             </div>
-                            <div className="inq-connector-line" />
                             <span className="inq-connector-label">{t('contact.connector_label')}</span>
                         </div>
 
@@ -88,16 +78,18 @@ const OneOnOneInquiryPage = () => {
                                 </svg>
                             </div>
                             <h3 className="inq-card-title">{t('contact.step2_title')}</h3>
-                            <a href={REMOTE_LINK} target="_blank" rel="noreferrer" className="inq-card-link">
-                                {REMOTE_LINK}
-                            </a>
+                            <span className="inq-card-link">{REMOTE_LINK}</span>
                             <p className="inq-card-desc">
                                 {t('contact.step2_desc', { code: t('contact.step2_code_label') })}
                             </p>
                             <div className="inq-card-btns">
-                                <a href={REMOTE_LINK} target="_blank" rel="noreferrer" className="inq-btn inq-btn--solid">
+                                <button
+                                    type="button"
+                                    className="inq-btn inq-btn--solid"
+                                    onClick={handleRemoteClick}
+                                >
                                     {t('contact.step2_btn')}
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -117,7 +109,6 @@ const OneOnOneInquiryPage = () => {
                                 <span className="inq-tech-key">{t('contact.tech_phone_label')}</span>
                                 <div className="inq-tech-val-wrap">
                                     <a href={`tel:${TECH_PHONE.replace(/-/g, '')}`} className="inq-tech-val">{TECH_PHONE}</a>
-                                    {/*<button type="button" onClick={() => copyToClipboard(TECH_PHONE, '기술지원 전화번호')} className="inq-copy-chip">{t('contact.copy')}</button>*/}
                                 </div>
                             </div>
                             <div className="inq-tech-sep" />
@@ -125,7 +116,6 @@ const OneOnOneInquiryPage = () => {
                                 <span className="inq-tech-key">{t('contact.tech_email_label')}</span>
                                 <div className="inq-tech-val-wrap">
                                     <a href={`mailto:${TECH_EMAIL}`} className="inq-tech-val">{TECH_EMAIL}</a>
-                                    {/*<button type="button" onClick={() => copyToClipboard(TECH_EMAIL, '기술지원 이메일')} className="inq-copy-chip">{t('contact.copy')}</button>*/}
                                 </div>
                             </div>
                         </div>
@@ -136,12 +126,34 @@ const OneOnOneInquiryPage = () => {
 
                 </div>
             </div>
-            <AlertModal
-                isOpen={alert.isOpen}
-                onClose={() => setAlert({ isOpen: false, type: 'success', message: '' })}
-                type={alert.type}
-                message={alert.message}
-            />
+
+            {/* 원격지원 이동 확인 팝업 */}
+            {confirmOpen && (
+                <div className="password-modal-overlay" role="dialog" aria-modal="true">
+                    <div className="inq-confirm-modal">
+                        <div className="inq-confirm-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1C2D60" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                <line x1="8" y1="21" x2="16" y2="21" />
+                                <line x1="12" y1="17" x2="12" y2="21" />
+                            </svg>
+                        </div>
+                        <h3 className="inq-confirm-title">원격지원 페이지로 이동합니다</h3>
+                        <p className="inq-confirm-desc">
+                            외부 사이트({REMOTE_LINK})로 연결됩니다.<br />
+                            담당자에게 안내받은 6자리 인증번호가 있는 경우에만 접속해주세요.
+                        </p>
+                        <div className="inq-confirm-actions">
+                            <button type="button" className="inq-confirm-cancel" onClick={() => setConfirmOpen(false)}>
+                                취소
+                            </button>
+                            <button type="button" className="inq-confirm-ok" onClick={handleConfirm}>
+                                이동하기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

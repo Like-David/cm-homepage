@@ -45,3 +45,17 @@
     background-color: #e9e9e9;
     color: #333;
 }
+
+@media (max-width: 768px) {
+    .support-nav li a {
+        padding: 12px 6px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 400px) {
+    .support-nav li a {
+        padding: 10px 4px;
+        font-size: 11px;
+    }
+}

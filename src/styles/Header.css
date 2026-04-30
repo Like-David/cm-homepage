@@ -35,10 +35,14 @@ html {
     transition: background-color 0.3s ease, border-bottom 0.3s ease;
 }
 
-.header-primary-wrap.scrolled,
-.header-primary-wrap.force-dark {
-    background-color: rgba(5, 10, 30, 0.95); /* Dark navy to match expanded GNB */
+.header-primary-wrap.scrolled {
+    background-color: rgba(5, 10, 30, 0.95);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-primary-wrap.force-dark {
+    background-color: rgba(5, 10, 30, 0.95);
+    border-bottom: 1px solid transparent;
 }
 
 .header-primary-wrap.scrolled .depth1 > li > a,
@@ -336,8 +340,8 @@ html {
     .mobile-gnb-open .nav {
         display: block;
         padding: 0 20px;
-        margin-top: 20px; /* Reduced from 60px */
-        padding-bottom: 50px;
+        margin-top: 20px;
+        padding-bottom: 24px;
     }
     .mobile-gnb-open .depth1 {
         flex-direction: column;
@@ -471,11 +475,7 @@ html {
     }
 
     .mobile-gnb-open .nav-right-section {
-        flex-direction: row;
-        justify-content: flex-start;
-        padding: 0;
-        margin-top: 0;
-        border-top: none;
+        display: none;
     }
 
     .mobile-gnb-open .close {

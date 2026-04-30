@@ -247,11 +247,18 @@
     flex-shrink: 0;
 }
 
+.inq-connector-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
 .inq-connector-line {
-    width: 1px;
+    height: 2px;
     flex: 1;
-    background: linear-gradient(to bottom, #dde1eb, #c0c8d8);
-    min-height: 28px;
+    min-width: 20px;
+    background: linear-gradient(to right, #dde1eb, #c0c8d8);
 }
 
 .inq-connector-arrow {
@@ -272,9 +279,83 @@
     font-weight: 600;
     text-align: center;
     white-space: nowrap;
-    writing-mode: vertical-lr;
     letter-spacing: 0.05em;
     margin: 4px 0;
+}
+
+/* ── 원격지원 확인 팝업 ── */
+.inq-confirm-modal {
+    background: #fff;
+    border-radius: 16px;
+    padding: 36px 32px 28px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(28, 45, 96, 0.18);
+}
+
+.inq-confirm-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #eef1f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.inq-confirm-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1a1e2e;
+    margin: 0 0 12px;
+}
+
+.inq-confirm-desc {
+    font-size: 0.875rem;
+    color: #7a8499;
+    line-height: 1.7;
+    margin: 0 0 28px;
+}
+
+.inq-confirm-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.inq-confirm-cancel {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1.5px solid #dde1eb;
+    background: #fff;
+    color: #7a8499;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.inq-confirm-cancel:hover {
+    background: #f8f9fc;
+    color: #1a1e2e;
+}
+
+.inq-confirm-ok {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    border: none;
+    background: #1C2D60;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.inq-confirm-ok:hover {
+    background: #152245;
 }
 
 /* ── 기술 지원 패널 ── */
@@ -387,21 +468,20 @@
     }
 
     .inq-connector {
-        flex-direction: row;
         padding: 16px 0;
-        gap: 8px;
+    }
+
+    .inq-connector-row {
+        flex-direction: column;
+        height: 64px;
     }
 
     .inq-connector-line {
-        height: 1px;
-        width: auto;
+        width: 2px;
+        height: auto;
         flex: 1;
-        min-height: unset;
-        background: linear-gradient(to right, #dde1eb, #c0c8d8);
-    }
-
-    .inq-connector-label {
-        writing-mode: horizontal-tb;
+        min-width: unset;
+        background: linear-gradient(to bottom, #dde1eb, #c0c8d8);
     }
 
     .inq-card-num {

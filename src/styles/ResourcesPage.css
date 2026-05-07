@@ -1,0 +1,321 @@
+/* ===== 자료실 섹션 래퍼 ===== */
+.resources-section {
+    padding: 40px 48px 60px;
+}
+
+/* ===== 필터 탭 ===== */
+.resources-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+.resources-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border: 1.5px solid #dde1e7;
+    border-radius: 24px;
+    background: #fff;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.resources-tab:hover {
+    border-color: #1C2D60;
+    color: #1C2D60;
+}
+
+.resources-tab--active {
+    background: #1C2D60;
+    border-color: #1C2D60;
+    color: #fff;
+    font-weight: 600;
+}
+
+.resources-tab--active .resources-tab-count {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+}
+
+.resources-tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: #f0f0f5;
+    color: #777;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ===== 카드 그리드 ===== */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* ===== 자료 카드 ===== */
+.resource-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1.5px solid #eaecf0;
+    border-radius: 14px;
+    padding: 24px;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 14px 14px 0 0;
+    background: #dde1e7;
+    transition: background 0.22s ease;
+}
+
+.resource-card--guide::before {
+    background: linear-gradient(90deg, #1a56db, #4285f4);
+}
+
+.resource-card--program::before {
+    background: linear-gradient(90deg, #0f766e, #14b8a6);
+}
+
+.resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(28, 45, 96, 0.1);
+    border-color: #c5cfe8;
+}
+
+.resource-card__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.resource-card__file-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.resource-card__badges {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.resource-card__body {
+    flex: 1;
+    margin-bottom: 16px;
+}
+
+.resource-card__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1C2D60;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.resource-card__desc {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.resource-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid #f0f0f5;
+    border-bottom: 1px solid #f0f0f5;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.resource-card__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #999;
+}
+
+.resource-card__meta-item svg {
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.resource-card__meta-date {
+    margin-left: auto;
+}
+
+/* ===== 다운로드 버튼 ===== */
+.resource-card__download {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 0;
+    background: #1C2D60;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.2px;
+}
+
+.resource-card__download:hover {
+    background: #2a4494;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.resource-card--program .resource-card__download {
+    background: #0f766e;
+}
+
+.resource-card--program .resource-card__download:hover {
+    background: #0a5e57;
+}
+
+/* ===== 분류 뱃지 ===== */
+.resources-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.resources-badge--guide {
+    background: #dbeafe;
+    color: #1a56db;
+}
+
+.resources-badge--program {
+    background: #ccfbf1;
+    color: #0f766e;
+}
+
+/* ===== 파일 타입 뱃지 ===== */
+.resources-type {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+.resources-type--pdf {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.resources-type--exe {
+    background: #ffedd5;
+    color: #ea580c;
+}
+
+/* ===== 빈 상태 ===== */
+.resources-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 80px 0;
+    color: #ccc;
+}
+
+.resources-empty p {
+    font-size: 15px;
+    color: #aaa;
+    margin: 0;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 1100px) {
+    .resources-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .resources-section {
+        padding: 24px 20px 40px;
+    }
+
+    .resources-stats {
+        padding: 18px 20px;
+        border-radius: 10px;
+        margin-bottom: 24px;
+    }
+
+    .resources-stat-number {
+        font-size: 24px;
+    }
+
+    .resources-stat-label {
+        font-size: 12px;
+    }
+
+    .resources-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .resources-search-input {
+        width: 100%;
+    }
+
+    .resources-search {
+        width: 100%;
+    }
+
+    .resources-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .resource-card {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .resources-tabs {
+        gap: 6px;
+    }
+
+    .resources-tab {
+        padding: 7px 14px;
+        font-size: 13px;
+    }
+}

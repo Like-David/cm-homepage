@@ -17,6 +17,9 @@ const SupportNav = () => {
                 <li>
                     <NavLink to="/support/inquiry">{t('menu.remote_support')}</NavLink>
                 </li>
+                <li>
+                    <NavLink to="/support/resources">{t('menu.resources')}</NavLink>
+                </li>
             </ul>
         </div>
     );

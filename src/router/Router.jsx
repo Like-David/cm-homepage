@@ -12,6 +12,7 @@ import FaqPage from '@/pages/FaqPage';
 import OneOnOneInquiryPage from '@/pages/OneOnOneInquiryPage';
 import SupportViewPage from '@/pages/SupportViewPage';
 import SupportEditPage from '@/pages/SupportEditPage';
+import ResourcesPage from '@/pages/ResourcesPage';
 import PrivacyPage from '@/pages/PrivacyPage';
 import TermsPage from '@/pages/TermsPage';
 import AdminPage from '@/pages/AdminPage';
@@ -34,6 +35,7 @@ function Router() {
                 <Route path="/support/write" element={<SupportWritePage />} />
                 <Route path="/support/faq" element={<FaqPage />} />
                 <Route path="/support/inquiry" element={<OneOnOneInquiryPage />} />
+                <Route path="/support/resources" element={<ResourcesPage />} />
                 <Route path="/support/:id" element={<SupportViewPage />} />
                 <Route path="/support/:id/edit" element={<SupportEditPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />

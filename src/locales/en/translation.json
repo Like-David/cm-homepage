@@ -27,6 +27,7 @@
     "faq": "FAQ",
     "one_on_one": "1:1 Inquiry",
     "remote_support": "Tech Support",
+    "resources": "Downloads",
     "admin_dashboard": "Dashboard",
     "employee_certificate": "Certificate",
     "close_menu": "Close Menu",
@@ -714,5 +715,27 @@
       "section9_contact": "Contact: 02-6949-4170 (Tech Support: 0505-998-0888 / Fax: 0505-477-4170)",
       "footer": "This Privacy Policy is effective from September 30, 2011."
     }
+  },
+  "resources": {
+    "banner_title": "Customer Support",
+    "banner_subtitle": "Download installation guides and programs.",
+    "section_title": "Downloads",
+    "section_subtitle": "Download product installation guides and programs.",
+    "categories": {
+      "all": "All",
+      "guide": "Install Guide",
+      "program": "Program"
+    },
+    "table": {
+      "category": "Category",
+      "title": "Title",
+      "type": "Type",
+      "size": "Size",
+      "download": "Download"
+    },
+    "download_btn": "Download",
+    "empty": "No files available in this category.",
+    "stat_total": "Total Files",
+    "search_placeholder": "Search files..."
   }
 }

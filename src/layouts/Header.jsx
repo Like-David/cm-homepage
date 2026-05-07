@@ -86,6 +86,7 @@ function Header() {
                 { title: t('menu.faq'), path: '/support/faq' },
                 { title: t('support.board_title'), path: '/support' },
                 { title: t('menu.remote_support'), path: '/support/inquiry' },
+                { title: t('menu.resources'), path: '/support/resources' },
             ],
         },
     ];

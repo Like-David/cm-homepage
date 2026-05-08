@@ -396,12 +396,40 @@
     max-width: 75%;
 }
 
+.partner-logo-wrapper .partner-logo-placeholder {
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(135deg, #eef1f8 0%, #dde4f0 100%);
+    border-radius: 8px;
+}
+
 .partner-name-text {
     font-size: clamp(11px, 1.5vw, 13px);
     color: #444;
     margin: 0;
     font-weight: 500;
     word-break: keep-all;
+}
+
+.partner-expand-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 28px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 20px;
+    background: #fff;
+    color: #475569;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.partner-expand-btn:hover {
+    border-color: #1C2D60;
+    color: #1C2D60;
+    background: #f0f4ff;
 }
 
 /* Service Center Section */

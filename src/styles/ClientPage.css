@@ -27,6 +27,7 @@
 
 .partners-grid-section .container {
   max-width: 1200px;
+  padding-top: 60px;
 }
 
 .partners-grid {
@@ -123,4 +124,13 @@
 
 .partner-category:last-child {
   margin-bottom: 0;
+}
+
+.partner-logo-placeholder {
+  width: 80%;
+  height: 80px;
+  background: linear-gradient(135deg, #eef1f8 0%, #dde4f0 100%);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  flex-shrink: 0;
 }

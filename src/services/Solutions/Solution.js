@@ -1,5 +1,4 @@
-export const showSolutionPopup = function(data) {
-    // 1. 새 창을 엽니다. (이름을 지정해야 form의 target으로 사용할 수 있습니다)
+export const showSolutionPopup = async function(data) {
     let pw, ph;
     pw = Math.min(1200, Math.max(920, Math.round(screen.width * 0.60)));
     ph = Math.round(screen.height * 0.9);
@@ -12,18 +11,34 @@ export const showSolutionPopup = function(data) {
         return;
     }
 
-    // 2. 동적으로 form을 생성합니다.
+    // For rx-cert: issue a cert record in the DB and get a UUID for the QR
+    let verifyId = null;
+    if (data.solutionId === 'rx-cert') {
+        try {
+            const resp = await fetch('/api/cert-verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: data.name, accNo: data.accNo, nowDate: data.nowDate }),
+            });
+            if (resp.ok) {
+                const json = await resp.json();
+                verifyId = json.id;
+            }
+        } catch (e) {
+            console.warn('cert-verify API error:', e);
+        }
+    }
+
     const form = document.createElement('form');
     form.setAttribute('method', 'post');
-    // Vite 프록시를 통하도록 상대 경로를 사용합니다.
     const eformBase = import.meta.env.VITE_EFORM_BASE_URL || '';
     let actionUrl = '';
     switch (data.solutionId) {
         case 'report-express':
-            actionUrl = `${eformBase}/eform-demo/cdoc/eform/homepage/rxEnt/rxEnt.jsp`;
+            actionUrl = `${eformBase}/eform-demo/cdoc/eform/homepage/rxEForm/rxEForm.jsp`;
             break;
         case 'rx-cert':
-            actionUrl = `${eformBase}/eform-demo/cdoc/eform/homepage/rxCert/rxCert.jsp`;
+            actionUrl = `${eformBase}/eform-demo/cdoc/eform/homepage/rxCertDemo/rxCertDemo.jsp`;
             break;
         case 'rx-loan':
             actionUrl = `${eformBase}/eform-demo/cdoc/eform/homepage/rxLoan/rxLoan.jsp`;
@@ -32,20 +47,27 @@ export const showSolutionPopup = function(data) {
             actionUrl = `${eformBase}/eform-demo/cdoc/eform/homepage/rxEnt/rxEnt.jsp`;
     }
     form.setAttribute('action', actionUrl);
-    form.setAttribute('target', 'solutionPopup'); // form의 제출 대상을 새 창으로 지정
+    form.setAttribute('target', 'solutionPopup');
 
-    // 3. 전송할 데이터를 hidden input으로 form에 추가합니다.
+    const addHidden = (name, value) => {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', name);
+        input.setAttribute('value', value);
+        form.appendChild(input);
+    };
+
     for (const key in data) {
-        if (data.hasOwnProperty(key) && key !== 'solutionId') { // solutionId는 전송하지 않음
-            const hiddenField = document.createElement('input');
-            hiddenField.setAttribute('type', 'hidden');
-            hiddenField.setAttribute('name', key);
-            hiddenField.setAttribute('value', data[key]);
-            form.appendChild(hiddenField);
+        if (data.hasOwnProperty(key) && key !== 'solutionId') {
+            addHidden(key, data[key]);
         }
     }
 
-    // 4. form을 body에 추가하고 submit한 뒤, 다시 제거합니다.
+    if (verifyId) {
+        addHidden('verifyId', verifyId);
+        addHidden('verifyBaseUrl', window.location.origin);
+    }
+
     document.body.appendChild(form);
     form.submit();
     document.body.removeChild(form);

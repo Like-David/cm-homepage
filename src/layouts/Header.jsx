@@ -74,9 +74,8 @@ function Header() {
             title: t('menu.business'),
             path: '/business/client',
             depth2: [
-                { title: t('menu.financial'), path: '/business/client#financial-institutions' },
-                { title: t('menu.educational'), path: '/business/client#financial2-institutions' },
-                { title: t('menu.public'), path: '/business/client#public-institutions' }
+                { title: t('menu.sm'), path: '/business/client#sm-projects' },
+                { title: t('menu.si'), path: '/business/client#si-projects' },
             ],
         },
         {

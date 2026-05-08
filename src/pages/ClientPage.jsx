@@ -6,81 +6,105 @@ import '@/styles/Scroll_nav.css';
 
 import Banner from '@/components/common/Banner';
 
-// Import all necessary images
 import BAIImg from '@/assets/images/Index/Partners/BAI.png';
-import CopyrightImg from '@/assets/images/Index/Partners/Copyright.png';
-import FSBImg from '@/assets/images/Index/Partners/FSB.jpg';
-import KCAImg from '@/assets/images/Index/Partners/KCA.png';
-import SeoulEtaxImg from '@/assets/images/Index/Partners/SeoulEtax.jpg';
-
 import BusanImg from '@/assets/images/Index/Partners/Busan.png';
 import CHUBBImg from '@/assets/images/Index/Partners/CHUBB.png';
+import CopyrightImg from '@/assets/images/Index/Partners/Copyright.png';
 import DBLifeImg from '@/assets/images/Index/Partners/DBLife.jpg';
+import HanaLifeImg from '@/assets/images/Index/Partners/HanaLife.png';
 import HanwhaImg from '@/assets/images/Index/Partners/Hanwha.png';
 import IBKImg from '@/assets/images/Index/Partners/IBK.png';
 import IMBankImg from '@/assets/images/Index/Partners/IMBank.jpg';
+import INHAUImg from '@/assets/images/Index/Partners/INHAU.jpg';
 import JBBankImg from '@/assets/images/Index/Partners/JBBank.jpg';
 import KBSavingImg from '@/assets/images/Index/Partners/KBSaving.png';
+import KCAImg from '@/assets/images/Index/Partners/KCA.png';
 import KDBImg from '@/assets/images/Index/Partners/KDB.png';
 import KoreaInvestmentImg from '@/assets/images/Index/Partners/KoreaInvestment.png';
 import KYOBOImg from '@/assets/images/Index/Partners/KYOBO.png';
 import KyongnamImg from '@/assets/images/Index/Partners/Kyongnam.jpg';
-import meritzImg from '@/assets/images/Index/Partners/meritz.jpg';
 import MGImg from '@/assets/images/Index/Partners/MG.png';
 import NHBankImg from '@/assets/images/Index/Partners/NHBank.png';
 import OKCapitalImg from '@/assets/images/Index/Partners/OKCapital.jpg';
-import SCBankImg from '@/assets/images/Index/Partners/SCBank.jpg';
+import SeoulEtaxImg from '@/assets/images/Index/Partners/SeoulEtax.jpg';
 import ShinhanCiImg from '@/assets/images/Index/Partners/ShinhanCi.png';
-
-import INHAUImg from '@/assets/images/Index/Partners/INHAU.jpg';
 import SJCUImg from '@/assets/images/Index/Partners/SJCU.jpg';
 import SMUImg from '@/assets/images/Index/Partners/SMU.jpg';
 
-
 const partnersData = {
-    'financial': [
-        { key: 'NHBank', logo: NHBankImg },
+    'sm': [
         { key: 'IBK', logo: IBKImg },
+        { key: 'ShinhanBank', logo: null },
+        { key: 'WooriBank', logo: null },
+        { key: 'NHBank', logo: NHBankImg },
         { key: 'Busan', logo: BusanImg },
         { key: 'Kyongnam', logo: KyongnamImg },
         { key: 'JBBank', logo: JBBankImg },
-        { key: 'IMBank', logo: IMBankImg, whiteBorder: true }
-    ],
-    'educational': [
-        { key: 'KBSaving', logo: KBSavingImg },
-        { key: 'FSB', logo: FSBImg, whiteBorder: true },
-        { key: 'MG', logo: MGImg },
-        { key: 'OKCapital', logo: OKCapitalImg },
+        { key: 'IMBank', logo: IMBankImg },
+        { key: 'KoreaInvestment', logo: KoreaInvestmentImg },
+        { key: 'HanwhaLife', logo: null },
         { key: 'Hanwha', logo: HanwhaImg },
+        { key: 'HanaLife', logo: HanaLifeImg },
         { key: 'KDB', logo: KDBImg },
         { key: 'DBLife', logo: DBLifeImg },
         { key: 'CHUBB', logo: CHUBBImg },
         { key: 'KYOBO', logo: KYOBOImg },
-        { key: 'KoreaInvestment', logo: KoreaInvestmentImg },
-        { key: 'meritz', logo: meritzImg },
-        { key: 'ShinhanCi', logo: ShinhanCiImg }
-    ],
-    'public': [
-        { key: 'BAI', logo: BAIImg },
+        { key: 'MG', logo: MGImg },
+        { key: 'OKCapital', logo: OKCapitalImg },
+        { key: 'KBSaving', logo: KBSavingImg },
+        { key: 'MGSaemaul', logo: MGImg },
+        { key: 'ShinhanCi', logo: ShinhanCiImg },
+        { key: 'OKFinancial', logo: OKCapitalImg },
+        { key: 'SeoulEtax', logo: SeoulEtaxImg },
+        { key: 'SeoulSubsidy', logo: null },
+        { key: 'SaemterBuilding', logo: null },
+        { key: 'NIRS', logo: null },
         { key: 'Copyright', logo: CopyrightImg },
         { key: 'KCA', logo: KCAImg },
-        { key: 'SeoulEtax', logo: SeoulEtaxImg },
         { key: 'INHAU', logo: INHAUImg },
+        { key: 'SMU', logo: SMUImg, padded: true },
         { key: 'SJCU', logo: SJCUImg, padded: true },
-        { key: 'SMU', logo: SMUImg, padded: true }
-    ]
+        { key: 'KNOU', logo: null },
+    ],
+    'si': [
+        { key: 'BAI', logo: BAIImg },
+        { key: 'NationalDefense', logo: null },
+        { key: 'WooriBank', logo: null },
+        { key: 'NHBank', logo: NHBankImg },
+        { key: 'NHCoOp', logo: null },
+        { key: 'LaborWelfare', logo: null },
+        { key: 'SMEVenture', logo: null },
+        { key: 'OilManagement', logo: null },
+        { key: 'KoreaRacing', logo: null },
+        { key: 'NHCard', logo: null },
+        { key: 'OKP2P', logo: null },
+        { key: 'LotteInsurance', logo: null },
+        { key: 'IMCapital', logo: null },
+        { key: 'WoongjiTax', logo: null },
+        { key: 'EBS', logo: null },
+        { key: 'Mediawill', logo: null },
+        { key: 'OKData', logo: null },
+        { key: 'Busan', logo: BusanImg },
+        { key: 'JBBank', logo: JBBankImg },
+        { key: 'Kyongnam', logo: KyongnamImg },
+        { key: 'IMBank', logo: IMBankImg },
+        { key: 'SJCU', logo: SJCUImg, padded: true },
+        { key: 'KNOU', logo: null },
+        { key: 'KCA', logo: KCAImg },
+        { key: 'DBLife', logo: DBLifeImg },
+        { key: 'MGSaemaul', logo: MGImg },
+        { key: 'OKCapital', logo: OKCapitalImg },
+    ],
 };
 
 const categoryIdMap = {
-  'financial': 'financial-institutions',
-  'educational': 'financial2-institutions',
-  'public': 'public-institutions',
+    'sm': 'sm-projects',
+    'si': 'si-projects',
 };
 
 const categoryKeys = {
-    'financial': 'business.financial',
-    'educational': 'business.educational',
-    'public': 'business.public'
+    'sm': 'business.sm',
+    'si': 'business.si',
 };
 
 const ClientPage = () => {
@@ -130,47 +154,56 @@ const ClientPage = () => {
         }
     }, [location.hash]);
 
+    return (
+        <div className="client-page">
+            <nav className="scroll-nav">
+                <ul className="scroll-nav-list">
+                    {Object.keys(partnersData).map((key) => (
+                        <li
+                            key={key}
+                            className={activeSection === categoryIdMap[key] ? 'active' : ''}
+                            onClick={() => scrollToSection(categoryIdMap[key])}
+                        >
+                            <span>{t(categoryKeys[key])}</span>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
 
-  return (
-    <div className="client-page">
-      <nav className="scroll-nav">
-        <ul className="scroll-nav-list">
-          {Object.keys(partnersData).map((key) => (
-            <li
-              key={key}
-              className={activeSection === categoryIdMap[key] ? 'active' : ''}
-              onClick={() => scrollToSection(categoryIdMap[key])}
-            >
-              <span>{t(categoryKeys[key])}</span>
-            </li>
-          ))}
-        </ul>
-      </nav>
+            <Banner title={t('business.title')} subtitle={t('business.subtitle')} />
 
-      <Banner title={t('business.title')} subtitle={t('business.subtitle')} />
-
-      <div className="partners-grid-section">
-        <div className="container">
-          {Object.keys(partnersData).map((key) => (
-            <div key={key}
-                 id={categoryIdMap[key]}
-                 ref={el => sectionRefs.current[categoryIdMap[key]] = el}
-                 className="partner-category">
-              <h3>{t(categoryKeys[key])}</h3>
-              <div className="partners-grid">
-                {partnersData[key].map((partner, index) => (
-                  <div key={`${key}-${partner.key}-${index}`} className="partner-card">
-                    <img src={partner.logo} alt={t(`partners.names.${partner.key}`)} className={[partner.whiteBorder && 'img-white-border', partner.padded && 'img-logo-padded'].filter(Boolean).join(' ')} />
-                    <p className="partner-name">{t(`partners.names.${partner.key}`)}</p>
-                  </div>
-                ))}
-              </div>
+            <div className="partners-grid-section">
+                <div className="container">
+                    {Object.keys(partnersData).map((key) => (
+                        <div key={key}
+                             id={categoryIdMap[key]}
+                             ref={el => sectionRefs.current[categoryIdMap[key]] = el}
+                             className="partner-category">
+                            <h3>{t(categoryKeys[key])}</h3>
+                            <div className="partners-grid">
+                                {partnersData[key].map((partner, index) => (
+                                    <div key={`${key}-${partner.key}-${index}`} className="partner-card">
+                                        {partner.logo
+                                            ? <img
+                                                src={partner.logo}
+                                                alt={t(`partners.names.${partner.key}`)}
+                                                className={[
+                                                    partner.whiteBorder && 'img-white-border',
+                                                    partner.padded && 'img-logo-padded'
+                                                ].filter(Boolean).join(' ')}
+                                              />
+                                            : <div className="partner-logo-placeholder" />
+                                        }
+                                        <p className="partner-name">{t(`partners.names.${partner.key}`)}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-          ))}
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default ClientPage;

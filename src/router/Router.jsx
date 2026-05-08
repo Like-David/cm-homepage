@@ -22,6 +22,7 @@ import UserManagementPage from '@/pages/UserManagementPage';
 import StatisticsPage from '@/pages/StatisticsPage';
 import MyProfilePage from '@/pages/MyProfilePage';
 import SettingsPage from '@/pages/SettingsPage';
+import CertVerifyPage from '@/pages/CertVerifyPage';
 
 function Router() {
     return (
@@ -40,6 +41,7 @@ function Router() {
                 <Route path="/support/:id/edit" element={<SupportEditPage />} />
                 <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="/terms" element={<TermsPage />} />
+                <Route path="/verify" element={<CertVerifyPage />} />
 
                 {/* 관리자 대시보드 - EMPLOYEE, ADMIN 공통 */}
                 <Route
